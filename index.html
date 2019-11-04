@@ -52,6 +52,40 @@
 
 </div>
 
+<div id="table">
+        <table id="detail_table" class="table table-striped table-bordered table-hover table-condensed">
+        <tbody id="detail_body">
+            <tr>
+            <td>ID</td>
+            <td>시험 날짜</td>
+            <td>총 시험시간</td>
+            <td>챔버 번호</td>
+            <td>모델 정보</td>
+            <td>시험 항목</td>
+            <td>시험자</td>
+        </tr>
+    </tbody>
+    </table>
+
+    <button class='button' onclick='showGraph()'>그래프 보기</button>
+
+</div>
+<div id="graph">
+    <div id="Line_Controls_Chart">
+        <!-- 라인 차트 생성할 영역 -->
+            <div id="lineChartArea" style="padding:0px 20px 0px 0px;"></div>
+        <!-- 컨트롤바를 생성할 영역 -->
+            <div id="controlsArea" style="padding:0px 20px 0px 0px;"></div>
+      </div>
+    <div id="selectgraph1">
+        <form id="selectgraph">
+
+        </form>
+    </div>
+</div>
+<span></span>
+</body>
+
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script src="https://d3js.org/d3-array.v2.min.js"></script>
 <script src="https://d3js.org/d3-color.v1.min.js"></script>
@@ -61,6 +95,25 @@
 <script src="https://d3js.org/d3-time-format.v2.min.js"></script>
 <script src="https://d3js.org/d3-scale.v3.min.js"></script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/jquery.dropotron.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://d3js.org/d3-array.v2.min.js"></script>
+<script src="https://d3js.org/d3-color.v1.min.js"></script>
+<script src="https://d3js.org/d3-format.v1.min.js"></script>
+<script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+<script src="https://d3js.org/d3-time.v1.min.js"></script>
+<script src="https://d3js.org/d3-time-format.v2.min.js"></script>
+<script src="https://d3js.org/d3-scale.v3.min.js"></script>
+<script data-require="d3@4.0.0" data-semver="4.0.0" src="https://d3js.org/d3.v4.min.js"></script>
 <script>
     var num_db = 0
     var x=[
@@ -223,5 +276,214 @@
             }
         });
     });
+
+
+    
+    var array;
+            var indexName;
+    
+    $(document).ready(function(){
+				$.ajax({
+					type: 'post'
+					, url: 'http://localhost:3000/api/chamber_status'
+				
+					, beforeSend: function() {
+						$('#ajax_load_indicator').show().fadeIn('fast'); 
+					}
+					, success: function(data) {
+                        console.log(data.content);
+
+                        array=new Array(data.content.length);
+                            for(var i =0 ;i<data.content.length;i++){
+                                array[i]=new Array();
+                            }
+                            indexName=['Date','ida_wb','ida_db','idb_db','idb_db','od_wb','od_db'];
+                            
+
+
+                            for(var i=0; i<data.content.length;i++){
+                                var date_modify = (data.content[i].lgmv_date).substring(0,10);
+                                console.log(date_modify);
+                                array[i].push(new Date(date_modify));
+                                array[i].push(data.content[i].conn_ida_wb_gap);
+                                array[i].push(data.content[i].conn_ida_db_gap);
+                                array[i].push(data.content[i].conn_idb_wb_gap);
+                                array[i].push(data.content[i].conn_idb_db_gap);
+                                array[i].push(data.content[i].conn_od_wb_gap);
+                                array[i].push(data.content[i].conn_od_db_gap);
+
+                                ///////////
+
+                                var cham_id = data.content[i].header_uid;
+                                var cham_date=data.content[i].conn_file_date;
+                                var test_time = "일단 null";
+                                var cham_room = data.content[i].conn_testroom_number;
+                                var model_ver = data.content[i].lgmv_model_name;
+                                var test_step = data.content[i].test_step2;
+                                var tester = data.content[i].conn_tester;
+
+                                var row = "<tr>";
+                                    row+="<td>"+cham_id+"</td>";
+                                    row+="<td>"+cham_date+"</td>";
+                                    row+="<td>"+test_time+"</td>";
+                                    row+="<td>"+cham_room+"</td>";
+                                    row+="<td>"+model_ver+"</td>";
+                                    row+="<td>"+test_step+"</td>";
+                                    row+="<td>"+tester+"</td>";
+                                    row+="</tr>"
+
+                                $('#detail_body').append(row);
+                            }
+                            console.log("aa");
+                            console.log(array);
+                            drawingZZ(array,indexName,data.content.length);
+						}
+						, error: function(data, status, err) {
+							console.log("error forward : "+data);
+							alert('서버와의 통신이 실패했습니다.');
+						}
+						, complete: function() { 
+							$('#ajax_load_indicator').fadeOut();
+						}
+					});
+				});
+
+
+
+
+                function drawingZZ(array,indexName,arraylength){
+                    console.log(arraylength);
+                    var chartDrowFun = {
+                        
+                        chartDrow : function(){
+                            var chartData = '';
+
+                            //날짜형식 변경하고 싶으시면 이 부분 수정하세요.
+                            var chartDateformat     = 'yyyy년 MM월 dd일';
+                            //라인차트의 라인 수
+                            var chartLineCount    = 10;
+                            //컨트롤러 바 차트의 라인 수
+                            var controlLineCount    = 10;
+
+
+                            function drawDashboard() {
+
+                            var data = new google.visualization.DataTable();
+                            var distinct=[];
+                            //그래프에 표시할 컬럼 추가
+
+                            data.addColumn('date',indexName[0]);
+                            for(var i=1;i<indexName.length;i++){
+                                data.addColumn('number',indexName[i]);
+                               
+                           
+                            }
+                            // data.addColumn('date' , '날짜');
+                            // data.addColumn('number'   , '전체');
+
+                            //그래프에 표시할 데이터
+                            var dataRow = [];
+                            var mindata;
+                           
+                            
+
+                            for(var i = 0; i < arraylength; i++){ //데이터 삽입
+                                // var total   = datazz[i].value;
+                                // var datezz = datazz[i].TXT_TIME;
+                                // console.log(datezz);
+                                // dataRow = [new Date(datezz),total];
+                            
+                                data.addRow(array[i]);
+                                console.log(array[i]);
+                                mindata = Math.min(array[i]);
+                            }
+
+
+                                var chart = new google.visualization.ChartWrapper({
+                                chartType   : 'LineChart',
+                                containerId : 'lineChartArea', //라인 차트 생성할 영역
+                                options     : {
+                                               // chartArea : {right:136},
+                                                isStacked   : 'percent',
+                                                focusTarget : 'category',
+                                                height          : 500,
+                                                width              : '100%',
+                                                legend          : { position: "top", textStyle: {fontSize: 13}},
+                                                pointSize        : 5,
+                                                tooltip          : {textStyle : {fontSize:12}, showColorCode : true,trigger: 'both'},
+                                                hAxis              : {format: chartDateformat, gridlines:{count:chartLineCount,units: {
+                                                                                    years : {format: ['yyyy년']},
+                                                                                    months: {format: ['MM월']},
+                                                                                    days  : {format: ['dd일']},
+                                                                                        }
+                                                                                    },textStyle: {fontSize:12}},
+                                    
+                                    // series:{
+                                    //     0:{targetAxisIndex:0},
+                                    //     1:{targetAxisIndex:1},
+                                    //     2:{targetAxisIndex:2},
+                                            },
+                                    vAxes              : {minValue: 10,viewWindow:{min:mindata},gridlines:{count:-1},textStyle:{fontSize:12},
+                                                        //   1:{label: '˚C',minValue: 10,viewWindow:{min:mindata},gridlines:{count:-1},textStyle:{fontSize:12},side:'left'},
+                                                        //   2:{title: 'kPa',minValue: 10,viewWindow:{min:mindata},gridlines:{count:-1},textStyle:{fontSize:12},position:'left'},
+                                                        //   },
+                                    animation        : {startup: true,duration: 1000,easing: 'in' },
+                                    annotations    : {pattern: chartDateformat,
+                                                    textStyle: {
+                                                    fontSize: 15,
+                                                    bold: true,
+                                                    italic: true,
+                                                    color: '#871b47',
+                                                    auraColor: '#d799ae',
+                                                    opacity: 0.8,
+                                                    pattern: chartDateformat
+                                                }
+                                                },
+
+                                }
+                                });
+
+                                var control = new google.visualization.ControlWrapper({
+                                controlType: 'ChartRangeFilter',
+                                containerId: 'controlsArea',  //control bar를 생성할 영역
+                                options: {
+                                    ui:{
+                                            chartType: 'LineChart',
+                                            chartOptions: {
+                                            chartArea: {'width': '60%','height' : 80},
+                                            hAxis: {'baselineColor': 'none', format: chartDateformat, textStyle: {fontSize:12},
+                                                gridlines:{count:controlLineCount,units: {
+                                                    years: {format: ['yyyy년']},
+                                                    months: {format: ['MM월']},
+                                                    days  : {format: ['dd일']},
+                                                    }
+                                                }}
+                                            }
+                                    },
+                                        filterColumnIndex: 0
+                                    }
+                                });
+
+                                var date_formatter = new google.visualization.DateFormat({ pattern: chartDateformat});
+                                date_formatter.format(data, 0);
+
+                                var dashboard = new google.visualization.Dashboard(document.getElementById('Line_Controls_Chart'));
+                                window.addEventListener('resize', function() { dashboard.draw(data); }, false); //화면 크기에 따라 그래프 크기 변경
+                                dashboard.bind([control], [chart]);
+                                dashboard.draw(data);
+
+                            }
+                            google.charts.setOnLoadCallback(drawDashboard);
+
+                        }
+                        }
+
+                        // $(document).ready(function(){
+                        google.charts.load('current', {'packages':['line','controls']});
+                        chartDrowFun.chartDrow(); //chartDrow() 실행
+                        //  });
+
+                }
+
 </script>
 </body>

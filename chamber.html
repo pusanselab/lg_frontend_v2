@@ -87,7 +87,7 @@
                             for(var i =0 ;i<data.content.length;i++){
                                 array[i]=new Array();
                             }
-                            indexName=['Date','id_wb','id_db','od_wb','od_db'];
+                            indexName=['Date','ida_wb','ida_db','idb_db','idb_db','od_wb','od_db'];
                             
 
 
@@ -97,6 +97,8 @@
                                 array[i].push(new Date(date_modify));
                                 array[i].push(data.content[i].conn_ida_wb_gap);
                                 array[i].push(data.content[i].conn_ida_db_gap);
+                                array[i].push(data.content[i].conn_idb_wb_gap);
+                                array[i].push(data.content[i].conn_idb_db_gap);
                                 array[i].push(data.content[i].conn_od_wb_gap);
                                 array[i].push(data.content[i].conn_od_db_gap);
 
