@@ -285,42 +285,58 @@
     $(document).ready(function(){
 				$.ajax({
 					type: 'post'
-					, url: 'http://localhost:3000/api/chamber_status'
+					, url: 'http://localhost:3000/api/chamber/chamber_status'
 				
 					, beforeSend: function() {
 						$('#ajax_load_indicator').show().fadeIn('fast'); 
 					}
 					, success: function(data) {
-                        console.log(data.content);
+                        
 
-                        array=new Array(data.content.length);
-                            for(var i =0 ;i<data.content.length;i++){
+                        var all_lenght=0;
+                        for(var i=0; i<data.month.length;i++){
+                                for(var j=0;j<data.month[i].length;j++){
+                                    all_lenght=all_lenght+1;
+                                }
+                        }
+                        console.log(all_lenght);
+
+
+                        array=new Array(all_lenght);
+                            for(var i =0 ;i<all_lenght;i++){
                                 array[i]=new Array();
                             }
                             indexName=['Date','ida_wb','ida_db','idb_db','idb_db','od_wb','od_db'];
                             
 
-
-                            for(var i=0; i<data.content.length;i++){
-                                var date_modify = (data.content[i].lgmv_date).substring(0,10);
+                            var countzz=0;
+                            var indexzz=0
+                            for(var i=0; i<data.month.length;i++){
+                                for(var j=0;j<data.month[i].length;j++){
+                                var date_modify = (data.month[i][j].lgmv_date).substring(0,10);
                                 console.log(date_modify);
-                                array[i].push(new Date(date_modify));
-                                array[i].push(data.content[i].conn_ida_wb_gap);
-                                array[i].push(data.content[i].conn_ida_db_gap);
-                                array[i].push(data.content[i].conn_idb_wb_gap);
-                                array[i].push(data.content[i].conn_idb_db_gap);
-                                array[i].push(data.content[i].conn_od_wb_gap);
-                                array[i].push(data.content[i].conn_od_db_gap);
+                                array[indexzz].push(new Date(date_modify));
+                                array[indexzz].push(data.month[i][j].conn_ida_wb_gap);
+                                array[indexzz].push(data.month[i][j].conn_ida_db_gap);
+                                array[indexzz].push(data.month[i][j].conn_idb_wb_gap);
+                                array[indexzz].push(data.month[i][j].conn_idb_db_gap);
+                                array[indexzz].push(data.month[i][j].conn_od_wb_gap);
+                                array[indexzz].push(data.month[i][j].conn_od_db_gap);
+                                indexzz=indexzz+1;
+                                }
+                                
+                            }
 
                                 ///////////
-
-                                var cham_id = data.content[i].header_uid;
-                                var cham_date=data.content[i].conn_file_date;
+                            for(var i=0;i<data.month.length;i++){
+                                for(var j=0;j<data.month[i].length;j++){
+                                var cham_id = data.month[i][j].header_uid;
+                                var cham_date=data.month[i][j].conn_file_date;
                                 var test_time = "일단 null";
-                                var cham_room = data.content[i].conn_testroom_number;
-                                var model_ver = data.content[i].lgmv_model_name;
-                                var test_step = data.content[i].test_step2;
-                                var tester = data.content[i].conn_tester;
+                                var cham_room = data.month[i][j].conn_testroom_number;
+                                var model_ver = data.month[i][j].lgmv_model_name;
+                                var test_step = data.month[i][j].test_step2;
+                                var tester = data.month[i][j].conn_tester;
 
                                 var row = "<tr>";
                                     row+="<td>"+cham_id+"</td>";
@@ -333,10 +349,19 @@
                                     row+="</tr>"
 
                                 $('#detail_body').append(row);
+                                countzz=countzz+1;
+                                if(countzz>=5){
+                                    break;
+                                    }
+                                }
+                                if(countzz>=5){
+                                    break;
+                                }
+                                
                             }
                             console.log("aa");
                             console.log(array);
-                            drawingZZ(array,indexName,data.content.length);
+                            drawingZZ(array,indexName,all_lenght);
 						}
 						, error: function(data, status, err) {
 							console.log("error forward : "+data);

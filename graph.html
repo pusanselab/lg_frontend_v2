@@ -82,12 +82,14 @@
 
             var array;
             var index=0;
-            var indexName;
+            var indexName=['Date'];
+            var colName=[];
             var rowcount;
+            var val;
                 
 
             $(document).ready(function(){
-                var val = location.href.substr(
+                val = location.href.substr(
                 location.href.lastIndexOf('=') + 1);
 				console.log("enter login");
                 var params="header_uid="+val;
@@ -120,16 +122,6 @@
                                 $('#detail_body').append(row);
                         }
                         $('#detail_table').dataTable();
-
-                        console.log(rowcount);
-
-                        array=new Array(rowcount+1);
-                        for(var i =0 ;i<rowcount+1;i++){
-                            array[i]=new Array();
-                        }
-                        indexName=['Date'];
-
-
 							
 						}
 						, error: function(data, status, err) {
@@ -177,47 +169,51 @@
 
                 function showGraph(){
                    var rowData = new Array();
+                   var params="header_uid="+val
+                                +"&item_list="+colName;
 
-                if($("input:checkbox:checked").length >0){
-                    console.log("이안");
-                //   $("input:checkbox:checked").prop('checked',false);
-                   for(var j=1;j<indexName.length;j++){
-                        for(var i=0;i<rowcount;i++){
-                            array[i].splice(j,1);
-                        }
-                   }
-                   console.log(array);
-                   index=1;
-                   indexName.splice(1);
-                   drawingZZ(array,indexName,rowcount);
-                }
                 console.log("enter login");
                 $.ajax({
                     type: 'post'
                     , url: 'http://localhost:3000/api/graph/raws'
-                    , data: $("#frm").serialize()
+                    , data: params
                     , beforeSend: function() {
                         $('#ajax_load_indicator').show().fadeIn('fast'); 
                     }
                     , success: function(data) {
-                        var response = data.message;
-                        console.log("success forward : "+response);
-                        // 메세지 할당
-                        switch(response) {
-                            case "nomatch": 
-                                msg = "아이디 또는 비밀번호가 일치하지 않습니다."; break;
-                            case "failure": 
-                                msg = "로그인에 실패 했습니다."; break;
-                            default : 
-                                msg = "존재하지 않는 사용자입니다."; break;
+                        rowcount = data.time.length;
+
+                        array=new Array(rowcount+1);
+                        for(var i =0 ;i<rowcount+1;i++){
+                            array[i]=new Array();
                         }
-                        // 분기 처리
-                        if(response=="success"){
-                            window.location.href = "http://localhost/index.html";
+
+                        if($("input:checkbox:checked").length >0){
+                            console.log("이안");
+                            //   $("input:checkbox:checked").prop('checked',false);
                             
-                        } else {
-                            alert(msg);
-                        }
+                            // for(var j=1;j<indexName.length;j++){
+                            //         for(var i=0;i<rowcount;i++){
+                            //             array[i].splice(j,1);
+                            //         }
+                            // }
+                            // console.log(array);
+                            // index=1;
+                            // indexName.splice(1);
+                            // drawingZZ(array,indexName,rowcount);
+                            var datazz = data.time;
+
+                            
+                            for(var index = 0; index<datazz.length;index++){
+                                for(var i =0; i<datazz.length;i++){
+                                            var timedate = datazz[i].Date+" "+datazz[i].time;
+                                            array[i][0]=((new Date(timedate)));
+                                            array[i][index]=(datazz[i].value);
+                                            }
+                                        }
+                                    }
+                                    drawingZZ(array,indexName,datazz.length);
+                            
                     }
                     , error: function(data, status, err) {
                         console.log("error forward : "+data);
@@ -246,11 +242,13 @@
                     else{
                         if(!($('input[id='+col+']').is(':checked'))){
                             var remove=indexName.indexOf(name);
+                            var remove2=colName.indexOf(col);
                             
-                            for(var i=0;i<datazz.length;i++){
-                                array[i].splice(remove,1);
-                            }
+                            // for(var i=0;i<datazz.length;i++){
+                            //     array[i].splice(remove,1);
+                            // }
                             indexName.splice(remove,1);
+                            colName.splice(remove2,1);
                             index-=1;
                             
                         }
@@ -259,7 +257,9 @@
                         index+=1;     
                                                     
                         indexName.push(name);
-                        console.log(indexName);
+                        colName.push(col);
+
+                        console.log(colName);
                         
                         
                         // for(var i =0; i<datazz.length;i++){
