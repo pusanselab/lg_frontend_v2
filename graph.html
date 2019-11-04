@@ -171,12 +171,16 @@
                    var rowData = new Array();
                    var params="header_uid="+val
                                 +"&item_list="+colName;
+                    var jsonparams = JSON.stringify({'header_uid':val,'item_list':colName});
+                    console.log(jsonparams);
 
                 console.log("enter login");
                 $.ajax({
                     type: 'post'
                     , url: 'http://localhost:3000/api/graph/raws'
-                    , data: params
+                    , data: jsonparams
+                    , dataType:'json'
+                    , contentType:'application/json'
                     , beforeSend: function() {
                         $('#ajax_load_indicator').show().fadeIn('fast'); 
                     }
@@ -202,16 +206,29 @@
                             // indexName.splice(1);
                             // drawingZZ(array,indexName,rowcount);
                             var datazz = data.time;
+                            var dataxx = data.raws;
+                            console.log(dataxx[1]);
+                            var real_value = $.extend(true,[],dataxx[1]);
 
+                            $.each(dataxx[0],function(key,value){
+                                                console.log(value);
+                                    });
                             
-                            for(var index = 0; index<datazz.length;index++){
+                            
+
                                 for(var i =0; i<datazz.length;i++){
+                                            var index = 1;
                                             var timedate = datazz[i].Date+" "+datazz[i].time;
                                             array[i][0]=((new Date(timedate)));
-                                            array[i][index]=(datazz[i].value);
+                                            $.each(dataxx[i],function(key,value){
+                                                array[i][index]=value*1;
+                                                index=index+1;
+                                            });
+                                            
+                                            
                                             }
-                                        }
                                     }
+                                    console.log(array);
                                     drawingZZ(array,indexName,datazz.length);
                             
                     }
@@ -226,8 +243,8 @@
 
 
         
-                   htmltest+="</div>";
-                   $('#selectgraph').html(htmltest);
+                //    htmltest+="</div>";
+                //    $('#selectgraph').html(htmltest);
 
 
                 }
@@ -656,6 +673,7 @@
                                 distinct.push(split[split.length-1]);
                            
                             }
+                           
                             // data.addColumn('date' , '날짜');
                             // data.addColumn('number'   , '전체');
 
