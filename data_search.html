@@ -17,9 +17,10 @@
         </div>
     </div>
     <div id="lg_search_box">
+        <form id="data_search" method="post" action="" onSubmit="dataSearch();return false;">
         <div id="lg_search_id">
             <span>■ ID 입력</span>
-            <input id="id_search" name="id_search" type="text">
+            <input id="id_search" name="header_uid" type="text">
             <!--<button onclick="idSearch()" type="button">검색</button>-->
         </div>
         <div id="lg_search_necessary">
@@ -27,7 +28,7 @@
             <div id="lg_search_necessary_items">
                 <span> 분류 : </span>
                 <select style="margin-left: 10px" name="lgmv_model_filter1">
-                    <option value="선택" selected="selected">선택</option>
+                    <option value="">===선택===</option>
                     <option value="Multi V H/P">Multi V H/P</option>
                     <option value="Multi V 5">Multi V 5</option>
                     <option value="Multi V H/R">Multi V H/R</option>
@@ -43,7 +44,7 @@
                 </select>
                 <span> Model 군 :</span>
                 <select name="lgmv_model_filter2">
-                    <option value="선택" selected="selected">선택</option>
+                    <option value="">===선택===</option>
                     <option value="Multi V 5 HR">Multi V 5 HR</option>
                     <option value="Multi V 5 A">Multi V 5 A</option>
                     <option value="Multi V 5 H">Multi V 5 H</option>
@@ -207,7 +208,7 @@
                 <!--<button onclick="idSearch()" type="button">검색</button>-->
             </div>
         </div>
-        <button style="float: right; margin-right: 5em" onclick="idSearch()" class="btn btn-primary" type="button">검색</button>
+        <input type="submit" value="검색" onclick="dataSearch();">
         <div id="search_fail" style="display: none">
         </div>
 
@@ -497,9 +498,9 @@
 
         function dataSearch() {
             console.log("serach");
-            $('#detail').css('display', 'none');
-            $('#_same').css('display', 'none');
-            $('#_cold').css('display', 'none');
+            // $('#detail').css('display', 'none');
+            // $('#_same').css('display', 'none');
+            // $('#_cold').css('display', 'none');
             console.log($('data_search').serialize());
             $.ajax({
                 type: 'post'
@@ -515,7 +516,6 @@
                     $('#search_tbody tr:gt(0)').remove();
                     // 분기 처리
                     if (data.message == 'success' && data.content.length > 0) {
-                        console.log("아니 왜 안되냐고");
                         var array = data.content;
                         array.forEach(element => {
                             console.log(element.header_uid);
