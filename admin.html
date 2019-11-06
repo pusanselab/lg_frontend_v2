@@ -76,7 +76,7 @@
         data.pwd = $('#userpwd').val()
         $.ajax({
             type: 'post'
-            , url: 'http://localhost:3000/api/user/create'
+            , url: 'http://164.125.70.12:3000/api/user/create'
             , data: data
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
