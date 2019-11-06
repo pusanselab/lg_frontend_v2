@@ -86,10 +86,9 @@
       <file leaf-file-name="data_search.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/data_search.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="527" column="44" selection-start-line="527" selection-start-column="44" selection-end-line="527" selection-end-column="44" />
+            <state relative-caret-position="308">
+              <caret line="1049" column="21" lean-forward="true" selection-start-line="1049" selection-start-column="21" selection-end-line="1049" selection-end-column="21" />
               <folding>
-                <element signature="n#div#0;n#div#0;n#div#0;n#body#0;n#!!top" />
                 <element signature="n#div#0;n#form#0;n#div#0;n#div#1;n#div#0;n#body#0;n#!!top" />
                 <element signature="n#div#1;n#form#0;n#div#0;n#div#1;n#div#0;n#body#0;n#!!top" />
                 <element signature="n#style#0;n#select#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
@@ -403,7 +402,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51314000" />
+    <option name="totallyTimeSpent" value="52087000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
@@ -595,7 +594,6 @@
         <state relative-caret-position="2375">
           <caret line="207" column="18" lean-forward="true" selection-start-line="207" selection-start-column="18" selection-end-line="207" selection-end-column="18" />
           <folding>
-            <element signature="n#div#0;n#div#0;n#div#0;n#body#0;n#!!top" />
             <element signature="n#div#0;n#form#0;n#div#0;n#div#1;n#div#0;n#body#0;n#!!top" />
             <element signature="n#div#1;n#form#0;n#div#0;n#div#1;n#div#0;n#body#0;n#!!top" />
             <element signature="n#style#0;n#select#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
@@ -780,7 +778,6 @@
         <state relative-caret-position="304">
           <caret line="21" column="86" selection-start-line="21" selection-start-column="86" selection-end-line="21" selection-end-column="86" />
           <folding>
-            <element signature="n#div#0;n#div#0;n#div#0;n#body#0;n#!!top" />
             <element signature="n#div#0;n#form#0;n#div#0;n#div#1;n#div#0;n#body#0;n#!!top" />
             <element signature="n#div#1;n#form#0;n#div#0;n#div#1;n#div#0;n#body#0;n#!!top" />
             <element signature="n#style#0;n#select#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
@@ -861,7 +858,6 @@
         <state relative-caret-position="9595">
           <caret line="505" column="6" selection-start-line="505" selection-end-line="570" />
           <folding>
-            <element signature="n#div#0;n#div#0;n#div#0;n#body#0;n#!!top" />
             <element signature="n#div#0;n#form#0;n#div#0;n#div#1;n#div#0;n#body#0;n#!!top" />
             <element signature="n#div#1;n#form#0;n#div#0;n#div#1;n#div#0;n#body#0;n#!!top" />
             <element signature="n#style#0;n#select#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
@@ -997,7 +993,6 @@
         <state relative-caret-position="15903">
           <caret line="991" column="7" lean-forward="true" selection-start-line="991" selection-start-column="7" selection-end-line="991" selection-end-column="7" />
           <folding>
-            <element signature="n#div#0;n#div#0;n#div#0;n#body#0;n#!!top" />
             <element signature="n#div#0;n#form#0;n#div#0;n#div#1;n#div#0;n#body#0;n#!!top" />
             <element signature="n#div#1;n#form#0;n#div#0;n#div#1;n#div#0;n#body#0;n#!!top" />
             <element signature="n#style#0;n#select#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
@@ -1093,7 +1088,6 @@
         <state relative-caret-position="665">
           <caret line="134" column="16" selection-start-line="134" selection-start-column="16" selection-end-line="134" selection-end-column="16" />
           <folding>
-            <element signature="n#div#0;n#div#0;n#div#0;n#body#0;n#!!top" />
             <element signature="n#div#0;n#form#0;n#div#0;n#div#1;n#div#0;n#body#0;n#!!top" />
             <element signature="n#div#1;n#form#0;n#div#0;n#div#1;n#div#0;n#body#0;n#!!top" />
             <element signature="n#style#0;n#select#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
@@ -1189,7 +1183,6 @@
         <state relative-caret-position="9215">
           <caret line="503" column="59" lean-forward="true" selection-start-line="503" selection-start-column="59" selection-end-line="503" selection-end-column="59" />
           <folding>
-            <element signature="n#div#0;n#div#0;n#div#0;n#body#0;n#!!top" />
             <element signature="n#div#0;n#form#0;n#div#0;n#div#1;n#div#0;n#body#0;n#!!top" />
             <element signature="n#div#1;n#form#0;n#div#0;n#div#1;n#div#0;n#body#0;n#!!top" />
             <element signature="n#style#0;n#select#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
@@ -1379,10 +1372,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/data_search.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="527" column="44" selection-start-line="527" selection-start-column="44" selection-end-line="527" selection-end-column="44" />
+        <state relative-caret-position="308">
+          <caret line="1049" column="21" lean-forward="true" selection-start-line="1049" selection-start-column="21" selection-end-line="1049" selection-end-column="21" />
           <folding>
-            <element signature="n#div#0;n#div#0;n#div#0;n#body#0;n#!!top" />
             <element signature="n#div#0;n#form#0;n#div#0;n#div#1;n#div#0;n#body#0;n#!!top" />
             <element signature="n#div#1;n#form#0;n#div#0;n#div#1;n#div#0;n#body#0;n#!!top" />
             <element signature="n#style#0;n#select#0;n#div#0;n#div#1;n#form#0;n#div#0;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
