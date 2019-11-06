@@ -525,7 +525,7 @@
             $('#_cold').css('display', 'none');
             $.ajax({
                 type: 'post'
-                , url: 'http://164.125.70.12:3000/api/data_search_id'
+                , url: 'http://localhost:3000/api/data_search_id'
                 , data: data
                 , beforeSend: function () {
                     $('#ajax_load_indicator').show().fadeIn('fast');
@@ -600,7 +600,7 @@
             console.log($('data_search').serialize());
             $.ajax({
                 type: 'post'
-                , url: 'http://164.125.70.12:3000/api/data_search'
+                , url: 'http://localhost:3000/api/data_search'
                 , data: $("#data_search").serialize()
                 , beforeSend: function () {
                     $('#ajax_load_indicator').show().fadeIn('fast');
@@ -702,7 +702,7 @@
         $(document).ready(function(){
 				$.ajax({
 					type: 'post'
-					, url: 'http://164.125.70.12:3000/api/session'
+					, url: 'http://localhost:3000/api/session'
 				
 					, beforeSend: function() {
 						$('#ajax_load_indicator').show().fadeIn('fast'); 
@@ -729,7 +729,7 @@
 
             $.ajax({
                 type: 'post'
-                , url: 'http://164.125.70.12:3000/api/data_search_id'
+                , url: 'http://localhost:3000/api/data_search_id'
                 , data: params
                 , beforeSend: function () {
                     $('#ajax_load_indicator').show().fadeIn('fast');
@@ -877,7 +877,7 @@
             $('#_same_title').css('display', 'inline');
             $.ajax({
                 type: 'post'
-                , url: 'http://164.125.70.12:3000/api/data_search_detail'
+                , url: 'http://localhost:3000/api/data_search_detail'
                 , data: same
                 , beforeSend: function () {
                     $('#ajax_load_indicator').show().fadeIn('fast');
@@ -1031,7 +1031,6 @@
         display: flex;
         flex-direction: row;
         height: 100%;
-        background-color: gray;
     }
 
     /*lg_content Css*/
@@ -1053,30 +1052,31 @@
     }
 
     #lg_sidebar {
-        background-color: #f5f5f5;
+        background-color: white;
     }
 
     #lg_sidebar #lg_sidebar_content {
-        background-color: #d0d1cf;
+        margin: 1.5em 0.4em 0.2em;
+        background-color: #38222b;
         padding: 2em 1em;
+        box-shadow: 3px 5px 3px;
     }
 
     /* sidebar 안에 있는 링크들 */
     #lg_sidebar a {
         display: flex;
         flex-direction: column;
-        background-color: #d0d1cf;
         align-items: center;
-        margin-bottom: 2em;
-        color: black;
+        margin-bottom: 1em;
+        font-size: 0.9em;
+        font-family: "Adobe 명조 Std M";
+        color: white;
     }
 
     #lg_sidebar a:hover {
         font-weight: bold;
-        background-color: #66ffff;
         text-decoration: #1c7430 solid;
     }
-
     /*sidebar css end*/
 
     /*id 입력 창 Css*/

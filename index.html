@@ -63,7 +63,7 @@
 						console.log("enter login");
 						$.ajax({
 							type: 'post'
-							, url: 'http://164.125.70.12:3000/api/login'
+							, url: 'http://localhost:3000/api/login'
 							, data: $("#frm").serialize()
 							, beforeSend: function() {
 								$('#ajax_load_indicator').show().fadeIn('fast'); 
@@ -82,7 +82,7 @@
 								}
 								// 분기 처리
 								if(response=="success"){
-									window.location.href = "http://164.125.70.12/home.html";
+									window.location.href = "http://localhost:3000/home.html";
 									
 								} else {
 									alert(msg);

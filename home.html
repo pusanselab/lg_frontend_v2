@@ -1,89 +1,78 @@
 <head>
-	<title>LG Air Data Virtualization</title>
-	<meta charset="utf-8"/>
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>LG Air Data Virtualization</title>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<a class="navbar-brand" href="#">LG Air</a>
-	<div class="col-10 collapse navbar-collapse" id="navbarSupportedContent">
-		<ul class="navbar-nav mr-auto">
-			<li class="nav-item">
-				<a class="nav-link" href="index.html">Home</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="data_search.html">데이터 검색</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="option.html">Option</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="admin.html">관리자 모드</a>
-			</li>
-		</ul>
-	</div>
-	<div class="col-1" >
-		<a href="index.html"><button style="width: 100px" type="button">Logout</button></a>
-	</div>
-</nav>
-
-<div class="container" style="margin-right: auto; margin-left: auto">
-	<div class="row" style="margin: 40px; margin-left: 40px;">
-		전체 DB 수 :
-		<p id="num_db" style="margin-left: 10px"></p>
-	</div>
-	<div class="row">
-		<div class="col-6">
-			<div class="card-header">
-				Dataset by Model
-			</div>
-			<div id="my_dataviz">
-			</div>
-		</div>
-		<div class=" col-6">
-			<div class="card-header">
-				Dataset by Test
+<div class="full-page">
+    <div id="lg_sidebar">
+        <div id="lg_sidebar_content">
+            <a href="index.html">Home</a>
+            <a href="data_search.html">데이터 검색</a>
+            <a href="admin.html">관리자 모드</a>
+            <a href="option.html">Option</a>
+        </div>
+    </div>
+    <div id="lg_contents">
+        <div>
+            <div id="lg_db_count">
+                <span>전체 DB 수 </span>
+                <br>
+                <span id="num_db" style="margin-left: 1em; font-size: 50px"></span><span>개</span>
             </div>
-            <div id="my_testviz">
+            <div id="lg_db_count_graph">
+                <div>
+                    <div id="lg_dataset_by_model_header">
+                        Dataset by Model
+                    </div>
+                    <div id="my_dataviz">
+                    </div>
+                </div>
+                <div>
+                    <div id="lg_dataset_by_test_header">
+                        Dataset by Test
+                    </div>
+                    <div id="my_testviz">
+                    </div>
+                </div>
             </div>
-		</div>
-	</div>
+        </div>
 
-</div>
+        <div id="lg_chamber_content">
+            <span style="margin-top: 10px;">◎ 챔버 상태</span>
+            <table id="lg_chember_table" class="table table-bordered table-hover table-condensed">
+                <tr id="lg_chember_table_thead">
+                    <td>ID</td>
+                    <td>시험 날짜</td>
+                    <td>총 시험시간</td>
+                    <td>챔버 번호</td>
+                    <td>모델 정보</td>
+                    <td>시험 항목</td>
+                    <td>시험자</td>
+                </tr>
+                <tbody id="detail_body">
+                </tbody>
+            </table>
 
-<div id="table">
-        <table id="detail_table" class="table table-striped table-bordered table-hover table-condensed">
-        <tbody id="detail_body">
-            <tr>
-            <td>ID</td>
-            <td>시험 날짜</td>
-            <td>총 시험시간</td>
-            <td>챔버 번호</td>
-            <td>모델 정보</td>
-            <td>시험 항목</td>
-            <td>시험자</td>
-        </tr>
-    </tbody>
-    </table>
+        </div>
+        <div id="lg_chamber_graph">
+            <span style="margin-top: 10px;">◎ 그래프</span>
+            <div id="Line_Controls_Chart">
+                <!-- 라인 차트 생성할 영역 -->
+                <div id="lineChartArea" style="padding:0px 20px 0px 0px;"></div>
+                <!-- 컨트롤바를 생성할 영역 -->
+                <div id="controlsArea" style="padding:0px 20px 0px 0px;"></div>
+            </div>
+            <div id="selectgraph1">
+                <form id="selectgraph">
 
-    <button class='button' onclick='showGraph()'>그래프 보기</button>
-
-</div>
-<div id="graph">
-    <div id="Line_Controls_Chart">
-        <!-- 라인 차트 생성할 영역 -->
-            <div id="lineChartArea" style="padding:0px 20px 0px 0px;"></div>
-        <!-- 컨트롤바를 생성할 영역 -->
-            <div id="controlsArea" style="padding:0px 20px 0px 0px;"></div>
-      </div>
-    <div id="selectgraph1">
-        <form id="selectgraph">
-
-        </form>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
-<span></span>
+
 </body>
 
 <script type="text/javascript" src="js/bootstrap.js"></script>
@@ -104,7 +93,7 @@
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
 <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="https://d3js.org/d3-array.v2.min.js"></script>
 <script src="https://d3js.org/d3-color.v1.min.js"></script>
@@ -116,7 +105,7 @@
 <script data-require="d3@4.0.0" data-semver="4.0.0" src="https://d3js.org/d3.v4.min.js"></script>
 <script>
     var num_db = 0
-    var x=[
+    var x = [
         "Multi V H/P",
         "Multi V H/R",
         "Multi V ARUM",
@@ -130,8 +119,8 @@
         "Single Package",
         "Single&Multi",
         "Refrigeration",
-		];
-    var testx=[
+    ];
+    var testx = [
         "성능",
         "냉방성능",
         "난방성능",
@@ -139,17 +128,17 @@
         "신뢰성",
         "기타"
     ];
-    $(document).ready(function(){
+    $(document).ready(function () {
 
         console.log("enter login");
         $.ajax({
             type: 'post'
-            , url: 'http://164.125.70.12:3000/api/overview'
+            , url: 'http://localhost:3000/api/overview'
 
-            , beforeSend: function() {
+            , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
             }
-            , success: function(data1) {
+            , success: function (data1) {
 
                 var margin = {top: 30, right: 30, bottom: 70, left: 60},
                     width = 460 - margin.left - margin.right,
@@ -163,7 +152,7 @@
                     .append("g")
                     .attr("transform",
                         "translate(" + margin.left + "," + margin.top + ")");
-                
+
                 var svg2 = d3.select("#my_testviz")
                     .append("svg")
                     .attr("width", width + margin.left + margin.right)
@@ -174,21 +163,23 @@
 
                 // Parse the Data
                 console.log(data1.content.model);
-			
+
                 var data = data1.content.model;
                 var data2 = data1.content.test;
-                
+
                 data.forEach(element => {
-                    num_db+=element.count;
+                    num_db += element.count;
                 });
-                
-				$("#num_db").html(num_db + "개")
+
+                $("#num_db").html(num_db)
                 //
 
                 // X axis
                 var x = d3.scaleBand()
                     .range([0, width])
-                    .domain(data.map(function(d) { return d.name; }))
+                    .domain(data.map(function (d) {
+                        return d.name;
+                    }))
                     .paddingInner(0.2);
                 svg.append("g")
                     .attr("transform", "translate(0," + height + ")")
@@ -196,11 +187,13 @@
                     .selectAll("text")
                     .attr("transform", "translate(-10,0)rotate(-45)")
                     .style("text-anchor", "end")
-                    .style("color","#69b3a2");
+                    .style("color", "#69b3a2");
 
                 var x2 = d3.scaleBand()
                     .range([0, width])
-                    .domain(data2.map(function(d) { return d.name; }))
+                    .domain(data2.map(function (d) {
+                        return d.name;
+                    }))
                     .paddingInner(0.2);
                 svg2.append("g")
                     .attr("transform", "translate(0," + height + ")")
@@ -208,19 +201,23 @@
                     .selectAll("text")
                     .attr("transform", "translate(-10,0)rotate(-45)")
                     .style("text-anchor", "end")
-                    .style("color","#69b3a2");
+                    .style("color", "#69b3a2");
 
                 // Add Y axis
 
                 var y = d3.scaleLinear()
-                    .domain([0, d3.max(data, function(d){ return d.count;})+3])
-                    .range([ height, 0]);
+                    .domain([0, d3.max(data, function (d) {
+                        return d.count;
+                    }) + 3])
+                    .range([height, 0]);
                 svg.append("g")
                     .call(d3.axisLeft(y));
 
                 var y2 = d3.scaleLinear()
-                    .domain([0, d3.max(data2, function(d){ return d.count;})+3])
-                    .range([ height, 0]);
+                    .domain([0, d3.max(data2, function (d) {
+                        return d.count;
+                    }) + 3])
+                    .range([height, 0]);
                 svg2.append("g")
                     .call(d3.axisLeft(y2));
 
@@ -229,35 +226,57 @@
                     .data(data)
                     .enter()
                     .append("rect")
-                    .attr("x", function(d) { return x(d.name); })
-                    .attr("y", function(d) { return y(d.count); })
+                    .attr("x", function (d) {
+                        return x(d.name);
+                    })
+                    .attr("y", function (d) {
+                        return y(d.count);
+                    })
                     .attr("width", x.bandwidth())
-                    .attr("height", function(d) { return height - y(d.count); })
+                    .attr("height", function (d) {
+                        return height - y(d.count);
+                    })
                     .attr("fill", "#69b3a2")
-                    .on("mouseover", function() { tooltip.style("display", null);
-                                                  tooltip.style("color","white") })
-                    .on("mouseout",  function() { tooltip.style("display", "none"); })
-                    .on("mousemove", function(d) {
+                    .on("mouseover", function () {
+                        tooltip.style("display", null);
+                        tooltip.style("color", "white")
+                    })
+                    .on("mouseout", function () {
+                        tooltip.style("display", "none");
+                    })
+                    .on("mousemove", function (d) {
                         tooltip.style("left", (d3.event.pageX + 10) + "px");
                         tooltip.style("top", (d3.event.pageY - 10) + "px");
-                        tooltip.text(d.count); });
+                        tooltip.text(d.count);
+                    });
 
                 svg2.selectAll("mybar")
                     .data(data2)
                     .enter()
                     .append("rect")
-                    .attr("x", function(d) { return x2(d.name); })
-                    .attr("y", function(d) { return y2(d.count); })
+                    .attr("x", function (d) {
+                        return x2(d.name);
+                    })
+                    .attr("y", function (d) {
+                        return y2(d.count);
+                    })
                     .attr("width", x2.bandwidth())
-                    .attr("height", function(d) { return height - y2(d.count); })
+                    .attr("height", function (d) {
+                        return height - y2(d.count);
+                    })
                     .attr("fill", "#69b3a2")
-                    .on("mouseover", function() { tooltip.style("display", null);
-                                                  tooltip.style("color","white") })
-                    .on("mouseout",  function() { tooltip.style("display", "none"); })
-                    .on("mousemove", function(d) {
+                    .on("mouseover", function () {
+                        tooltip.style("display", null);
+                        tooltip.style("color", "white")
+                    })
+                    .on("mouseout", function () {
+                        tooltip.style("display", "none");
+                    })
+                    .on("mousemove", function (d) {
                         tooltip.style("left", (d3.event.pageX + 10) + "px");
                         tooltip.style("top", (d3.event.pageY - 10) + "px");
-                        tooltip.text(d.count); });
+                        tooltip.text(d.count);
+                    });
 
 
                 var tooltip = d3.select("body").append("div")
@@ -265,272 +284,404 @@
                     .style("display", "none");
 
 
-
             }
-            , error: function(data, status, err) {
-                console.log("error forward : "+data);
+            , error: function (data, status, err) {
+                console.log("error forward : " + data);
                 alert('서버와의 통신이 실패했습니다.');
             }
-            , complete: function() {
+            , complete: function () {
                 $('#ajax_load_indicator').fadeOut();
             }
         });
     });
 
 
-    
     var array;
-            var indexName;
+    var indexName;
 
-            $(document).ready(function(){
-				$.ajax({
-					type: 'post'
-					, url: 'http://164.125.70.12:3000/api/session'
-				
-					, beforeSend: function() {
-						$('#ajax_load_indicator').show().fadeIn('fast'); 
-					}
-					, success: function(data) {
-                            console.log("세션");
-                            console.log(data);
-						}
-						, error: function(data, status, err) {
-							console.log("error forward : "+data);
-							alert('서버와의 통신이 실패했습니다.');
-						}
-						, complete: function() { 
-							$('#ajax_load_indicator').fadeOut();
-						}
-					});
-				});
-    
-    $(document).ready(function(){
-				$.ajax({
-					type: 'post'
-					, url: 'http://164.125.70.12:3000/api/chamber/chamber_status'
-				
-					, beforeSend: function() {
-						$('#ajax_load_indicator').show().fadeIn('fast'); 
-					}
-					, success: function(data) {
-                        
+    $(document).ready(function () {
+        $.ajax({
+            type: 'post'
+            , url: 'http://localhost:3000/api/session'
 
-                        var all_lenght=0;
-                        for(var i=0; i<data.month.length;i++){
-                                for(var j=0;j<data.month[i].length;j++){
-                                    all_lenght=all_lenght+1;
-                                }
-                        }
-                        console.log(all_lenght);
+            , beforeSend: function () {
+                $('#ajax_load_indicator').show().fadeIn('fast');
+            }
+            , success: function (data) {
+                console.log("세션");
+                console.log(data);
+            }
+            , error: function (data, status, err) {
+                console.log("error forward : " + data);
+                alert('서버와의 통신이 실패했습니다.');
+            }
+            , complete: function () {
+                $('#ajax_load_indicator').fadeOut();
+            }
+        });
+    });
+
+    $(document).ready(function () {
+        $.ajax({
+            type: 'post'
+            , url: 'http://localhost:3000/api/chamber/chamber_status'
+
+            , beforeSend: function () {
+                $('#ajax_load_indicator').show().fadeIn('fast');
+            }
+            , success: function (data) {
 
 
-                        array=new Array(all_lenght);
-                            for(var i =0 ;i<all_lenght;i++){
-                                array[i]=new Array();
-                            }
-                            indexName=['Date','ida_wb','ida_db','idb_db','idb_db','od_wb','od_db'];
-                            
-
-                            var countzz=0;
-                            var indexzz=0
-                            for(var i=0; i<data.month.length;i++){
-                                for(var j=0;j<data.month[i].length;j++){
-                                var date_modify = (data.month[i][j].conn_file_date);
-                                console.log(date_modify);
-                                array[indexzz].push(new Date(date_modify));
-                                array[indexzz].push(data.month[i][j].conn_ida_wb_gap);
-                                array[indexzz].push(data.month[i][j].conn_ida_db_gap);
-                                array[indexzz].push(data.month[i][j].conn_idb_wb_gap);
-                                array[indexzz].push(data.month[i][j].conn_idb_db_gap);
-                                array[indexzz].push(data.month[i][j].conn_od_wb_gap);
-                                array[indexzz].push(data.month[i][j].conn_od_db_gap);
-                                indexzz=indexzz+1;
-                                }
-                                
-                            }
-
-                                ///////////
-                            for(var i=0;i<data.month.length;i++){
-                                for(var j=0;j<data.month[i].length;j++){
-                                var cham_id = data.month[i][j].header_uid;
-                                var cham_date=data.month[i][j].conn_file_date;
-                                var test_time = "일단 null";
-                                var cham_room = data.month[i][j].conn_testroom_number;
-                                var model_ver = data.month[i][j].lgmv_model_name;
-                                var test_step = data.month[i][j].test_step2;
-                                var tester = data.month[i][j].conn_tester;
-
-                                var row = "<tr>";
-                                    row+="<td>"+cham_id+"</td>";
-                                    row+="<td>"+cham_date+"</td>";
-                                    row+="<td>"+test_time+"</td>";
-                                    row+="<td>"+cham_room+"</td>";
-                                    row+="<td>"+model_ver+"</td>";
-                                    row+="<td>"+test_step+"</td>";
-                                    row+="<td>"+tester+"</td>";
-                                    row+="</tr>"
-
-                                $('#detail_body').append(row);
-                                countzz=countzz+1;
-                                if(countzz>=5){
-                                    break;
-                                    }
-                                }
-                                if(countzz>=5){
-                                    break;
-                                }
-                                
-                            }
-                            console.log("aa");
-                            console.log(array);
-                            drawingZZ(array,indexName,all_lenght);
-						}
-						, error: function(data, status, err) {
-							console.log("error forward : "+data);
-							alert('서버와의 통신이 실패했습니다.');
-						}
-						, complete: function() { 
-							$('#ajax_load_indicator').fadeOut();
-						}
-					});
-				});
+                var all_lenght = 0;
+                for (var i = 0; i < data.month.length; i++) {
+                    for (var j = 0; j < data.month[i].length; j++) {
+                        all_lenght = all_lenght + 1;
+                    }
+                }
+                console.log(all_lenght);
 
 
+                array = new Array(all_lenght);
+                for (var i = 0; i < all_lenght; i++) {
+                    array[i] = new Array();
+                }
+                indexName = ['Date', 'ida_wb', 'ida_db', 'idb_db', 'idb_db', 'od_wb', 'od_db'];
 
 
-                function drawingZZ(array,indexName,arraylength){
-                    console.log(arraylength);
-                    var chartDrowFun = {
-                        
-                        chartDrow : function(){
-                            var chartData = '';
-
-                            //날짜형식 변경하고 싶으시면 이 부분 수정하세요.
-                            var chartDateformat     = 'yyyy년 MM월 dd일';
-                            //라인차트의 라인 수
-                            var chartLineCount    = 10;
-                            //컨트롤러 바 차트의 라인 수
-                            var controlLineCount    = 10;
-
-
-                            function drawDashboard() {
-
-                            var data = new google.visualization.DataTable();
-                            var distinct=[];
-                            //그래프에 표시할 컬럼 추가
-
-                            data.addColumn('date',indexName[0]);
-                            for(var i=1;i<indexName.length;i++){
-                                data.addColumn('number',indexName[i]);
-                               
-                           
-                            }
-                            // data.addColumn('date' , '날짜');
-                            // data.addColumn('number'   , '전체');
-
-                            //그래프에 표시할 데이터
-                            var dataRow = [];
-                            var mindata;
-                           
-                            
-
-                            for(var i = 0; i < arraylength; i++){ //데이터 삽입
-                                // var total   = datazz[i].value;
-                                // var datezz = datazz[i].TXT_TIME;
-                                // console.log(datezz);
-                                // dataRow = [new Date(datezz),total];
-                            
-                                data.addRow(array[i]);
-                                console.log(array[i]);
-                                mindata = Math.min(array[i]);
-                            }
-
-
-                                var chart = new google.visualization.ChartWrapper({
-                                chartType   : 'LineChart',
-                                containerId : 'lineChartArea', //라인 차트 생성할 영역
-                                options     : {
-                                               // chartArea : {right:136},
-                                                isStacked   : 'percent',
-                                                focusTarget : 'category',
-                                                height          : 500,
-                                                width              : '100%',
-                                                legend          : { position: "top", textStyle: {fontSize: 13}},
-                                                pointSize        : 5,
-                                                tooltip          : {textStyle : {fontSize:12}, showColorCode : true,trigger: 'both'},
-                                                hAxis              : {format: chartDateformat, gridlines:{count:chartLineCount,units: {
-                                                                                    years : {format: ['yyyy년']},
-                                                                                    months: {format: ['MM월']},
-                                                                                    days  : {format: ['dd일']},
-                                                                                        }
-                                                                                    },textStyle: {fontSize:12}},
-                                    
-                                    // series:{
-                                    //     0:{targetAxisIndex:0},
-                                    //     1:{targetAxisIndex:1},
-                                    //     2:{targetAxisIndex:2},
-                                            },
-                                    vAxes              : {minValue: 10,viewWindow:{min:mindata},gridlines:{count:-1},textStyle:{fontSize:12},
-                                                        //   1:{label: '˚C',minValue: 10,viewWindow:{min:mindata},gridlines:{count:-1},textStyle:{fontSize:12},side:'left'},
-                                                        //   2:{title: 'kPa',minValue: 10,viewWindow:{min:mindata},gridlines:{count:-1},textStyle:{fontSize:12},position:'left'},
-                                                        //   },
-                                    animation        : {startup: true,duration: 1000,easing: 'in' },
-                                    annotations    : {pattern: chartDateformat,
-                                                    textStyle: {
-                                                    fontSize: 15,
-                                                    bold: true,
-                                                    italic: true,
-                                                    color: '#871b47',
-                                                    auraColor: '#d799ae',
-                                                    opacity: 0.8,
-                                                    pattern: chartDateformat
-                                                }
-                                                },
-
-                                }
-                                });
-
-                                var control = new google.visualization.ControlWrapper({
-                                controlType: 'ChartRangeFilter',
-                                containerId: 'controlsArea',  //control bar를 생성할 영역
-                                options: {
-                                    ui:{
-                                            chartType: 'LineChart',
-                                            chartOptions: {
-                                            chartArea: {'width': '60%','height' : 80},
-                                            hAxis: {'baselineColor': 'none', format: chartDateformat, textStyle: {fontSize:12},
-                                                gridlines:{count:controlLineCount,units: {
-                                                    years: {format: ['yyyy년']},
-                                                    months: {format: ['MM월']},
-                                                    days  : {format: ['dd일']},
-                                                    }
-                                                }}
-                                            }
-                                    },
-                                        filterColumnIndex: 0
-                                    }
-                                });
-
-                                var date_formatter = new google.visualization.DateFormat({ pattern: chartDateformat});
-                                date_formatter.format(data, 0);
-
-                                var dashboard = new google.visualization.Dashboard(document.getElementById('Line_Controls_Chart'));
-                                window.addEventListener('resize', function() { dashboard.draw(data); }, false); //화면 크기에 따라 그래프 크기 변경
-                                dashboard.bind([control], [chart]);
-                                dashboard.draw(data);
-
-                            }
-                            google.charts.setOnLoadCallback(drawDashboard);
-
-                        }
-                        }
-
-                        // $(document).ready(function(){
-                        google.charts.load('current', {'packages':['line','controls']});
-                        chartDrowFun.chartDrow(); //chartDrow() 실행
-                        //  });
+                var countzz = 0;
+                var indexzz = 0
+                for (var i = 0; i < data.month.length; i++) {
+                    for (var j = 0; j < data.month[i].length; j++) {
+                        var date_modify = (data.month[i][j].conn_file_date);
+                        console.log(date_modify);
+                        array[indexzz].push(new Date(date_modify));
+                        array[indexzz].push(data.month[i][j].conn_ida_wb_gap);
+                        array[indexzz].push(data.month[i][j].conn_ida_db_gap);
+                        array[indexzz].push(data.month[i][j].conn_idb_wb_gap);
+                        array[indexzz].push(data.month[i][j].conn_idb_db_gap);
+                        array[indexzz].push(data.month[i][j].conn_od_wb_gap);
+                        array[indexzz].push(data.month[i][j].conn_od_db_gap);
+                        indexzz = indexzz + 1;
+                    }
 
                 }
 
+                ///////////
+                for (var i = 0; i < data.month.length; i++) {
+                    for (var j = 0; j < data.month[i].length; j++) {
+                        var cham_id = data.month[i][j].header_uid;
+                        var cham_date = data.month[i][j].conn_file_date;
+                        var test_time = "일단 null";
+                        var cham_room = data.month[i][j].conn_testroom_number;
+                        var model_ver = data.month[i][j].lgmv_model_name;
+                        var test_step = data.month[i][j].test_step2;
+                        var tester = data.month[i][j].conn_tester;
+
+                        var row = "<tr>";
+                        row += "<td>" + cham_id + "</td>";
+                        row += "<td>" + cham_date + "</td>";
+                        row += "<td>" + test_time + "</td>";
+                        row += "<td>" + cham_room + "</td>";
+                        row += "<td>" + model_ver + "</td>";
+                        row += "<td>" + test_step + "</td>";
+                        row += "<td>" + tester + "</td>";
+                        row += "</tr>"
+
+                        $('#detail_body').append(row);
+                        countzz = countzz + 1;
+                        if (countzz >= 5) {
+                            break;
+                        }
+                    }
+                    if (countzz >= 5) {
+                        break;
+                    }
+
+                }
+                console.log("aa");
+                console.log(array);
+                drawingZZ(array, indexName, all_lenght);
+            }
+            , error: function (data, status, err) {
+                console.log("error forward : " + data);
+                alert('서버와의 통신이 실패했습니다.');
+            }
+            , complete: function () {
+                $('#ajax_load_indicator').fadeOut();
+            }
+        });
+    });
+
+
+    function drawingZZ(array, indexName, arraylength) {
+        console.log(arraylength);
+        var chartDrowFun = {
+
+            chartDrow: function () {
+                var chartData = '';
+
+                //날짜형식 변경하고 싶으시면 이 부분 수정하세요.
+                var chartDateformat = 'yyyy년 MM월 dd일';
+                //라인차트의 라인 수
+                var chartLineCount = 10;
+                //컨트롤러 바 차트의 라인 수
+                var controlLineCount = 10;
+
+
+                function drawDashboard() {
+
+                    var data = new google.visualization.DataTable();
+                    var distinct = [];
+                    //그래프에 표시할 컬럼 추가
+
+                    data.addColumn('date', indexName[0]);
+                    for (var i = 1; i < indexName.length; i++) {
+                        data.addColumn('number', indexName[i]);
+
+
+                    }
+                    // data.addColumn('date' , '날짜');
+                    // data.addColumn('number'   , '전체');
+
+                    //그래프에 표시할 데이터
+                    var dataRow = [];
+                    var mindata;
+
+
+                    for (var i = 0; i < arraylength; i++) { //데이터 삽입
+                        // var total   = datazz[i].value;
+                        // var datezz = datazz[i].TXT_TIME;
+                        // console.log(datezz);
+                        // dataRow = [new Date(datezz),total];
+
+                        data.addRow(array[i]);
+                        console.log(array[i]);
+                        mindata = Math.min(array[i]);
+                    }
+
+
+                    var chart = new google.visualization.ChartWrapper({
+                        chartType: 'LineChart',
+                        containerId: 'lineChartArea', //라인 차트 생성할 영역
+                        options: {
+                            // chartArea : {right:136},
+                            isStacked: 'percent',
+                            focusTarget: 'category',
+                            height: 500,
+                            width: '100%',
+                            legend: {position: "top", textStyle: {fontSize: 13}},
+                            pointSize: 5,
+                            tooltip: {textStyle: {fontSize: 12}, showColorCode: true, trigger: 'both'},
+                            hAxis: {
+                                format: chartDateformat, gridlines: {
+                                    count: chartLineCount, units: {
+                                        years: {format: ['yyyy년']},
+                                        months: {format: ['MM월']},
+                                        days: {format: ['dd일']},
+                                    }
+                                }, textStyle: {fontSize: 12}
+                            },
+
+                            // series:{
+                            //     0:{targetAxisIndex:0},
+                            //     1:{targetAxisIndex:1},
+                            //     2:{targetAxisIndex:2},
+                        },
+                        vAxes: {
+                            minValue: 10, viewWindow: {min: mindata}, gridlines: {count: -1}, textStyle: {fontSize: 12},
+                            //   1:{label: '˚C',minValue: 10,viewWindow:{min:mindata},gridlines:{count:-1},textStyle:{fontSize:12},side:'left'},
+                            //   2:{title: 'kPa',minValue: 10,viewWindow:{min:mindata},gridlines:{count:-1},textStyle:{fontSize:12},position:'left'},
+                            //   },
+                            animation: {startup: true, duration: 1000, easing: 'in'},
+                            annotations: {
+                                pattern: chartDateformat,
+                                textStyle: {
+                                    fontSize: 15,
+                                    bold: true,
+                                    italic: true,
+                                    color: '#871b47',
+                                    auraColor: '#d799ae',
+                                    opacity: 0.8,
+                                    pattern: chartDateformat
+                                }
+                            },
+
+                        }
+                    });
+
+                    var control = new google.visualization.ControlWrapper({
+                        controlType: 'ChartRangeFilter',
+                        containerId: 'controlsArea',  //control bar를 생성할 영역
+                        options: {
+                            ui: {
+                                chartType: 'LineChart',
+                                chartOptions: {
+                                    chartArea: {'width': '60%', 'height': 80},
+                                    hAxis: {
+                                        'baselineColor': 'none', format: chartDateformat, textStyle: {fontSize: 12},
+                                        gridlines: {
+                                            count: controlLineCount, units: {
+                                                years: {format: ['yyyy년']},
+                                                months: {format: ['MM월']},
+                                                days: {format: ['dd일']},
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            filterColumnIndex: 0
+                        }
+                    });
+
+                    var date_formatter = new google.visualization.DateFormat({pattern: chartDateformat});
+                    date_formatter.format(data, 0);
+
+                    var dashboard = new google.visualization.Dashboard(document.getElementById('Line_Controls_Chart'));
+                    window.addEventListener('resize', function () {
+                        dashboard.draw(data);
+                    }, false); //화면 크기에 따라 그래프 크기 변경
+                    dashboard.bind([control], [chart]);
+                    dashboard.draw(data);
+
+                }
+
+                google.charts.setOnLoadCallback(drawDashboard);
+
+            }
+        }
+
+        // $(document).ready(function(){
+        google.charts.load('current', {'packages': ['line', 'controls']});
+        chartDrowFun.chartDrow(); //chartDrow() 실행
+        //  });
+
+    }
+
 </script>
+<!--full box & sidebar Css-->
+<style>
+    .full-page {
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+    }
+
+    /*lg_content Css*/
+    #lg_contents {
+        margin-left: 200px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /*sidebar css start*/
+
+    /*sidebar는 고정되어 있어야 하므로 flex none 설정*/
+    .full-page #lg_sidebar {
+        flex: none;
+        position: fixed;
+        width: 150px;
+        height: 100%;
+        font-family: sans-serif;
+    }
+
+    #lg_sidebar {
+        background-color: white;
+    }
+
+    #lg_sidebar #lg_sidebar_content {
+        margin: 1.5em 0.4em 0.2em;
+        background-color: #38222b;
+        padding: 2em 1em;
+        box-shadow: 3px 5px 3px;
+    }
+
+    /* sidebar 안에 있는 링크들 */
+    #lg_sidebar a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1em;
+        font-size: 0.9em;
+        font-family: "Adobe 명조 Std M";
+        color: white;
+    }
+
+    #lg_sidebar a:hover {
+        font-weight: bold;
+        text-decoration: #1c7430 solid;
+    }
+
+    #lg_db_count {
+        text-align: left;
+        margin: 2.5em 1em 1em;
+        font-weight: bold;
+    }
+</style>
+<!--contents Css-->
+<style>
+    #lg_db_count_graph {
+        align-items: center;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 4em;
+    }
+    #my_dataviz {
+        border: 1px solid pink;
+    }
+    #my_testviz {
+        border: 1px solid pink;
+    }
+    #lg_dataset_by_model_header {
+        background-color: black;
+        padding: 0.8em;
+        margin: 0.5em;
+        color: white;
+        font-family: "Adobe 명조 Std M";
+    }
+    #lg_dataset_by_test_header {
+        background-color: black;
+        padding: 0.8em;
+        margin: 0.5em;
+        font-family: "Adobe 명조 Std M";
+        color: white;
+    }
+</style>
+<!--lg chamber content css-->
+<style>
+    #lg_chamber_content {
+        font-weight: bold;
+        font-family: "Adobe 명조 Std M";
+        margin-top: 2em;
+        color: black;
+        font-size: 0.9em;
+    }
+    #lg_chember_table {
+        margin: 1em;
+    }
+    #lg_chember_table_thead {
+        border-right: 1px solid #1d2124;
+        border-bottom: 2px solid #1d2124;
+        padding: 10px;
+        vertical-align: top;
+        background-color: #42373a;
+        color: white;
+        font-weight: bold;
+    }
+    #detail_body td{
+        margin: 0.1em;
+        padding: 0.5em;
+        font-family: "Fira Code";
+        height: 80%;
+    }
+
+</style>
+<!--lg_chamber_graph css-->
+<style>
+    #lg_chamber_graph {
+        color: black;
+        font-weight: bold;
+        margin: 1px;
+    }
+
+</style>
 </body>
