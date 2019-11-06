@@ -699,6 +699,27 @@
             });
         }
 
+        $(document).ready(function(){
+				$.ajax({
+					type: 'post'
+					, url: 'http://164.125.70.12:3000/api/session'
+				
+					, beforeSend: function() {
+						$('#ajax_load_indicator').show().fadeIn('fast'); 
+					}
+					, success: function(data) {
+                            console.log("세션");
+                            console.log(data);
+						}
+						, error: function(data, status, err) {
+							console.log("error forward : "+data);
+							alert('서버와의 통신이 실패했습니다.');
+						}
+						, complete: function() { 
+							$('#ajax_load_indicator').fadeOut();
+						}
+					});
+				});
 
         function DetailSearch(header_uid) {
             console.log(header_uid);
