@@ -313,7 +313,7 @@
                             var indexzz=0
                             for(var i=0; i<data.month.length;i++){
                                 for(var j=0;j<data.month[i].length;j++){
-                                var date_modify = (data.month[i][j].lgmv_date).substring(0,10);
+                                var date_modify = (data.month[i][j].conn_file_date);
                                 console.log(date_modify);
                                 array[indexzz].push(new Date(date_modify));
                                 array[indexzz].push(data.month[i][j].conn_ida_wb_gap);
