@@ -238,96 +238,170 @@
             </div>
             <div id="search_result_detail">
                 <div>
-
                     <div id="detail" style="display:none">
                         <div style="font-size: large; font-weight: bolder">■ Summary</div>
                         <div style="color: #abdde5; margin-left: 2rem">◆ 제품 정보</div>
                         <div id="detail_product_info">
-                        <div>
-                            <span>-Model 명</span>
-                            <p id="_lgmv_model_name"></p>
+                            <div>
+                                <span>-Model 명</span>
+                                <p id="_lgmv_model_name"></p>
+                            </div>
+                            <div>
+                                <span>-serial 명</span>
+                                <p id="_lgmv_serial_number"></p>
+                            </div>
+                            <div>
+                                <span>-분류</span>
+                                <p id="_lgmv_model_filter1"></p>
+                            </div>
+                            <div>
+                                <span>-Model 군</span>
+                                <p id="_lgmv_model_filter2"></p>
+                            </div>
+                            <div>
+                                <span>-냉매</span>
+                                <p id="_lgmv_r"></p>
+                            </div>
+                            <div>
+                                <span>-main S/W</span>
+                                <p id="_lgmv_main_ver"></p></div>
+                            <div>
+                                <span>-EERPROM S/W </span>
+                                <p id="_lgmv_eep_ver"></p></div>
+                            <div>
+                                <span>-용량 </span>
+                                <p id="_calorimeter_cap"></p></div>
+                            <div>
+                                <span>-전원 </span>
+                                <p id="_calorimeter_power"></p></div>
+                            <div>
+                                <span>-효율 </span>
+                                <p id="_calorimeter_eer"></p></div>
+                            <div>
+                                <span>-효율 </span>
+                                <p id="_calorimeter_power_vol"></p></div>
+                            <div>
+                                <span>-ID 습구온도 </span>
+                                <p id="_calorimeter_id_wb"></p></div>
+                            <div>
+                                <span>-ID 건구온도 </span>
+                                <p id="_calorimeter_id_db"></p></div>
+                            <div>
+                                <span>-OD 습구온도 </span>
+                                <p id="_calorimeter_od_wb"></p></div>
+                            <div>
+                                <span>-OD 건구온도 </span>
+                                <p id="_calorimeter_od_db"></p></div>
+                            <div>
+                                <span>-파일생성날짜 </span>
+                                <p id="_conn_file_date"></p></div>
+                            <div>
+                                <span>-파일생성시간</span>
+                                <p id="_conn_file_time"></p></div>
                         </div>
-                        <div>
-                            <span>-serial 명</span>
-                            <p id="_lgmv_serial_number"></p>
+                        <div style="color: #abdde5; margin-left: 2rem">◆ 시험 정보</div>
+                        <div id="detail_test_info">
+                            <div>
+                                <span>-실내기 샤시</span>
+                                <p id="_idu_chassis"></p>
+                            </div>
+                            <div>
+                                <span>-실외기 샤시</span>
+                                <p id="_odu_chassis"></p>
+                            </div>
+                            <div>
+                                <span>-개발 프로세스(상)</span>
+                                <p id="_plm_step1"></p>
+                            </div>
+                            <div>
+                                <span>-개발 프로세스(하)</span>
+                                <p id="_plm_step2"></p>
+                            </div>
+                            <div>
+                                <span>-구분</span>
+                                <p id="_test_step1"></p>
+                            </div>
+                            <div>
+                                <span>-시험항목 </span>
+                                <p id="_test_step2"></p>
+                            </div>
+                            <div>
+                                <span>-실험자 </span>
+                                <p id="_conn_tester"></p>
+                            </div>
+                            <div>
+                                <span>-챔버 번호</span>
+                                <p id="_conn_testroom_number"></p>
+                            </div>
+                            <div>
+                                <span>-배관정보</span>
+                                <p id="_conn_pipe_type"></p>
+                            </div>
+                            <div>
+                                <span>-test 결과</span>
+                                <p id="_conn_test_result"></p>
+                            </div>
+                            <div>
+                                <span>-설명</span>
+                                <p id="_conn_memo"></p>
+                            </div>
+                            <div>
+                                <span>-ODU 연결수</span>
+                                <p id="_lgmv_odu_count"></p>
+                            </div>
+                            <div>
+                                <span>-IDU 연결수</span>
+                                <p id="_lgmv_idu_count"></p>
+                            </div>
+                            <div>
+                                <span>-HRU 연결수</span>
+                                <p id="_lgmv_hru_count"></p>
+                            </div>
+                            <div>
+                                <span>-CAL 연결수</span>
+                                <p id="_calorimeter_count"></p>
+                            </div>
+                            <div>
+                                <span>-DXC 연결수</span>
+                                <p id="_lgmv_sidu_dxc_count"></p>
+                            </div>
                         </div>
-                        <div>
-                            <span>-분류</span>
-                            <p  id="_lgmv_model_filter1"></p>
+                        <div style="color: #abdde5; margin-left: 2rem">◆ 시험 결과</div>
+                        <div id="detail_test_result">
+                            <div>
+                                <span>-AWHP 연결수</span>
+                                <p id="_lgmv_sidu_awhp_count"></p>
+                            </div>
+                            <div>
+                                <span>-SHOWCASE 연결수</span>
+                                <p id="_lgmv_sidu_showcase_count"></p>
+                            </div>
+                            <div>
+                                <span>-FAU 연결수</span>
+                                <p id="_lgmv_sidu_fau_count"></p>
+                            </div>
+                            <div>
+                                <span>-WHU 연결수</span>
+                                <p id="_lgmv_sidu_whu_count"></p>
+                            </div>
+                            <div>
+                                <span>-CASCADE 연결수</span>
+                                <p id="_lgmv_sidu_cascade_count"></p>
+                            </div>
+                            <div>
+                                <span>-온도단위</span>
+                                <p id="_lgmv_unit_temp"></p>
+                            </div>
+                            <div>
+                                <span>-압력단위</span>
+                                <p id="_lgmv_unit_press"></p>
+                            </div>
+                            <div>
+                                <span>-유량단위</span>
+                                <p id="_lgmv_unit_flux"></p>
+                            </div>
                         </div>
-                        <div>
-                            <span>-Model 군</span>
-                            <p id="_lgmv_model_filter2"></p>
-                        </div>
-                        <div>
-                            <span>-냉매</span>
-                            <p id="_lgmv_r"></p>
-                        </div>
-                        <div>
-                            <span>-main S/W</span>
-                            <p id="_lgmv_main_ver"></p></div>
-                        <div>
-                            <span>-EERPROM S/W </span>
-                            <p id="_lgmv_eep_ver"></p></div>
-                        <div>
-                            <span>-용량 </span>
-                            <p id="_calorimeter_cap"></p></div>
-                        <div>
-                            <span>-전원 </span>
-                            <p id="_calorimeter_power"></p></div>
-                        <div>
-                            <span>-효율 </span>
-                            <p id="_calorimeter_eer"></p></div>
-                        <div>
-                            <span>-효율 </span>
-                            <p id="_calorimeter_power_vol"></p></div>
-                        <div>
-                            <span>-ID 습구온도 </span>
-                            <p id="_calorimeter_id_wb"></p></div>
-                        <div>
-                            <span>-ID 건구온도 </span>
-                            <p id="_calorimeter_id_db"></p></div>
-                        <div>
-                            <span>-OD 습구온도 </span>
-                            <p id="_calorimeter_od_wb"></p></div>
-                        <div>
-                            <span>-OD 건구온도 </span>
-                            <p id="_calorimeter_od_db"></p></div>
-                        <div>
-                            <span>-파일생성날짜 </span>
-                            <p id="_conn_file_date"></p></div>
-                        <div>
-                            <span>-파일생성시간</span>
-                            <p id="_conn_file_time"></p></div>
-                        </div>
-                        <!--<div>■ 시험 정보</div>-->
-                        <!-- -실내기 샤시 <p id="_idu_chassis"></p>-->
-                        <!-- -실외기 샤시 <p id="_odu_chassis"></p>-->
-                        <!-- -개발 프로세스(상) <p id="_plm_step1"></p>-->
-                        <!-- -개발 프로세스(하) <p id="_plm_step2"></p>-->
-                        <!-- -구분 <p id="_test_step1"></p>-->
-                        <!-- -시험항목 <p id="_test_step2"></p>-->
-                        <!-- -실험자 <p id="_conn_tester"></p>-->
-                        <!-- -챔버 번호 <p id="_conn_testroom_number"></p>-->
-                        <!-- -배관정보 <p id="_conn_pipe_type"></p>-->
-                        <!-- -test 결과 <p id="_conn_test_result"></p>-->
-                        <!-- -설명 <p id="_conn_memo"></p>-->
-                        <!-- -ODU 연결수 <p id="_lgmv_odu_count"></p>-->
-                        <!-- -IDU 연결수 <p id="_lgmv_idu_count"></p>-->
-                        <!-- -HRU 연결수 <p id="_lgmv_hru_count"></p>-->
-                        <!-- -CAL 연결수 <p id="_calorimeter_count"></p>-->
-                        <!-- -DXC 연결수 <p id="_lgmv_sidu_dxc_count"></p>-->
-                        <!--<div>■ 시험 결과</div>-->
-                        <!-- -AWHP 연결수 <p id="_lgmv_sidu_awhp_count"></p>-->
-                        <!-- -SHOWCASE 연결수 <p id="_lgmv_sidu_showcase_count"></p>-->
-                        <!-- -FAU 연결수 <p id="_lgmv_sidu_fau_count"></p>-->
-                        <!-- -WHU 연결수 <p id="_lgmv_sidu_whu_count"></p>-->
-                        <!-- -CASCADE 연결수 <p id="_lgmv_sidu_cascade_count"></p>-->
-                        <!-- -온도단위 <p id="_lgmv_unit_temp"></p>-->
-                        <!-- -압력단위 <p id="_lgmv_unit_press"></p>-->
-                        <!-- -유량단위 <p id="_lgmv_unit_flux"></p>-->
                     </div>
-
                     <div id="_cold" style="display:none" class="table-responsive">
                         <h2>냉방 성능 최대 효율</h2>
                         <table id="cold_table" class="table table-striped table-bordered table-hover">
@@ -350,13 +424,11 @@
                         </table>
 
                     </div>
-
+                    <div id="_same_title"style="display:none; font-size: large; font-weight: bolder" >■ 유사시험</div>
                     <div id="_same" style="display:none" class="table-responsive">
-
-                        <h2>유사시험</h2>
                         <table id="same_table" class="table table-striped">
-                            <tbody id="same_tbody">
-                            <tr>
+                            <tbody id="lg_same_test_tbody">
+                            <tr id="lg_same_test_thead">
                                 <td>ID</td>
                                 <td>Model</td>
                                 <td>모델명</td>
@@ -375,7 +447,6 @@
                         </table>
 
                     </div>
-
                 </div>
 
             </div>
@@ -781,7 +852,8 @@
         function sameSearch(same, uid) {
             console.log("세임서치");
             console.log(same);
-            $('#_same').css('display', 'inline');
+            $('#_same').css('display', 'flex');
+            $('#_same_title').css('display', 'inline');
             $.ajax({
                 type: 'post'
                 , url: 'http://164.125.70.12:3000/api/data_search_detail'
@@ -793,7 +865,7 @@
                     $('#search_result').css('display', 'inline');
 
                     console.log("success ford!!");
-                    $('#same_tbody tr:gt(0)').remove();
+                    $('#lg_same_test_tbody tr:gt(0)').remove();
                     $('#cold_tbody tr:gt(0)').remove();
                     // 분기 처리
                     console.log(data.content.header);
@@ -890,7 +962,7 @@
                             rowItem += "<td>" + testroom + "</td>";
                             rowItem += "</tr>";
 
-                            $('#same_tbody').append(rowItem);
+                            $('#lg_same_test_tbody').append(rowItem);
                         });
                         $('#search_fail').css('display', 'none');
 
@@ -1110,10 +1182,12 @@
         flex-direction: column;
         background-color: #1c7430;
     }
-    #search_result_detail p{
+
+    #search_result_detail p {
         margin: 0;
     }
-    #search_result_detail #detail_product_info{
+
+    #search_result_detail #detail_product_info {
         display: grid;
         align-items: center;
         justify-items: start;
@@ -1128,11 +1202,101 @@
         border: 2px solid black;
     }
 
-    #search_result_detail #detail_product_info span{
+    #search_result_detail #detail_product_info span {
         font-size: 0.8em;
         margin-right: 0.8rem;
         padding: 1em;
         font-weight: bold;
+    }
+
+    #search_result_detail #detail_product_info span {
+        font-size: 0.8em;
+        margin-right: 0.2rem;
+    }
+
+    #search_result_detail #detail_product_info p {
+        font-size: 0.7em;
+        margin-left: 1em;
+    }
+
+    #search_result_detail #detail_test_info {
+        display: grid;
+        align-items: center;
+        justify-items: start;
+        height: 15rem;
+        background-color: #abdde5;
+        margin-left: 1em;
+        margin-right: 1em;
+        margin-bottom: 1em;
+        grid-template-columns: repeat(5, 1fr);
+        grid-auto-columns: minmax(30px, auto);
+        grid-gap: 1rem;
+        border: 2px solid black;
+    }
+
+    #search_result_detail #detail_test_info span {
+        font-size: 0.8em;
+        margin-right: 0.8rem;
+        padding: 1em;
+        font-weight: bold;
+    }
+
+    #search_result_detail #detail_test_info p {
+        font-size: 0.7em;
+        margin-left: 1em;
+    }
+
+    #search_result_detail #detail_test_result {
+        display: grid;
+        align-items: center;
+        justify-items: start;
+        height: 10rem;
+        background-color: #abdde5;
+        margin-left: 1em;
+        margin-right: 1em;
+        margin-bottom: 1em;
+        grid-template-columns: repeat(5, 1fr);
+        grid-auto-columns: minmax(30px, auto);
+        grid-gap: 1rem;
+        border: 2px solid black;
+    }
+
+    #search_result_detail #detail_test_result span {
+        font-size: 0.8em;
+        margin-right: 0.8rem;
+        padding: 1em;
+        font-weight: bold;
+    }
+
+    #search_result_detail #detail_test_result p {
+        font-size: 0.7em;
+        margin-left: 1em;
+    }
+</style>
+<!--유사 시험 테이블Css-->
+<style>
+    #lg_same_test_thead {
+        border-right: 1px solid #1d2124;
+        border-bottom: 2px solid #1d2124;
+        padding: 10px;
+        vertical-align: top;
+        background-color: #abdde5;
+        font-weight: bold;
+    }
+
+    #lg_same_test_tbody {
+        background-color: #c8cbcf;
+        font-family: sans-serif;
+
+    }
+
+    #same_table {
+        width: 95%;
+        margin: 1em;
+    }
+    #_same {
+        flex-direction: column;
+        align-items: center;
     }
 </style>
 </html>
