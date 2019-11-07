@@ -95,7 +95,7 @@
                 var params="header_uid="+val;
 				$.ajax({
 					type: 'post'
-					, url: 'http://164.125.70.12:3000/api/graph/items'
+					, url: 'http://localhost:3000/api/graph/items'
 					, data: params
 					, beforeSend: function() {
 						$('#ajax_load_indicator').show().fadeIn('fast'); 
@@ -144,7 +144,7 @@
                 console.log("enter login");
                 $.ajax({
                     type: 'post'
-                    , url: 'http://164.125.70.12:3000/api/graph/raws'
+                    , url: 'http://localhost:3000/api/graph/raws'
                     , data: jsonparams
                     , dataType:'json'
                     , contentType:'application/json'
@@ -246,7 +246,7 @@
 
 				// 		$.ajax({
 				// 			type: 'post'
-				// 			, url: 'http://164.125.70.12:3000/api/graph_odu'
+				// 			, url: 'http://localhost:3000/api/graph_odu'
 				// 			, data: params
 				// 			, beforeSend: function() {
 				// 				$('#ajax_load_indicator').show().fadeIn('fast'); 
@@ -374,9 +374,11 @@
                                         1:{targetAxisIndex:1},
                                         2:{targetAxisIndex:2},
                                             },
-                                    vAxes              : {0:{minValue: 10,viewWindow:{min:mindata},gridlines:{count:-1},textStyle:{fontSize:12}},
-                                                          1:{title: '˚C',minValue: 10,viewWindow:{min:mindata},gridlines:{count:-1},textStyle:{fontSize:12},side:'left'},
-                                                          2:{title: 'kPa',minValue: 10,viewWindow:{min:mindata},gridlines:{count:-1},textStyle:{fontSize:12},position:'left'},
+                                    vAxes              : {
+
+                                                    0:{textPosition:'none',minValue: 10,viewWindow:{min:mindata},gridlines:{count:-1},textStyle:{fontSize:12}},
+                                                          1:{textPosition:'none',title: '˚C',minValue: 10,viewWindow:{min:mindata},gridlines:{count:-1},textStyle:{fontSize:12},side:'left'},
+                                                          2:{textPosition:'none',title: 'kPa',minValue: 10,viewWindow:{min:mindata},gridlines:{count:-1},textStyle:{fontSize:12},position:'left'},
                                                           },
                                     animation        : {startup: true,duration: 1000,easing: 'in' },
                                     annotations    : {pattern: chartDateformat,
