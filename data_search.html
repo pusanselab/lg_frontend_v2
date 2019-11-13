@@ -5,746 +5,645 @@
     <link rel="stylesheet" href="css/bootstrap.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
-
 <body>
+
+<div style="width: 100%; position: fixed; background:#ffffff;z-index:100; border-bottom: 5px solid black">
+    <div style="margin-left: 30px;  font-size: 30px;">
+        <img id="img_logo" src="./r&d_data.png"></img>
+        R&D Data
+    </div>
+</div>
 <div class="full-page">
     <div id="lg_sidebar">
         <div id="lg_sidebar_content">
-            <a href="index.html">Home</a>
+            <a href="index.html">홈</a>
             <a href="data_search.html">데이터 검색</a>
+            <a href="option.html">단위 옵션</a>
             <a href="admin.html">관리자 모드</a>
-            <a href="option.html">Option</a>
         </div>
     </div>
     <div id="lg_contents">
         <div id="lg_search_box">
             <form id="data_search" method="post" action="" onSubmit="dataSearch();return false;">
-                <div id="lg_search_id">
-                    <span>■ ID 입력</span>
-                    <input id="id_search" name="header_uid" type="text">
-                    <!--<button onclick="idSearch()" type="button">검색</button>-->
-                </div>
-                <div id="lg_search_necessary">
-                    <span>■ 데이터 검색 (필수)</span>
-                    <div id="lg_search_necessary_items">
-                        <span> 분류 : </span>
-                        <select style="margin-left: 10px" name="lgmv_model_filter1">
-                            <option value="">===선택===</option>
-                            <option value="Multi V H/P">Multi V H/P</option>
-                            <option value="Multi V 5">Multi V 5</option>
-                            <option value="Multi V H/R">Multi V H/R</option>
-                            <option value="Multi V ARUM">Multi V ARUM</option>
-                            <option value="Multi Water">Multi Water</option>
-                            <option value="Multi V S">Multi V S</option>
-                            <option value="Multi V M">Multi V M</option>
-                            <option value="Multi V Space">Multi V Space</option>
-                            <option value="GHP">GHP</option>
-                            <option value="Chiller">Chiller</option>
-                            <option value="Single&Multi">Single&Multi</option>
-                            <option value="Refrigeration">Refrigeration</option>
-                        </select>
-                        <span> Model 군 :</span>
-                        <select name="lgmv_model_filter2">
-                            <option value="">===선택===</option>
-                            <option value="Multi V 5 HR">Multi V 5 HR</option>
-                            <option value="Multi V 5 A">Multi V 5 A</option>
-                            <option value="Multi V 5 H">Multi V 5 H</option>
-                            <option value="Multi V IV">Multi V IV</option>
-                            <option value="Multi V IV Plus">Multi V IV Plus</option>
-                            <option value="Multi V lll">Multi V lll</option>
-                            <option value="Multi V II m+m">Multi V II m+m</option>
-                            <option value="Multi V II m+s">Multi V II m+s</option>
-                            <option value="Multi V 5 HR">Multi V 5 HR</option>
-                            <option value="Multi V IV HR">Multi V IV HR</option>
-                            <option value="Multi V III HR">Multi V III HR</option>
-                            <option value="Multi V 5">Multi V 5</option>
-                            <option value="Multi V 5HR">Multi V 5HR</option>
-                            <option value="Water IV A">Water IV A</option>
-                            <option value="Water IV">Water IV</option>
-                            <option value="Water IV HR">Water IV HR</option>
-                            <option value="Water S (Mini)">Water S (Mini)</option>
-                            <option value="Water II">Water II</option>
-                            <option value="Water II HR">Water II HR</option>
-                            <option value="Residence">Residence</option>
-                            <option value="Multi V S">Multi V S</option>
-                            <option value="Multi V S HR">Multi V S HR</option>
-                            <option value="Mini">Mini</option>
-                            <option value="Multi V M">Multi V M</option>
-                            <option value="N. A. Space">N. A. Space</option>
-                            <option value="Space III">Space III</option>
-                            <option value="Space III 3P">Space III 3P</option>
-                            <option value="GHP Super III">GHP Super III</option>
-                            <option value="GHP Super& II">SGHP Super& II</option>
-                            <option value="Turbo Chiller">Turbo Chiller</option>
-                            <option value="ABS Chiller">ABS Chiller</option>
-                            <option value="Screw Chiller">Screw Chiller</option>
-                            <option value="ISC Water">ISC Water</option>
-                            <option value="ISC Super">ISC Super</option>
-                            <option value="ISC Shell&Tube">ISC Shell&Tube</option>
-                            <option value="ISC">ISC</option>
-                            <option value="ISC Super II">ISC Super II</option>
-                            <option value="Split&Monobloc">Split&Monobloc</option>
-                            <option value="SystemBoiler 2nd">SystemBoiler 2nd</option>
-                            <option value="Single Package II">Single Package II</option>
-                            <option value="Single Package">Single Package</option>
-                            <option value="Pressure">Pressure</option>
-                            <option value="Temp">Temp</option>
-                            <option value="Super Combi">Super Combi</option>
-                            <option value="Slim Combi">Slim Combi</option>
-                            <option value="Combi">Combi</option>
-                            <option value="Condensing Unit">Condensing Unit</option>
-                            <option value="Super CDU">Super CDU</option>
-                        </select>
+                <h6 class="lg_circle"> ID 입력</span>
+                    <div id="lg_search_id">
+                        <input id="id_search" name="header_uid" type="text">
+                        <!--<button onclick="idSearch()" type="button">검색</button>-->
                     </div>
-                    <!--<button onclick="idSearch()" type="button">검색</button>-->
-                </div>
-                <div id="lg_search_detail">
-                    <span>■ 데이터 상세 검색</span>
-                    <div id="lg_search_detail_items">
-                        <div>
-                            <span>날짜입력</span>
-                            <input type="text" id="datepicker" class="input-append date"> ~
-                            <input type="text" id="datepicker" class="input-append date"/>
-                        </div>
-                        <div>
-                            <span>Model 명</span>
-                            <input type="text" name="lgmv_model_name>
-                         </div>
-                <div>
-                    <span>Serial 명</span>
-                    <input type=" text" name="lgmv_serial_number" >
-                        </div>
-                        <div>
-                            <span>냉매</span>
-                            <input type="text" name="lgmv_r">
-                        </div>
-                        <div>
-                            <span>main S/W</span>
-                            <input type="text" name="lgmv_main_ver">
-                        </div>
-                        <div>
-                            <span>EEPROM S/W</span>
-                            <input type="text" name="lgmv_eep_ver">
-                        </div>
-                        <div>
-                            <span>용량</span>
-                            <input type="text" name="calorimeter_cap">
-                        </div>
-                        <div>
-                            <span>전원</span>
-                            <input type="text" name="calorimeter_power">
-                        </div>
-                        <div>
-                            <span>효율</span>
-                            <input type="text" name="calorimeter_eer">
-                        </div>
-                        <div>
-                            <span>전압</span>
-                            <input type="text" name="calorimeter_power_vol">
-                        </div>
-                        <div>
-                            <span>ID 습구온도</span>
-                            <input type="text" name="calorimeter_id_wb">
-                        </div>
-                        <div>
-                            <span>ID 건구온도</span>
-                            <input type="text" name="calorimeter_id_db">
-                        </div>
-                        <div>
-                            <span>OD 습구온도</span>
-                            <input type="text" name="calorimeter_od_wb">
-                        </div>
-                        <div>
-                            <span>OD 건구온도</span>
-                            <input type="text" name="calorimeter_od_db">
-                        </div>
-                        <div>
-                            <span>파일생성날짜</span>
-                            <input type="text" name="conn_file_date">
-                        </div>
-                        <div>
-                            <span>IDU 샤시</span>
-                            <input type="text" name="idu_chassis">
-                        </div>
-                        <div>
-                            <span>ODU 샤시</span>
-                            <input type="text" name="odu_chassis">
-                        </div>
-                        <div>
-                            <span>개발프로세스(상)</span>
-                            <input type="text" name="plm_step1">
-                        </div>
-                        <div>
-                            <span>개발프로세스(하)</span>
-                            <input type="text" name="plm_step2">
-                        </div>
-                        <div>
-                            <span>구분</span>
-                            <input type="text" name="test_step1">
-                        </div>
-                        <div>
-                            <span>시험항목</span>
-                            <input type="text" name="test_step2">
-                        </div>
-                        <div>
-                            <span>실험자</span>
-                            <input type="text" name="conn_tester">
-                        </div>
-                        <div>
-                            <span>챔버번호</span>
-                            <input type="text" name="conn_testroom_number">
-                        </div>
-                        <div>
-                            <span>배관정보</span>
-                            <input type="text" name="conn_pipe_type">
-                        </div>
-                        <div>
-                            <span>TEST 결과</span>
-                            <input type="text" name="conn_test_result">
-                        </div>
-                        <div>
-                            <span>설명</span>
-                            <input type="text" name="conn_memo">
+                    <h6 class="lg_circle">데이터 검색(필수)</h6>
+                    <div id="lg_search_necessary">
+                        <div id="lg_search_necessary_items">
+                            <div class="lg_search_necessary_item">
+                                <span class="lg_text">분류</span>
+                                <select class="lg_select_model_filter" name="lgmv_model_filter1">
+                                    <option value="">- 선택 -</option>
+                                    <option value="Multi V H/P">Multi V H/P</option>
+                                    <option value="Multi V 5">Multi V 5</option>
+                                    <option value="Multi V H/R">Multi V H/R</option>
+                                    <option value="Multi V ARUM">Multi V ARUM</option>
+                                    <option value="Multi Water">Multi Water</option>
+                                    <option value="Multi V S">Multi V S</option>
+                                    <option value="Multi V M">Multi V M</option>
+                                    <option value="Multi V Space">Multi V Space</option>
+                                    <option value="GHP">GHP</option>
+                                    <option value="Chiller">Chiller</option>
+                                    <option value="Single&Multi">Single&Multi</option>
+                                    <option value="Refrigeration">Refrigeration</option>
+                                </select>
+                            </div>
+                            <div class="lg_search_necessary_item">
+                                <span class="lg_text">Model 군</span>
+                                <select class="lg_select_model_filter" name="lgmv_model_filter2">
+                                    <option value="">- 선택 -</option>
+                                    <option value="Multi V 5 HR">Multi V 5 HR</option>
+                                    <option value="Multi V 5 A">Multi V 5 A</option>
+                                    <option value="Multi V 5 H">Multi V 5 H</option>
+                                    <option value="Multi V IV">Multi V IV</option>
+                                    <option value="Multi V IV Plus">Multi V IV Plus</option>
+                                    <option value="Multi V lll">Multi V lll</option>
+                                    <option value="Multi V II m+m">Multi V II m+m</option>
+                                    <option value="Multi V II m+s">Multi V II m+s</option>
+                                    <option value="Multi V 5 HR">Multi V 5 HR</option>
+                                    <option value="Multi V IV HR">Multi V IV HR</option>
+                                    <option value="Multi V III HR">Multi V III HR</option>
+                                    <option value="Multi V 5">Multi V 5</option>
+                                    <option value="Multi V 5HR">Multi V 5HR</option>
+                                    <option value="Water IV A">Water IV A</option>
+                                    <option value="Water IV">Water IV</option>
+                                    <option value="Water IV HR">Water IV HR</option>
+                                    <option value="Water S (Mini)">Water S (Mini)</option>
+                                    <option value="Water II">Water II</option>
+                                    <option value="Water II HR">Water II HR</option>
+                                    <option value="Residence">Residence</option>
+                                    <option value="Multi V S">Multi V S</option>
+                                    <option value="Multi V S HR">Multi V S HR</option>
+                                    <option value="Mini">Mini</option>
+                                    <option value="Multi V M">Multi V M</option>
+                                    <option value="N. A. Space">N. A. Space</option>
+                                    <option value="Space III">Space III</option>
+                                    <option value="Space III 3P">Space III 3P</option>
+                                    <option value="GHP Super III">GHP Super III</option>
+                                    <option value="GHP Super& II">SGHP Super& II</option>
+                                    <option value="Turbo Chiller">Turbo Chiller</option>
+                                    <option value="ABS Chiller">ABS Chiller</option>
+                                    <option value="Screw Chiller">Screw Chiller</option>
+                                    <option value="ISC Water">ISC Water</option>
+                                    <option value="ISC Super">ISC Super</option>
+                                    <option value="ISC Shell&Tube">ISC Shell&Tube</option>
+                                    <option value="ISC">ISC</option>
+                                    <option value="ISC Super II">ISC Super II</option>
+                                    <option value="Split&Monobloc">Split&Monobloc</option>
+                                    <option value="SystemBoiler 2nd">SystemBoiler 2nd</option>
+                                    <option value="Single Package II">Single Package II</option>
+                                    <option value="Single Package">Single Package</option>
+                                    <option value="Pressure">Pressure</option>
+                                    <option value="Temp">Temp</option>
+                                    <option value="Super Combi">Super Combi</option>
+                                    <option value="Slim Combi">Slim Combi</option>
+                                    <option value="Combi">Combi</option>
+                                    <option value="Condensing Unit">Condensing Unit</option>
+                                    <option value="Super CDU">Super CDU</option>
+                                </select>
+                            </div>
                         </div>
                         <!--<button onclick="idSearch()" type="button">검색</button>-->
                     </div>
-                </div>
+                    <h6 class="lg_circle">상세 검색</h6>
+                    <div id="lg_search_detail">
+                        <div id="lg_search_detail_1_items">
+                            <div class="lg_search_detail_1_item">
+                                <span class="lg_text">날짜입력</span>
+                                <input type="text" id="testDatepicker1" class="lg_search_date_box">
+                                <span class="lg_text">~</span>
+                                <input type="text" id="testDatepicker2" class="lg_search_date_box">
+                            </div>
+                        </div>
+                        <div id="lg_search_detail_2_items">
+                            <div>
+                                <span class="lg_text">Model 명</span>
+                                <input type="text" name="lgmv_model_name">
+                            </div>
+                            <div class="lg_search_detail_1_item">
+                                <span class="lg_text">Serial 명</span>
+                                <input type="text" name="lgmv_serial_number">
+                            </div>
+                        </div>
+
+                        <!--<div>-->
+                        <!--<span>냉매</span>-->
+                        <!--<input type="text" name="lgmv_r">-->
+                        <!--</div>-->
+                        <!--<div>-->
+                        <!--<span>main S/W</span>-->
+                        <!--<input type="text" name="lgmv_main_ver">-->
+                        <!--</div>-->
+                        <!--<div>-->
+                        <!--<span>EEPROM S/W</span>-->
+                        <!--<input type="text" name="lgmv_eep_ver">-->
+                        <!--</div>-->
+                        <!--<div>-->
+                        <!--<span>용량</span>-->
+                        <!--<input type="text" name="calorimeter_cap">-->
+                        <!--</div>-->
+                        <!--<div>-->
+                        <!--<span>전원</span>-->
+                        <!--<input type="text" name="calorimeter_power">-->
+                        <!--</div>-->
+                        <!--<div>-->
+                        <!--<span>효율</span>-->
+                        <!--<input type="text" name="calorimeter_eer">-->
+                        <!--</div>-->
+                        <!--<div>-->
+                        <!--<span>전압</span>-->
+                        <!--<input type="text" name="calorimeter_power_vol">-->
+                        <!--</div>-->
+                        <!--<div>-->
+                        <!--<span>ID 습구온도</span>-->
+                        <!--<input type="text" name="calorimeter_id_wb">-->
+                        <!--</div>-->
+                        <!--<div>-->
+                        <!--<span>ID 건구온도</span>-->
+                        <!--<input type="text" name="calorimeter_id_db">-->
+                        <!--</div>-->
+                        <!--<div>-->
+                        <!--<span>OD 습구온도</span>-->
+                        <!--<input type="text" name="calorimeter_od_wb">-->
+                        <!--</div>-->
+                        <!--<div>-->
+                        <!--<span>OD 건구온도</span>-->
+                        <!--<input type="text" name="calorimeter_od_db">-->
+                        <!--</div>-->
+                        <!--<div>-->
+                        <!--<span>파일생성날짜</span>-->
+                        <!--<input type="text" name="conn_file_date">-->
+                        <!--</div>-->
+                        <!--<div>-->
+                        <!--<span>IDU 샤시</span>-->
+                        <!--<input type="text" name="idu_chassis">-->
+                        <!--</div>-->
+                        <!--<div>-->
+                        <!--<span>ODU 샤시</span>-->
+                        <!--<input type="text" name="odu_chassis">-->
+                        <!--</div>-->
+                        <!--<div>-->
+                        <!--<span>개발프로세스(상)</span>-->
+                        <!--<input type="text" name="plm_step1">-->
+                        <!--</div>-->
+                        <!--<div>-->
+                        <!--<span>개발프로세스(하)</span>-->
+                        <!--<input type="text" name="plm_step2">-->
+                        <!--</div>-->
+                        <!--<div>-->
+                        <!--<span>구분</span>-->
+                        <!--<input type="text" name="test_step1">-->
+                        <!--</div>-->
+                        <!--<div>-->
+                        <!--<span>시험항목</span>-->
+                        <!--<input type="text" name="test_step2">-->
+                        <!--</div>-->
+                        <!--<div>-->
+                        <!--<span>실험자</span>-->
+                        <!--<input type="text" name="conn_tester">-->
+                        <!--</div>-->
+                        <!--<div>-->
+                        <!--<span>챔버번호</span>-->
+                        <!--<input type="text" name="conn_testroom_number">-->
+                        <!--</div>-->
+                        <!--<div>-->
+                        <!--<span>배관정보</span>-->
+                        <!--<input type="text" name="conn_pipe_type">-->
+                        <!--</div>-->
+                        <!--<div>-->
+                        <!--<span>TEST 결과</span>-->
+                        <!--<input type="text" name="conn_test_result">-->
+                        <!--</div>-->
+                        <!--<div>-->
+                        <!--<span>설명</span>-->
+                        <!--<input type="text" name="conn_memo">-->
+                        <!--</div>-->
+
+
+                        <!--<button onclick="idSearch()" type="button">검색</button>-->
+                    </div>
             </form>
             <input type="submit" value="검색" onclick="dataSearch();">
         </div>
-        <div id="lg_search_result">
-            <div id="search_fail" style="display: none"></div>
-            <div id="search_result" style="display: none" class="table-responsive">
-                <table id="search_table" class="table table-striped table-bordered table-hover table-condensed">
-                    <tr id="lg_search_result_thead">
-                        <th>ID</th>
-                        <th>Model</th>
-                        <th>모델명</th>
-                        <th>용량</th>
-                        <th>샤시</th>
-                        <th>냉매 종류</th>
-                        <th>구분</th>
-                        <th>시험항목</th>
-                        <!--<td>시험 종류</td>-->
-                        <!-- <td>시험 상세</td>-->
-                        <th>시험 날짜</th>
-                        <th>실험자</th>
-                        <th>챔버 번호</th>
-                        <th>그래프</th>
-                    </tr>
-                    <tbody id="lg_search_result_tbody">
-                    </tbody>
-                </table>
-            </div>
-            <div id="search_result_detail">
-                <div>
-                    <div id="detail" style="display:none">
-                        <div style="font-size: large; font-weight: bolder">■ Summary</div>
-                        <div style="color: #abdde5; margin-left: 2rem">◆ 제품 정보</div>
-                        <div id="detail_product_info">
-                            <div>
-                                <span>-Model 명</span>
-                                <p id="_lgmv_model_name"></p>
-                            </div>
-                            <div>
-                                <span>-serial 명</span>
-                                <p id="_lgmv_serial_number"></p>
-                            </div>
-                            <div>
-                                <span>-분류</span>
-                                <p id="_lgmv_model_filter1"></p>
-                            </div>
-                            <div>
-                                <span>-Model 군</span>
-                                <p id="_lgmv_model_filter2"></p>
-                            </div>
-                            <div>
-                                <span>-냉매</span>
-                                <p id="_lgmv_r"></p>
-                            </div>
-                            <div>
-                                <span>-main S/W</span>
-                                <p id="_lgmv_main_ver"></p></div>
-                            <div>
-                                <span>-EERPROM S/W </span>
-                                <p id="_lgmv_eep_ver"></p></div>
-                            <div>
-                                <span>-용량 </span>
-                                <p id="_calorimeter_cap"></p></div>
-                            <div>
-                                <span>-전원 </span>
-                                <p id="_calorimeter_power"></p></div>
-                            <div>
-                                <span>-효율 </span>
-                                <p id="_calorimeter_eer"></p></div>
-                            <div>
-                                <span>-효율 </span>
-                                <p id="_calorimeter_power_vol"></p></div>
-                            <div>
-                                <span>-ID 습구온도 </span>
-                                <p id="_calorimeter_id_wb"></p></div>
-                            <div>
-                                <span>-ID 건구온도 </span>
-                                <p id="_calorimeter_id_db"></p></div>
-                            <div>
-                                <span>-OD 습구온도 </span>
-                                <p id="_calorimeter_od_wb"></p></div>
-                            <div>
-                                <span>-OD 건구온도 </span>
-                                <p id="_calorimeter_od_db"></p></div>
-                            <div>
-                                <span>-파일생성날짜 </span>
-                                <p id="_conn_file_date"></p></div>
-                            <div>
-                                <span>-파일생성시간</span>
-                                <p id="_conn_file_time"></p></div>
+    </div>
+    <div id="lg_search_result">
+        <div id="search_fail" style="display: none"></div>
+        <div id="search_result" style="display: none" class="table-responsive">
+            <table id="search_table" class="table table-striped table-bordered table-hover table-condensed">
+                <tr id="lg_search_result_thead">
+                    <th>ID</th>
+                    <th>Model</th>
+                    <th>모델명</th>
+                    <th>용량</th>
+                    <th>샤시</th>
+                    <th>냉매 종류</th>
+                    <th>구분</th>
+                    <th>시험항목</th>
+                    <!--<td>시험 종류</td>-->
+                    <!-- <td>시험 상세</td>-->
+                    <th>시험 날짜</th>
+                    <th>실험자</th>
+                    <th>챔버 번호</th>
+                    <th>그래프</th>
+                </tr>
+                <tbody id="lg_search_result_tbody">
+                </tbody>
+            </table>
+        </div>
+        <div id="search_result_detail">
+            <div>
+                <div id="detail" style="display:none">
+                    <span id="lg_circle"></span>
+                    <div style="font-size: large; font-weight: bolder"> Summary</div>
+                    <div style="color: #abdde5; margin-left: 2rem">◆ 제품 정보</div>
+                    <div id="detail_product_info">
+                        <div>
+                            <span>-Model 명</span>
+                            <p id="_lgmv_model_name"></p>
                         </div>
-                        <div style="color: #abdde5; margin-left: 2rem">◆ 시험 정보</div>
-                        <div id="detail_test_info">
-                            <div>
-                                <span>-실내기 샤시</span>
-                                <p id="_idu_chassis"></p>
-                            </div>
-                            <div>
-                                <span>-실외기 샤시</span>
-                                <p id="_odu_chassis"></p>
-                            </div>
-                            <div>
-                                <span>-개발 프로세스(상)</span>
-                                <p id="_plm_step1"></p>
-                            </div>
-                            <div>
-                                <span>-개발 프로세스(하)</span>
-                                <p id="_plm_step2"></p>
-                            </div>
-                            <div>
-                                <span>-구분</span>
-                                <p id="_test_step1"></p>
-                            </div>
-                            <div>
-                                <span>-시험항목 </span>
-                                <p id="_test_step2"></p>
-                            </div>
-                            <div>
-                                <span>-실험자 </span>
-                                <p id="_conn_tester"></p>
-                            </div>
-                            <div>
-                                <span>-챔버 번호</span>
-                                <p id="_conn_testroom_number"></p>
-                            </div>
-                            <div>
-                                <span>-배관정보</span>
-                                <p id="_conn_pipe_type"></p>
-                            </div>
-                            <div>
-                                <span>-test 결과</span>
-                                <p id="_conn_test_result"></p>
-                            </div>
-                            <div>
-                                <span>-설명</span>
-                                <p id="_conn_memo"></p>
-                            </div>
-                            <div>
-                                <span>-ODU 연결수</span>
-                                <p id="_lgmv_odu_count"></p>
-                            </div>
-                            <div>
-                                <span>-IDU 연결수</span>
-                                <p id="_lgmv_idu_count"></p>
-                            </div>
-                            <div>
-                                <span>-HRU 연결수</span>
-                                <p id="_lgmv_hru_count"></p>
-                            </div>
-                            <div>
-                                <span>-CAL 연결수</span>
-                                <p id="_calorimeter_count"></p>
-                            </div>
-                            <div>
-                                <span>-DXC 연결수</span>
-                                <p id="_lgmv_sidu_dxc_count"></p>
-                            </div>
+                        <div>
+                            <span>-serial 명</span>
+                            <p id="_lgmv_serial_number"></p>
                         </div>
-                        <div style="color: #abdde5; margin-left: 2rem">◆ 시험 결과</div>
-                        <div id="detail_test_result">
-                            <div>
-                                <span>-AWHP 연결수</span>
-                                <p id="_lgmv_sidu_awhp_count"></p>
-                            </div>
-                            <div>
-                                <span>-SHOWCASE 연결수</span>
-                                <p id="_lgmv_sidu_showcase_count"></p>
-                            </div>
-                            <div>
-                                <span>-FAU 연결수</span>
-                                <p id="_lgmv_sidu_fau_count"></p>
-                            </div>
-                            <div>
-                                <span>-WHU 연결수</span>
-                                <p id="_lgmv_sidu_whu_count"></p>
-                            </div>
-                            <div>
-                                <span>-CASCADE 연결수</span>
-                                <p id="_lgmv_sidu_cascade_count"></p>
-                            </div>
-                            <div>
-                                <span>-온도단위</span>
-                                <p id="_lgmv_unit_temp"></p>
-                            </div>
-                            <div>
-                                <span>-압력단위</span>
-                                <p id="_lgmv_unit_press"></p>
-                            </div>
-                            <div>
-                                <span>-유량단위</span>
-                                <p id="_lgmv_unit_flux"></p>
-                            </div>
+                        <div>
+                            <span>-분류</span>
+                            <p id="_lgmv_model_filter1"></p>
+                        </div>
+                        <div>
+                            <span>-Model 군</span>
+                            <p id="_lgmv_model_filter2"></p>
+                        </div>
+                        <div>
+                            <span>-냉매</span>
+                            <p id="_lgmv_r"></p>
+                        </div>
+                        <div>
+                            <span>-main S/W</span>
+                            <p id="_lgmv_main_ver"></p></div>
+                        <div>
+                            <span>-EERPROM S/W </span>
+                            <p id="_lgmv_eep_ver"></p></div>
+                        <div>
+                            <span>-용량 </span>
+                            <p id="_calorimeter_cap"></p></div>
+                        <div>
+                            <span>-전원 </span>
+                            <p id="_calorimeter_power"></p></div>
+                        <div>
+                            <span>-효율 </span>
+                            <p id="_calorimeter_eer"></p></div>
+                        <div>
+                            <span>-효율 </span>
+                            <p id="_calorimeter_power_vol"></p></div>
+                        <div>
+                            <span>-ID 습구온도 </span>
+                            <p id="_calorimeter_id_wb"></p></div>
+                        <div>
+                            <span>-ID 건구온도 </span>
+                            <p id="_calorimeter_id_db"></p></div>
+                        <div>
+                            <span>-OD 습구온도 </span>
+                            <p id="_calorimeter_od_wb"></p></div>
+                        <div>
+                            <span>-OD 건구온도 </span>
+                            <p id="_calorimeter_od_db"></p></div>
+                        <div>
+                            <span>-파일생성날짜 </span>
+                            <p id="_conn_file_date"></p></div>
+                        <div>
+                            <span>-파일생성시간</span>
+                            <p id="_conn_file_time"></p></div>
+                    </div>
+                    <div style="color: #abdde5; margin-left: 2rem">◆ 시험 정보</div>
+                    <div id="detail_test_info">
+                        <div>
+                            <span>-실내기 샤시</span>
+                            <p id="_idu_chassis"></p>
+                        </div>
+                        <div>
+                            <span>-실외기 샤시</span>
+                            <p id="_odu_chassis"></p>
+                        </div>
+                        <div>
+                            <span>-개발 프로세스(상)</span>
+                            <p id="_plm_step1"></p>
+                        </div>
+                        <div>
+                            <span>-개발 프로세스(하)</span>
+                            <p id="_plm_step2"></p>
+                        </div>
+                        <div>
+                            <span>-구분</span>
+                            <p id="_test_step1"></p>
+                        </div>
+                        <div>
+                            <span>-시험항목 </span>
+                            <p id="_test_step2"></p>
+                        </div>
+                        <div>
+                            <span>-실험자 </span>
+                            <p id="_conn_tester"></p>
+                        </div>
+                        <div>
+                            <span>-챔버 번호</span>
+                            <p id="_conn_testroom_number"></p>
+                        </div>
+                        <div>
+                            <span>-배관정보</span>
+                            <p id="_conn_pipe_type"></p>
+                        </div>
+                        <div>
+                            <span>-test 결과</span>
+                            <p id="_conn_test_result"></p>
+                        </div>
+                        <div>
+                            <span>-설명</span>
+                            <p id="_conn_memo"></p>
+                        </div>
+                        <div>
+                            <span>-ODU 연결수</span>
+                            <p id="_lgmv_odu_count"></p>
+                        </div>
+                        <div>
+                            <span>-IDU 연결수</span>
+                            <p id="_lgmv_idu_count"></p>
+                        </div>
+                        <div>
+                            <span>-HRU 연결수</span>
+                            <p id="_lgmv_hru_count"></p>
+                        </div>
+                        <div>
+                            <span>-CAL 연결수</span>
+                            <p id="_calorimeter_count"></p>
+                        </div>
+                        <div>
+                            <span>-DXC 연결수</span>
+                            <p id="_lgmv_sidu_dxc_count"></p>
                         </div>
                     </div>
-                    <div id="_cold" style="display:none" class="table-responsive">
-                        <h2>냉방 성능 최대 효율</h2>
-                        <table id="cold_table" class="table table-striped table-bordered table-hover">
-                            <tbody id="cold_tbody">
-                            <tr>
-                                <td>ID</td>
-                                <td>압축기#1</td>
-                                <td>압축기#2</td>
-                                <td>ODU Fan RPM1</td>
-                                <td>ODU Fan RPM2</td>
-                                <td>IDU Fan RPM1</td>
-                                <td>Main EEV</td>
-                                <td>Sub EEV</td>
-                                <!--<td>시험 종류</td>-->
-                                <!-- <td>시험 상세</td>-->
-                                <td>운전률</td>
-                                <td>효율</td>
-                            </tr>
-                            </tbody>
-                        </table>
-
-                    </div>
-                    <div id="_same_title"style="display:none; font-size: large; font-weight: bolder" >■ 유사시험</div>
-                    <div id="_same" style="display:none" class="table-responsive">
-                        <table id="same_table" class="table table-striped">
-                            <tbody id="lg_same_test_tbody">
-                            <tr id="lg_same_test_thead">
-                                <td>ID</td>
-                                <td>Model</td>
-                                <td>모델명</td>
-                                <td>용량</td>
-                                <td>샤시</td>
-                                <td>냉매 종류</td>
-                                <td>구분</td>
-                                <td>시험항목</td>
-                                <!--<td>시험 종류</td>-->
-                                <!-- <td>시험 상세</td>-->
-                                <td>시험 날짜</td>
-                                <td>실험자</td>
-                                <td>챔버 번호</td>
-                            </tr>
-                            </tbody>
-                        </table>
-
+                    <div style="color: #abdde5; margin-left: 2rem">◆ 시험 결과</div>
+                    <div id="detail_test_result">
+                        <div>
+                            <span>-AWHP 연결수</span>
+                            <p id="_lgmv_sidu_awhp_count"></p>
+                        </div>
+                        <div>
+                            <span>-SHOWCASE 연결수</span>
+                            <p id="_lgmv_sidu_showcase_count"></p>
+                        </div>
+                        <div>
+                            <span>-FAU 연결수</span>
+                            <p id="_lgmv_sidu_fau_count"></p>
+                        </div>
+                        <div>
+                            <span>-WHU 연결수</span>
+                            <p id="_lgmv_sidu_whu_count"></p>
+                        </div>
+                        <div>
+                            <span>-CASCADE 연결수</span>
+                            <p id="_lgmv_sidu_cascade_count"></p>
+                        </div>
+                        <div>
+                            <span>-온도단위</span>
+                            <p id="_lgmv_unit_temp"></p>
+                        </div>
+                        <div>
+                            <span>-압력단위</span>
+                            <p id="_lgmv_unit_press"></p>
+                        </div>
+                        <div>
+                            <span>-유량단위</span>
+                            <p id="_lgmv_unit_flux"></p>
+                        </div>
                     </div>
                 </div>
+                <div id="_cold" style="display:none" class="table-responsive">
+                    <h2>냉방 성능 최대 효율</h2>
+                    <table id="cold_table" class="table table-striped table-bordered table-hover">
+                        <tbody id="cold_tbody">
+                        <tr>
+                            <td>ID</td>
+                            <td>압축기#1</td>
+                            <td>압축기#2</td>
+                            <td>ODU Fan RPM1</td>
+                            <td>ODU Fan RPM2</td>
+                            <td>IDU Fan RPM1</td>
+                            <td>Main EEV</td>
+                            <td>Sub EEV</td>
+                            <!--<td>시험 종류</td>-->
+                            <!-- <td>시험 상세</td>-->
+                            <td>운전률</td>
+                            <td>효율</td>
+                        </tr>
+                        </tbody>
+                    </table>
 
+                </div>
+                <div id="_same_title" style="display:none; font-size: large; font-weight: bolder">■ 유사시험</div>
+                <div id="_same" style="display:none" class="table-responsive">
+                    <table id="same_table" class="table table-striped">
+                        <tbody id="lg_same_test_tbody">
+                        <tr id="lg_same_test_thead">
+                            <td>ID</td>
+                            <td>Model</td>
+                            <td>모델명</td>
+                            <td>용량</td>
+                            <td>샤시</td>
+                            <td>냉매 종류</td>
+                            <td>구분</td>
+                            <td>시험항목</td>
+                            <!--<td>시험 종류</td>-->
+                            <!-- <td>시험 상세</td>-->
+                            <td>시험 날짜</td>
+                            <td>실험자</td>
+                            <td>챔버 번호</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </div>
             </div>
+
         </div>
     </div>
+</div>
 
 
-    <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/jquery.dropotron.min.js"></script>
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-    <script type="text/javascript">
-        $('section h4').click(function (event) {
-            event.preventDefault();
-            $(this).addClass('active');
-            $(this).siblings().removeClass('active');
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/jquery.dropotron.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script src="https://d3js.org/d3-array.v2.min.js"></script>
+<script src="https://d3js.org/d3-color.v1.min.js"></script>
+<script src="https://d3js.org/d3-format.v1.min.js"></script>
+<script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+<script src="https://d3js.org/d3-time.v1.min.js"></script>
+<script src="https://d3js.org/d3-time-format.v2.min.js"></script>
+<script src="https://d3js.org/d3-scale.v3.min.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css"/>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+<script type="text/javascript">
+    $('section h4').click(function (event) {
+        event.preventDefault();
+        $(this).addClass('active');
+        $(this).siblings().removeClass('active');
 
-            var ph = $(this).parent().height();
-            var ch = $(this).next().height();
+        var ph = $(this).parent().height();
+        var ch = $(this).next().height();
 
-            if (ch > ph) {
-                $(this).parent().css({
-                    'min-height': ch + 'px'
-                });
-            } else {
-                $(this).parent().css({
-                    'height': 'auto'
-                });
-            }
-        });
-
-        function tabParentHeight() {
-            var ph = $('section').height();
-            var ch = $('section ul').height();
-            if (ch > ph) {
-                $('section').css({
-                    'height': ch + 'px'
-                });
-            } else {
-                $(this).parent().css({
-                    'height': 'auto'
-                });
-            }
+        if (ch > ph) {
+            $(this).parent().css({
+                'min-height': ch + 'px'
+            });
+        } else {
+            $(this).parent().css({
+                'height': 'auto'
+            });
         }
+    });
 
-        $(window).resize(function () {
-            tabParentHeight();
-        });
+    function tabParentHeight() {
+        var ph = $('section').height();
+        var ch = $('section ul').height();
+        if (ch > ph) {
+            $('section').css({
+                'height': ch + 'px'
+            });
+        } else {
+            $(this).parent().css({
+                'height': 'auto'
+            });
+        }
+    }
 
-        $(document).resize(function () {
-            tabParentHeight();
-        });
+    $(window).resize(function () {
         tabParentHeight();
+    });
+
+    $(document).resize(function () {
+        tabParentHeight();
+    });
+    tabParentHeight();
 
 
-        $(function () {
-            $('#datepicker').datepicker({
-                dateFormat: "yy/mm/dd"
-            });
+    $(function () {
+        $('#datepicker').datepicker({
+            dateFormat: "yy/mm/dd"
+        });
+    });
+
+
+    function idSearch() {
+        var data = {}
+        data.header_uid = $('#id_search').val()
+        console.log("serach");
+        $('#detail').css('display', 'none');
+        $('#_same').css('display', 'none');
+        $('#_cold').css('display', 'none');
+        $.ajax({
+            type: 'post'
+            , url: 'http://localhost:3000/api/data_search_id'
+            , data: data
+            , beforeSend: function () {
+                $('#ajax_load_indicator').show().fadeIn('fast');
+            }
+            , success: function (data) {
+                $('#search_result').css('display', 'inline');
+
+                $('#lg_search_result_tbody tr:gt(0)').remove();
+                console.log("success ford!!");
+                console.log(data);
+                // 분기 처리
+                if (data.message == 'success') {
+
+                    $('#search_fail').css('display', 'none');
+                    var id = data.content.header_uid;
+                    var Model = data.content.lgmv_model_filter2;
+                    var Model_name = data.content.lgmv_model_name;
+                    var capavity = data.content.calorimeter_cap;
+                    var sasy = data.content.odu_chassis;
+                    var nang = data.content.lgmv_r;
+                    var test_date = data.content.lgmv_date;
+                    var test_performer = data.content.conn_tester;
+                    var test_step1 = data.content.test_step1;
+                    var test_step2 = data.content.test_step2;
+                    var testroom = data.content.conn_testroom_number;
+                    //var file_date = data.content.conn_file_date;
+                    //var file_time = data.content.conn_file_time;
+
+
+                    var rowItem = "<tr>";
+                    rowItem += "<td id='detailzz" + id + "' value=" + id + " onclick=\"DetailSearch(\'" + id + "\');\">" + id + "</td>";
+                    rowItem += "<td>" + Model + "</td>";
+                    rowItem += "<td>" + Model_name + "</td>";
+                    rowItem += "<td>" + capavity + "</td>";
+                    rowItem += "<td>" + sasy + "</td>";
+                    rowItem += "<td>" + nang + "</td>";
+                    rowItem += "<td>" + test_step1 + "</td>";
+                    rowItem += "<td>" + test_step2 + "</td>";
+                    rowItem += "<td>" + test_date + "</td>";
+                    rowItem += "<td>" + test_performer + "</td>";
+                    rowItem += "<td>" + testroom + "</td>";
+                    rowItem += "<td> <button class='button' onclick=\"setHeaderUid(\'" + id + "\');\">그래프 보기</button></td>";
+                    rowItem += "</tr>";
+
+                    $('#lg_search_result_tbody tr:eq(1)').remove();
+                    $('#lg_search_result_tbody').append(rowItem);
+
+                } else {
+                    console.log("여기?");
+                    $('#search_result').css('display', 'none');
+                    $('#search_fail').css('display', 'inline');
+                    $('#search_fail').html('<h1> 검색결과가 없습니다. </h1>');
+                }
+            }
+            , error: function (data, status, err) {
+                console.log("error forward : " + data);
+                alert('서버와의 통신이 실패했습니다.');
+            }
+            , complete: function () {
+                $('#ajax_load_indicator').fadeOut();
+            }
         });
 
-
-        function idSearch() {
-            var data = {}
-            data.header_uid = $('#id_search').val()
-            console.log("serach");
-            $('#detail').css('display', 'none');
-            $('#_same').css('display', 'none');
-            $('#_cold').css('display', 'none');
-            $.ajax({
-                type: 'post'
-                , url: 'http://localhost:3000/api/data_search_id'
-                , data: data
-                , beforeSend: function () {
-                    $('#ajax_load_indicator').show().fadeIn('fast');
-                }
-                , success: function (data) {
-                    $('#search_result').css('display', 'inline');
-
-                    $('#lg_search_result_tbody tr:gt(0)').remove();
-                    console.log("success ford!!");
-                    console.log(data);
-                    // 분기 처리
-                    if (data.message == 'success') {
-
-                        $('#search_fail').css('display', 'none');
-                        var id = data.content.header_uid;
-                        var Model = data.content.lgmv_model_filter2;
-                        var Model_name = data.content.lgmv_model_name;
-                        var capavity = data.content.calorimeter_cap;
-                        var sasy = data.content.odu_chassis;
-                        var nang = data.content.lgmv_r;
-                        var test_date = data.content.lgmv_date;
-                        var test_performer = data.content.conn_tester;
-                        var test_step1 = data.content.test_step1;
-                        var test_step2 = data.content.test_step2;
-                        var testroom = data.content.conn_testroom_number;
-                        //var file_date = data.content.conn_file_date;
-                        //var file_time = data.content.conn_file_time;
+    }
 
 
-                        var rowItem = "<tr>";
-                        rowItem += "<td id='detailzz" + id + "' value=" + id + " onclick=\"DetailSearch(\'" + id + "\');\">" + id + "</td>";
-                        rowItem += "<td>" + Model + "</td>";
-                        rowItem += "<td>" + Model_name + "</td>";
-                        rowItem += "<td>" + capavity + "</td>";
-                        rowItem += "<td>" + sasy + "</td>";
-                        rowItem += "<td>" + nang + "</td>";
-                        rowItem += "<td>" + test_step1 + "</td>";
-                        rowItem += "<td>" + test_step2 + "</td>";
-                        rowItem += "<td>" + test_date + "</td>";
-                        rowItem += "<td>" + test_performer + "</td>";
-                        rowItem += "<td>" + testroom + "</td>";
-                        rowItem += "<td> <button class='button' onclick=\"setHeaderUid(\'" + id + "\');\">그래프 보기</button></td>";
-                        rowItem += "</tr>";
+    function dataSearch() {
+        console.log("serach");
+        // $('#detail').css('display', 'none');
+        // $('#_same').css('display', 'none');
+        // $('#_cold').css('display', 'none');
+        console.log($('data_search').serialize());
+        $.ajax({
+            type: 'post'
+            , url: 'http://localhost:3000/api/data_search'
+            , data: $("#data_search").serialize()
+            , beforeSend: function () {
+                $('#ajax_load_indicator').show().fadeIn('fast');
+            }
+            , success: function (data) {
+                $('#search_result').css('display', 'inline');
+                console.log("success ford!!");
 
-                        $('#lg_search_result_tbody tr:eq(1)').remove();
-                        $('#lg_search_result_tbody').append(rowItem);
-
-                    } else {
-                        console.log("여기?");
-                        $('#search_result').css('display', 'none');
-                        $('#search_fail').css('display', 'inline');
-                        $('#search_fail').html('<h1> 검색결과가 없습니다. </h1>');
-                    }
-                }
-                , error: function (data, status, err) {
-                    console.log("error forward : " + data);
-                    alert('서버와의 통신이 실패했습니다.');
-                }
-                , complete: function () {
-                    $('#ajax_load_indicator').fadeOut();
-                }
-            });
-
-        }
-
-
-        function dataSearch() {
-            console.log("serach");
-            // $('#detail').css('display', 'none');
-            // $('#_same').css('display', 'none');
-            // $('#_cold').css('display', 'none');
-            console.log($('data_search').serialize());
-            $.ajax({
-                type: 'post'
-                , url: 'http://localhost:3000/api/data_search'
-                , data: $("#data_search").serialize()
-                , beforeSend: function () {
-                    $('#ajax_load_indicator').show().fadeIn('fast');
-                }
-                , success: function (data) {
-                    $('#search_result').css('display', 'inline');
-                    console.log("success ford!!");
-
-                    $('#lg_search_result_tbody tr:gt(0)').remove();
-                    // 분기 처리
-                    if (data.message == 'success' && data.content.length > 0) {
-                        var array = data.content;
-                        array.forEach(element => {
-                            console.log(element.header_uid);
-                            var id = element.header_uid;
-                            var Model = element.lgmv_model_filter2;
-                            var Model_name = element.lgmv_model_name;
-                            var capavity = element.calorimeter_cap;
-                            var sasy = element.odu_chassis;
-                            var nang = element.lgmv_r;
-                            var test_date = element.lgmv_date;
-                            var test_performer = element.conn_tester;
-                            var test_step1 = element.test_step1;
-                            var test_step2 = element.test_step2;
-                            var testroom = element.conn_testroom_number;
-                            //var file_date = data.content.conn_file_date;
-                            //var file_time = data.content.conn_file_time;
-
-                            var serial = element.lgmv_serial_number;
-                            var Model1 = element.lgmv_model_filter1;
-                            var mainver = element.lgmv_main_ver;
-                            var eep = element.lgmv_eep_ver;
-                            var cal_power = element.calorimeter_power;
-                            var cal_eer = element.calorimeter_eer;
-                            var cal_vol = element.calorimeter_power_vol;
-                            var cal_id_wb = element.calorimeter_id_wb;
-                            var cal_id_db = element.calorimeter_id_db;
-                            var cal_od_wb = element.calorimeter_od_wb;
-                            var cal_od_db = element.calorimeter_od_db;
-                            var idu_sassy = element.idu_chassis;
-                            var plm_step1 = element.plm_step1;
-                            var plm_step2 = element.plm_step2;
-                            var test_kind = element.conn_pipe_type;
-                            var test_result = element.conn_test_result;
-                            var test_detail = element.conn_memo;
-                            var idu_count = element.idu_count;
-                            var odu_count = element.odu_count;
-                            var hru_count = element.hru_count;
-                            var cal_count = element.calorimeter_count;
-                            var dxc_count = element.lgmv_sidu_dxc_count;
-                            var awhp_count = element.lgmv_sidu_awhp_count;
-                            var showcase_count = element.lgmv_sidu_showcase_count;
-                            var fau_count = element.lgmv_sidu_fau_count;
-                            var whu_count = element.lgmv_sidu_whu_count;
-                            var cascade_count = element.lgmv_sidu_cascade_count;
-                            var unit_temp = element.lgmv_unit_temp;
-                            var unit_press = element.lgmv_unit_press;
-                            var unit_flux = element.lgmv_unit_flux;
-
-
-                            var rowItem = "<tr>";
-                            rowItem += "<td id='detailzz" + id + "' value=" + id + " onclick=\"DetailSearch(\'" + id + "\');\">" + id + "</td>";
-                            ;
-                            rowItem += "<td>" + Model + "</td>";
-                            rowItem += "<td>" + Model_name + "</td>";
-                            rowItem += "<td>" + capavity + "</td>";
-                            rowItem += "<td>" + sasy + "</td>";
-                            rowItem += "<td>" + nang + "</td>";
-                            rowItem += "<td>" + test_step1 + "</td>";
-                            rowItem += "<td>" + test_step2 + "</td>";
-                            rowItem += "<td>" + test_date + "</td>";
-                            rowItem += "<td>" + test_performer + "</td>";
-                            rowItem += "<td>" + testroom + "</td>";
-                            rowItem += "<td> <button class='button' onclick=\"setHeaderUid(\'" + id + "\');\">그래프 보기</button></td>";
-                            rowItem += "</tr>";
-
-                            $('#lg_search_result_tbody').append(rowItem);
-                        });
-                        $('#search_fail').css('display', 'none');
-
-
-                    } else {
-                        console.log("여기?");
-                        $('#search_result').css('display', 'none');
-                        $('#search_fail').css('display', 'inline');
-                        $('#search_fail').html('<h1> 검색결과가 없습니다. </h1>');
-                    }
-                }
-                , error: function (data, status, err) {
-                    console.log("error forward : " + data);
-                    alert('서버와의 통신이 실패했습니다.');
-                }
-                , complete: function () {
-                    $('#ajax_load_indicator').fadeOut();
-                }
-            });
-        }
-
-        $(document).ready(function(){
-				$.ajax({
-					type: 'post'
-					, url: 'http://localhost:3000/api/session'
-				
-					, beforeSend: function() {
-						$('#ajax_load_indicator').show().fadeIn('fast'); 
-					}
-					, success: function(data) {
-                            console.log("세션");
-                            console.log(data);
-						}
-						, error: function(data, status, err) {
-							console.log("error forward : "+data);
-							alert('서버와의 통신이 실패했습니다.');
-						}
-						, complete: function() { 
-							$('#ajax_load_indicator').fadeOut();
-						}
-					});
-				});
-
-        function DetailSearch(header_uid) {
-            console.log(header_uid);
-            var params = "header_uid=" + header_uid;
-            var same;
-            $('#detail').css('display', 'inline');
-
-            $.ajax({
-                type: 'post'
-                , url: 'http://localhost:3000/api/data_search_id'
-                , data: params
-                , beforeSend: function () {
-                    $('#ajax_load_indicator').show().fadeIn('fast');
-                }
-                , success: function (data) {
-                    $('#search_result').css('display', 'inline');
-
-                    console.log("success ford!!");
-                    console.log(data);
-
-                    // $('#lg_search_result_tbody tr:gt(0)').remove();
-                    // 분기 처리
-                    if (data.message == 'success') {
-                        var element = data.content;
-                        console.log("아니 왜 안되냐고");
+                $('#lg_search_result_tbody tr:gt(0)').remove();
+                // 분기 처리
+                if (data.message == 'success' && data.content.length > 0) {
+                    var array = data.content;
+                    array.forEach(element => {
                         console.log(element.header_uid);
                         var id = element.header_uid;
                         var Model = element.lgmv_model_filter2;
@@ -757,8 +656,8 @@
                         var test_step1 = element.test_step1;
                         var test_step2 = element.test_step2;
                         var testroom = element.conn_testroom_number;
-                        var file_date = data.content.conn_file_date;
-                        var file_time = data.content.conn_file_time;
+                        //var file_date = data.content.conn_file_date;
+                        //var file_time = data.content.conn_file_time;
 
                         var serial = element.lgmv_serial_number;
                         var Model1 = element.lgmv_model_filter1;
@@ -790,254 +689,409 @@
                         var unit_temp = element.lgmv_unit_temp;
                         var unit_press = element.lgmv_unit_press;
                         var unit_flux = element.lgmv_unit_flux;
-                        var operation_rate = element.conn_operation_rate;
 
 
-                        same = "lgmv_serial_number=" + serial
-                            + "&calorimeter_id_wb=" + cal_id_wb
-                            + "&calorimeter_id_db=" + cal_id_db
-                            + "&calorimeter_od_wb=" + cal_od_wb
-                            + "&calorimeter_od_db=" + cal_od_db
-                            + "&conn_operation_rate=" + operation_rate
-                            + "&conn_testroom_number=" + testroom
-                            + "&test_step2=" + test_step2
-                            + "&header_uid=" + id;
+                        var rowItem = "<tr>";
+                        rowItem += "<td id='detailzz" + id + "' value=" + id + " onclick=\"DetailSearch(\'" + id + "\');\">" + id + "</td>";
+                        ;
+                        rowItem += "<td>" + Model + "</td>";
+                        rowItem += "<td>" + Model_name + "</td>";
+                        rowItem += "<td>" + capavity + "</td>";
+                        rowItem += "<td>" + sasy + "</td>";
+                        rowItem += "<td>" + nang + "</td>";
+                        rowItem += "<td>" + test_step1 + "</td>";
+                        rowItem += "<td>" + test_step2 + "</td>";
+                        rowItem += "<td>" + test_date + "</td>";
+                        rowItem += "<td>" + test_performer + "</td>";
+                        rowItem += "<td>" + testroom + "</td>";
+                        rowItem += "<td> <button class='button' onclick=\"setHeaderUid(\'" + id + "\');\">그래프 보기</button></td>";
+                        rowItem += "</tr>";
+
+                        $('#lg_search_result_tbody').append(rowItem);
+                    });
+                    $('#search_fail').css('display', 'none');
 
 
-                        $('#_calorimeter_cap').html(capavity);
-                        $('#_lgmv_model_filter1').html(Model1);
-                        $('#_lgmv_model_filter2').html(Model);
-                        $('#_lgmv_model_name').html(Model_name);
-                        $('#_odu_chassis').html(sasy);
-                        $('#_lgmv_r').html(nang);
-                        $('#_lgmv_date').html(test_date);
-                        $('#_conn_tester').html(test_performer);
-                        $('#_test_step1').html(test_step1);
-                        $('#_test_step2').html(test_step2);
-                        $('#_conn_testroom_number').html(testroom);
-                        $('#_lgmv_serial_number').html(serial);
-                        $('#_lgmv_main_ver').html(mainver);
-                        $('#_lgmv_eep_ver').html(eep);
-                        $('#_calorimeter_power').html(cal_power);
-                        $('#_calorimeter_eer').html(cal_eer);
-                        $('#_calorimeter_power_vol').html(cal_vol);
-                        $('#_calorimeter_id_wb').html(cal_id_wb);
-                        $('#_calorimeter_id_db').html(cal_id_db);
-                        $('#_calorimeter_od_wb').html(cal_od_wb);
-                        $('#_calorimeter_id_wb').html(cal_od_db);
-                        $('#_idu_chassis').html(idu_sassy);
-                        $('#_plm_step1').html(plm_step1);
-                        $('#_plm_step2').html(plm_step2);
-                        $('#_conn_pipe_type').html(test_kind);
-                        $('#_conn_test_result').html(test_result);
-                        $('#_conn_memo').html(test_detail);
-                        $('#_idu_count').html(idu_count);
-                        $('#_odu_count').html(odu_count);
-                        $('#_hru_count').html(hru_count);
-                        $('#_calorimeter_count').html(cal_count);
-                        $('#_lgmv_sidu_dxc_count').html(dxc_count);
-                        $('#_lgmv_sidu_awhp_count').html(awhp_count);
-                        $('#_lgmv_sidu_showcase_count').html(showcase_count);
-                        $('#_lgmv_sidu_fau_count').html(fau_count);
-                        $('#_lgmv_sidu_whu_count').html(whu_count);
-                        $('#_lgmv_sidu_cascade_count').html(cascade_count);
-                        $('#_lgmv_unit_temp').html(unit_temp);
-                        $('#_lgmv_unit_press').html(unit_press);
-                        $('#_lgmv_unit_flux').html(unit_flux);
-                        $('#_conn_file_date').html(file_date);
-                        $('#_conn_file_time').html(file_time);
-
-                        $('#search_fail').css('display', 'none');
-
-                        sameSearch(same, id);
-
-                    } else {
-                        console.log("여기?");
-                        $('#search_result').css('display', 'none');
-                        $('#search_fail').css('display', 'inline');
-                        $('#search_fail').html('<h1> 검색결과가 없습니다. </h1>');
-                    }
+                } else {
+                    console.log("여기?");
+                    $('#search_result').css('display', 'none');
+                    $('#search_fail').css('display', 'inline');
+                    $('#search_fail').html('<h1> 검색결과가 없습니다. </h1>');
                 }
-                , error: function (data, status, err) {
-                    console.log("error forward : " + data);
-                    alert('서버와의 통신이 실패했습니다.');
+            }
+            , error: function (data, status, err) {
+                console.log("error forward : " + data);
+                alert('서버와의 통신이 실패했습니다.');
+            }
+            , complete: function () {
+                $('#ajax_load_indicator').fadeOut();
+            }
+        });
+    }
+
+    $(function () {
+        $("#testDatepicker1").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            nextText: '다음 달',
+            prevText: '이전 달',
+            dateFormat: "yy-mm-dd"
+        });
+        $("#testDatepicker2").datepicker({
+            changeMonth: true,
+            changeYear: true,
+            nextText: '다음 달',
+            prevText: '이전 달',
+            dateFormat: "yy-mm-dd"
+        });
+    });
+    $(document).ready(function () {
+        $.ajax({
+            type: 'post'
+            , url: 'http://localhost:3000/api/session'
+
+            , beforeSend: function () {
+                $('#ajax_load_indicator').show().fadeIn('fast');
+            }
+            , success: function (data) {
+                console.log("세션");
+                console.log(data);
+            }
+            , error: function (data, status, err) {
+                console.log("error forward : " + data);
+                alert('서버와의 통신이 실패했습니다.');
+            }
+            , complete: function () {
+                $('#ajax_load_indicator').fadeOut();
+            }
+        });
+    });
+
+    function DetailSearch(header_uid) {
+        console.log(header_uid);
+        var params = "header_uid=" + header_uid;
+        var same;
+        $('#detail').css('display', 'inline');
+
+        $.ajax({
+            type: 'post'
+            , url: 'http://localhost:3000/api/data_search_id'
+            , data: params
+            , beforeSend: function () {
+                $('#ajax_load_indicator').show().fadeIn('fast');
+            }
+            , success: function (data) {
+                $('#search_result').css('display', 'inline');
+
+                console.log("success ford!!");
+                console.log(data);
+
+                // $('#lg_search_result_tbody tr:gt(0)').remove();
+                // 분기 처리
+                if (data.message == 'success') {
+                    var element = data.content;
+                    console.log("아니 왜 안되냐고");
+                    console.log(element.header_uid);
+                    var id = element.header_uid;
+                    var Model = element.lgmv_model_filter2;
+                    var Model_name = element.lgmv_model_name;
+                    var capavity = element.calorimeter_cap;
+                    var sasy = element.odu_chassis;
+                    var nang = element.lgmv_r;
+                    var test_date = element.lgmv_date;
+                    var test_performer = element.conn_tester;
+                    var test_step1 = element.test_step1;
+                    var test_step2 = element.test_step2;
+                    var testroom = element.conn_testroom_number;
+                    var file_date = data.content.conn_file_date;
+                    var file_time = data.content.conn_file_time;
+
+                    var serial = element.lgmv_serial_number;
+                    var Model1 = element.lgmv_model_filter1;
+                    var mainver = element.lgmv_main_ver;
+                    var eep = element.lgmv_eep_ver;
+                    var cal_power = element.calorimeter_power;
+                    var cal_eer = element.calorimeter_eer;
+                    var cal_vol = element.calorimeter_power_vol;
+                    var cal_id_wb = element.calorimeter_id_wb;
+                    var cal_id_db = element.calorimeter_id_db;
+                    var cal_od_wb = element.calorimeter_od_wb;
+                    var cal_od_db = element.calorimeter_od_db;
+                    var idu_sassy = element.idu_chassis;
+                    var plm_step1 = element.plm_step1;
+                    var plm_step2 = element.plm_step2;
+                    var test_kind = element.conn_pipe_type;
+                    var test_result = element.conn_test_result;
+                    var test_detail = element.conn_memo;
+                    var idu_count = element.idu_count;
+                    var odu_count = element.odu_count;
+                    var hru_count = element.hru_count;
+                    var cal_count = element.calorimeter_count;
+                    var dxc_count = element.lgmv_sidu_dxc_count;
+                    var awhp_count = element.lgmv_sidu_awhp_count;
+                    var showcase_count = element.lgmv_sidu_showcase_count;
+                    var fau_count = element.lgmv_sidu_fau_count;
+                    var whu_count = element.lgmv_sidu_whu_count;
+                    var cascade_count = element.lgmv_sidu_cascade_count;
+                    var unit_temp = element.lgmv_unit_temp;
+                    var unit_press = element.lgmv_unit_press;
+                    var unit_flux = element.lgmv_unit_flux;
+                    var operation_rate = element.conn_operation_rate;
+
+
+                    same = "lgmv_serial_number=" + serial
+                        + "&calorimeter_id_wb=" + cal_id_wb
+                        + "&calorimeter_id_db=" + cal_id_db
+                        + "&calorimeter_od_wb=" + cal_od_wb
+                        + "&calorimeter_od_db=" + cal_od_db
+                        + "&conn_operation_rate=" + operation_rate
+                        + "&conn_testroom_number=" + testroom
+                        + "&test_step2=" + test_step2
+                        + "&header_uid=" + id;
+
+
+                    $('#_calorimeter_cap').html(capavity);
+                    $('#_lgmv_model_filter1').html(Model1);
+                    $('#_lgmv_model_filter2').html(Model);
+                    $('#_lgmv_model_name').html(Model_name);
+                    $('#_odu_chassis').html(sasy);
+                    $('#_lgmv_r').html(nang);
+                    $('#_lgmv_date').html(test_date);
+                    $('#_conn_tester').html(test_performer);
+                    $('#_test_step1').html(test_step1);
+                    $('#_test_step2').html(test_step2);
+                    $('#_conn_testroom_number').html(testroom);
+                    $('#_lgmv_serial_number').html(serial);
+                    $('#_lgmv_main_ver').html(mainver);
+                    $('#_lgmv_eep_ver').html(eep);
+                    $('#_calorimeter_power').html(cal_power);
+                    $('#_calorimeter_eer').html(cal_eer);
+                    $('#_calorimeter_power_vol').html(cal_vol);
+                    $('#_calorimeter_id_wb').html(cal_id_wb);
+                    $('#_calorimeter_id_db').html(cal_id_db);
+                    $('#_calorimeter_od_wb').html(cal_od_wb);
+                    $('#_calorimeter_id_wb').html(cal_od_db);
+                    $('#_idu_chassis').html(idu_sassy);
+                    $('#_plm_step1').html(plm_step1);
+                    $('#_plm_step2').html(plm_step2);
+                    $('#_conn_pipe_type').html(test_kind);
+                    $('#_conn_test_result').html(test_result);
+                    $('#_conn_memo').html(test_detail);
+                    $('#_idu_count').html(idu_count);
+                    $('#_odu_count').html(odu_count);
+                    $('#_hru_count').html(hru_count);
+                    $('#_calorimeter_count').html(cal_count);
+                    $('#_lgmv_sidu_dxc_count').html(dxc_count);
+                    $('#_lgmv_sidu_awhp_count').html(awhp_count);
+                    $('#_lgmv_sidu_showcase_count').html(showcase_count);
+                    $('#_lgmv_sidu_fau_count').html(fau_count);
+                    $('#_lgmv_sidu_whu_count').html(whu_count);
+                    $('#_lgmv_sidu_cascade_count').html(cascade_count);
+                    $('#_lgmv_unit_temp').html(unit_temp);
+                    $('#_lgmv_unit_press').html(unit_press);
+                    $('#_lgmv_unit_flux').html(unit_flux);
+                    $('#_conn_file_date').html(file_date);
+                    $('#_conn_file_time').html(file_time);
+
+                    $('#search_fail').css('display', 'none');
+
+                    sameSearch(same, id);
+
+                } else {
+                    console.log("여기?");
+                    $('#search_result').css('display', 'none');
+                    $('#search_fail').css('display', 'inline');
+                    $('#search_fail').html('<h1> 검색결과가 없습니다. </h1>');
                 }
-                , complete: function () {
-                    $('#ajax_load_indicator').fadeOut();
-                }
-            });
+            }
+            , error: function (data, status, err) {
+                console.log("error forward : " + data);
+                alert('서버와의 통신이 실패했습니다.');
+            }
+            , complete: function () {
+                $('#ajax_load_indicator').fadeOut();
+            }
+        });
 
-        }
-
-
-        function sameSearch(same, uid) {
-            console.log("세임서치");
-            console.log(same);
-            $('#_same').css('display', 'flex');
-            $('#_same_title').css('display', 'inline');
-            $.ajax({
-                type: 'post'
-                , url: 'http://localhost:3000/api/data_search_detail'
-                , data: same
-                , beforeSend: function () {
-                    $('#ajax_load_indicator').show().fadeIn('fast');
-                }
-                , success: function (data) {
-                    $('#search_result').css('display', 'inline');
-
-                    console.log("success ford!!");
-                    $('#lg_same_test_tbody tr:gt(0)').remove();
-                    $('#cold_tbody tr:gt(0)').remove();
-                    // 분기 처리
-                    console.log(data.content.header);
-                    if (data.content.header.length > 0) {
-                        console.log("세임으로 들어가냐");
-                        var array = data.content.header;
-                        array.forEach(element => {
-                            console.log(element.header_uid);
-                            var id = element.header_uid;
-                            var Model = element.lgmv_model_filter2;
-                            var Model_name = element.lgmv_model_name;
-                            var capavity = element.calorimeter_cap;
-                            var sasy = element.odu_chassis;
-                            var nang = element.lgmv_r;
-                            var test_date = element.lgmv_date;
-                            var test_performer = element.conn_tester;
-                            var test_step1 = element.test_step1;
-                            var test_step2 = element.test_step2;
-                            var testroom = element.conn_testroom_number;
-                            //var file_date = data.content.conn_file_date;
-                            //var file_time = data.content.conn_file_time;
-
-                            var serial = element.lgmv_serial_number;
-                            var Model1 = element.lgmv_model_filter1;
-                            var mainver = element.lgmv_main_ver;
-                            var eep = element.lgmv_eep_ver;
-                            var cal_power = element.calorimeter_power;
-                            var cal_eer = element.calorimeter_eer;
-                            var cal_vol = element.calorimeter_power_vol;
-                            var cal_id_wb = element.calorimeter_id_wb;
-                            var cal_id_db = element.calorimeter_id_db;
-                            var cal_od_wb = element.calorimeter_od_wb;
-                            var cal_od_db = element.calorimeter_od_db;
-                            var idu_sassy = element.idu_chassis;
-                            var plm_step1 = element.plm_step1;
-                            var plm_step2 = element.plm_step2;
-                            var test_kind = element.conn_pipe_type;
-                            var test_result = element.conn_test_result;
-                            var test_detail = element.conn_memo;
-                            var idu_count = element.idu_count;
-                            var odu_count = element.odu_count;
-                            var hru_count = element.hru_count;
-                            var cal_count = element.calorimeter_count;
-                            var dxc_count = element.lgmv_sidu_dxc_count;
-                            var awhp_count = element.lgmv_sidu_awhp_count;
-                            var showcase_count = element.lgmv_sidu_showcase_count;
-                            var fau_count = element.lgmv_sidu_fau_count;
-                            var whu_count = element.lgmv_sidu_whu_count;
-                            var cascade_count = element.lgmv_sidu_cascade_count;
-                            var unit_temp = element.lgmv_unit_temp;
-                            var unit_press = element.lgmv_unit_press;
-                            var unit_flux = element.lgmv_unit_flux;
-                            console.log('?? : ' + test_step1);
+    }
 
 
-                            if (uid == id && test_step1 == '냉방성능') {
-                                $('#_cold').css('display', 'inline');
+    function sameSearch(same, uid) {
+        console.log("세임서치");
+        console.log(same);
+        $('#_same').css('display', 'flex');
+        $('#_same_title').css('display', 'inline');
+        $.ajax({
+            type: 'post'
+            , url: 'http://localhost:3000/api/data_search_detail'
+            , data: same
+            , beforeSend: function () {
+                $('#ajax_load_indicator').show().fadeIn('fast');
+            }
+            , success: function (data) {
+                $('#search_result').css('display', 'inline');
 
-                                var calzz = data.content.cooling_performance;
+                console.log("success ford!!");
+                $('#lg_same_test_tbody tr:gt(0)').remove();
+                $('#cold_tbody tr:gt(0)').remove();
+                // 분기 처리
+                console.log(data.content.header);
+                if (data.content.header.length > 0) {
+                    console.log("세임으로 들어가냐");
+                    var array = data.content.header;
+                    array.forEach(element => {
+                        console.log(element.header_uid);
+                        var id = element.header_uid;
+                        var Model = element.lgmv_model_filter2;
+                        var Model_name = element.lgmv_model_name;
+                        var capavity = element.calorimeter_cap;
+                        var sasy = element.odu_chassis;
+                        var nang = element.lgmv_r;
+                        var test_date = element.lgmv_date;
+                        var test_performer = element.conn_tester;
+                        var test_step1 = element.test_step1;
+                        var test_step2 = element.test_step2;
+                        var testroom = element.conn_testroom_number;
+                        //var file_date = data.content.conn_file_date;
+                        //var file_time = data.content.conn_file_time;
 
-                                var rowItem = "<tr>";
-                                rowItem += "<td id='detailzz" + id + "' value=" + id + " onclick=\"DetailSearch(\'" + id + "\');\">" + id + "</td>";
-                                ;
-                                rowItem += "<td>" + calzz.compressor_1 + "</td>";
-                                rowItem += "<td>" + calzz.compressor_2 + "</td>";
-                                rowItem += "<td>" + calzz.odu_fan_rpm1 + "</td>";
-                                rowItem += "<td>" + calzz.odu_fan_rpm2 + "</td>";
-                                rowItem += "<td>" + calzz.idu1_fan_rpm + "</td>";
-                                rowItem += "<td>" + calzz.main_eev + "</td>";
-                                rowItem += "<td>" + calzz.sub_eev + "</td>";
-                                rowItem += "<td>" + "</td>";
-                                rowItem += "<td>" + calzz.EER + "</td>";
-                                rowItem += "</tr>";
-                                $('#cold_tbody').append(rowItem);
+                        var serial = element.lgmv_serial_number;
+                        var Model1 = element.lgmv_model_filter1;
+                        var mainver = element.lgmv_main_ver;
+                        var eep = element.lgmv_eep_ver;
+                        var cal_power = element.calorimeter_power;
+                        var cal_eer = element.calorimeter_eer;
+                        var cal_vol = element.calorimeter_power_vol;
+                        var cal_id_wb = element.calorimeter_id_wb;
+                        var cal_id_db = element.calorimeter_id_db;
+                        var cal_od_wb = element.calorimeter_od_wb;
+                        var cal_od_db = element.calorimeter_od_db;
+                        var idu_sassy = element.idu_chassis;
+                        var plm_step1 = element.plm_step1;
+                        var plm_step2 = element.plm_step2;
+                        var test_kind = element.conn_pipe_type;
+                        var test_result = element.conn_test_result;
+                        var test_detail = element.conn_memo;
+                        var idu_count = element.idu_count;
+                        var odu_count = element.odu_count;
+                        var hru_count = element.hru_count;
+                        var cal_count = element.calorimeter_count;
+                        var dxc_count = element.lgmv_sidu_dxc_count;
+                        var awhp_count = element.lgmv_sidu_awhp_count;
+                        var showcase_count = element.lgmv_sidu_showcase_count;
+                        var fau_count = element.lgmv_sidu_fau_count;
+                        var whu_count = element.lgmv_sidu_whu_count;
+                        var cascade_count = element.lgmv_sidu_cascade_count;
+                        var unit_temp = element.lgmv_unit_temp;
+                        var unit_press = element.lgmv_unit_press;
+                        var unit_flux = element.lgmv_unit_flux;
+                        console.log('?? : ' + test_step1);
 
-                            }
-                            else {
 
-                            }
+                        if (uid == id && test_step1 == '냉방성능') {
+                            $('#_cold').css('display', 'inline');
 
+                            var calzz = data.content.cooling_performance;
 
                             var rowItem = "<tr>";
                             rowItem += "<td id='detailzz" + id + "' value=" + id + " onclick=\"DetailSearch(\'" + id + "\');\">" + id + "</td>";
                             ;
-                            rowItem += "<td>" + Model + "</td>";
-                            rowItem += "<td>" + Model_name + "</td>";
-                            rowItem += "<td>" + capavity + "</td>";
-                            rowItem += "<td>" + sasy + "</td>";
-                            rowItem += "<td>" + nang + "</td>";
-                            rowItem += "<td>" + test_step1 + "</td>";
-                            rowItem += "<td>" + test_step2 + "</td>";
-                            rowItem += "<td>" + test_date + "</td>";
-                            rowItem += "<td>" + test_performer + "</td>";
-                            rowItem += "<td>" + testroom + "</td>";
+                            rowItem += "<td>" + calzz.compressor_1 + "</td>";
+                            rowItem += "<td>" + calzz.compressor_2 + "</td>";
+                            rowItem += "<td>" + calzz.odu_fan_rpm1 + "</td>";
+                            rowItem += "<td>" + calzz.odu_fan_rpm2 + "</td>";
+                            rowItem += "<td>" + calzz.idu1_fan_rpm + "</td>";
+                            rowItem += "<td>" + calzz.main_eev + "</td>";
+                            rowItem += "<td>" + calzz.sub_eev + "</td>";
+                            rowItem += "<td>" + "</td>";
+                            rowItem += "<td>" + calzz.EER + "</td>";
                             rowItem += "</tr>";
+                            $('#cold_tbody').append(rowItem);
 
-                            $('#lg_same_test_tbody').append(rowItem);
-                        });
-                        $('#search_fail').css('display', 'none');
+                        }
+                        else {
+
+                        }
 
 
-                    } else {
-                        console.log("여기?");
-                        $('#search_result').css('display', 'none');
-                        $('#search_fail').css('display', 'inline');
-                        $('#search_fail').html('<h1> 검색결과가 없습니다. </h1>');
-                    }
+                        var rowItem = "<tr>";
+                        rowItem += "<td id='detailzz" + id + "' value=" + id + " onclick=\"DetailSearch(\'" + id + "\');\">" + id + "</td>";
+                        ;
+                        rowItem += "<td>" + Model + "</td>";
+                        rowItem += "<td>" + Model_name + "</td>";
+                        rowItem += "<td>" + capavity + "</td>";
+                        rowItem += "<td>" + sasy + "</td>";
+                        rowItem += "<td>" + nang + "</td>";
+                        rowItem += "<td>" + test_step1 + "</td>";
+                        rowItem += "<td>" + test_step2 + "</td>";
+                        rowItem += "<td>" + test_date + "</td>";
+                        rowItem += "<td>" + test_performer + "</td>";
+                        rowItem += "<td>" + testroom + "</td>";
+                        rowItem += "</tr>";
+
+                        $('#lg_same_test_tbody').append(rowItem);
+                    });
+                    $('#search_fail').css('display', 'none');
+
+
+                } else {
+                    console.log("여기?");
+                    $('#search_result').css('display', 'none');
+                    $('#search_fail').css('display', 'inline');
+                    $('#search_fail').html('<h1> 검색결과가 없습니다. </h1>');
                 }
-                , error: function (data, status, err) {
-                    console.log("error forward : " + data);
-                    alert('서버와의 통신이 실패했습니다.');
-                }
-                , complete: function () {
-                    $('#ajax_load_indicator').fadeOut();
-                }
-            });
-        }
+            }
+            , error: function (data, status, err) {
+                console.log("error forward : " + data);
+                alert('서버와의 통신이 실패했습니다.');
+            }
+            , complete: function () {
+                $('#ajax_load_indicator').fadeOut();
+            }
+        });
+    }
 
-        function setHeaderUid(index) {
-            window.location.href = "graph.html?index=" + index;
-        }
-    </script>
-    <script type="text/javascript">
-        function openNav() {
-            document.getElementById("my_sidebar").style.width = "500px";
-            document.getElementById("my-sidebar-open-btn").style.visibility = "hidden";
-            document.getElementById("my-sidebar-close-btn").style.visibility = "visible";
+    function setHeaderUid(index) {
+        window.location.href = "graph.html?index=" + index;
+    }
+</script>
+<script type="text/javascript">
+    function openNav() {
+        document.getElementById("my_sidebar").style.width = "500px";
+        document.getElementById("my-sidebar-open-btn").style.visibility = "hidden";
+        document.getElementById("my-sidebar-close-btn").style.visibility = "visible";
 
-        }
+    }
 
-        function closeNav() {
-            document.getElementById("my_sidebar").style.width = "0";
-            document.getElementById("my-sidebar-open-btn").style.visibility = "visible";
-            document.getElementById("my-sidebar-close-btn").style.visibility = "hidden";
-        }
-    </script>
+    function closeNav() {
+        document.getElementById("my_sidebar").style.width = "0";
+        document.getElementById("my-sidebar-open-btn").style.visibility = "visible";
+        document.getElementById("my-sidebar-close-btn").style.visibility = "hidden";
+    }
+</script>
 </body>
 <!--page 전체 && SideBar Css-->
 <style>
-    /*page 전체에 대한 레이아웃*/
     .full-page {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         height: 100%;
+    }
+
+    #img_logo {
+        width: 110px;
+        height: 80px;
+        margin-right: 20px;
     }
 
     /*lg_content Css*/
     #lg_contents {
         margin-left: 200px;
+        margin-top: 100px;
+        margin-right: 80px;
         display: flex;
         flex-direction: column;
+        flex-wrap: wrap;
     }
 
     /*sidebar css start*/
@@ -1047,6 +1101,15 @@
         flex: none;
         position: fixed;
         width: 150px;
+        height: 100%;
+        font-family: sans-serif;
+    }
+
+    .full-page #lg_sidebar {
+        flex: none;
+        position: fixed;
+        width: 150px;
+        margin-top: 80px;
         height: 100%;
         font-family: sans-serif;
     }
@@ -1077,225 +1140,229 @@
         font-weight: bold;
         text-decoration: #1c7430 solid;
     }
-    /*sidebar css end*/
 
-    /*id 입력 창 Css*/
-    #lg_search_box {
-        /*flex: 1;*/
-        flex-direction: column;
-        height: 430px;
-        margin: 1em 1em 1em 1em;
-        background-color: #80bdff;
-    }
-
-    #lg_search_box #lg_search_id {
-        font-size: 0.8em;
-        display: grid;
-        align-items: center;
-        justify-items: start;
-        height: 4.5em;
-        background-color: #66ffff;
-        margin: 0.5em;
-    }
-
-    #lg_search_box #lg_search_id span {
-        font-size: 0.9em;
-        margin-left: 0.5em;
-        font-weight: bold;
-    }
-
-    #lg_search_box #lg_search_id input {
-        margin-left: 0.8em;
-        padding: 0.2em;
-        width: 7rem;
-    }
-
-    /*데이터 검색 (필수) CSS*/
-    #lg_search_box #lg_search_necessary {
-        font-size: 0.8em;
-        display: grid;
-        align-items: center;
-        justify-items: start;
-        height: 4.5em;
-        background-color: #abdde5;
-        margin: 0.5em;
-    }
-
-    #lg_search_box #lg_search_necessary span {
-        margin-left: 0.5em;
-        font-weight: bold;
-    }
-
-    /*데이터 상세검색 CSS*/
-    #lg_search_box #lg_search_detail {
-        display: grid;
-        align-items: center;
-        justify-items: start;
-        height: 15rem;
-        background-color: #abdde5;
-        margin: 0.5em;
-    }
-
-    #lg_search_box #lg_search_detail span {
-        font-size: 0.9em;
-        margin-left: 0.5em;
-        font-weight: bold;
-    }
-
-    #lg_search_box #lg_search_detail input {
-        width: 7rem;
-    }
-
-    #lg_search_box #lg_search_detail #lg_search_detail_items {
-        display: grid;
-        font-size: 0.8em;
-        align-items: center;
-        justify-items: end;
-        grid-template-columns: repeat(4, 18rem);
-        grid-gap: 0.2rem;
-    }
-
-    #lg_search_box #lg_search_detail #lg_search_detail_items span {
-        font-size: 0.8em;
-        margin-right: 0.8rem;
-        padding: 1em;
-        font-weight: bold;
-    }
-
-    #lg_search_box #lg_search_detail #lg_search_detail_items div:nth-child(1) input {
-        width: 5rem;
-    }
 </style>
+<!--<style>-->
+
+<!--/*sidebar css end*/-->
+
+<!--/*id 입력 창 Css*/-->
+<!--#lg_search_box {-->
+<!--/*flex: 1;*/-->
+<!--flex-direction: column;-->
+<!--height: 430px;-->
+<!--margin: 1em 1em 1em 1em;-->
+<!--background-color: #80bdff;-->
+<!--}-->
+
+<!--#lg_search_box #lg_search_id {-->
+<!--font-size: 0.8em;-->
+<!--display: flex;-->
+<!--align-items: center;-->
+<!--justify-items: start;-->
+<!--height: 4.5em;-->
+<!--background-color: #66ffff;-->
+<!--margin: 0.5em;-->
+<!--}-->
+
+<!--#lg_search_box #lg_search_id span {-->
+<!--font-size: 0.9em;-->
+<!--margin-left: 0.5em;-->
+<!--font-weight: bold;-->
+<!--}-->
+
+<!--#lg_search_box #lg_search_id input {-->
+<!--margin-left: 0.8em;-->
+<!--padding: 0.2em;-->
+<!--width: 7rem;-->
+<!--}-->
+
+<!--/*데이터 검색 (필수) CSS*/-->
+<!--#lg_search_box #lg_search_necessary {-->
+<!--font-size: 0.8em;-->
+<!--display: flex;-->
+<!--align-items: center;-->
+<!--justify-items: start;-->
+<!--height: 4.5em;-->
+<!--background-color: #abdde5;-->
+<!--margin: 0.5em;-->
+<!--}-->
+
+<!--#lg_search_box #lg_search_necessary span {-->
+<!--margin-left: 0.5em;-->
+<!--font-weight: bold;-->
+<!--}-->
+
+<!--/*데이터 상세검색 CSS*/-->
+<!--#lg_search_box #lg_search_detail {-->
+<!--/*display: grid;*/-->
+<!--align-items: center;-->
+<!--justify-items: start;-->
+<!--height: 15rem;-->
+<!--background-color: #abdde5;-->
+<!--margin: 0.5em;-->
+<!--}-->
+
+<!--#lg_search_box #lg_search_detail span {-->
+<!--font-size: 0.9em;-->
+<!--margin-left: 0.5em;-->
+<!--font-weight: bold;-->
+<!--}-->
+
+<!--#lg_search_box #lg_search_detail input {-->
+<!--width: 7rem;-->
+<!--}-->
+
+<!--#lg_search_box #lg_search_detail #lg_search_detail_items {-->
+<!--display: grid;-->
+<!--font-size: 0.8em;-->
+<!--align-items: center;-->
+<!--justify-items: end;-->
+<!--grid-template-columns: repeat(4, 18rem);-->
+<!--grid-gap: 0.2rem;-->
+<!--}-->
+
+<!--#lg_search_box #lg_search_detail #lg_search_detail_items span {-->
+<!--font-size: 0.8em;-->
+<!--margin-right: 0.8rem;-->
+<!--padding: 1em;-->
+<!--font-weight: bold;-->
+<!--}-->
+
+<!--#lg_search_box #lg_search_detail #lg_search_detail_items div:nth-child(1) input {-->
+<!--width: 5rem;-->
+<!--}-->
+<!--</style>-->
 
 <!--search_result Css-->
-<style>
-    #lg_search_result {
-        display: flex;
-        flex-direction: column;
-        /*background-color: #1c7430;*/
-        margin: 1em;
-    }
+<!--<style>-->
+<!--#lg_search_result {-->
+<!--display: flex;-->
+<!--flex-direction: column;-->
+<!--/*background-color: #1c7430;*/-->
+<!--margin: 1em;-->
+<!--}-->
 
-    #lg_search_result #lg_search_result {
-        border-collapse: collapse;
-        text-align: left;
-        line-height: 1.5;
-        border: 1px solid black;
-        margin: 20px 10px;
-    }
+<!--#lg_search_result #lg_search_result {-->
+<!--border-collapse: collapse;-->
+<!--text-align: left;-->
+<!--line-height: 1.5;-->
+<!--border: 1px solid black;-->
+<!--margin: 20px 10px;-->
+<!--}-->
 
-    #lg_search_result_thead {
-        border-right: 1px solid #1d2124;
-        border-bottom: 2px solid #1d2124;
-        padding: 10px;
-        vertical-align: top;
-        background-color: #abdde5;
-        font-weight: bold;
-    }
+<!--#lg_search_result_thead {-->
+<!--border-right: 1px solid #1d2124;-->
+<!--border-bottom: 2px solid #1d2124;-->
+<!--padding: 10px;-->
+<!--vertical-align: top;-->
+<!--background-color: #abdde5;-->
+<!--font-weight: bold;-->
+<!--}-->
 
-    #lg_search_result_tbody {
-        background-color: #c8cbcf;
-        font-family: sans-serif;
+<!--#lg_search_result_tbody {-->
+<!--background-color: #c8cbcf;-->
+<!--font-family: sans-serif;-->
 
-    }
-</style>
-<style>
-    #search_result_detail {
-        display: flex;
-        flex-direction: column;
-        background-color: #1c7430;
-    }
+<!--}-->
+<!--</style>-->
+<!--<style>-->
+<!--#search_result_detail {-->
+<!--display: flex;-->
+<!--flex-direction: column;-->
+<!--background-color: #1c7430;-->
+<!--}-->
 
-    #search_result_detail p {
-        margin: 0;
-    }
+<!--#search_result_detail p {-->
+<!--margin: 0;-->
+<!--}-->
 
-    #search_result_detail #detail_product_info {
-        display: grid;
-        align-items: center;
-        justify-items: start;
-        height: 15rem;
-        background-color: #abdde5;
-        margin-left: 1em;
-        margin-right: 1em;
-        margin-bottom: 1em;
-        grid-template-columns: repeat(5, 1fr);
-        grid-auto-columns: minmax(30px, auto);
-        grid-gap: 1rem;
-        border: 2px solid black;
-    }
+<!--#search_result_detail #detail_product_info {-->
+<!--display: grid;-->
+<!--align-items: center;-->
+<!--justify-items: start;-->
+<!--height: 15rem;-->
+<!--background-color: #abdde5;-->
+<!--margin-left: 1em;-->
+<!--margin-right: 1em;-->
+<!--margin-bottom: 1em;-->
+<!--grid-template-columns: repeat(5, 1fr);-->
+<!--grid-auto-columns: minmax(30px, auto);-->
+<!--grid-gap: 1rem;-->
+<!--border: 2px solid black;-->
+<!--}-->
 
-    #search_result_detail #detail_product_info span {
-        font-size: 0.8em;
-        margin-right: 0.8rem;
-        padding: 1em;
-        font-weight: bold;
-    }
+<!--#search_result_detail #detail_product_info span {-->
+<!--font-size: 0.8em;-->
+<!--margin-right: 0.8rem;-->
+<!--padding: 1em;-->
+<!--font-weight: bold;-->
+<!--}-->
 
-    #search_result_detail #detail_product_info span {
-        font-size: 0.8em;
-        margin-right: 0.2rem;
-    }
+<!--#search_result_detail #detail_product_info span {-->
+<!--font-size: 0.8em;-->
+<!--margin-right: 0.2rem;-->
+<!--}-->
 
-    #search_result_detail #detail_product_info p {
-        font-size: 0.7em;
-        margin-left: 1em;
-    }
+<!--#search_result_detail #detail_product_info p {-->
+<!--font-size: 0.7em;-->
+<!--margin-left: 1em;-->
+<!--}-->
 
-    #search_result_detail #detail_test_info {
-        display: grid;
-        align-items: center;
-        justify-items: start;
-        height: 15rem;
-        background-color: #abdde5;
-        margin-left: 1em;
-        margin-right: 1em;
-        margin-bottom: 1em;
-        grid-template-columns: repeat(5, 1fr);
-        grid-auto-columns: minmax(30px, auto);
-        grid-gap: 1rem;
-        border: 2px solid black;
-    }
+<!--#search_result_detail #detail_test_info {-->
+<!--display: grid;-->
+<!--align-items: center;-->
+<!--justify-items: start;-->
+<!--height: 15rem;-->
+<!--background-color: #abdde5;-->
+<!--margin-left: 1em;-->
+<!--margin-right: 1em;-->
+<!--margin-bottom: 1em;-->
+<!--grid-template-columns: repeat(5, 1fr);-->
+<!--grid-auto-columns: minmax(30px, auto);-->
+<!--grid-gap: 1rem;-->
+<!--border: 2px solid black;-->
+<!--}-->
 
-    #search_result_detail #detail_test_info span {
-        font-size: 0.8em;
-        margin-right: 0.8rem;
-        padding: 1em;
-        font-weight: bold;
-    }
+<!--#search_result_detail #detail_test_info span {-->
+<!--font-size: 0.8em;-->
+<!--margin-right: 0.8rem;-->
+<!--padding: 1em;-->
+<!--font-weight: bold;-->
+<!--}-->
 
-    #search_result_detail #detail_test_info p {
-        font-size: 0.7em;
-        margin-left: 1em;
-    }
+<!--#search_result_detail #detail_test_info p {-->
+<!--font-size: 0.7em;-->
+<!--margin-left: 1em;-->
+<!--}-->
 
-    #search_result_detail #detail_test_result {
-        display: grid;
-        align-items: center;
-        justify-items: start;
-        height: 10rem;
-        background-color: #abdde5;
-        margin-left: 1em;
-        margin-right: 1em;
-        margin-bottom: 1em;
-        grid-template-columns: repeat(5, 1fr);
-        grid-auto-columns: minmax(30px, auto);
-        grid-gap: 1rem;
-        border: 2px solid black;
-    }
+<!--#search_result_detail #detail_test_result {-->
+<!--display: grid;-->
+<!--align-items: center;-->
+<!--justify-items: start;-->
+<!--height: 10rem;-->
+<!--background-color: #abdde5;-->
+<!--margin-left: 1em;-->
+<!--margin-right: 1em;-->
+<!--margin-bottom: 1em;-->
+<!--grid-template-columns: repeat(5, 1fr);-->
+<!--grid-auto-columns: minmax(30px, auto);-->
+<!--grid-gap: 1rem;-->
+<!--border: 2px solid black;-->
+<!--}-->
 
-    #search_result_detail #detail_test_result span {
-        font-size: 0.8em;
-        margin-right: 0.8rem;
-        padding: 1em;
-        font-weight: bold;
-    }
+<!--#search_result_detail #detail_test_result span {-->
+<!--font-size: 0.8em;-->
+<!--margin-right: 0.8rem;-->
+<!--padding: 1em;-->
+<!--font-weight: bold;-->
+<!--}-->
 
-    #search_result_detail #detail_test_result p {
-        font-size: 0.7em;
-        margin-left: 1em;
-    }
-</style>
+<!--#search_result_detail #detail_test_result p {-->
+<!--font-size: 0.7em;-->
+<!--margin-left: 1em;-->
+<!--}-->
+<!--</style>-->
 <!--유사 시험 테이블Css-->
 <style>
     #lg_same_test_thead {
@@ -1317,9 +1384,111 @@
         width: 95%;
         margin: 1em;
     }
+
     #_same {
         flex-direction: column;
         align-items: center;
+    }
+</style>
+<style>
+    .lg_circle:before {
+        content: "";
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        margin-right: 5px;
+        border: 2px solid #d80546;
+        border-radius: 50%;
+    }
+</style>
+
+<!--id 입력 검색창-->
+<style>
+    #lg_search_box {
+        width: 100%;
+        padding: 10px;
+        background-color: rgb(250, 250, 250);
+    }
+
+    #lg_search_id {
+        display: flex;
+    }
+
+    #id_search {
+        display: block;
+        width: 100%;
+        height: 32px;
+        font-size: 13px;
+        line-height: 1.42857143;
+        color: #555;
+        background: #fff none;
+        border: 1px solid  #cecece;
+        margin: 20px;
+    }
+
+    .lg_text {
+        font-weight: bold;
+        font-size: 13px;
+        min-width: 80px;
+        justify-self: center;
+        align-self: center;
+        text-align: center;
+        line-height: 1.42857143;
+    }
+
+    .lg_select_model_filter {
+        width: 100%;
+        height: 32px;
+        padding: 5px 12px;
+        font-size: 13px;
+        line-height: 1.42857143;
+        color: #555;
+        background: #fff none;
+        border: 1px solid  #cecece;
+    }
+
+    #lg_search_necessary {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        width: 100%;
+    }
+
+    #lg_search_necessary_items {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #lg_search_necessary_items .lg_search_necessary_item {
+        width: 40%;
+        margin: 20px;
+        display: flex;
+    }
+
+    #lg_search_detail {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        width: 100%;
+    }
+
+    #lg_search_detail_1_items {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #lg_search_detail_1_items .lg_search_detail_1_item {
+        width: 100%;
+        margin: 20px;
+        display: flex;
+    }
+
+    .lg_search_date_box {
+        width: 100%;
     }
 </style>
 </html>
