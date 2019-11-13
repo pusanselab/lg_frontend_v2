@@ -5,8 +5,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
+<div style="width: 100%; position: fixed; background:#ffffff;z-index:100; border-bottom: 5px solid black">
+    <div style="margin-left: 30px;  font-size: 30px;">
+        <img id="img_logo" src="./r&d_data.png"></img>
+        R&D Data
+    </div>
+</div>
 <div class="full-page">
     <div id="lg_sidebar">
+        <div align="right">
+        </div>
         <div id="lg_sidebar_content">
             <a href="index.html">Home</a>
             <a href="data_search.html">데이터 검색</a>
@@ -14,6 +22,7 @@
             <a href="option.html">Option</a>
         </div>
     </div>
+
     <div id="lg_contents">
         <div>
             <div id="lg_db_count">
@@ -549,12 +558,10 @@
 
             }
         }
-
         // $(document).ready(function(){
         google.charts.load('current', {'packages': ['line', 'controls']});
         chartDrowFun.chartDrow(); //chartDrow() 실행
         //  });
-
     }
 
 </script>
@@ -562,15 +569,24 @@
 <style>
     .full-page {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         height: 100%;
+    }
+
+    #img_logo {
+        width: 110px;
+        height: 80px;
+        margin-right: 20px;
     }
 
     /*lg_content Css*/
     #lg_contents {
         margin-left: 200px;
+        margin-top: 100px;
+        margin-right: 80px;
         display: flex;
         flex-direction: column;
+        flex-wrap: wrap;
     }
 
     /*sidebar css start*/
@@ -580,6 +596,7 @@
         flex: none;
         position: fixed;
         width: 150px;
+        margin-top: 80px;
         height: 100%;
         font-family: sans-serif;
     }
@@ -625,12 +642,15 @@
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 4em;
     }
+
     #my_dataviz {
         border: 1px solid pink;
     }
+
     #my_testviz {
         border: 1px solid pink;
     }
+
     #lg_dataset_by_model_header {
         background-color: black;
         padding: 0.8em;
@@ -638,6 +658,7 @@
         color: white;
         font-family: "Adobe 명조 Std M";
     }
+
     #lg_dataset_by_test_header {
         background-color: black;
         padding: 0.8em;
@@ -652,12 +673,11 @@
         font-weight: bold;
         font-family: "Adobe 명조 Std M";
         margin-top: 2em;
+        margin-right: 0;
         color: black;
         font-size: 0.9em;
     }
-    #lg_chember_table {
-        margin: 1em;
-    }
+
     #lg_chember_table_thead {
         border-right: 1px solid #1d2124;
         border-bottom: 2px solid #1d2124;
@@ -667,7 +687,8 @@
         color: white;
         font-weight: bold;
     }
-    #detail_body td{
+
+    #detail_body td {
         margin: 0.1em;
         padding: 0.5em;
         font-family: "Fira Code";
@@ -680,7 +701,6 @@
     #lg_chamber_graph {
         color: black;
         font-weight: bold;
-        margin: 1px;
     }
 
 </style>
