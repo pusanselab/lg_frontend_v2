@@ -67,6 +67,11 @@
         </div>
         <div id="lg_chamber_graph">
             <span style="margin-top: 10px;">◎ 그래프</span>
+            
+            <p>챔버번호 : <select id="index">
+                </select></p>
+            <button class="button" style="margin: 10px" onClick='SelectUnit()'>그래프 보기</button>
+
             <div id="Line_Controls_Chart">
                 <!-- 라인 차트 생성할 영역 -->
                 <div id="lineChartArea" style="padding:0px 20px 0px 0px;"></div>
@@ -330,11 +335,41 @@
         });
     });
 
+    var cham_number=[];
+
     $(document).ready(function () {
         $.ajax({
             type: 'post'
-            , url: 'http://localhost:3000/api/chamber/chamber_status'
+            , url: 'http://localhost:3000/api/chamber/chamber_testroom_number'
 
+            , beforeSend: function () {
+                $('#ajax_load_indicator').show().fadeIn('fast');
+            }
+            , success: function (data) {
+                cham_number=data.testroom_number;
+                for(var i=0;i<cham_number.length;i++){
+                    var option=$("<option value=\""+cham_number[i]+"\">"+cham_number[i]+"</option>")
+                    $('#index').append(option);
+                }
+            }
+            , error: function (data, status, err) {
+                console.log("error forward : " + data);
+                alert('서버와의 통신이 실패했습니다.');
+            }
+            , complete: function () {
+                $('#ajax_load_indicator').fadeOut();
+            }
+        });
+    });
+
+
+    function SelectUnit(){
+        var good = $('#index').val();
+        var params="testroom_number="+good;
+        $.ajax({
+            type: 'post'
+            , url: 'http://localhost:3000/api/chamber/chamber_status'
+            , data: params
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
             }
@@ -358,7 +393,15 @@
 
 
                 var countzz = 0;
-                var indexzz = 0
+                var indexzz = 0;
+                var today = new Date();
+                var getday = today.getDate();
+                today.setDate(getday-180);
+                
+                console.log("날짜");
+
+                console.log(today);
+
                 for (var i = 0; i < data.month.length; i++) {
                     for (var j = 0; j < data.month[i].length; j++) {
                         var date_modify = (data.month[i][j].conn_file_date);
@@ -419,7 +462,7 @@
                 $('#ajax_load_indicator').fadeOut();
             }
         });
-    });
+    }
 
 
     function drawingZZ(array, indexName, arraylength) {
