@@ -164,12 +164,15 @@
         
                             var datazz = data.time;
                             var dataxx = data.raws;
+                            var min_max_check;
+                            min_max_check=new Array();
+                            for(var i =0 ;i<indexName.length;i++){
+                                min_max_check[i]=new Array();
+                            }
                             console.log(dataxx[1]);
                             var real_value = $.extend(true,[],dataxx[1]);
 
-                            $.each(dataxx[0],function(key,value){
-                                                console.log(value);
-                                    });
+                           
                             
                             
 
@@ -178,15 +181,18 @@
                                             var timedate = datazz[i].Date+" "+datazz[i].time;
                                             array[i][0]=((new Date(timedate)));
                                             $.each(dataxx[i],function(key,value){
-                                                array[i][index]=value*1;
-                                                index=index+1;
-                                            });
-                                            
-                                            
+                                                    array[i][index]=value*1;
+                                                    min_max_check[index-1][i]=(value*1);
+            
+                                                    index=index+1;
+                                                });
                                             }
                                     }
-                                    console.log(array);
-                                    drawingZZ(array,indexName,datazz.length);
+                                    
+                                    // for(var i=0;i<indexName.length;i++){
+                                    //     console.log(min_max_check[i]);
+                                    // }
+                                    drawingZZ(array,indexName,datazz.length,min_max_check);
                             
                     }
                     , error: function(data, status, err) {
@@ -234,75 +240,10 @@
                     }
                 }
 
-                // function graph_odu(section,col){
-                //     console.log("enter login");
-                //     console.log($("input:checkbox[name=odubox]:checked").length);
-                //     var val = location.href.substr(
-                //     location.href.lastIndexOf('=') + 1);
-                //     var params="header_uid="+val
-                //                 +"&section_count="+section
-                //                 +"&column_name="+col;
-                 
-
-				// 		$.ajax({
-				// 			type: 'post'
-				// 			, url: 'http://localhost:3000/api/graph_odu'
-				// 			, data: params
-				// 			, beforeSend: function() {
-				// 				$('#ajax_load_indicator').show().fadeIn('fast'); 
-				// 			}
-				// 			, success: function(data1) {
-                                
-                //                 var datazz = data1.content;
-                                
-				// 				if($("input:checkbox:checked").length >8){
-                //                     $('input[id='+col+']').prop('checked', false);
-                //                     alert("최대 8개까지 가능합니다.");
-                //                 }
-                //                 else{
-                //                     if(!($('input[id='+col+']').is(':checked'))){
-                //                         var remove=indexName.indexOf(col);
-                        
-                //                         for(var i=0;i<datazz.length;i++){
-                //                             array[i].splice(remove,1);
-                //                         }
-                //                         indexName.splice(remove,1);
-                //                         index-=1;
-                                        
-                //                     }
-                //                     else{
-
-
-                //                     var dateRow=[];
-                //                     var valRow=[];
-                //                     index+=1;
-                //                     var zero=0;
-                                    
-                //                     indexName.push(col);
-                //                     console.log(indexName);
-                                    
-                //                     for(var i =0; i<datazz.length;i++){
-                //                         console.log(array[i]);
-                //                         array[i][0]=((new Date(datazz[i].TXT_TIME)));
-                //                         array[i][index]=(datazz[i].value);
-                //                         }
-                //                     }
-                //                     drawingZZ(array,indexName,datazz.length);
-           
-                //                 }
-				// 			}
-				// 			, error: function(data, status, err) {
-				// 				console.log("error forward : "+data);
-				// 				alert('서버와의 통신이 실패했습니다.');
-				// 			}
-				// 			, complete: function() { 
-				// 				$('#ajax_load_indicator').fadeOut();
-				// 			}
-				// 		});
-                // }
+        
               
 
-                function drawingZZ(array,indexName,arraylength){
+                function drawingZZ(array,indexName,arraylength,min_max_check){
                     var chartDrowFun = {
 
                         chartDrow : function(){
@@ -335,7 +276,9 @@
 
                             //그래프에 표시할 데이터
                             var dataRow = [];
-                            var mindata;
+                            var mindata=[];
+                            var maxdata=[];
+                            console.log(min_max_check[0]);
                             
                             
 
@@ -346,8 +289,20 @@
                                 // dataRow = [new Date(datezz),total];
                                 
                                 data.addRow(array[i]);
-                                mindata = Math.min(array[i]);
+                                
                             }
+                            for(var i=0;i<indexName.length-1;i++){
+                                var minzz_ = Math.min.apply(null,min_max_check[i]);
+                                var maxzz_ = Math.max.apply(null,min_max_check[i]);
+
+                               
+                                mindata.push(minzz_);
+                                maxdata.push(maxzz_);
+                                console.log("점프점프");
+                                console.log(mindata[i]);
+                                console.log(maxdata[i]);
+                            }
+
 
 
                                 var chart = new google.visualization.ChartWrapper({
@@ -370,15 +325,27 @@
                                                                                     },textStyle: {fontSize:12}},
                                     
                                     series:{
-                                        0:{targetAxisIndex:0}, //0: 이거에다가 변수를 넣어주고 first 이런식으로 하면 겹치게 되지 않ㅇ르까?
+                                        0:{targetAxisIndex:0}, 
                                         1:{targetAxisIndex:1},
                                         2:{targetAxisIndex:2},
+                                        3:{targetAxisIndex:3}, 
+                                        4:{targetAxisIndex:4},
+                                        5:{targetAxisIndex:5},
+                                        6:{targetAxisIndex:6}, 
+                                        7:{targetAxisIndex:7}
                                             },
                                     vAxes              : {
 
-                                                    0:{textPosition:'none',minValue: 10,viewWindow:{min:mindata},gridlines:{count:-1},textStyle:{fontSize:12}},
-                                                          1:{textPosition:'none',title: '˚C',minValue: 10,viewWindow:{min:mindata},gridlines:{count:-1},textStyle:{fontSize:12},side:'left'},
-                                                          2:{textPosition:'none',title: 'kPa',minValue: 10,viewWindow:{min:mindata},gridlines:{count:-1},textStyle:{fontSize:12},position:'left'},
+                                                          0:{textPosition:'none',minValue: mindata[0],maxValue:maxdata[0],viewport:{min:mindata[0]},gridlines:{count:-1},textStyle:{fontSize:12}},
+                                                          1:{textPosition:'none',minValue: mindata[1],maxValue:maxdata[1],viewWindow:{min:mindata[1]},gridlines:{count:-1},textStyle:{fontSize:12}},
+                                                          2:{textPosition:'none',minValue: mindata[2],maxValue:maxdata[2],viewWindow:{min:mindata[2]},gridlines:{count:-1},textStyle:{fontSize:12}},
+                                                          3:{textPosition:'none',minValue: mindata[3],maxValue:maxdata[3],viewWindow:{min:mindata[3]},gridlines:{count:-1},textStyle:{fontSize:12}},
+                                                          4:{textPosition:'none',minValue: mindata[4],maxValue:maxdata[4],viewWindow:{min:mindata[4]},gridlines:{count:-1},textStyle:{fontSize:12}},
+                                                          5:{textPosition:'none',minValue: mindata[5],maxValue:maxdata[5],viewWindow:{min:mindata[5]},gridlines:{count:-1},textStyle:{fontSize:12}},
+                                                          6:{textPosition:'none',minValue: mindata[6],maxValue:maxdata[6],viewWindow:{min:mindata[6]},gridlines:{count:-1},textStyle:{fontSize:12}},
+                                                          7:{textPosition:'none',minValue: mindata[7],maxValue:maxdata[7],viewWindow:{min:mindata[7]},gridlines:{count:-1},textStyle:{fontSize:12}},
+                                                          
+                                                          
                                                           },
                                     animation        : {startup: true,duration: 1000,easing: 'in' },
                                     annotations    : {pattern: chartDateformat,
