@@ -268,8 +268,9 @@
             </table>
 
             <div id="lg_detail">
-                <h6 id="lg_product_info_text" class="lg_circle">제품정보</h6>
-                <table id="lg_search_detail_table" class="table">
+                <h6 class="lg_circle lg_product_info_text">제품정보</h6>
+                <h6 class="lg_product_info_text" style="margin-top: 20px">제품정보</h6>
+                <table class="table lg_search_detail_table">
                     <tbody>
                     <tr style="border-top: 2px solid rgb(163,163,163)">
                         <th>모델명</th>
@@ -297,8 +298,95 @@
                     </tr>
                     </tbody>
                 </table>
+                <h6 class="lg_product_info_text">시험정보</h6>
+                <table class="table lg_search_detail_table">
+                    <tbody>
+                    <tr style="border-top: 2px solid rgb(163,163,163)">
+                        <th>개발프로세스(상)</th>
+                        <td > </td>
+                        <th>개발프로세스(하)</th>
+                        <td > </td>
+                    </tr>
+                    <tr>
+                        <th>시험항목(상)</th>
+                        <td > </td>
+                        <th>시험항목(하)</th>
+                        <td > </td>
+                    </tr>
+                    <tr>
+                        <th>챔버번호</th>
+                        <td > </td>
+                        <th>실험자</th>
+                        <td > </td>
+                    </tr>
+                    <tr>
+                        <th>실내기 샤시</th>
+                        <td > </td>
+                        <th> 실외기 샤시</th>
+                        <td> </td>
+                    </tr>
+                    <tr>
+                        <th>능력</th>
+                        <td > </td>
+                        <th>전력</th>
+                        <td> </td>
+                    </tr>
+                    <tr>
+                        <th>효율</th>
+                        <td > </td>
+                        <th>전압</th>
+                        <td> </td>
+                    </tr>
+                    <tr>
+                        <th>실외기 건구온도</th>
+                        <td > </td>
+                        <th>실내기 건구온도</th>
+                        <td> </td>
+                    </tr>
+                    <tr>
+                        <th>실내기 샤시</th>
+                        <td > </td>
+                        <th> 실외기 샤시</th>
+                        <td> </td>
+                    </tr>
+                    <tr>
+                        <th>실외기 습구온도</th>
+                        <td > </td>
+                        <th>실내기 습구온도</th>
+                        <td> </td>
+                    </tr>
+                    <tr>
+                        <th>운전률</th>
+                        <td > </td>
+                        <th>배관 종류</th>
+                        <td> </td>
+                    </tr>
+                    <tr>
+                        <th>메모</th>
+                        <td > </td>
+                        <th></th>
+                        <td> </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <h6 class="lg_product_info_text">단위정보</h6>
+                <table class="table lg_search_detail_table">
+                    <tbody>
+                    <tr style="border-top: 2px solid rgb(163,163,163)">
+                        <th>온도 단위</th>
+                        <td> </td>
+                        <th>압력단위</th>
+                        <td > </td>
+                    </tr>
+                    <tr>
+                        <th>유량 딘위</th>
+                        <td > </td>
+                        <th>능력 단위</th>
+                        <td > </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
-
         </div>
 
     </div>
@@ -827,7 +915,7 @@
         var params = "header_uid=" + header_uid;
         var same;
         $('#detail').css('display', 'inline');
-        $('#lg_search_detail_table').css('display', 'table');
+        $('.lg_search_detail_table').css('display', 'table');
         $('#lg_detail').css('display', 'flex');
 
         $.ajax({
@@ -1652,17 +1740,17 @@
         display: none;
     }
 
-    #lg_search_detail_table {
+    .lg_search_detail_table {
         display: none;
         flex-direction: column;
         width: 80%;
         align-self: start;
         margin-bottom: 50px;
     }
-    #lg_search_detail_table tr:nth-child(1){
+    .lg_search_detail_table tr:nth-child(1){
         border-top: 2px solid rgb(163,163,163);
     }
-    #lg_search_detail_table tbody > tr > th {
+    .lg_search_detail_table tbody > tr > th {
         height: 45px;
         padding-right: 20px;
         background: #f1f0f0;

@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6f56ef9c-aacb-41e9-a0e7-ab5b76ec8da6" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_search.html" beforeDir="false" afterPath="$PROJECT_DIR$/data_search.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -101,8 +100,8 @@
       <file leaf-file-name="data_search.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/data_search.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="1590" selection-start-line="1590" selection-end-line="1590" />
+            <state relative-caret-position="272">
+              <caret line="383" column="33" selection-start-line="383" selection-start-column="33" selection-end-line="383" selection-end-column="33" />
               <folding>
                 <element signature="e#340#440#0" expanded="true" />
                 <element signature="e#451#495#0" expanded="true" />
@@ -111,7 +110,10 @@
                 <element signature="e#1400#7465#0" />
                 <element signature="e#7536#14773#0" />
                 <element signature="e#7894#7921#0" expanded="true" />
+                <element signature="e#16687#16711#0" expanded="true" />
                 <element signature="e#16703#16749#0" expanded="true" />
+                <element signature="e#17968#18014#0" expanded="true" />
+                <element signature="e#19177#19223#0" expanded="true" />
                 <element signature="e#43677#50438#0" />
               </folding>
             </state>
@@ -223,8 +225,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>gap</find>
-      <find>unit_cap</find>
       <find>calorimeter_unit_EER</find>
       <find>lgmv_unit_flux</find>
       <find>lg_search</find>
@@ -239,12 +239,10 @@
       <find>display</find>
       <find>DetailSearch</find>
       <find>detailSearch</find>
-      <find>lg_product_info_text</find>
       <find>detail</find>
       <find>detailSe</find>
       <find>lg_detail</find>
       <find>#search_table</find>
-      <find>lg_search_detail_table</find>
       <find>search_table</find>
       <find>search_result</find>
       <find>lg_search_result</find>
@@ -253,6 +251,10 @@
       <find>그래프</find>
       <find>_calorimeter_power_vol</find>
       <find>search_result_table</find>
+      <find>.data_search_btn</find>
+      <find>lg_product_info_text</find>
+      <find>text</find>
+      <find>lg_search_detail_table</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -410,12 +412,12 @@
       <workItem from="1573619652574" duration="629000" />
       <workItem from="1573635129624" duration="18562000" />
       <workItem from="1573710073183" duration="1110000" />
-      <workItem from="1573750968729" duration="8894000" />
+      <workItem from="1573750968729" duration="9532000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89742000" />
+    <option name="totallyTimeSpent" value="90380000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1552" height="848" extended-state="0" />
@@ -568,7 +570,10 @@
             <element signature="e#1400#7465#0" />
             <element signature="e#7536#14773#0" />
             <element signature="e#7894#7921#0" expanded="true" />
+            <element signature="e#16687#16711#0" expanded="true" />
             <element signature="e#16703#16749#0" expanded="true" />
+            <element signature="e#17968#18014#0" expanded="true" />
+            <element signature="e#19177#19223#0" expanded="true" />
             <element signature="e#43677#50438#0" />
           </folding>
         </state>
@@ -722,7 +727,10 @@
             <element signature="e#1400#7465#0" />
             <element signature="e#7536#14773#0" />
             <element signature="e#7894#7921#0" expanded="true" />
+            <element signature="e#16687#16711#0" expanded="true" />
             <element signature="e#16703#16749#0" expanded="true" />
+            <element signature="e#17968#18014#0" expanded="true" />
+            <element signature="e#19177#19223#0" expanded="true" />
             <element signature="e#43677#50438#0" />
           </folding>
         </state>
@@ -777,7 +785,10 @@
             <element signature="e#1400#7465#0" />
             <element signature="e#7536#14773#0" />
             <element signature="e#7894#7921#0" expanded="true" />
+            <element signature="e#16687#16711#0" expanded="true" />
             <element signature="e#16703#16749#0" expanded="true" />
+            <element signature="e#17968#18014#0" expanded="true" />
+            <element signature="e#19177#19223#0" expanded="true" />
             <element signature="e#43677#50438#0" />
           </folding>
         </state>
@@ -877,7 +888,10 @@
             <element signature="e#1400#7465#0" />
             <element signature="e#7536#14773#0" />
             <element signature="e#7894#7921#0" expanded="true" />
+            <element signature="e#16687#16711#0" expanded="true" />
             <element signature="e#16703#16749#0" expanded="true" />
+            <element signature="e#17968#18014#0" expanded="true" />
+            <element signature="e#19177#19223#0" expanded="true" />
             <element signature="e#43677#50438#0" />
           </folding>
         </state>
@@ -942,7 +956,10 @@
             <element signature="e#1400#7465#0" />
             <element signature="e#7536#14773#0" />
             <element signature="e#7894#7921#0" expanded="true" />
+            <element signature="e#16687#16711#0" expanded="true" />
             <element signature="e#16703#16749#0" expanded="true" />
+            <element signature="e#17968#18014#0" expanded="true" />
+            <element signature="e#19177#19223#0" expanded="true" />
             <element signature="e#43677#50438#0" />
           </folding>
         </state>
@@ -1007,7 +1024,10 @@
             <element signature="e#1400#7465#0" />
             <element signature="e#7536#14773#0" />
             <element signature="e#7894#7921#0" expanded="true" />
+            <element signature="e#16687#16711#0" expanded="true" />
             <element signature="e#16703#16749#0" expanded="true" />
+            <element signature="e#17968#18014#0" expanded="true" />
+            <element signature="e#19177#19223#0" expanded="true" />
             <element signature="e#43677#50438#0" />
           </folding>
         </state>
@@ -1179,8 +1199,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/data_search.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="1590" selection-start-line="1590" selection-end-line="1590" />
+        <state relative-caret-position="272">
+          <caret line="383" column="33" selection-start-line="383" selection-start-column="33" selection-end-line="383" selection-end-column="33" />
           <folding>
             <element signature="e#340#440#0" expanded="true" />
             <element signature="e#451#495#0" expanded="true" />
@@ -1189,7 +1209,10 @@
             <element signature="e#1400#7465#0" />
             <element signature="e#7536#14773#0" />
             <element signature="e#7894#7921#0" expanded="true" />
+            <element signature="e#16687#16711#0" expanded="true" />
             <element signature="e#16703#16749#0" expanded="true" />
+            <element signature="e#17968#18014#0" expanded="true" />
+            <element signature="e#19177#19223#0" expanded="true" />
             <element signature="e#43677#50438#0" />
           </folding>
         </state>
