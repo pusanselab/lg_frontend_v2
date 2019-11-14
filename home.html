@@ -438,15 +438,6 @@
                     array[i] = new Array();
                 }
                 indexName = ['Date', 'ida_wb', 'ida_db', 'idb_db', 'idb_db', 'od_wb', 'od_db'];
-
-
-                var countzz = 0;
-                var indexzz = 1;
-                var today = new Date();
-                var getday = today.getDate();
-                today.setDate(getday-180);
-                
-                console.log("날짜");
                 
 
                 function getDateStr(myDate){
@@ -456,7 +447,6 @@
                     return ( year + '.' + month + '.' + day );
                 }
 
-                console.log(getDateStr(today));
 
                 for(var i=0;i<180;i++){
                     var today = new Date();
@@ -584,7 +574,7 @@
                             //   1:{label: '˚C',minValue: 10,viewWindow:{min:mindata},gridlines:{count:-1},textStyle:{fontSize:12},side:'left'},
                             //   2:{title: 'kPa',minValue: 10,viewWindow:{min:mindata},gridlines:{count:-1},textStyle:{fontSize:12},position:'left'},
                             //   },
-                            animation: {startup: true, duration: 1000, easing: 'in'},
+                            // animation: {startup: true, duration: 1000, easing: 'in'},
                             annotations: {
                                 pattern: chartDateformat,
                                 textStyle: {
