@@ -362,6 +362,52 @@
         });
     });
 
+    $(document).ready(function () {
+        $.ajax({
+            type: 'post'
+            , url: 'http://localhost:3000/api/chamber/recent_test'
+
+            , beforeSend: function () {
+                $('#ajax_load_indicator').show().fadeIn('fast');
+            }
+            , success: function (data) {
+                  for (var i = 0; i < data.content.length; i++) {
+                        var cham_id = data.content[i].header_uid;
+                        var cham_date = data.content[i].conn_file_date;
+                        var test_time = "일단 null";
+                        var cham_room = data.content[i].conn_testroom_number;
+                        var model_ver = data.content[i].lgmv_model_name;
+                        var test_step = data.content[i].test_step2;
+                        var tester = data.content[i].conn_tester;
+
+                        var row = "<tr>";
+                        row += "<td>" + cham_id + "</td>";
+                        row += "<td>" + cham_date + "</td>";
+                        row += "<td>" + test_time + "</td>";
+                        row += "<td>" + cham_room + "</td>";
+                        row += "<td>" + model_ver + "</td>";
+                        row += "<td>" + test_step + "</td>";
+                        row += "<td>" + tester + "</td>";
+                        row += "</tr>"
+
+                        $('#detail_body').append(row);
+                    
+                        if (i >= 5) {
+                            break;
+                        }
+                }
+            }
+            , error: function (data, status, err) {
+                console.log("error forward : " + data);
+                alert('서버와의 통신이 실패했습니다.');
+            }
+            , complete: function () {
+                $('#ajax_load_indicator').fadeOut();
+            }
+        });
+    });
+
+
     
 
 
@@ -443,61 +489,9 @@
                     
                     } 
                 }
-                console.log(array);
-
-                
-
-                // for (var i = 0; i < data.month.length; i++) {
-                //     for (var j = 0; j < data.month[i].length; j++) {
-                        
-                //         var date_modify = (data.month[i][j].conn_file_date);
-                //         console.log(date_modify);
-                //         array[indexzz].push(new Date(date_modify));
-                //         array[indexzz].push(data.month[i][j].conn_ida_wb_gap);
-                //         array[indexzz].push(data.month[i][j].conn_ida_db_gap);
-                //         array[indexzz].push(data.month[i][j].conn_idb_wb_gap);
-                //         array[indexzz].push(data.month[i][j].conn_idb_db_gap);
-                //         array[indexzz].push(data.month[i][j].conn_od_wb_gap);
-                //         array[indexzz].push(data.month[i][j].conn_od_db_gap);
-                //         indexzz = indexzz + 1;
-                //     }
-
-                // }
 
                 ///////////
-                for (var i = 0; i < data.month.length; i++) {
-                    for (var j = 0; j < data.month[i].length; j++) {
-                        var cham_id = data.month[i][j].header_uid;
-                        var cham_date = data.month[i][j].conn_file_date;
-                        var test_time = "일단 null";
-                        var cham_room = data.month[i][j].conn_testroom_number;
-                        var model_ver = data.month[i][j].lgmv_model_name;
-                        var test_step = data.month[i][j].test_step2;
-                        var tester = data.month[i][j].conn_tester;
-
-                        var row = "<tr>";
-                        row += "<td>" + cham_id + "</td>";
-                        row += "<td>" + cham_date + "</td>";
-                        row += "<td>" + test_time + "</td>";
-                        row += "<td>" + cham_room + "</td>";
-                        row += "<td>" + model_ver + "</td>";
-                        row += "<td>" + test_step + "</td>";
-                        row += "<td>" + tester + "</td>";
-                        row += "</tr>"
-
-                        $('#detail_body').append(row);
-                        countzz = countzz + 1;
-                        if (countzz >= 5) {
-                            break;
-                        }
-                    }
-                    if (countzz >= 5) {
-                        break;
-                    }
-
-                }
-                console.log("aa");
-                console.log(array);
+              
                 drawingZZ(array, indexName, array.length);
             }
             , error: function (data, status, err) {
