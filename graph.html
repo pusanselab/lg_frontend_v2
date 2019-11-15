@@ -19,10 +19,10 @@
                     <thead>
                     <tr>
                     <td>name</td>
-                    <td>unit</td>
+                    <!-- <td>unit</td> -->
                     <td>section</td>
                     <td>sector</td>
-                    <td>그래프 선택</td>
+                    <td width="100px">그래프 선택</td>
                 </thead>
                 </tr>
             </tbody>
@@ -42,6 +42,9 @@
                 <form id="selectgraph">
 
                 </form>
+            </div>
+            <div id="graph_button">
+                
             </div>
         </div>
         <span></span>
@@ -108,12 +111,12 @@
                             var unit = data[i].unit;
                             var section = data[i].section;
                             var section_count = data[i].section_count;
-                            var check = "<p id=\'checking_"+data[i].item+"\' style='display:none'>"+i+"</p>"+"<input type='checkbox' name=\'check'\ id=\""+data[i].item+"\" onclick=\"select_box(\'"+data[i].item+"\',\'"+name+"\')\" value=''/>";
+                            var check = "<p id=\'checking_"+data[i].item+"\' style='display:none'>"+i+"</p>"+"<input type='checkbox' name=\'check'\ id=\""+data[i].item+"\" onclick=\"select_box(\'"+data[i].item+"\',\'"+name+"\',\'"+unit+"\')\" value=''/>";
 
                             var row = "<tr>";
                                   //  row+="<td>"+header_uid+"</td>";
                                     row+="<td>"+name+"</td>";
-                                    row+="<td>"+unit+"</td>";
+                                    // row+="<td>"+unit+"</td>";
                                     row+="<td>"+section+"</td>";
                                     row+="<td>"+section_count+"</td>";
                                     row+="<td>"+check+"</td>";
@@ -208,7 +211,7 @@
                 }
 
 
-                function select_box(col,name){
+                function select_box(col,name,unit){
                           
                     if($("input:checkbox:checked").length >8){
                         $('input[id='+col+']').prop('checked', false);
@@ -219,7 +222,7 @@
                     else{
                         $("#checking_"+col).html('checked');
                         if(!($('input[id='+col+']').is(':checked'))){
-                            var remove=indexName.indexOf(name);
+                            var remove=indexName.indexOf(name+"("+unit+")");
                             var remove2=colName.indexOf(col);
                             $("#checking_"+col).html('not_checked');
                             
@@ -233,7 +236,7 @@
 
                         index+=1;     
                                                     
-                        indexName.push(name);
+                        indexName.push(name+"("+unit+")");
                         colName.push(col);
 
                         }
@@ -409,7 +412,7 @@
 
            
 
-                        $('#graph').append('<button onClick="downloadCSV(array,indexName);">CSV 다운로드</button>');
+                        $('#graph_button').html('<button onClick="downloadCSV(array,indexName);">CSV 다운로드</button>');
 
 
 
