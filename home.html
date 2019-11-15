@@ -147,7 +147,7 @@
         console.log("enter login");
         $.ajax({
             type: 'post'
-            , url: 'http://localhost:3000/api/overview'
+            , url: 'http://164.125.70.12:3000/api/overview'
 
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
@@ -316,7 +316,7 @@
     $(document).ready(function () {
         $.ajax({
             type: 'post'
-            , url: 'http://localhost:3000/api/session'
+            , url: 'http://164.125.70.12:3000/api/session'
 
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
@@ -340,7 +340,7 @@
     $(document).ready(function () {
         $.ajax({
             type: 'post'
-            , url: 'http://localhost:3000/api/chamber/chamber_testroom_number'
+            , url: 'http://164.125.70.12:3000/api/chamber/chamber_testroom_number'
 
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
@@ -365,7 +365,7 @@
     $(document).ready(function () {
         $.ajax({
             type: 'post'
-            , url: 'http://localhost:3000/api/chamber/recent_test'
+            , url: 'http://164.125.70.12:3000/api/chamber/recent_test'
 
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
@@ -416,7 +416,7 @@
         var params="testroom_number="+good;
         $.ajax({
             type: 'post'
-            , url: 'http://localhost:3000/api/chamber/chamber_status'
+            , url: 'http://164.125.70.12:3000/api/chamber/chamber_status'
             , data: params
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');

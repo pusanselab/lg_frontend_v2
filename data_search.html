@@ -719,7 +719,7 @@
         $('#_cold').css('display', 'none');
         $.ajax({
             type: 'post'
-            , url: 'http://localhost:3000/api/data_search_id'
+            , url: 'http://164.125.70.12:3000/api/data_search_id'
             , data: data
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
@@ -795,7 +795,7 @@
         console.log($('data_search').serialize());
         $.ajax({
             type: 'post'
-            , url: 'http://localhost:3000/api/data_search'
+            , url: 'http://164.125.70.12:3000/api/data_search'
             , data: $("#data_search").serialize()
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
@@ -915,7 +915,7 @@
     $(document).ready(function () {
         $.ajax({
             type: 'post'
-            , url: 'http://localhost:3000/api/session'
+            , url: 'http://164.125.70.12:3000/api/session'
 
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
@@ -944,7 +944,7 @@
 
         $.ajax({
             type: 'post'
-            , url: 'http://localhost:3000/api/data_search_id'
+            , url: 'http://164.125.70.12:3000/api/data_search_id'
             , data: params
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
@@ -1092,7 +1092,7 @@
         $('#_same_title').css('display', 'inline');
         $.ajax({
             type: 'post'
-            , url: 'http://localhost:3000/api/data_search_detail'
+            , url: 'http://164.125.70.12:3000/api/data_search_detail'
             , data: same
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
