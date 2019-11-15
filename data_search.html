@@ -255,68 +255,63 @@
                 <table class="table lg_search_detail_table">
                     <tbody>
                     <tr style="border-top: 2px solid rgb(163,163,163)">
-                        <th>개발프로세스(상)</th>
-                        <td > </td>
-                        <th>개발프로세스(하)</th>
-                        <td > </td>
+                        <th >개발프로세스(상)</th>
+                        <td id="_plm_step1"> </td>
+                        <th >개발프로세스(하)</th>
+                        <td id="_plm_step2"> </td>
                     </tr>
                     <tr>
-                        <th>시험항목(상)</th>
-                        <td > </td>
-                        <th>시험항목(하)</th>
-                        <td > </td>
+                        <th >시험항목(상)</th>
+                        <td id="_test_step1"> </td>
+                        <th >시험항목(하)</th>
+                        <td id="_test_step2"> </td>
                     </tr>
                     <tr>
-                        <th>챔버번호</th>
-                        <td > </td>
-                        <th>실험자</th>
-                        <td > </td>
+                        <th >챔버번호</th>
+                        <td id="_conn_testroom_number"> </td>
+                        <th >실험자</th>
+                        <td id="_conn_tester"> </td>
                     </tr>
                     <tr>
-                        <th>실내기 샤시</th>
-                        <td > </td>
-                        <th> 실외기 샤시</th>
-                        <td> </td>
+                        <th >실내기 샤시</th>
+                        <td id="_idu_chassis"> </td>
+                        <th > 실외기 샤시</th>
+                        <td id="_odu_chassis"> </td>
                     </tr>
                     <tr>
                         <th>능력</th>
-                        <td > </td>
+                        <td id="_calorimeter_cap" > </td>
                         <th>전력</th>
-                        <td> </td>
+                        <td id="_calorimeter_power"> </td>
                     </tr>
                     <tr>
                         <th>효율</th>
-                        <td > </td>
+                        <td id="_calorimeter_eer" > </td>
                         <th>전압</th>
-                        <td> </td>
+                        <td id="_calorimeter_power_vol"> </td>
                     </tr>
                     <tr>
                         <th>실외기 건구온도</th>
-                        <td > </td>
+                        <td id="_calorimeter_od_db"> </td>
                         <th>실내기 건구온도</th>
-                        <td> </td>
-                    </tr>
-                    <tr>
-                        <th>실내기 샤시</th>
-                        <td > </td>
-                        <th> 실외기 샤시</th>
-                        <td> </td>
+                        <td id="_calorimeter_id_db"> </td>
                     </tr>
                     <tr>
                         <th>실외기 습구온도</th>
-                        <td > </td>
-                        <th>실내기 습구온도</th>
-                        <td> </td>
+                        <td id="_calorimeter_od_wb"> </td>
+                        <th>실내기 습구온도
+                        </th>
+                        <td id="_calorimeter_id_wb"> </td>
                     </tr>
                     <tr>
                         <th>운전률</th>
-                        <td > </td>
+                        <td id="_conn_operation_rate"> </td>
                         <th>배관 종류</th>
-                        <td> </td>
+                        <td id="_conn_pipe_type"> </td>
                     </tr>
                     <tr>
-                        <th>메모</th>
-                        <td > </td>
+                        <th >메모</th>
+                        <td id="_conn_memo"> </td>
                         <th></th>
                         <td> </td>
                     </tr>
@@ -1006,6 +1001,8 @@
                     var unit_press = element.lgmv_unit_press;
                     var unit_flux = element.lgmv_unit_flux;
                     var operation_rate = element.conn_operation_rate;
+                    var conn_pipe_type = element.conn_pipe_type;
+                    var conn_memo = element.conn_memo;
 
 
                     same = "lgmv_serial_number=" + serial
@@ -1026,6 +1023,8 @@
                     $('#_odu_chassis').html(sasy);
                     $('#_lgmv_r').html(nang);
                     $('#_lgmv_date').html(test_date);
+                    $('#_conn_operation_rate').html(operation_rate);
+                    $('#_calorimeter_id_wb').html(cal_id_wb);
                     $('#_conn_tester').html(test_performer);
                     $('#_test_step1').html(test_step1);
                     $('#_test_step2').html(test_step2);
@@ -1036,10 +1035,9 @@
                     $('#_calorimeter_power').html(cal_power);
                     $('#_calorimeter_eer').html(cal_eer);
                     $('#_calorimeter_power_vol').html(cal_vol);
-                    $('#_calorimeter_id_wb').html(cal_id_wb);
                     $('#_calorimeter_id_db').html(cal_id_db);
                     $('#_calorimeter_od_wb').html(cal_od_wb);
-                    $('#_calorimeter_id_wb').html(cal_od_db);
+                    $('#_calorimeter_od_db').html(cal_od_db);
                     $('#_idu_chassis').html(idu_sassy);
                     $('#_plm_step1').html(plm_step1);
                     $('#_plm_step2').html(plm_step2);
@@ -1798,6 +1796,8 @@
         text-align: right;
     }
 
-
+    #_conn_memo {
+        max-width: 200px;
+    }
 </style>
 </html>

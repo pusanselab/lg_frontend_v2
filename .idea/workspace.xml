@@ -82,8 +82,8 @@
       <file leaf-file-name="data_search.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/data_search.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="1724" column="26" lean-forward="true" selection-start-line="1724" selection-start-column="26" selection-end-line="1724" selection-end-column="26" />
+            <state relative-caret-position="129">
+              <caret line="1027" column="36" selection-start-line="1027" selection-start-column="24" selection-end-line="1027" selection-end-column="36" />
               <folding>
                 <element signature="e#340#440#0" expanded="true" />
                 <element signature="e#451#495#0" expanded="true" />
@@ -216,13 +216,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>lg_text</find>
-      <find>id_search</find>
-      <find>.detail_2_item_input</find>
-      <find>냉매</find>
-      <find>table</find>
-      <find>display</find>
-      <find>DetailSearch</find>
       <find>detailSearch</find>
       <find>detail</find>
       <find>detailSe</find>
@@ -246,6 +239,13 @@
       <find>검색</find>
       <find>style1</find>
       <find>data_search_btn</find>
+      <find>operation_rate</find>
+      <find>_calorimeter_id_wb</find>
+      <find>_conn_pipe_type</find>
+      <find>_calorimeter_od_db</find>
+      <find>_conn_operation_rate</find>
+      <find>실험자</find>
+      <find>_conn_tester</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -405,12 +405,12 @@
       <workItem from="1573710073183" duration="1110000" />
       <workItem from="1573750968729" duration="9594000" />
       <workItem from="1573805961727" duration="633000" />
-      <workItem from="1573815609877" duration="3460000" />
+      <workItem from="1573815609877" duration="4824000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94535000" />
+    <option name="totallyTimeSpent" value="95899000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
@@ -1147,8 +1147,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/data_search.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="1724" column="26" lean-forward="true" selection-start-line="1724" selection-start-column="26" selection-end-line="1724" selection-end-column="26" />
+        <state relative-caret-position="129">
+          <caret line="1027" column="36" selection-start-line="1027" selection-start-column="24" selection-end-line="1027" selection-end-column="36" />
           <folding>
             <element signature="e#340#440#0" expanded="true" />
             <element signature="e#451#495#0" expanded="true" />
