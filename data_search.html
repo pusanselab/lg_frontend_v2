@@ -16,7 +16,7 @@
 <div class="full-page">
     <div id="lg_sidebar">
         <div id="lg_sidebar_content">
-            <a href="index.html">홈</a>
+            <a href="home.html">홈</a>
             <a href="data_search.html">데이터 검색</a>
             <a href="option.html">단위 옵션</a>
             <a href="admin.html">관리자 모드</a>
@@ -35,10 +35,9 @@
                         <div id="lg_search_necessary_items">
                             <div class="lg_search_necessary_item">
                                 <span class="lg_text">분류</span>
-                                <select class="lg_select_model_filter" name="lgmv_model_filter1">
+                                <select onchange="lg_model_Change()" class="lg_select_model_filter" id="lgmv_model_filter1" name="lgmv_model_filter1">
                                     <option value="">- 선택 -</option>
                                     <option value="Multi V H/P">Multi V H/P</option>
-                                    <option value="Multi V 5">Multi V 5</option>
                                     <option value="Multi V H/R">Multi V H/R</option>
                                     <option value="Multi V ARUM">Multi V ARUM</option>
                                     <option value="Multi Water">Multi Water</option>
@@ -47,62 +46,16 @@
                                     <option value="Multi V Space">Multi V Space</option>
                                     <option value="GHP">GHP</option>
                                     <option value="Chiller">Chiller</option>
+                                    <option value="Therma V">Therma V</option>
+                                    <option value="Single Package">Single Package</option>
                                     <option value="Single&Multi">Single&Multi</option>
                                     <option value="Refrigeration">Refrigeration</option>
                                 </select>
                             </div>
                             <div class="lg_search_necessary_item">
                                 <span class="lg_text">Model 군</span>
-                                <select class="lg_select_model_filter" name="lgmv_model_filter2">
+                                <select class="lg_select_model_filter" id="lgmv_model_filter2" name="lgmv_model_filter2">
                                     <option value="">- 선택 -</option>
-                                    <option value="Multi V 5 HR">Multi V 5 HR</option>
-                                    <option value="Multi V 5 A">Multi V 5 A</option>
-                                    <option value="Multi V 5 H">Multi V 5 H</option>
-                                    <option value="Multi V IV">Multi V IV</option>
-                                    <option value="Multi V IV Plus">Multi V IV Plus</option>
-                                    <option value="Multi V lll">Multi V lll</option>
-                                    <option value="Multi V II m+m">Multi V II m+m</option>
-                                    <option value="Multi V II m+s">Multi V II m+s</option>
-                                    <option value="Multi V 5 HR">Multi V 5 HR</option>
-                                    <option value="Multi V IV HR">Multi V IV HR</option>
-                                    <option value="Multi V III HR">Multi V III HR</option>
-                                    <option value="Multi V 5">Multi V 5</option>
-                                    <option value="Multi V 5HR">Multi V 5HR</option>
-                                    <option value="Water IV A">Water IV A</option>
-                                    <option value="Water IV">Water IV</option>
-                                    <option value="Water IV HR">Water IV HR</option>
-                                    <option value="Water S (Mini)">Water S (Mini)</option>
-                                    <option value="Water II">Water II</option>
-                                    <option value="Water II HR">Water II HR</option>
-                                    <option value="Residence">Residence</option>
-                                    <option value="Multi V S">Multi V S</option>
-                                    <option value="Multi V S HR">Multi V S HR</option>
-                                    <option value="Mini">Mini</option>
-                                    <option value="Multi V M">Multi V M</option>
-                                    <option value="N. A. Space">N. A. Space</option>
-                                    <option value="Space III">Space III</option>
-                                    <option value="Space III 3P">Space III 3P</option>
-                                    <option value="GHP Super III">GHP Super III</option>
-                                    <option value="GHP Super& II">SGHP Super& II</option>
-                                    <option value="Turbo Chiller">Turbo Chiller</option>
-                                    <option value="ABS Chiller">ABS Chiller</option>
-                                    <option value="Screw Chiller">Screw Chiller</option>
-                                    <option value="ISC Water">ISC Water</option>
-                                    <option value="ISC Super">ISC Super</option>
-                                    <option value="ISC Shell&Tube">ISC Shell&Tube</option>
-                                    <option value="ISC">ISC</option>
-                                    <option value="ISC Super II">ISC Super II</option>
-                                    <option value="Split&Monobloc">Split&Monobloc</option>
-                                    <option value="SystemBoiler 2nd">SystemBoiler 2nd</option>
-                                    <option value="Single Package II">Single Package II</option>
-                                    <option value="Single Package">Single Package</option>
-                                    <option value="Pressure">Pressure</option>
-                                    <option value="Temp">Temp</option>
-                                    <option value="Super Combi">Super Combi</option>
-                                    <option value="Slim Combi">Slim Combi</option>
-                                    <option value="Combi">Combi</option>
-                                    <option value="Condensing Unit">Condensing Unit</option>
-                                    <option value="Super CDU">Super CDU</option>
                                 </select>
                             </div>
                         </div>
@@ -636,6 +589,77 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <script type="text/javascript">
+    function lg_model_Change(){
+
+        var Multi_V_H_P = ["- 선택 -","Multi V 5","Multi V 5 A","Multi V 5 H","Multi V IV","Multi V IV Plus","Multi V lll","Multi V II m+m","Multi V II m+s"];
+        var Multi_V_H_R = ["- 선택 -","Multi V 5 HR","Multi V IV HR","Multi V III HR"];
+        var Multi_V_ARUM = ["- 선택 -","Multi V 5","Multi V 5HR"];
+        var Multi_Water = ["- 선택 -","Water IV A","Water IV","Water IV HR","Water S (Mini)","Water II","Water II HR"];
+        var Multi_V_S = ["- 선택 -","Residence","Multi V S","Multi V S HR","Multi V S HS","Mini"];
+        var Multi_V_M = ["- 선택 -","Multi V M"];
+        var Multi_V_Space = ["- 선택 -","N. A. Space","Space III","Space III 3P"];
+        var GHP = ["- 선택 -","GHP Super III","GHP Super& II"];
+        var Chiller = ["- 선택 -","Turbo Chiller","ABS Chiller","Screw Chiller","ISC Water","ISC Super","ISC Shell&Tube","ISC","ISC Super II"];
+        var Therma_V = ["- 선택 -","Split&Monobloc","High Temp","SystemBoiler 2nd"];
+        var Single_Package = ["- 선택 -","Single Package II","Single Package"];
+        var Single_Multi = ["- 선택 -","Pressure","Temp"];
+        var Refrigeration = ["- 선택 -","Super Combi","Slim Combi","Combi","Condensing Unit","Super CDU"];
+
+        var selectItem = $("#lgmv_model_filter1").val();
+        console.log(selectItem)
+        var changeItem;
+
+        if(selectItem === "Multi V H/P"){
+            changeItem = Multi_V_H_P;
+        }
+        else if(selectItem === "Multi V H/R"){
+            changeItem = Multi_V_H_R;
+        }
+        else if(selectItem === "Multi V ARUM"){
+            changeItem =  Multi_V_ARUM;
+        }
+        else if(selectItem === "Multi Water"){
+            changeItem =  Multi_Water;
+        }
+        else if(selectItem === "Multi V S"){
+            changeItem =  Multi_V_S;
+        }
+        else if(selectItem === "Multi V M"){
+            changeItem =  Multi_V_M;
+        }
+        else if(selectItem === "Multi V Space"){
+            changeItem =  Multi_V_Space;
+        }
+        else if(selectItem === "GHP"){
+            changeItem =  GHP;
+        }
+        else if(selectItem === "Chiller"){
+            changeItem =  Chiller;
+        }
+        else if(selectItem === "Therma V"){
+            changeItem =  Therma_V;
+        }
+        else if(selectItem === "Single Package"){
+            changeItem =  Single_Package;
+        }
+        else if(selectItem === "Single&Multi"){
+            changeItem =  Single_Multi;
+        }
+        else if(selectItem === "Refrigeration"){
+            changeItem =  Refrigeration;
+        }
+
+        $('#lgmv_model_filter2').empty();
+
+        for(var count = 0; count < changeItem.length; count++){
+            var option = $("<option value='"+changeItem[count]+"'>"+changeItem[count]+"</option>");
+            console.log(String(option))
+            $('#lgmv_model_filter2').append(option);
+        }
+
+    }
+
+
     $('section h4').click(function (event) {
         event.preventDefault();
         $(this).addClass('active');
