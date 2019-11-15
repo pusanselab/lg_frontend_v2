@@ -870,8 +870,8 @@
                         rowItem += "<td>" + test_date + "</td>";
                         rowItem += "<td>" + test_performer + "</td>";
                         rowItem += "<td>" + testroom + "</td>";
-                        rowItem += "<td><button class='data_search_btn' onclick=\"DetailSearch(\'" + id + "\');\">상세 보기</button></td>";
-                        rowItem += "<td><button class='data_search_btn' onclick=\"setHeaderUid(\'" + id + "\');\">그래프 보기</button></td>";
+                        rowItem += "<td><button class='data_search_btn_table' onclick=\"DetailSearch(\'" + id + "\');\">상세 보기</button></td>";
+                        rowItem += "<td><button class='data_search_btn_table' onclick=\"setHeaderUid(\'" + id + "\');\">그래프 보기</button></td>";
                         rowItem += "</tr>";
 
                         $('#lg_search_result_tbody').append(rowItem);
@@ -1707,6 +1707,22 @@
         border-radius: 4px;
         user-select: none;
         float: right;
+    }
+    .data_search_btn_table {
+        display: inline-block;
+        margin-bottom: 0;
+        font-weight: 400;
+        text-align: center;
+        vertical-align: top;
+        touch-action: manipulation;
+        background-color: rgb(105,109,114);
+        border-width: 1px;
+        padding: 6px 12px;
+        font-size: 13px;
+        color: rgb(223,223,225);
+        line-height: 1.42857143;
+        border-radius: 4px;
+        user-select: none;
     }
 </style>
 <!--검색 결과 테이블-->
