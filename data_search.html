@@ -355,7 +355,6 @@
         var Refrigeration = ["- 선택 -","Super Combi","Slim Combi","Combi","Condensing Unit","Super CDU"];
 
         var selectItem = $("#lgmv_model_filter1").val();
-        console.log(selectItem)
         var changeItem;
 
         if(selectItem === "Multi V H/P"){
@@ -402,7 +401,6 @@
 
         for(var count = 0; count < changeItem.length; count++){
             var option = $("<option value='"+changeItem[count]+"'>"+changeItem[count]+"</option>");
-            console.log(String(option))
             $('#lgmv_model_filter2').append(option);
         }
 
@@ -541,14 +539,12 @@
 
 
                 } else {
-                    console.log("여기?");
                     $('#search_result').css('display', 'none');
                     $('#search_fail').css('display', 'inline');
                     $('#search_fail').html('<h1> 검색결과가 없습니다. </h1>');
                 }
             }
             , error: function (data, status, err) {
-                console.log("error forward : " + data);
                 alert('서버와의 통신이 실패했습니다.');
             }
             , complete: function () {
@@ -584,7 +580,6 @@
             , success: function (data) {
             }
             , error: function (data, status, err) {
-                console.log("error forward : " + data);
                 alert('서버와의 통신이 실패했습니다.');
             }
             , complete: function () {
@@ -594,7 +589,6 @@
     });
 
     function DetailSearch(header_uid) {
-        console.log(header_uid);
         var params = "header_uid=" + header_uid;
         var same;
         $('#detail').css('display', 'inline');
@@ -616,8 +610,6 @@
                 // 분기 처리
                 if (data.message == 'success') {
                     var element = data.content;
-                    console.log("아니 왜 안되냐고");
-                    console.log(element.header_uid);
                     var id = element.header_uid;
                     var Model = element.lgmv_model_filter2;
                     var Model_name = element.lgmv_model_name;
@@ -729,14 +721,12 @@
                     sameSearch(same, id);
 
                 } else {
-                    console.log("여기?");
                     $('#search_result').css('display', 'none');
                     $('#search_fail').css('display', 'inline');
                     $('#search_fail').html('<h1> 검색결과가 없습니다. </h1>');
                 }
             }
             , error: function (data, status, err) {
-                console.log("error forward : " + data);
                 alert('서버와의 통신이 실패했습니다.');
             }
             , complete: function () {
@@ -766,7 +756,6 @@
                 if (data.content.header.length > 0) {
                     var array = data.content.header;
                     array.forEach(element => {
-                        console.log(element.header_uid);
                         var id = element.header_uid;
                         var Model = element.lgmv_model_filter2;
                         var Model_name = element.lgmv_model_name;
@@ -860,14 +849,12 @@
 
 
                 } else {
-                    console.log("여기?");
                     $('#search_result').css('display', 'none');
                     $('#search_fail').css('display', 'inline');
                     $('#search_fail').html('<h1> 검색결과가 없습니다. </h1>');
                 }
             }
             , error: function (data, status, err) {
-                console.log("error forward : " + data);
                 alert('서버와의 통신이 실패했습니다.');
             }
             , complete: function () {
