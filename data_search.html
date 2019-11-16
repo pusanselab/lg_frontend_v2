@@ -26,165 +26,168 @@
     <div id="lg_contents">
         <div id="lg_search_box">
             <form id="data_search" method="post" action="" onSubmit="dataSearch();return false;">
-                <h6 class="lg_circle"> ID 입력<h6>
-                    <div id="lg_search_id">
-                        <input id="id_search" name="header_uid" type="text">
-                    </div>
-                    <h6 class="lg_circle">데이터 검색(필수)</h6>
-                    <div id="lg_search_necessary">
-                        <div id="lg_search_necessary_items">
-                            <div class="lg_search_necessary_item">
-                                <span class="lg_text">분류</span>
-                                <select onchange="lg_model_Change()" class="lg_select_model_filter" id="lgmv_model_filter1" name="lgmv_model_filter1">
-                                    <option value="">- 선택 -</option>
-                                    <option value="Multi V H/P">Multi V H/P</option>
-                                    <option value="Multi V H/R">Multi V H/R</option>
-                                    <option value="Multi V ARUM">Multi V ARUM</option>
-                                    <option value="Multi Water">Multi Water</option>
-                                    <option value="Multi V S">Multi V S</option>
-                                    <option value="Multi V M">Multi V M</option>
-                                    <option value="Multi V Space">Multi V Space</option>
-                                    <option value="GHP">GHP</option>
-                                    <option value="Chiller">Chiller</option>
-                                    <option value="Therma V">Therma V</option>
-                                    <option value="Single Package">Single Package</option>
-                                    <option value="Single&Multi">Single&Multi</option>
-                                    <option value="Refrigeration">Refrigeration</option>
-                                </select>
-                            </div>
-                            <div class="lg_search_necessary_item">
-                                <span class="lg_text">Model 군</span>
-                                <select class="lg_select_model_filter" id="lgmv_model_filter2" name="lgmv_model_filter2">
-                                    <option value="">- 선택 -</option>
-                                </select>
+                <h6 class="lg_circle"> ID 입력
+                    <h6>
+                        <div id="lg_search_id">
+                            <input id="id_search" name="header_uid" type="text">
+                        </div>
+                        <h6 class="lg_circle">데이터 검색(필수)</h6>
+                        <div id="lg_search_necessary">
+                            <div id="lg_search_necessary_items">
+                                <div class="lg_search_necessary_item">
+                                    <span class="lg_text">분류</span>
+                                    <select onchange="lg_model_Change()" class="lg_select_model_filter"
+                                            id="lgmv_model_filter1" name="lgmv_model_filter1">
+                                        <option value="">- 선택 -</option>
+                                        <option value="Multi V H/P">Multi V H/P</option>
+                                        <option value="Multi V H/R">Multi V H/R</option>
+                                        <option value="Multi V ARUM">Multi V ARUM</option>
+                                        <option value="Multi Water">Multi Water</option>
+                                        <option value="Multi V S">Multi V S</option>
+                                        <option value="Multi V M">Multi V M</option>
+                                        <option value="Multi V Space">Multi V Space</option>
+                                        <option value="GHP">GHP</option>
+                                        <option value="Chiller">Chiller</option>
+                                        <option value="Therma V">Therma V</option>
+                                        <option value="Single Package">Single Package</option>
+                                        <option value="Single&Multi">Single&Multi</option>
+                                        <option value="Refrigeration">Refrigeration</option>
+                                    </select>
+                                </div>
+                                <div class="lg_search_necessary_item">
+                                    <span class="lg_text">Model 군</span>
+                                    <select class="lg_select_model_filter" id="lgmv_model_filter2"
+                                            name="lgmv_model_filter2">
+                                        <option value="">- 선택 -</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <h6 class="lg_circle">상세 검색</h6>
-                    <div id="lg_search_detail">
-                        <div id="lg_search_detail_1_items">
-                            <div class="lg_search_detail_1_item">
-                                <span class="lg_text">날짜입력</span>
-                                <input type="text" id="testDatepicker1" class="lg_search_date_box">
-                                <span style="align-self: center;">~</span>
-                                <input type="text" id="testDatepicker2" class="lg_search_date_box">
+                        <h6 class="lg_circle">상세 검색</h6>
+                        <div id="lg_search_detail">
+                            <div id="lg_search_detail_1_items">
+                                <div class="lg_search_detail_1_item">
+                                    <span class="lg_text">날짜입력</span>
+                                    <input type="text" id="testDatepicker1" class="lg_search_date_box">
+                                    <span style="align-self: center;">~</span>
+                                    <input type="text" id="testDatepicker2" class="lg_search_date_box">
+                                </div>
+                            </div>
+                            <div id="lg_search_detail_2_items">
+                                <div class="lg_search_detail_2_item">
+                                    <span class="lg_text">Model 명</span>
+                                    <input class="detail_2_item_input" type="text" name="lgmv_model_name">
+                                </div>
+                                <div class="lg_search_detail_2_item">
+                                    <span class="lg_text">Serial 명</span>
+                                    <input class="detail_2_item_input" type="text" name="lgmv_serial_number">
+                                </div>
+                                <div class="lg_search_detail_2_item">
+                                    <span class="lg_text">냉매</span>
+                                    <input class="detail_2_item_input" type="text" name="lgmv_r">
+                                </div>
+                                <div class="lg_search_detail_2_item">
+                                    <span class="lg_text">main S/W</span>
+                                    <input class="detail_2_item_input" type="text" name="lgmv_main_ver">
+                                </div>
+                            </div>
+                            <div id="lg_search_detail_2_items">
+                                <div class="lg_search_detail_2_item">
+                                    <span class="lg_text">EEPROM S/W</span>
+                                    <input class="detail_2_item_input" type="text" name="lgmv_eep_ver">
+                                </div>
+                                <div class="lg_search_detail_2_item">
+                                    <span class="lg_text">용량</span>
+                                    <input class="detail_2_item_input" type="text" name="calorimeter_cap">
+                                </div>
+                                <div class="lg_search_detail_2_item">
+                                    <span class="lg_text">전원</span>
+                                    <input class="detail_2_item_input" type="text" name="calorimeter_power">
+                                </div>
+                                <div class="lg_search_detail_2_item">
+                                    <span class="lg_text">효율</span>
+                                    <input class="detail_2_item_input" type="text" name="calorimeter_eer">
+                                </div>
+                            </div>
+                            <div id="lg_search_detail_2_items">
+                                <div class="lg_search_detail_2_item">
+                                    <span class="lg_text">전압</span>
+                                    <input class="detail_2_item_input" type="text" name="calorimeter_power_vol">
+                                </div>
+                                <div class="lg_search_detail_2_item">
+                                    <span class="lg_text">ID 습구온도</span>
+                                    <input class="detail_2_item_input" type="text" name="calorimeter_id_wb">
+                                </div>
+                                <div class="lg_search_detail_2_item">
+                                    <span class="lg_text">ID 건구온도</span>
+                                    <input class="detail_2_item_input" type="text" name="calorimeter_id_db">
+                                </div>
+                                <div class="lg_search_detail_2_item">
+                                    <span class="lg_text">OD 습구온도</span>
+                                    <input class="detail_2_item_input" type="text" name="calorimeter_od_wb">
+                                </div>
+                            </div>
+                            <div id="lg_search_detail_2_items">
+                                <div class="lg_search_detail_2_item">
+                                    <span class="lg_text">OD 건구온도</span>
+                                    <input class="detail_2_item_input" type="text" name="calorimeter_od_db">
+                                </div>
+                                <div class="lg_search_detail_2_item">
+                                    <span class="lg_text">파일생성날짜</span>
+                                    <input class="detail_2_item_input" type="text" name="conn_file_date">
+                                </div>
+                                <div class="lg_search_detail_2_item">
+                                    <span class="lg_text">IDU 샤시</span>
+                                    <input class="detail_2_item_input" type="text" name="idu_chassis">
+                                </div>
+                                <div class="lg_search_detail_2_item">
+                                    <span class="lg_text">ODU 샤시</span>
+                                    <input class="detail_2_item_input" type="text" name="odu_chassis">
+                                </div>
+                            </div>
+                            <div id="lg_search_detail_2_items">
+                                <div class="lg_search_detail_2_item">
+                                    <span class="lg_text">개발프로세스(상)</span>
+                                    <input class="detail_2_item_input" type="text" name="plm_step1">
+                                </div>
+                                <div class="lg_search_detail_2_item">
+                                    <span class="lg_text">개발프로세스(하)</span>
+                                    <input class="detail_2_item_input" type="text" name="plm_step2">
+                                </div>
+                                <div class="lg_search_detail_2_item">
+                                    <span class="lg_text">구분</span>
+                                    <input class="detail_2_item_input" type="text" name="test_step1">
+                                </div>
+                                <div class="lg_search_detail_2_item">
+                                    <span class="lg_text">시험항목</span>
+                                    <input class="detail_2_item_input" type="text" name="test_step2">
+                                </div>
+                            </div>
+                            <div id="lg_search_detail_2_items">
+                                <div class="lg_search_detail_2_item">
+                                    <span class="lg_text">실험자</span>
+                                    <input class="detail_2_item_input" type="text" name="conn_tester">
+                                </div>
+                                <div class="lg_search_detail_2_item">
+                                    <span class="lg_text">챔버번호</span>
+                                    <input class="detail_2_item_input" type="text" name="conn_testroom_number">
+                                </div>
+                                <div class="lg_search_detail_2_item">
+                                    <span class="lg_text">배관정보</span>
+                                    <input class="detail_2_item_input" type="text" name="conn_pipe_type">
+                                </div>
+                                <div class="lg_search_detail_2_item">
+                                    <span class="lg_text">TEST 결과</span>
+                                    <input class="detail_2_item_input" type="text" name="conn_test_result">
+                                </div>
+                            </div>
+                            <div id="lg_search_detail_2_items">
+                                <div class="lg_search_detail_2_item">
+                                    <span class="lg_text">설명</span>
+                                    <input class="detail_2_item_input" type="text" name="conn_memo">
+                                </div>
                             </div>
                         </div>
-                        <div id="lg_search_detail_2_items">
-                            <div class="lg_search_detail_2_item">
-                                <span class="lg_text">Model 명</span>
-                                <input  class="detail_2_item_input" type="text" name="lgmv_model_name">
-                            </div>
-                            <div class="lg_search_detail_2_item">
-                                <span class="lg_text">Serial 명</span>
-                                <input class="detail_2_item_input" type="text" name="lgmv_serial_number">
-                            </div>
-                            <div class="lg_search_detail_2_item">
-                                <span class="lg_text">냉매</span>
-                                <input class="detail_2_item_input" type="text" name="lgmv_r">
-                            </div>
-                            <div class="lg_search_detail_2_item">
-                                <span class="lg_text">main S/W</span>
-                                <input class="detail_2_item_input" type="text" name="lgmv_main_ver">
-                            </div>
-                        </div>
-                        <div id="lg_search_detail_2_items">
-                            <div class="lg_search_detail_2_item">
-                                <span class="lg_text">EEPROM S/W</span>
-                                <input class="detail_2_item_input" type="text" name="lgmv_eep_ver">
-                            </div>
-                            <div class="lg_search_detail_2_item">
-                                <span class="lg_text">용량</span>
-                                <input class="detail_2_item_input" type="text" name="calorimeter_cap">
-                            </div>
-                            <div class="lg_search_detail_2_item">
-                                <span class="lg_text">전원</span>
-                                <input class="detail_2_item_input" type="text" name="calorimeter_power">
-                            </div>
-                            <div class="lg_search_detail_2_item">
-                                <span class="lg_text">효율</span>
-                                <input class="detail_2_item_input" type="text" name="calorimeter_eer">
-                            </div>
-                        </div>
-                        <div id="lg_search_detail_2_items">
-                            <div class="lg_search_detail_2_item">
-                                <span class="lg_text">전압</span>
-                                <input class="detail_2_item_input"type="text" name="calorimeter_power_vol">
-                            </div>
-                            <div class="lg_search_detail_2_item">
-                                <span class="lg_text">ID 습구온도</span>
-                                <input class="detail_2_item_input"type="text" name="calorimeter_id_wb">
-                            </div>
-                            <div class="lg_search_detail_2_item">
-                                <span class="lg_text">ID 건구온도</span>
-                                <input class="detail_2_item_input"type="text" name="calorimeter_id_db">
-                            </div>
-                            <div class="lg_search_detail_2_item" >
-                                <span class="lg_text" >OD 습구온도</span>
-                                <input class="detail_2_item_input" type="text" name="calorimeter_od_wb">
-                            </div>
-                        </div>
-                        <div id="lg_search_detail_2_items">
-                            <div class="lg_search_detail_2_item">
-                                <span class="lg_text">OD 건구온도</span>
-                                <input  class="detail_2_item_input"type="text" name="calorimeter_od_db">
-                            </div>
-                            <div class="lg_search_detail_2_item">
-                                <span class="lg_text">파일생성날짜</span>
-                                <input  class="detail_2_item_input"type="text" name="conn_file_date">
-                            </div>
-                            <div class="lg_search_detail_2_item">
-                                <span class="lg_text">IDU 샤시</span>
-                                <input  class="detail_2_item_input"type="text" name="idu_chassis">
-                            </div>
-                            <div class="lg_search_detail_2_item">
-                                <span class="lg_text">ODU 샤시</span>
-                                <input  class="detail_2_item_input"type="text" name="odu_chassis">
-                            </div>
-                        </div>
-                        <div id="lg_search_detail_2_items">
-                            <div class="lg_search_detail_2_item" >
-                                <span class="lg_text" >개발프로세스(상)</span>
-                                <input  class="detail_2_item_input" type="text" name="plm_step1">
-                            </div>
-                            <div class="lg_search_detail_2_item">
-                                <span class="lg_text">개발프로세스(하)</span>
-                                <input  class="detail_2_item_input"type="text" name="plm_step2">
-                            </div>
-                            <div class="lg_search_detail_2_item">
-                                <span class="lg_text">구분</span>
-                                <input  class="detail_2_item_input"type="text" name="test_step1">
-                            </div>
-                            <div class="lg_search_detail_2_item">
-                                <span class="lg_text">시험항목</span>
-                                <input  class="detail_2_item_input"type="text" name="test_step2">
-                            </div>
-                        </div>
-                        <div id="lg_search_detail_2_items">
-                            <div class="lg_search_detail_2_item">
-                                <span class="lg_text">실험자</span>
-                                <input  class="detail_2_item_input"type="text" name="conn_tester">
-                            </div>
-                            <div class="lg_search_detail_2_item">
-                                <span class="lg_text">챔버번호</span>
-                                <input  class="detail_2_item_input"type="text" name="conn_testroom_number">
-                            </div>
-                            <div class="lg_search_detail_2_item">
-                                <span class="lg_text">배관정보</span>
-                                <input  class="detail_2_item_input"type="text" name="conn_pipe_type">
-                            </div>
-                            <div class="lg_search_detail_2_item">
-                                <span class="lg_text">TEST 결과</span>
-                                <input  class="detail_2_item_input"type="text" name="conn_test_result">
-                            </div>
-                        </div>
-                        <div id="lg_search_detail_2_items">
-                            <div class="lg_search_detail_2_item">
-                                <span class="lg_text">설명</span>
-                                <input  class="detail_2_item_input"type="text" name="conn_memo">
-                            </div>
-                        </div>
-                    </div>
             </form>
             <input class="data_search_btn" type="submit" value="검색" onclick="dataSearch();">
         </div>
@@ -217,27 +220,27 @@
                     <tbody>
                     <tr style="border-top: 2px solid rgb(163,163,163)">
                         <th>모델명</th>
-                        <td id="_lgmv_model_name"> </td>
+                        <td id="_lgmv_model_name"></td>
                         <th>시리얼넘버</th>
-                        <td id="_lgmv_serial_number"> </td>
+                        <td id="_lgmv_serial_number"></td>
                     </tr>
                     <tr>
                         <th>제품군</th>
-                        <td id="_lgmv_model_filter1"> </td>
+                        <td id="_lgmv_model_filter1"></td>
                         <th>제품명</th>
-                        <td id="_lgmv_model_filter2"> </td>
+                        <td id="_lgmv_model_filter2"></td>
                     </tr>
                     <tr>
                         <th>Main S/W 버전</th>
-                        <td id="_lgmv_r"> </td>
+                        <td id="_lgmv_r"></td>
                         <th>EEP ver</th>
-                        <td id="_lgmv_main_ver"> </td>
+                        <td id="_lgmv_main_ver"></td>
                     </tr>
                     <tr>
                         <th>냉매</th>
-                        <td id="_lgmv_eep_ver"> </td>
-                        <th> </th>
-                        <td> </td>
+                        <td id="_lgmv_eep_ver"></td>
+                        <th></th>
+                        <td></td>
                     </tr>
                     </tbody>
                 </table>
@@ -245,65 +248,65 @@
                 <table class="table lg_search_detail_table">
                     <tbody>
                     <tr style="border-top: 2px solid rgb(163,163,163)">
-                        <th >개발프로세스(상)</th>
-                        <td id="_plm_step1"> </td>
-                        <th >개발프로세스(하)</th>
-                        <td id="_plm_step2"> </td>
+                        <th>개발프로세스(상)</th>
+                        <td id="_plm_step1"></td>
+                        <th>개발프로세스(하)</th>
+                        <td id="_plm_step2"></td>
                     </tr>
                     <tr>
-                        <th >시험항목(상)</th>
-                        <td id="_test_step1"> </td>
-                        <th >시험항목(하)</th>
-                        <td id="_test_step2"> </td>
+                        <th>시험항목(상)</th>
+                        <td id="_test_step1"></td>
+                        <th>시험항목(하)</th>
+                        <td id="_test_step2"></td>
                     </tr>
                     <tr>
-                        <th >챔버번호</th>
-                        <td id="_conn_testroom_number"> </td>
-                        <th >실험자</th>
-                        <td id="_conn_tester"> </td>
+                        <th>챔버번호</th>
+                        <td id="_conn_testroom_number"></td>
+                        <th>실험자</th>
+                        <td id="_conn_tester"></td>
                     </tr>
                     <tr>
-                        <th >실내기 샤시</th>
-                        <td id="_idu_chassis"> </td>
-                        <th > 실외기 샤시</th>
-                        <td id="_odu_chassis"> </td>
+                        <th>실내기 샤시</th>
+                        <td id="_idu_chassis"></td>
+                        <th> 실외기 샤시</th>
+                        <td id="_odu_chassis"></td>
                     </tr>
                     <tr>
                         <th>능력</th>
-                        <td id="_calorimeter_cap" > </td>
+                        <td id="_calorimeter_cap"></td>
                         <th>전력</th>
-                        <td id="_calorimeter_power"> </td>
+                        <td id="_calorimeter_power"></td>
                     </tr>
                     <tr>
                         <th>효율</th>
-                        <td id="_calorimeter_eer" > </td>
+                        <td id="_calorimeter_eer"></td>
                         <th>전압</th>
-                        <td id="_calorimeter_power_vol"> </td>
+                        <td id="_calorimeter_power_vol"></td>
                     </tr>
                     <tr>
                         <th>실외기 건구온도</th>
-                        <td id="_calorimeter_od_db"> </td>
+                        <td id="_calorimeter_od_db"></td>
                         <th>실내기 건구온도</th>
-                        <td id="_calorimeter_id_db"> </td>
+                        <td id="_calorimeter_id_db"></td>
                     </tr>
                     <tr>
                         <th>실외기 습구온도</th>
-                        <td id="_calorimeter_od_wb"> </td>
+                        <td id="_calorimeter_od_wb"></td>
                         <th>실내기 습구온도
                         </th>
-                        <td id="_calorimeter_id_wb"> </td>
+                        <td id="_calorimeter_id_wb"></td>
                     </tr>
                     <tr>
                         <th>운전률</th>
-                        <td id="_conn_operation_rate"> </td>
+                        <td id="_conn_operation_rate"></td>
                         <th>배관 종류</th>
-                        <td id="_conn_pipe_type"> </td>
+                        <td id="_conn_pipe_type"></td>
                     </tr>
                     <tr>
-                        <th >메모</th>
-                        <td id="_conn_memo"> </td>
+                        <th>메모</th>
+                        <td id="_conn_memo"></td>
                         <th></th>
-                        <td> </td>
+                        <td></td>
                     </tr>
                     </tbody>
                 </table>
@@ -311,16 +314,16 @@
                 <table class="table lg_search_detail_table">
                     <tbody>
                     <tr style="border-top: 2px solid rgb(163,163,163)">
-                        <th >온도 단위</th>
-                        <td id="_lgmv_unit_temp"> </td>
+                        <th>온도 단위</th>
+                        <td id="_lgmv_unit_temp"></td>
                         <th>압력단위</th>
-                        <td  id="_lgmv_unit_press"> </td>
+                        <td id="_lgmv_unit_press"></td>
                     </tr>
                     <tr>
                         <th>유량 딘위</th>
-                        <td  id="_lgmv_unit_flux"> </td>
+                        <td id="_lgmv_unit_flux"></td>
                         <th>능력 단위</th>
-                        <td id="_calorimeter_unit_cap"> </td>
+                        <td id="_calorimeter_unit_cap"></td>
                     </tr>
                     </tbody>
                 </table>
@@ -338,69 +341,69 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <script type="text/javascript">
-    function lg_model_Change(){
+    function lg_model_Change() {
 
-        var Multi_V_H_P = ["- 선택 -","Multi V 5","Multi V 5 A","Multi V 5 H","Multi V IV","Multi V IV Plus","Multi V lll","Multi V II m+m","Multi V II m+s"];
-        var Multi_V_H_R = ["- 선택 -","Multi V 5 HR","Multi V IV HR","Multi V III HR"];
-        var Multi_V_ARUM = ["- 선택 -","Multi V 5","Multi V 5HR"];
-        var Multi_Water = ["- 선택 -","Water IV A","Water IV","Water IV HR","Water S (Mini)","Water II","Water II HR"];
-        var Multi_V_S = ["- 선택 -","Residence","Multi V S","Multi V S HR","Multi V S HS","Mini"];
-        var Multi_V_M = ["- 선택 -","Multi V M"];
-        var Multi_V_Space = ["- 선택 -","N. A. Space","Space III","Space III 3P"];
-        var GHP = ["- 선택 -","GHP Super III","GHP Super& II"];
-        var Chiller = ["- 선택 -","Turbo Chiller","ABS Chiller","Screw Chiller","ISC Water","ISC Super","ISC Shell&Tube","ISC","ISC Super II"];
-        var Therma_V = ["- 선택 -","Split&Monobloc","High Temp","SystemBoiler 2nd"];
-        var Single_Package = ["- 선택 -","Single Package II","Single Package"];
-        var Single_Multi = ["- 선택 -","Pressure","Temp"];
-        var Refrigeration = ["- 선택 -","Super Combi","Slim Combi","Combi","Condensing Unit","Super CDU"];
+        var Multi_V_H_P = ["- 선택 -", "Multi V 5", "Multi V 5 A", "Multi V 5 H", "Multi V IV", "Multi V IV Plus", "Multi V lll", "Multi V II m+m", "Multi V II m+s"];
+        var Multi_V_H_R = ["- 선택 -", "Multi V 5 HR", "Multi V IV HR", "Multi V III HR"];
+        var Multi_V_ARUM = ["- 선택 -", "Multi V 5", "Multi V 5HR"];
+        var Multi_Water = ["- 선택 -", "Water IV A", "Water IV", "Water IV HR", "Water S (Mini)", "Water II", "Water II HR"];
+        var Multi_V_S = ["- 선택 -", "Residence", "Multi V S", "Multi V S HR", "Multi V S HS", "Mini"];
+        var Multi_V_M = ["- 선택 -", "Multi V M"];
+        var Multi_V_Space = ["- 선택 -", "N. A. Space", "Space III", "Space III 3P"];
+        var GHP = ["- 선택 -", "GHP Super III", "GHP Super& II"];
+        var Chiller = ["- 선택 -", "Turbo Chiller", "ABS Chiller", "Screw Chiller", "ISC Water", "ISC Super", "ISC Shell&Tube", "ISC", "ISC Super II"];
+        var Therma_V = ["- 선택 -", "Split&Monobloc", "High Temp", "SystemBoiler 2nd"];
+        var Single_Package = ["- 선택 -", "Single Package II", "Single Package"];
+        var Single_Multi = ["- 선택 -", "Pressure", "Temp"];
+        var Refrigeration = ["- 선택 -", "Super Combi", "Slim Combi", "Combi", "Condensing Unit", "Super CDU"];
 
         var selectItem = $("#lgmv_model_filter1").val();
         var changeItem;
 
-        if(selectItem === "Multi V H/P"){
+        if (selectItem === "Multi V H/P") {
             changeItem = Multi_V_H_P;
         }
-        else if(selectItem === "Multi V H/R"){
+        else if (selectItem === "Multi V H/R") {
             changeItem = Multi_V_H_R;
         }
-        else if(selectItem === "Multi V ARUM"){
-            changeItem =  Multi_V_ARUM;
+        else if (selectItem === "Multi V ARUM") {
+            changeItem = Multi_V_ARUM;
         }
-        else if(selectItem === "Multi Water"){
-            changeItem =  Multi_Water;
+        else if (selectItem === "Multi Water") {
+            changeItem = Multi_Water;
         }
-        else if(selectItem === "Multi V S"){
-            changeItem =  Multi_V_S;
+        else if (selectItem === "Multi V S") {
+            changeItem = Multi_V_S;
         }
-        else if(selectItem === "Multi V M"){
-            changeItem =  Multi_V_M;
+        else if (selectItem === "Multi V M") {
+            changeItem = Multi_V_M;
         }
-        else if(selectItem === "Multi V Space"){
-            changeItem =  Multi_V_Space;
+        else if (selectItem === "Multi V Space") {
+            changeItem = Multi_V_Space;
         }
-        else if(selectItem === "GHP"){
-            changeItem =  GHP;
+        else if (selectItem === "GHP") {
+            changeItem = GHP;
         }
-        else if(selectItem === "Chiller"){
-            changeItem =  Chiller;
+        else if (selectItem === "Chiller") {
+            changeItem = Chiller;
         }
-        else if(selectItem === "Therma V"){
-            changeItem =  Therma_V;
+        else if (selectItem === "Therma V") {
+            changeItem = Therma_V;
         }
-        else if(selectItem === "Single Package"){
-            changeItem =  Single_Package;
+        else if (selectItem === "Single Package") {
+            changeItem = Single_Package;
         }
-        else if(selectItem === "Single&Multi"){
-            changeItem =  Single_Multi;
+        else if (selectItem === "Single&Multi") {
+            changeItem = Single_Multi;
         }
-        else if(selectItem === "Refrigeration"){
-            changeItem =  Refrigeration;
+        else if (selectItem === "Refrigeration") {
+            changeItem = Refrigeration;
         }
 
         $('#lgmv_model_filter2').empty();
 
-        for(var count = 0; count < changeItem.length; count++){
-            var option = $("<option value='"+changeItem[count]+"'>"+changeItem[count]+"</option>");
+        for (var count = 0; count < changeItem.length; count++) {
+            var option = $("<option value='" + changeItem[count] + "'>" + changeItem[count] + "</option>");
             $('#lgmv_model_filter2').append(option);
         }
 
@@ -973,7 +976,7 @@
         line-height: 1.42857143;
         color: #555;
         background: #fff none;
-        border: 1px solid #cecece;
+        border: 1px solid  #cecece;
         padding: 5px 12px;
     }
 
@@ -1069,10 +1072,11 @@
         line-height: 1.12857143;
         color: #555;
         background: #fff none;
-        border: 1px solid  #cecece;
+        border: 1px solid #cecece;
         margin: 5px;
         padding: 5px 12px;
     }
+
     .data_search_btn {
         display: inline-block;
         margin-bottom: 0;
@@ -1080,16 +1084,17 @@
         text-align: center;
         vertical-align: top;
         touch-action: manipulation;
-        background-color: rgb(105,109,114);
+        background-color: rgb(105, 109, 114);
         border-width: 1px;
         padding: 6px 12px;
         font-size: 13px;
-        color: rgb(223,223,225);
+        color: rgb(223, 223, 225);
         line-height: 1.42857143;
         border-radius: 4px;
         user-select: none;
         float: right;
     }
+
     .data_search_btn_table {
         display: inline-block;
         margin-bottom: 0;
@@ -1097,11 +1102,11 @@
         text-align: center;
         vertical-align: top;
         touch-action: manipulation;
-        background-color: rgb(105,109,114);
+        background-color: rgb(105, 109, 114);
         border-width: 1px;
         padding: 6px 12px;
         font-size: 11px;
-        color: rgb(223,223,225);
+        color: rgb(223, 223, 225);
         line-height: 1.42857143;
         border-radius: 4px;
         user-select: none;
@@ -1116,9 +1121,9 @@
         margin: 0 0 50px;
     }
 
-    #search_result_table tbody tr:nth-child(1) th{
+    #search_result_table tbody tr:nth-child(1) th {
         background: #f1f0f0;
-        border-top: 2px solid rgb(163,163,163);
+        border-top: 2px solid rgb(163, 163, 163);
         text-align: center;
         font-size: 11px;
         font-weight: 700;
@@ -1131,23 +1136,26 @@
         font-weight: 700;
         text-align: right;
     }
+
     #search_result_table .table tbody > tr > td {
         background: #fff;
         word-break: break-all;
         white-space: pre-wrap;
     }
 
-    #search_result_table tbody > tr  {
-        border-bottom: 1px solid rgb(163,163,163);
+    #search_result_table tbody > tr {
+        border-bottom: 1px solid rgb(163, 163, 163);
     }
 
     #lg_search_result_tbody tr > td {
-         padding: 8px 10px;
-         background: #fff;
-         word-break: break-all;
-         white-space: pre-wrap;
-         font-size: 13px;
-     }
+        padding: 8px 10px;
+        background: #fff;
+        word-break: break-all;
+        white-space: pre-wrap;
+        font-size: 13px;
+        text-align: center;
+        vertical-align: middle;
+    }
 </style>
 <!--상세 결과 테이블-->
 <style>
@@ -1169,9 +1177,11 @@
         align-self: start;
         margin-bottom: 50px;
     }
-    .lg_search_detail_table tr:nth-child(1){
-        border-top: 2px solid rgb(163,163,163);
+
+    .lg_search_detail_table tr:nth-child(1) {
+        border-top: 2px solid rgb(163, 163, 163);
     }
+
     .lg_search_detail_table tbody > tr > th {
         height: 45px;
         padding-right: 20px;

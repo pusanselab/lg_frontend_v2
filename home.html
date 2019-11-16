@@ -22,7 +22,6 @@
             <a href="admin.html">관리자 모드</a>
         </div>
     </div>
-
     <div id="lg_contents">
         <div>
             <div id="lg_db_count">
@@ -30,26 +29,25 @@
                 <br>
                 <span id="num_db" style="margin-left: 1em; font-size: 50px"></span><span>개</span>
             </div>
-            <div id="lg_db_count_graph">
-                <div>
+
+            <div class="row" style="margin: 2em;">
+                <div class="col-md-6">
                     <div id="lg_dataset_by_model_header">
                         Dataset by Model
                     </div>
-                    <div id="my_dataviz">
-                    </div>
+                    <div id="chart_div1" class="chart"></div>
                 </div>
-                <div>
+                <div class="col-md-6 no-padding">
                     <div id="lg_dataset_by_test_header">
                         Dataset by Test
                     </div>
-                    <div id="my_testviz">
-                    </div>
+                    <div id="chart_div2" class="chart"></div>
                 </div>
             </div>
         </div>
 
         <div id="lg_chamber_content">
-            <span style="margin-top: 10px;">◎ 챔버 상태</span>
+            <h6 class="lg_circle" style="margin-top: 10px">챔버 상태<h6>
             <table id="lg_chember_table" class="table table-bordered table-hover table-condensed">
                 <tr id="lg_chember_table_thead">
                     <td>ID</td>
@@ -65,26 +63,30 @@
             </table>
 
         </div>
-        <div id="lg_chamber_graph">
-            <span style="margin-top: 10px;">◎ 그래프</span>
-            
-            <p>챔버번호 : <select id="index">
-                </select></p>
-            <button class="button" style="margin: 10px" onClick='SelectUnit()'>그래프 보기</button>
+        <div id="lg_chamber_graph" style="width: 100%" class="row">
+            <div class="col-md-12">
+                <h6 class="lg_circle" style="margin-top: 10px">그래프</h6>
+                    <p>챔버번호 : <select id="index">
+                    </select>
+                        <button id="lg_see_graph_btn" style="margin-left: 1em" onClick='SelectUnit()'>그래프 보기</button>
 
-            <div id="Line_Controls_Chart">
-                <!-- 라인 차트 생성할 영역 -->
-                <div id="lineChartArea" style="padding:0px 20px 0px 0px;"></div>
-                <!-- 컨트롤바를 생성할 영역 -->
-                <div id="controlsArea" style="padding:0px 20px 0px 0px;"></div>
-            </div>
-            <div id="selectgraph1">
-                <form id="selectgraph">
+                    </p>
 
-                </form>
+                    <div id="Line_Controls_Chart">
+                        <!-- 라인 차트 생성할 영역 -->
+                        <div id="lineChartArea" style="padding:0px 20px 0px 0px;"></div>
+                        <!-- 컨트롤바를 생성할 영역 -->
+                        <div id="controlsArea" style="padding:0px 20px 0px 0px;"></div>
+                    </div>
+                    <div id="selectgraph1">
+                        <form id="selectgraph">
+
+                        </form>
+                    </div>
             </div>
         </div>
     </div>
+
 </div>
 
 </body>
@@ -98,15 +100,6 @@
 <script src="https://d3js.org/d3-time-format.v2.min.js"></script>
 <script src="https://d3js.org/d3-scale.v3.min.js"></script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery.scrolly.min.js"></script>
-<script src="assets/js/jquery.dropotron.min.js"></script>
-<script src="assets/js/jquery.scrollex.min.js"></script>
-<script src="assets/js/browser.min.js"></script>
-<script src="assets/js/breakpoints.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
-<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script src="https://d3js.org/d3-array.v2.min.js"></script>
@@ -116,7 +109,14 @@
 <script src="https://d3js.org/d3-time.v1.min.js"></script>
 <script src="https://d3js.org/d3-time-format.v2.min.js"></script>
 <script src="https://d3js.org/d3-scale.v3.min.js"></script>
+
 <script data-require="d3@4.0.0" data-semver="4.0.0" src="https://d3js.org/d3.v4.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+    // 차트를 사용하기 위한 준비입니다.
+
+    google.charts.load('current', {packages: ['corechart']});
+</script>
 <script>
     var num_db = 0
     var x = [
@@ -144,10 +144,9 @@
     ];
     $(document).ready(function () {
 
-        console.log("enter login");
         $.ajax({
             type: 'post'
-            , url: 'http://164.125.70.12:3000/api/overview'
+            , url: 'http://localhost:3000/api/overview'
 
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
@@ -176,7 +175,6 @@
                         "translate(" + margin.left + "," + margin.top + ")");
 
                 // Parse the Data
-                console.log(data1.content.model);
 
                 var data = data1.content.model;
                 var data2 = data1.content.test;
@@ -314,16 +312,43 @@
     var indexName;
 
     $(document).ready(function () {
+        model_array = [['모델', '갯수']];
         $.ajax({
             type: 'post'
-            , url: 'http://164.125.70.12:3000/api/session'
+            , url: 'http://localhost:3000/api/overview'
+            , beforeSend: function () {
+                $('#ajax_load_indicator').show().fadeIn('fast');
+            }
+            , success: function (data) {
+                for (let i = 0; i < data.content.model.length; i++) {
+                    var temp = []
+                    temp.push(data.content.model[i].name)
+                    temp.push(data.content.model[i].count)
+                    model_array.push(temp)
+
+                    if (i === data.content.model.length - 1) {
+                        // drawChart(model_array)
+                    }
+                }
+            }
+            , error: function (data, status, err) {
+                console.log("error forward : " + data);
+                alert('서버와의 통신이 실패했습니다.');
+            }
+            , complete: function () {
+                $('#ajax_load_indicator').fadeOut();
+            }
+        })
+
+
+        $.ajax({
+            type: 'post'
+            , url: 'http://localhost:3000/api/session'
 
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
             }
             , success: function (data) {
-                console.log("세션");
-                console.log(data);
             }
             , error: function (data, status, err) {
                 console.log("error forward : " + data);
@@ -335,20 +360,21 @@
         });
     });
 
-    var cham_number=[];
+    var cham_number = [];
 
     $(document).ready(function () {
         $.ajax({
             type: 'post'
-            , url: 'http://164.125.70.12:3000/api/chamber/chamber_testroom_number'
+            , url: 'http://localhost:3000/api/chamber/chamber_testroom_number'
 
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
             }
             , success: function (data) {
-                cham_number=data.testroom_number;
-                for(var i=0;i<cham_number.length;i++){
-                    var option=$("<option value=\""+cham_number[i]+"\">"+cham_number[i]+"</option>")
+                cham_number = data.testroom_number;
+                $('#index').append($("<option value=\"" + "\">- 선택 -</option>"));
+                for (var i = 0; i < cham_number.length; i++) {
+                    var option = $("<option value=\"" + cham_number[i] + "\">" + cham_number[i] + "</option>")
                     $('#index').append(option);
                 }
             }
@@ -365,36 +391,36 @@
     $(document).ready(function () {
         $.ajax({
             type: 'post'
-            , url: 'http://164.125.70.12:3000/api/chamber/recent_test'
+            , url: 'http://localhost:3000/api/chamber/recent_test'
 
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
             }
             , success: function (data) {
-                  for (var i = 0; i < data.content.length; i++) {
-                        var cham_id = data.content[i].header_uid;
-                        var cham_date = data.content[i].conn_file_date;
-                        var test_time = "일단 null";
-                        var cham_room = data.content[i].conn_testroom_number;
-                        var model_ver = data.content[i].lgmv_model_name;
-                        var test_step = data.content[i].test_step2;
-                        var tester = data.content[i].conn_tester;
+                for (var i = 0; i < data.content.length; i++) {
+                    var cham_id = data.content[i].header_uid;
+                    var cham_date = data.content[i].conn_file_date;
+                    var test_time = data.test_time[i];
+                    var cham_room = data.content[i].conn_testroom_number;
+                    var model_ver = data.content[i].lgmv_model_name;
+                    var test_step = data.content[i].test_step2;
+                    var tester = data.content[i].conn_tester;
 
-                        var row = "<tr>";
-                        row += "<td>" + cham_id + "</td>";
-                        row += "<td>" + cham_date + "</td>";
-                        row += "<td>" + test_time + "</td>";
-                        row += "<td>" + cham_room + "</td>";
-                        row += "<td>" + model_ver + "</td>";
-                        row += "<td>" + test_step + "</td>";
-                        row += "<td>" + tester + "</td>";
-                        row += "</tr>"
+                    var row = "<tr>";
+                    row += "<td>" + cham_id + "</td>";
+                    row += "<td>" + cham_date + "</td>";
+                    row += "<td>" + test_time + "</td>";
+                    row += "<td>" + cham_room + "</td>";
+                    row += "<td>" + model_ver + "</td>";
+                    row += "<td>" + test_step + "</td>";
+                    row += "<td>" + tester + "</td>";
+                    row += "</tr>"
 
-                        $('#detail_body').append(row);
-                    
-                        if (i >= 5) {
-                            break;
-                        }
+                    $('#detail_body').append(row);
+
+                    if (i >= 5) {
+                        break;
+                    }
                 }
             }
             , error: function (data, status, err) {
@@ -405,83 +431,78 @@
                 $('#ajax_load_indicator').fadeOut();
             }
         });
+
+
     });
 
 
-    
-
-
-    function SelectUnit(){
+    function SelectUnit() {
         var good = $('#index').val();
-        var params="testroom_number="+good;
+        var params = "testroom_number=" + good;
         $.ajax({
             type: 'post'
-            , url: 'http://164.125.70.12:3000/api/chamber/chamber_status'
+            , url: 'http://localhost:3000/api/chamber/chamber_status'
             , data: params
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
             }
             , success: function (data) {
-
-
                 var all_lenght = 0;
                 for (var i = 0; i < data.month.length; i++) {
                     for (var j = 0; j < data.month[i].length; j++) {
                         all_lenght = all_lenght + 1;
                     }
                 }
-                console.log(all_lenght);
-
 
                 array = new Array(180);
                 for (var i = 0; i < 180; i++) {
                     array[i] = new Array();
                 }
                 indexName = ['Date', 'ida_wb', 'ida_db', 'idb_db', 'idb_db', 'od_wb', 'od_db'];
-                
 
-                function getDateStr(myDate){
+
+                function getDateStr(myDate) {
                     var year = myDate.getFullYear();
-                    var month = ("0"+(myDate.getMonth()+1)).slice(-2);
-                    var day = ("0"+myDate.getDate()).slice(-2);
-                    return ( year + '.' + month + '.' + day );
+                    var month = ("0" + (myDate.getMonth() + 1)).slice(-2);
+                    var day = ("0" + myDate.getDate()).slice(-2);
+                    return (year + '.' + month + '.' + day);
                 }
 
 
-                for(var i=0;i<180;i++){
+                for (var i = 0; i < 180; i++) {
                     var today = new Date();
                     var getday = today.getDate();
                     var date_modify;
-                    var flag=0;
-                    today.setDate(getday-(180-i));
+                    var flag = 0;
+                    today.setDate(getday - (180 - i));
                     array[i].push(new Date(today));
                     for (var j = 0; j < data.month.length; j++) {
                         for (var k = 0; k < data.month[j].length; k++) {
-                            date_modify = (data.month[j][k].conn_file_date);    
-                            if(date_modify==getDateStr(today)){
+                            date_modify = (data.month[j][k].conn_file_date);
+                            if (date_modify == getDateStr(today)) {
                                 array[i].push(data.month[j][k].conn_ida_wb_gap);
                                 array[i].push(data.month[j][k].conn_ida_db_gap);
                                 array[i].push(data.month[j][k].conn_idb_wb_gap);
                                 array[i].push(data.month[j][k].conn_idb_db_gap);
                                 array[i].push(data.month[j][k].conn_od_wb_gap);
                                 array[i].push(data.month[j][k].conn_od_db_gap);
-                                flag=1;
-                            }   
+                                flag = 1;
+                            }
                         }
                     }
-                    if(flag==0){
+                    if (flag == 0) {
                         array[i].push(0);
                         array[i].push(0);
                         array[i].push(0);
                         array[i].push(0);
                         array[i].push(0);
                         array[i].push(0);
-                    
-                    } 
+
+                    }
                 }
 
                 ///////////
-              
+
                 drawingZZ(array, indexName, array.length);
             }
             , error: function (data, status, err) {
@@ -496,7 +517,6 @@
 
 
     function drawingZZ(array, indexName, arraylength) {
-        console.log(arraylength);
         var chartDrowFun = {
 
             chartDrow: function () {
@@ -537,7 +557,6 @@
                         // dataRow = [new Date(datezz),total];
 
                         data.addRow(array[i]);
-                        console.log(array[i]);
                         mindata = Math.min(array[i]);
                     }
 
@@ -633,10 +652,103 @@
         }
         // $(document).ready(function(){
         google.charts.load('current', {'packages': ['line', 'controls']});
+        google.charts.load('current', {packages: ['corechart','controls']});
         chartDrowFun.chartDrow(); //chartDrow() 실행
         //  });
     }
 
+</script>
+<script>
+    google.charts.load("current", {packages: ["corechart"]});
+    google.charts.setOnLoadCallback(drawChart1);
+    chart1_data = [['model', '갯수']]
+    chart2_data = [['시험', '갯수']]
+
+    async function drawChart1() {
+        if (chart1_data.length === 1) {
+            await $.ajax({
+                type: 'post'
+                , url: 'http://localhost:3000/api/overview'
+
+                , beforeSend: function () {
+                    $('#ajax_load_indicator').show().fadeIn('fast');
+                }
+                , success: await function (data1) {
+                    for (let i = 0; i < data1.content.model.length; i++) {
+                        var temp1 = []
+                        temp1.push(data1.content.model[i].name)
+                        temp1.push(data1.content.model[i].count)
+                        chart1_data.push(temp1)
+                    }
+                    for (let i = 0; i < data1.content.test.length; i++) {
+                        var temp2 = []
+                        temp2.push(data1.content.test[i].name)
+                        temp2.push(data1.content.test[i].count)
+                        chart2_data.push(temp2)
+                    }
+
+                    google.load("visualization", "1", {packages: ["corechart"]});
+                    google.setOnLoadCallback(drawChart2);
+                }
+                , error: function (data, status, err) {
+                    console.log("error forward : " + data);
+                    alert('서버와의 통신이 실패했습니다.');
+                }
+                , complete: function () {
+                    $('#ajax_load_indicator').fadeOut();
+                }
+            });
+        }
+
+
+        var data = google.visualization.arrayToDataTable(chart1_data);
+
+        var options = {
+            height: 350,
+            hAxis: {
+                titleTextStyle: {color: 'red'},
+                fontSize: 10
+            },
+            bar: {groupWidth: "30%"},
+            legend: {position: "none"},
+            orientation: 'vertical',
+            rectArea: {
+                backgroundColor: {
+                    stroke: '#4322c0',
+                    strokeWidth: 3
+                }
+            }
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div1'));
+        chart.draw(data, options);
+    }
+
+
+    async function drawChart2() {
+
+        var data = google.visualization.arrayToDataTable(chart2_data);
+
+        var options = {
+            height: 350,
+            hAxis: {
+                titleTextStyle: {color: 'red'},
+                fontSize: 10
+            },
+            bar: {groupWidth: "30%"},
+            legend: {position: "none"},
+            orientation: 'vertical'
+
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div2'));
+        chart.draw(data, options);
+    }
+
+    $(window).resize(function () {
+        drawChart1();
+        drawChart2();
+    });
 </script>
 <!--full box & sidebar Css-->
 <style>
@@ -656,7 +768,7 @@
     #lg_contents {
         margin-left: 200px;
         margin-top: 100px;
-        margin-right: 80px;
+        margin-right: 250px;
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
@@ -703,39 +815,26 @@
 
     #lg_db_count {
         text-align: left;
-        margin: 2.5em 1em 1em;
         font-weight: bold;
+        margin: 2.5em 1em 1em 4em;
+
     }
 </style>
 <!--contents Css-->
 <style>
-    #lg_db_count_graph {
-        align-items: center;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-gap: 4em;
-    }
-
-    #my_dataviz {
-        border: 1px solid pink;
-    }
-
-    #my_testviz {
-        border: 1px solid pink;
-    }
 
     #lg_dataset_by_model_header {
+        display: flex;
         background-color: black;
         padding: 0.8em;
-        margin: 0.5em;
         color: white;
         font-family: "Adobe 명조 Std M";
     }
 
     #lg_dataset_by_test_header {
+        display: flex;
         background-color: black;
         padding: 0.8em;
-        margin: 0.5em;
         font-family: "Adobe 명조 Std M";
         color: white;
     }
@@ -747,10 +846,10 @@
         font-family: "Adobe 명조 Std M";
         margin-top: 2em;
         margin-right: 0;
+        margin: 3em;
         color: black;
         font-size: 0.9em;
     }
-
     #lg_chember_table_thead {
         border-right: 1px solid #1d2124;
         border-bottom: 2px solid #1d2124;
@@ -770,11 +869,117 @@
 
 </style>
 <!--lg_chamber_graph css-->
+
+<!--lg_circle-->
 <style>
+    .lg_circle:before {
+        content: "";
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        margin-right: 5px;
+        border: 2px solid #d80546;
+        border-radius: 50%;
+    }
+</style>
+<style>
+
     #lg_chamber_graph {
+        margin: 2em;
         color: black;
         font-weight: bold;
     }
 
+</style>
+
+<!--lg_model_graph css-->
+<style>
+    #lg_model_graph {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #model_chart_div {
+        min-height: 450px;
+        display: flex;
+        background-color: black;
+        padding: 0.8em;
+        margin: 0.5em;
+        color: white;
+        font-family: "Adobe 명조 Std M";
+    }
+
+    #model_chart_div div > div > div > svg {
+        width: 100%;
+    }
+
+    #lg_graph {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+    }
+
+    #lg_graph1 {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #lg_graph2 {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .chart {
+        width: 100%;
+        min-height: 300px;
+    }
+
+    #chart_div1 {
+        border: 1px solid #CCC !important;
+    }
+
+    #chart_div2 {
+        border: 1px solid #CCC !important;
+    }
+
+    #chart_div1 div > div > svg > rect {
+        border: 1px solid black;
+    }
+
+    #chart_div2 rect {
+        border-right-color: #CCC !important;
+        border-bottom-color: #CCC !important;
+        border-left-color: #CCC !important
+    }
+
+    .no-padding {
+    }
+    #index {
+        height: 32px;
+        padding: 5px 12px;
+        font-size: 13px;
+        line-height: 1.42857143;
+        color: #555;
+        background: #fff none;
+    }
+
+    #lg_see_graph_btn {
+        display: inline-block;
+        margin-bottom: 0;
+        font-weight: 400;
+        vertical-align: top;
+        touch-action: manipulation;
+        background-color: rgb(105,109,114);
+        border-width: 1px;
+        padding: 6px 12px;
+        font-size: 13px;
+        color: rgb(223,223,225);
+        line-height: 1.42857143;
+        border-radius: 4px;
+        user-select: none;
+    }
 </style>
 </body>
