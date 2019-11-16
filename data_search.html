@@ -3,6 +3,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
@@ -28,7 +29,6 @@
                 <h6 class="lg_circle"> ID 입력<h6>
                     <div id="lg_search_id">
                         <input id="id_search" name="header_uid" type="text">
-                        <!--<button onclick="idSearch()" type="button">검색</button>-->
                     </div>
                     <h6 class="lg_circle">데이터 검색(필수)</h6>
                     <div id="lg_search_necessary">
@@ -59,7 +59,6 @@
                                 </select>
                             </div>
                         </div>
-                        <!--<button onclick="idSearch()" type="button">검색</button>-->
                     </div>
                     <h6 class="lg_circle">상세 검색</h6>
                     <div id="lg_search_detail">
@@ -185,13 +184,6 @@
                                 <input  class="detail_2_item_input"type="text" name="conn_memo">
                             </div>
                         </div>
-
-
-
-
-
-
-                        <!--<button onclick="idSearch()" type="button">검색</button>-->
                     </div>
             </form>
             <input class="data_search_btn" type="submit" value="검색" onclick="dataSearch();">
@@ -208,8 +200,6 @@
                     <th>냉매 종류</th>
                     <th>구분</th>
                     <th>시험항목</th>
-                    <!--<td>시험 종류</td>-->
-                    <!-- <td>시험 상세</td>-->
                     <th>시험 날짜</th>
                     <th>실험자</th>
                     <th>챔버 번호</th>
@@ -321,16 +311,16 @@
                 <table class="table lg_search_detail_table">
                     <tbody>
                     <tr style="border-top: 2px solid rgb(163,163,163)">
-                        <th>온도 단위</th>
-                        <td> </td>
+                        <th >온도 단위</th>
+                        <td id="_lgmv_unit_temp"> </td>
                         <th>압력단위</th>
-                        <td > </td>
+                        <td  id="_lgmv_unit_press"> </td>
                     </tr>
                     <tr>
                         <th>유량 딘위</th>
-                        <td > </td>
+                        <td  id="_lgmv_unit_flux"> </td>
                         <th>능력 단위</th>
-                        <td > </td>
+                        <td id="_calorimeter_unit_cap"> </td>
                     </tr>
                     </tbody>
                 </table>
@@ -338,249 +328,13 @@
         </div>
 
     </div>
-        <!--<div id="lg_search_result">-->
-
-        <!--&lt;!&ndash;<div id="search_fail" style="display: none"></div>&ndash;&gt;-->
-        <!--<div id="search_result_detail">-->
-            <!--<div>-->
-                <!--<div id="detail" style="display:none">-->
-                    <!--<span id="lg_circle"></span>-->
-                    <!--<div style="font-size: large; font-weight: bolder"> Summary</div>-->
-                    <!--<div style="color: #abdde5; margin-left: 2rem">◆ 제품 정보</div>-->
-                    <!--<div id="detail_product_info">-->
-                        <!--<div>-->
-                            <!--<span>-Model 명</span>-->
-                            <!--<p id="_lgmv_model_name"></p>-->
-                        <!--</div>-->
-                        <!--<div>-->
-                            <!--<span>-serial 명</span>-->
-                            <!--<p id="_lgmv_serial_number"></p>-->
-                        <!--</div>-->
-                        <!--<div>-->
-                            <!--<span>-분류</span>-->
-                            <!--<p id="_lgmv_model_filter1"></p>-->
-                        <!--</div>-->
-                        <!--<div>-->
-                            <!--<span>-Model 군</span>-->
-                            <!--<p id="_lgmv_model_filter2"></p>-->
-                        <!--</div>-->
-                        <!--<div>-->
-                            <!--<span>-냉매</span>-->
-                            <!--<p id="_lgmv_r"></p>-->
-                        <!--</div>-->
-                        <!--<div>-->
-                            <!--<span>-main S/W</span>-->
-                            <!--<p id="_lgmv_main_ver"></p></div>-->
-                        <!--<div>-->
-                            <!--<span>-EERPROM S/W </span>-->
-                            <!--<p id="_lgmv_eep_ver"></p></div>-->
-                        <!--<div>-->
-                            <!--<span>-용량 </span>-->
-                            <!--<p id="_calorimeter_cap"></p></div>-->
-                        <!--<div>-->
-                            <!--<span>-전원 </span>-->
-                            <!--<p id="_calorimeter_power"></p></div>-->
-                        <!--<div>-->
-                            <!--<span>-효율 </span>-->
-                            <!--<p id="_calorimeter_eer"></p></div>-->
-                        <!--<div>-->
-                            <!--<span>-효율 </span>-->
-                            <!--<p id="_calorimeter_power_vol"></p></div>-->
-                        <!--<div>-->
-                            <!--<span>-ID 습구온도 </span>-->
-                            <!--<p id="_calorimeter_id_wb"></p></div>-->
-                        <!--<div>-->
-                            <!--<span>-ID 건구온도 </span>-->
-                            <!--<p id="_calorimeter_id_db"></p></div>-->
-                        <!--<div>-->
-                            <!--<span>-OD 습구온도 </span>-->
-                            <!--<p id="_calorimeter_od_wb"></p></div>-->
-                        <!--<div>-->
-                            <!--<span>-OD 건구온도 </span>-->
-                            <!--<p id="_calorimeter_od_db"></p></div>-->
-                        <!--<div>-->
-                            <!--<span>-파일생성날짜 </span>-->
-                            <!--<p id="_conn_file_date"></p></div>-->
-                        <!--<div>-->
-                            <!--<span>-파일생성시간</span>-->
-                            <!--<p id="_conn_file_time"></p></div>-->
-                    <!--</div>-->
-                    <!--<div style="color: #abdde5; margin-left: 2rem">◆ 시험 정보</div>-->
-                    <!--<div id="detail_test_info">-->
-                        <!--<div>-->
-                            <!--<span>-실내기 샤시</span>-->
-                            <!--<p id="_idu_chassis"></p>-->
-                        <!--</div>-->
-                        <!--<div>-->
-                            <!--<span>-실외기 샤시</span>-->
-                            <!--<p id="_odu_chassis"></p>-->
-                        <!--</div>-->
-                        <!--<div>-->
-                            <!--<span>-개발 프로세스(상)</span>-->
-                            <!--<p id="_plm_step1"></p>-->
-                        <!--</div>-->
-                        <!--<div>-->
-                            <!--<span>-개발 프로세스(하)</span>-->
-                            <!--<p id="_plm_step2"></p>-->
-                        <!--</div>-->
-                        <!--<div>-->
-                            <!--<span>-구분</span>-->
-                            <!--<p id="_test_step1"></p>-->
-                        <!--</div>-->
-                        <!--<div>-->
-                            <!--<span>-시험항목 </span>-->
-                            <!--<p id="_test_step2"></p>-->
-                        <!--</div>-->
-                        <!--<div>-->
-                            <!--<span>-실험자 </span>-->
-                            <!--<p id="_conn_tester"></p>-->
-                        <!--</div>-->
-                        <!--<div>-->
-                            <!--<span>-챔버 번호</span>-->
-                            <!--<p id="_conn_testroom_number"></p>-->
-                        <!--</div>-->
-                        <!--<div>-->
-                            <!--<span>-배관정보</span>-->
-                            <!--<p id="_conn_pipe_type"></p>-->
-                        <!--</div>-->
-                        <!--<div>-->
-                            <!--<span>-test 결과</span>-->
-                            <!--<p id="_conn_test_result"></p>-->
-                        <!--</div>-->
-                        <!--<div>-->
-                            <!--<span>-설명</span>-->
-                            <!--<p id="_conn_memo"></p>-->
-                        <!--</div>-->
-                        <!--<div>-->
-                            <!--<span>-ODU 연결수</span>-->
-                            <!--<p id="_lgmv_odu_count"></p>-->
-                        <!--</div>-->
-                        <!--<div>-->
-                            <!--<span>-IDU 연결수</span>-->
-                            <!--<p id="_lgmv_idu_count"></p>-->
-                        <!--</div>-->
-                        <!--<div>-->
-                            <!--<span>-HRU 연결수</span>-->
-                            <!--<p id="_lgmv_hru_count"></p>-->
-                        <!--</div>-->
-                        <!--<div>-->
-                            <!--<span>-CAL 연결수</span>-->
-                            <!--<p id="_calorimeter_count"></p>-->
-                        <!--</div>-->
-                        <!--<div>-->
-                            <!--<span>-DXC 연결수</span>-->
-                            <!--<p id="_lgmv_sidu_dxc_count"></p>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                    <!--<div style="color: #abdde5; margin-left: 2rem">◆ 시험 결과</div>-->
-                    <!--<div id="detail_test_result">-->
-                        <!--<div>-->
-                            <!--<span>-AWHP 연결수</span>-->
-                            <!--<p id="_lgmv_sidu_awhp_count"></p>-->
-                        <!--</div>-->
-                        <!--<div>-->
-                            <!--<span>-SHOWCASE 연결수</span>-->
-                            <!--<p id="_lgmv_sidu_showcase_count"></p>-->
-                        <!--</div>-->
-                        <!--<div>-->
-                            <!--<span>-FAU 연결수</span>-->
-                            <!--<p id="_lgmv_sidu_fau_count"></p>-->
-                        <!--</div>-->
-                        <!--<div>-->
-                            <!--<span>-WHU 연결수</span>-->
-                            <!--<p id="_lgmv_sidu_whu_count"></p>-->
-                        <!--</div>-->
-                        <!--<div>-->
-                            <!--<span>-CASCADE 연결수</span>-->
-                            <!--<p id="_lgmv_sidu_cascade_count"></p>-->
-                        <!--</div>-->
-                        <!--<div>-->
-                            <!--<span>-온도단위</span>-->
-                            <!--<p id="_lgmv_unit_temp"></p>-->
-                        <!--</div>-->
-                        <!--<div>-->
-                            <!--<span>-압력단위</span>-->
-                            <!--<p id="_lgmv_unit_press"></p>-->
-                        <!--</div>-->
-                        <!--<div>-->
-                            <!--<span>-유량단위</span>-->
-                            <!--<p id="_lgmv_unit_flux"></p>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <!--<div id="_cold" style="display:none" class="table-responsive">-->
-                    <!--<h2>냉방 성능 최대 효율</h2>-->
-                    <!--<table id="cold_table" class="table table-striped table-bordered table-hover">-->
-                        <!--<tbody id="cold_tbody">-->
-                        <!--<tr>-->
-                            <!--<td>ID</td>-->
-                            <!--<td>압축기#1</td>-->
-                            <!--<td>압축기#2</td>-->
-                            <!--<td>ODU Fan RPM1</td>-->
-                            <!--<td>ODU Fan RPM2</td>-->
-                            <!--<td>IDU Fan RPM1</td>-->
-                            <!--<td>Main EEV</td>-->
-                            <!--<td>Sub EEV</td>-->
-                            <!--&lt;!&ndash;<td>시험 종류</td>&ndash;&gt;-->
-                            <!--&lt;!&ndash; <td>시험 상세</td>&ndash;&gt;-->
-                            <!--<td>운전률</td>-->
-                            <!--<td>효율</td>-->
-                        <!--</tr>-->
-                        <!--</tbody>-->
-                    <!--</table>-->
-
-                <!--</div>-->
-                <!--<div id="_same_title" style="display:none; font-size: large; font-weight: bolder">■ 유사시험</div>-->
-                <!--<div id="_same" style="display:none" class="table-responsive">-->
-                    <!--<table id="same_table" class="table table-striped">-->
-                        <!--<tbody id="lg_same_test_tbody">-->
-                        <!--<tr id="lg_same_test_thead">-->
-                            <!--<td>ID</td>-->
-                            <!--<td>Model</td>-->
-                            <!--<td>모델명</td>-->
-                            <!--<td>용량</td>-->
-                            <!--<td>샤시</td>-->
-                            <!--<td>냉매 종류</td>-->
-                            <!--<td>구분</td>-->
-                            <!--<td>시험항목</td>-->
-                            <!--&lt;!&ndash;<td>시험 종류</td>&ndash;&gt;-->
-                            <!--&lt;!&ndash; <td>시험 상세</td>&ndash;&gt;-->
-                            <!--<td>시험 날짜</td>-->
-                            <!--<td>실험자</td>-->
-                            <!--<td>챔버 번호</td>-->
-                        <!--</tr>-->
-                        <!--</tbody>-->
-                    <!--</table>-->
-
-                <!--</div>-->
-            <!--</div>-->
-
-        <!--</div>-->
-    <!--</div>-->
 </div>
 
 
 <!-- Scripts -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery.scrolly.min.js"></script>
-<script src="assets/js/jquery.dropotron.min.js"></script>
-<script src="assets/js/jquery.scrollex.min.js"></script>
-<script src="assets/js/browser.min.js"></script>
-<script src="assets/js/breakpoints.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
-<script src="https://d3js.org/d3-array.v2.min.js"></script>
-<script src="https://d3js.org/d3-color.v1.min.js"></script>
-<script src="https://d3js.org/d3-format.v1.min.js"></script>
-<script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
-<script src="https://d3js.org/d3-time.v1.min.js"></script>
-<script src="https://d3js.org/d3-time-format.v2.min.js"></script>
-<script src="https://d3js.org/d3-scale.v3.min.js"></script>
-<script src="https://d3js.org/d3.v4.min.js"></script>
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css"/>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <script type="text/javascript">
@@ -704,93 +458,10 @@
         });
     });
 
-
-    function idSearch() {
-        var data = {}
-        data.header_uid = $('#id_search').val()
-        console.log("serach");
-        $('#detail').css('display', 'none');
-        $('#_same').css('display', 'none');
-        $('#_cold').css('display', 'none');
-        $.ajax({
-            type: 'post'
-            , url: 'http://164.125.70.12:3000/api/data_search_id'
-            , data: data
-            , beforeSend: function () {
-                $('#ajax_load_indicator').show().fadeIn('fast');
-            }
-            , success: function (data) {
-                $('#search_result').css('display', 'inline');
-
-                $('#lg_search_result_tbody tr:gt(0)').remove();
-                console.log("success ford!!");
-                console.log(data);
-                // 분기 처리
-                if (data.message == 'success') {
-
-                    $('#search_fail').css('display', 'none');
-                    var id = data.content.header_uid;
-                    var Model = data.content.lgmv_model_filter2;
-                    var Model_name = data.content.lgmv_model_name;
-                    var capavity = data.content.calorimeter_cap;
-                    var sasy = data.content.odu_chassis;
-                    var nang = data.content.lgmv_r;
-                    var test_date = data.content.lgmv_date;
-                    var test_performer = data.content.conn_tester;
-                    var test_step1 = data.content.test_step1;
-                    var test_step2 = data.content.test_step2;
-                    var testroom = data.content.conn_testroom_number;
-                    //var file_date = data.content.conn_file_date;
-                    //var file_time = data.content.conn_file_time;
-
-
-                    var rowItem = "<tr>";
-                    rowItem += "<td class='lg_text'>" + id + "</td>";
-                    rowItem += "<td class='lg_text'>" + Model + "</td>";
-                    rowItem += "<td class='lg_text'>" + Model_name + "</td>";
-                    rowItem += "<td class='lg_text'>" + capavity + "</td>";
-                    rowItem += "<td class='lg_text'>" + sasy + "</td>";
-                    rowItem += "<td class='lg_text'>" + nang + "</td>";
-                    rowItem += "<td class='lg_text'>" + test_step1 + "</td>";
-                    rowItem += "<td class='lg_text'>" + test_step2 + "</td>";
-                    rowItem += "<td class='lg_text'>" + test_date + "</td>";
-                    rowItem += "<td class='lg_text'>" + test_performer + "</td>";
-                    rowItem += "<td class='lg_text'>" + testroom + "</td>";
-
-                    rowItem += "<td ><input class='data_search_btn' onclick=\"setHeaderUid(\'" + id + "\');\">그래프 보기</input></td>";
-                    rowItem += "</tr>";
-
-                    $('#lg_search_result_tbody tr:eq(1)').remove();
-                    $('#lg_search_result_tbody').append(rowItem);
-
-                } else {
-                    console.log("여기?");
-                    $('#search_result').css('display', 'none');
-                    $('#search_fail').css('display', 'inline');
-                    $('#search_fail').html('<h1> 검색결과가 없습니다. </h1>');
-                }
-            }
-            , error: function (data, status, err) {
-                console.log("error forward : " + data);
-                alert('서버와의 통신이 실패했습니다.');
-            }
-            , complete: function () {
-                $('#ajax_load_indicator').fadeOut();
-            }
-        });
-
-    }
-
-
     function dataSearch() {
-        console.log("serach");
-        // $('#detail').css('display', 'none');
-        // $('#_same').css('display', 'none');
-        // $('#_cold').css('display', 'none');
-        console.log($('data_search').serialize());
         $.ajax({
             type: 'post'
-            , url: 'http://164.125.70.12:3000/api/data_search'
+            , url: 'http://localhost:3000/api/data_search'
             , data: $("#data_search").serialize()
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
@@ -798,14 +469,11 @@
             , success: function (data) {
                 $('#search_result').css('display', 'inline');
                 $('#search_result_table').css('display', 'table');
-                console.log("success ford!!");
 
                 $('#lg_search_result_tbody tr').remove();
-                // 분기 처리
                 if (data.message == 'success' && data.content.length > 0) {
                     var array = data.content;
                     array.forEach(element => {
-                        console.log(element.header_uid);
                         var id = element.header_uid;
                         var Model = element.lgmv_model_filter2;
                         var Model_name = element.lgmv_model_name;
@@ -817,8 +485,6 @@
                         var test_step1 = element.test_step1;
                         var test_step2 = element.test_step2;
                         var testroom = element.conn_testroom_number;
-                        //var file_date = data.content.conn_file_date;
-                        //var file_time = data.content.conn_file_time;
 
                         var serial = element.lgmv_serial_number;
                         var Model1 = element.lgmv_model_filter1;
@@ -910,14 +576,12 @@
     $(document).ready(function () {
         $.ajax({
             type: 'post'
-            , url: 'http://164.125.70.12:3000/api/session'
+            , url: 'http://localhost:3000/api/session'
 
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
             }
             , success: function (data) {
-                console.log("세션");
-                console.log(data);
             }
             , error: function (data, status, err) {
                 console.log("error forward : " + data);
@@ -939,7 +603,7 @@
 
         $.ajax({
             type: 'post'
-            , url: 'http://164.125.70.12:3000/api/data_search_id'
+            , url: 'http://localhost:3000/api/data_search_id'
             , data: params
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
@@ -947,8 +611,6 @@
             , success: function (data) {
                 $('#search_result').css('display', 'inline');
                 $('#search_result_table').css('display', 'table');
-                console.log("success ford!!");
-                console.log(data);
 
                 // $('#lg_search_result_tbody tr:gt(0)').remove();
                 // 분기 처리
@@ -1003,6 +665,7 @@
                     var operation_rate = element.conn_operation_rate;
                     var conn_pipe_type = element.conn_pipe_type;
                     var conn_memo = element.conn_memo;
+                    var calorimeter_unit_cap = element.calorimeter_unit_cap;
 
 
                     same = "lgmv_serial_number=" + serial
@@ -1057,6 +720,7 @@
                     $('#_lgmv_unit_temp').html(unit_temp);
                     $('#_lgmv_unit_press').html(unit_press);
                     $('#_lgmv_unit_flux').html(unit_flux);
+                    $('#_calorimeter_unit_cap').html(calorimeter_unit_cap);
                     $('#_conn_file_date').html(file_date);
                     $('#_conn_file_time').html(file_time);
 
@@ -1084,13 +748,11 @@
 
 
     function sameSearch(same, uid) {
-        console.log("세임서치");
-        console.log(same);
         $('#_same').css('display', 'flex');
         $('#_same_title').css('display', 'inline');
         $.ajax({
             type: 'post'
-            , url: 'http://164.125.70.12:3000/api/data_search_detail'
+            , url: 'http://localhost:3000/api/data_search_detail'
             , data: same
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
@@ -1098,13 +760,10 @@
             , success: function (data) {
                 $('#search_result').css('display', 'inline');
 
-                console.log("success ford!!");
                 $('#lg_same_test_tbody tr:gt(0)').remove();
                 $('#cold_tbody tr:gt(0)').remove();
                 // 분기 처리
-                console.log(data.content.header);
                 if (data.content.header.length > 0) {
-                    console.log("세임으로 들어가냐");
                     var array = data.content.header;
                     array.forEach(element => {
                         console.log(element.header_uid);
@@ -1152,7 +811,6 @@
                         var unit_temp = element.lgmv_unit_temp;
                         var unit_press = element.lgmv_unit_press;
                         var unit_flux = element.lgmv_unit_flux;
-                        console.log('?? : ' + test_step1);
 
 
                         if (uid == id && test_step1 == '냉방성능') {
@@ -1220,20 +878,6 @@
 
     function setHeaderUid(index) {
         window.location.href = "graph.html?index=" + index;
-    }
-</script>
-<script type="text/javascript">
-    function openNav() {
-        document.getElementById("my_sidebar").style.width = "500px";
-        document.getElementById("my-sidebar-open-btn").style.visibility = "hidden";
-        document.getElementById("my-sidebar-close-btn").style.visibility = "visible";
-
-    }
-
-    function closeNav() {
-        document.getElementById("my_sidebar").style.width = "0";
-        document.getElementById("my-sidebar-open-btn").style.visibility = "visible";
-        document.getElementById("my-sidebar-close-btn").style.visibility = "hidden";
     }
 </script>
 </body>
@@ -1309,254 +953,7 @@
     }
 
 </style>
-<!--<style>-->
-
-<!--/*sidebar css end*/-->
-
-<!--/*id 입력 창 Css*/-->
-<!--#lg_search_box {-->
-<!--/*flex: 1;*/-->
-<!--flex-direction: column;-->
-<!--height: 430px;-->
-<!--margin: 1em 1em 1em 1em;-->
-<!--background-color: #80bdff;-->
-<!--}-->
-
-<!--#lg_search_box #lg_search_id {-->
-<!--font-size: 0.8em;-->
-<!--display: flex;-->
-<!--align-items: center;-->
-<!--justify-items: start;-->
-<!--height: 4.5em;-->
-<!--background-color: #66ffff;-->
-<!--margin: 0.5em;-->
-<!--}-->
-
-<!--#lg_search_box #lg_search_id span {-->
-<!--font-size: 0.9em;-->
-<!--margin-left: 0.5em;-->
-<!--font-weight: bold;-->
-<!--}-->
-
-<!--#lg_search_box #lg_search_id input {-->
-<!--margin-left: 0.8em;-->
-<!--padding: 0.2em;-->
-<!--width: 7rem;-->
-<!--}-->
-
-<!--/*데이터 검색 (필수) CSS*/-->
-<!--#lg_search_box #lg_search_necessary {-->
-<!--font-size: 0.8em;-->
-<!--display: flex;-->
-<!--align-items: center;-->
-<!--justify-items: start;-->
-<!--height: 4.5em;-->
-<!--background-color: #abdde5;-->
-<!--margin: 0.5em;-->
-<!--}-->
-
-<!--#lg_search_box #lg_search_necessary span {-->
-<!--margin-left: 0.5em;-->
-<!--font-weight: bold;-->
-<!--}-->
-
-<!--/*데이터 상세검색 CSS*/-->
-<!--#lg_search_box #lg_search_detail {-->
-<!--/*display: grid;*/-->
-<!--align-items: center;-->
-<!--justify-items: start;-->
-<!--height: 15rem;-->
-<!--background-color: #abdde5;-->
-<!--margin: 0.5em;-->
-<!--}-->
-
-<!--#lg_search_box #lg_search_detail span {-->
-<!--font-size: 0.9em;-->
-<!--margin-left: 0.5em;-->
-<!--font-weight: bold;-->
-<!--}-->
-
-<!--#lg_search_box #lg_search_detail input {-->
-<!--width: 7rem;-->
-<!--}-->
-
-<!--#lg_search_box #lg_search_detail #lg_search_detail_items {-->
-<!--display: grid;-->
-<!--font-size: 0.8em;-->
-<!--align-items: center;-->
-<!--justify-items: end;-->
-<!--grid-template-columns: repeat(4, 18rem);-->
-<!--grid-gap: 0.2rem;-->
-<!--}-->
-
-<!--#lg_search_box #lg_search_detail #lg_search_detail_items span {-->
-<!--font-size: 0.8em;-->
-<!--margin-right: 0.8rem;-->
-<!--padding: 1em;-->
-<!--font-weight: bold;-->
-<!--}-->
-
-<!--#lg_search_box #lg_search_detail #lg_search_detail_items div:nth-child(1) input {-->
-<!--width: 5rem;-->
-<!--}-->
-<!--</style>-->
-
-<!--search_result Css-->
-<!--<style>-->
-<!--#lg_search_result {-->
-<!--display: flex;-->
-<!--flex-direction: column;-->
-<!--/*background-color: #1c7430;*/-->
-<!--margin: 1em;-->
-<!--}-->
-
-<!--#lg_search_result #lg_search_result {-->
-<!--border-collapse: collapse;-->
-<!--text-align: left;-->
-<!--line-height: 1.5;-->
-<!--border: 1px solid black;-->
-<!--margin: 20px 10px;-->
-<!--}-->
-
-<!--#lg_search_result_thead {-->
-<!--border-right: 1px solid #1d2124;-->
-<!--border-bottom: 2px solid #1d2124;-->
-<!--padding: 10px;-->
-<!--vertical-align: top;-->
-<!--background-color: #abdde5;-->
-<!--font-weight: bold;-->
-<!--}-->
-
-<!--#lg_search_result_tbody {-->
-<!--background-color: #c8cbcf;-->
-<!--font-family: sans-serif;-->
-
-<!--}-->
-<!--</style>-->
-<!--<style>-->
-<!--#search_result_detail {-->
-<!--display: flex;-->
-<!--flex-direction: column;-->
-<!--background-color: #1c7430;-->
-<!--}-->
-
-<!--#search_result_detail p {-->
-<!--margin: 0;-->
-<!--}-->
-
-<!--#search_result_detail #detail_product_info {-->
-<!--display: grid;-->
-<!--align-items: center;-->
-<!--justify-items: start;-->
-<!--height: 15rem;-->
-<!--background-color: #abdde5;-->
-<!--margin-left: 1em;-->
-<!--margin-right: 1em;-->
-<!--margin-bottom: 1em;-->
-<!--grid-template-columns: repeat(5, 1fr);-->
-<!--grid-auto-columns: minmax(30px, auto);-->
-<!--grid-gap: 1rem;-->
-<!--border: 2px solid black;-->
-<!--}-->
-
-<!--#search_result_detail #detail_product_info span {-->
-<!--font-size: 0.8em;-->
-<!--margin-right: 0.8rem;-->
-<!--padding: 1em;-->
-<!--font-weight: bold;-->
-<!--}-->
-
-<!--#search_result_detail #detail_product_info span {-->
-<!--font-size: 0.8em;-->
-<!--margin-right: 0.2rem;-->
-<!--}-->
-
-<!--#search_result_detail #detail_product_info p {-->
-<!--font-size: 0.7em;-->
-<!--margin-left: 1em;-->
-<!--}-->
-
-<!--#search_result_detail #detail_test_info {-->
-<!--display: grid;-->
-<!--align-items: center;-->
-<!--justify-items: start;-->
-<!--height: 15rem;-->
-<!--background-color: #abdde5;-->
-<!--margin-left: 1em;-->
-<!--margin-right: 1em;-->
-<!--margin-bottom: 1em;-->
-<!--grid-template-columns: repeat(5, 1fr);-->
-<!--grid-auto-columns: minmax(30px, auto);-->
-<!--grid-gap: 1rem;-->
-<!--border: 2px solid black;-->
-<!--}-->
-
-<!--#search_result_detail #detail_test_info span {-->
-<!--font-size: 0.8em;-->
-<!--margin-right: 0.8rem;-->
-<!--padding: 1em;-->
-<!--font-weight: bold;-->
-<!--}-->
-
-<!--#search_result_detail #detail_test_info p {-->
-<!--font-size: 0.7em;-->
-<!--margin-left: 1em;-->
-<!--}-->
-
-<!--#search_result_detail #detail_test_result {-->
-<!--display: grid;-->
-<!--align-items: center;-->
-<!--justify-items: start;-->
-<!--height: 10rem;-->
-<!--background-color: #abdde5;-->
-<!--margin-left: 1em;-->
-<!--margin-right: 1em;-->
-<!--margin-bottom: 1em;-->
-<!--grid-template-columns: repeat(5, 1fr);-->
-<!--grid-auto-columns: minmax(30px, auto);-->
-<!--grid-gap: 1rem;-->
-<!--border: 2px solid black;-->
-<!--}-->
-
-<!--#search_result_detail #detail_test_result span {-->
-<!--font-size: 0.8em;-->
-<!--margin-right: 0.8rem;-->
-<!--padding: 1em;-->
-<!--font-weight: bold;-->
-<!--}-->
-
-<!--#search_result_detail #detail_test_result p {-->
-<!--font-size: 0.7em;-->
-<!--margin-left: 1em;-->
-<!--}-->
-<!--</style>-->
 <!--유사 시험 테이블Css-->
-<style>
-    #lg_same_test_thead {
-        border-right: 1px solid #1d2124;
-        border-bottom: 2px solid #1d2124;
-        padding: 10px;
-        vertical-align: top;
-        background-color: #abdde5;
-        font-weight: bold;
-    }
-
-    #lg_same_test_tbody {
-        background-color: #c8cbcf;
-        font-family: sans-serif;
-
-    }
-
-    #same_table {
-        width: 95%;
-        margin: 1em;
-    }
-
-    #_same {
-        flex-direction: column;
-        align-items: center;
-    }
-</style>
 <style>
     .lg_circle:before {
         content: "";
@@ -1716,7 +1113,7 @@
         background-color: rgb(105,109,114);
         border-width: 1px;
         padding: 6px 12px;
-        font-size: 13px;
+        font-size: 11px;
         color: rgb(223,223,225);
         line-height: 1.42857143;
         border-radius: 4px;
