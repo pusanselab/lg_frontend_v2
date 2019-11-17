@@ -9,7 +9,7 @@
     </header>
     <body>
         <div id="sub">
-            <h1> ■ 그래프 추가</h1>
+            <h1 class="lg_circle" style="margin-top: 10px">그래프</h1>
 
 
         </div>
@@ -28,7 +28,7 @@
             </tbody>
             </table>
 
-            <button class='button' onclick='showGraph()'>그래프 보기</button>
+            <button class='button' id="lg_see_graph_btn" style="margin-left: 1em" onclick='showGraph()'>그래프 보기</button>
 
         </div>
         <div id="graph">
@@ -453,4 +453,34 @@
                 
 
     </script>
+
+<style>
+    .lg_circle:before {
+        content: "";
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+        margin-right: 8px;
+        margin-left:10px;
+        /* margin-top:10px;
+        margin-bottom: 10px; */
+        border: 2px solid #d80546;
+        border-radius: 50%;
+    }
+    #lg_see_graph_btn {
+        display: inline-block;
+        margin-bottom: 0;
+        font-weight: 400;
+        vertical-align: top;
+        touch-action: manipulation;
+        background-color: rgb(105,109,114);
+        border-width: 1px;
+        padding: 6px 12px;
+        font-size: 13px;
+        color: rgb(223,223,225);
+        line-height: 1.42857143;
+        border-radius: 4px;
+        user-select: none;
+    }
+</style>
 </html>
