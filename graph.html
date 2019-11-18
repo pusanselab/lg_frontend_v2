@@ -9,7 +9,7 @@
     </header>
     <body>
         <div id="sub">
-            <h1> ■ 그래프 추가</h1>
+            <h1 class="lg_circle" style="margin-top: 10px">그래프</h1>
 
 
         </div>
@@ -28,7 +28,7 @@
             </tbody>
             </table>
 
-            <button class='button' onclick='showGraph()'>그래프 보기</button>
+            <button class='button' id="lg_see_graph_btn" style="margin-left: 1em" onclick='showGraph()'>그래프 보기</button>
 
         </div>
         <div id="graph">
@@ -73,7 +73,8 @@
     <script src="https://d3js.org/d3-time-format.v2.min.js"></script>
     <script src="https://d3js.org/d3-scale.v3.min.js"></script>
     <script data-require="d3@4.0.0" data-semver="4.0.0" src="https://d3js.org/d3.v4.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.10.3/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2014-11-29/FileSaver.min.js"></script> 
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">   
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
@@ -89,7 +90,9 @@
             var colName=[];
             var rowcount;
             var val;
-                
+            var complete;
+
+
 
             $(document).ready(function(){
                 val = location.href.substr(
@@ -104,6 +107,8 @@
 						$('#ajax_load_indicator').show().fadeIn('fast'); 
 					}
 					, success: function(data) {
+
+                        dataSearchID();
 
                         for(var i=0;i<data.length;i++){
                             var header_uid = data[i].header_uid;
@@ -175,10 +180,6 @@
                             console.log(dataxx[1]);
                             var real_value = $.extend(true,[],dataxx[1]);
 
-                           
-                            
-                            
-
                                 for(var i =0; i<datazz.length;i++){
                                             var index = 1;
                                             var timedate = datazz[i].Date+" "+datazz[i].time;
@@ -243,6 +244,8 @@
                     }
                 }
 
+                
+
         
               
 
@@ -301,9 +304,6 @@
                                
                                 mindata.push(minzz_);
                                 maxdata.push(maxzz_);
-                                console.log("점프점프");
-                                console.log(mindata[i]);
-                                console.log(maxdata[i]);
                             }
 
 
@@ -412,45 +412,174 @@
 
            
 
-                        $('#graph_button').html('<button onClick="downloadCSV(array,indexName);">CSV 다운로드</button>');
+                        // $('#graph_button').html('<button onClick="downloadCSV(array,indexName);">CSV 다운로드</button>');
+                         $('#graph_button').html('<button id="lg_see_graph_btn" style="margin-left: 1em"  onClick="doExcel1(array,indexName);">CSV 다운로드</button>');
 
 
 
                 }
 
-                function downloadCSV(array,indexName){
-                    
-                    var csv_string='';
-                    for(var i=0;i<indexName.length;i++){
-                        if(i<indexName.length-1){
-                                csv_string+=indexName[i]+",";
-                            }
-                            else{
-                                csv_string+=indexName[i]+"\r\n";
-                            }
-                    }
-                    for(var i =0; i<array.length;i++){
-                        for (var j=0;j<array[i].length;j++){
-                            if(j<array[i].length-1){
-                                csv_string+=array[i][j]+",";
-                            }
-                            else{
-                                csv_string+=array[i][j]+"\r\n";
-                            }
+                function dataSearchID() {
+                    val = location.href.substr(
+                    location.href.lastIndexOf('=') + 1);
+                    var params="header_uid="+val;
+                    var str = "",
+                        header = "",
+                        graphImg;
+                    $.ajax({
+                        type: 'post'
+                        , url: 'http://localhost:3000/api/data_search_id'
+                        , data: params
+                        , beforeSend: function () {
+                            $('#ajax_load_indicator').show().fadeIn('fast');
                         }
-                    }
-                
-                    var downloadLink = document.createElement("a");
-                    var blob = new Blob(["\ufeff"+csv_string], { type: "text/csv;charset=utf-8" });
-                    var url = URL.createObjectURL(blob);
-                    downloadLink.href = url;
-                    downloadLink.download = "data.csv";
-
-                    document.body.appendChild(downloadLink);
-                    downloadLink.click();
-                    document.body.removeChild(downloadLink);
+                        , success: function (data) {
+                            
+                            header = '<html>';
+                            str = '<table border="1">';
+                            $.each(data.content,function(key,value){
+                                str+='<tr>';
+                                str+='<td><div>'+unescape(encodeURIComponent(key))+"</div></td>";
+                                str+='<td><div>'+unescape(encodeURIComponent(value))+"</div></td>";
+                                str+='</tr>'
+                            });
+                            str+='</table>'
+                                +'</html>';
+                        complete=header+str;
+                            
+                        
+                        }
+                        , error: function (data, status, err) {
+                            alert('서버와의 통신이 실패했습니다.');
+                        }
+                        , complete: function () {
+                            $('#ajax_load_indicator').fadeOut();
+                        }
+                    });
+                    
                 }
+
+                // function downloadCSV(array,indexName){
+                    
+                //     var csv_string='';
+                //     for(var i=0;i<indexName.length;i++){
+                //         if(i<indexName.length-1){
+                //                 csv_string+=indexName[i]+",";
+                //             }
+                //             else{
+                //                 csv_string+=indexName[i]+"\r\n";
+                //             }
+                //     }
+                //     for(var i =0; i<array.length;i++){
+                //         for (var j=0;j<array[i].length;j++){
+                //             if(j<array[i].length-1){
+                //                 csv_string+=array[i][j]+",";
+                //             }
+                //             else{
+                //                 csv_string+=array[i][j]+"\r\n";
+                //             }
+                //         }
+                //     }
+                
+                //     var downloadLink = document.createElement("a");
+                //     var blob = new Blob(["\ufeff"+csv_string], { type: "text/csv;charset=utf-8" });
+                //     var url = URL.createObjectURL(blob);
+                //     downloadLink.href = url;
+                //     downloadLink.download = "data.csv";
+
+                //     document.body.appendChild(downloadLink);
+                //     downloadLink.click();
+                //     document.body.removeChild(downloadLink);
+                // }
+//////////////////////////////////////////////////////////////////////////////////////////////
+                function prepareTable(array,indexName) {
+                    var str = "",
+                        header = "",
+                        graphImg;
+                    
+                    
+                    header = '<html>';
+                    
+                    str = '<table border="1">'
+                        +'<thead>'
+                        +'<tr>';
+                    for(var i=0;i<indexName.length;i++){
+                        str+='<td><div>'+unescape(encodeURIComponent(indexName[i]))+"</div></td>";
+                    }
+                    str+='</tr>'
+                        +'</thead>'
+                        +'<tbody>';
+                    for(var i =0; i<array.length;i++){
+                        str+='<tr>';
+                        for (var j=0;j<array[i].length;j++){
+                                str+='<td><div>'+unescape(encodeURIComponent(array[i][j]))+"</div></td>";
+                        }
+                        str+='</tr>';
+                    }
+                    str+='</tbody>'
+                        +'</table>'
+                        +'</html>';
+                    //  console.log(str);
+                    return header + str;
+                }
+
+
+                function s2ab(s) {
+                var buf = new ArrayBuffer(s.length);
+                var view = new Uint8Array(buf);
+                for (var i=0; i!=s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
+                return buf;
+                }
+
+                function doExcel1 (array,indexName) {
+                    
+                   
+                    var blob,
+                    wb = {SheetNames:[], Sheets:{}};
+                    var ws1 = XLSX.read(complete, {type:"binary"}).Sheets.Sheet1;
+                    wb.SheetNames.push("header"); wb.Sheets["header"] = ws1;
+                    
+                    var ws2 = XLSX.read(prepareTable(array,indexName), {type:"binary"}).Sheets.Sheet1;
+                    wb.SheetNames.push("graph_data"); wb.Sheets["graph_data"] = ws2;
+                    console.log(ws1); console.log(ws2); console.log(wb);
+                        blob = new Blob([s2ab(XLSX.write(wb, {bookType:'xlsx', type:'binary'}))], {
+                            type: "application/octet-stream;charset=utf-8,%EF%BB%BF"
+                        });
+                    
+                    saveAs(blob, "test.xlsx");
+                }
+                
                 
 
     </script>
+
+<style>
+    .lg_circle:before {
+        content: "";
+        display: inline-block;
+        width: 25px;
+        height: 25px;
+        margin-right: 8px;
+        margin-left:10px;
+        /* margin-top:10px;
+        margin-bottom: 10px; */
+        border: 2px solid #d80546;
+        border-radius: 50%;
+    }
+    #lg_see_graph_btn {
+        display: inline-block;
+        margin-bottom: 0;
+        font-weight: 400;
+        vertical-align: top;
+        touch-action: manipulation;
+        background-color: rgb(105,109,114);
+        border-width: 1px;
+        padding: 6px 12px;
+        font-size: 13px;
+        color: rgb(223,223,225);
+        line-height: 1.42857143;
+        border-radius: 4px;
+        user-select: none;
+    }
+</style>
 </html>
