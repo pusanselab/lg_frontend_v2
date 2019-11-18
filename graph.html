@@ -13,8 +13,8 @@
 
 
         </div>
-        <div id="graph_table" class="table-responsive">
-                <table id="detail_table" class="table table-striped table-bordered table-hover table-condensed">
+        <div style="margin:10px; padding:10px;" id="graph_table" class="table-responsive">
+                <table id="detail_table" style="margin:10px; padding:10px;" class="table table-striped table-bordered table-hover table-condensed">
                 <tbody id="detail_body">
                     <thead>
                     <tr>
@@ -315,7 +315,7 @@
                                                // chartArea : {right:136},
                                                 isStacked   : 'percent',
                                                 focusTarget : 'category',
-                                                height          : 500,
+                                                height          : 800,
                                                 width              : '100%',
                                                 legend          : { position: "top", textStyle: {fontSize: 13}},
                                                 pointSize        : 5,
@@ -391,7 +391,10 @@
                                 date_formatter.format(data, 0);
 
                                 var dashboard = new google.visualization.Dashboard(document.getElementById('Line_Controls_Chart'));
-                                window.addEventListener('resize', function() { dashboard.draw(data); }, false); //화면 크기에 따라 그래프 크기 변경
+                                window.addEventListener('resize', function() { 
+                                    console.log("??!!"); 
+                                    dashboard.draw(data); 
+                                    }, false); //화면 크기에 따라 그래프 크기 변경
                                 dashboard.bind([control], [chart]);
                                 dashboard.draw(data);
 
@@ -413,7 +416,7 @@
            
 
                         // $('#graph_button').html('<button onClick="downloadCSV(array,indexName);">CSV 다운로드</button>');
-                         $('#graph_button').html('<button id="lg_see_graph_btn" style="margin-left: 1em"  onClick="doExcel1(array,indexName);">CSV 다운로드</button>');
+                         $('#graph_button').html('<button id="lg_see_graph_btn" style="margin-left: 1em"  onClick="doExcel1(array,indexName);">EXCEL 다운로드</button>');
 
 
 
