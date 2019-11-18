@@ -35,7 +35,7 @@
                         <div id="lg_search_necessary">
                             <div id="lg_search_necessary_items">
                                 <div class="lg_search_necessary_item">
-                                    <span class="lg_text">분류</span>
+                                    <span class="lg_text">제품군</span>
                                     <select onchange="lg_model_Change()" class="lg_select_model_filter"
                                             id="lgmv_model_filter1" name="lgmv_model_filter1">
                                         <option value="">- 선택 -</option>
@@ -55,7 +55,7 @@
                                     </select>
                                 </div>
                                 <div class="lg_search_necessary_item">
-                                    <span class="lg_text">Model 군</span>
+                                    <span class="lg_text">제품명</span>
                                     <select class="lg_select_model_filter" id="lgmv_model_filter2"
                                             name="lgmv_model_filter2">
                                         <option value="">- 선택 -</option>
@@ -67,7 +67,7 @@
                         <div id="lg_search_detail">
                             <div id="lg_search_detail_1_items">
                                 <div class="lg_search_detail_1_item">
-                                    <span class="lg_text">날짜입력</span>
+                                    <span class="lg_text">날짜</span>
                                     <input type="text" id="testDatepicker1" class="lg_search_date_box">
                                     <span style="align-self: center;">~</span>
                                     <input type="text" id="testDatepicker2" class="lg_search_date_box">
@@ -75,11 +75,11 @@
                             </div>
                             <div id="lg_search_detail_2_items">
                                 <div class="lg_search_detail_2_item">
-                                    <span class="lg_text">Model 명</span>
+                                    <span class="lg_text">모델명</span>
                                     <input class="detail_2_item_input" type="text" name="lgmv_model_name">
                                 </div>
                                 <div class="lg_search_detail_2_item">
-                                    <span class="lg_text">Serial 명</span>
+                                    <span class="lg_text">시리얼넘버</span>
                                     <input class="detail_2_item_input" type="text" name="lgmv_serial_number">
                                 </div>
                                 <div class="lg_search_detail_2_item">
@@ -87,21 +87,21 @@
                                     <input class="detail_2_item_input" type="text" name="lgmv_r">
                                 </div>
                                 <div class="lg_search_detail_2_item">
-                                    <span class="lg_text">main S/W</span>
+                                    <span class="lg_text">Main S/W 버전</span>
                                     <input class="detail_2_item_input" type="text" name="lgmv_main_ver">
                                 </div>
                             </div>
                             <div id="lg_search_detail_2_items">
                                 <div class="lg_search_detail_2_item">
-                                    <span class="lg_text">EEPROM S/W</span>
+                                    <span class="lg_text">EEP ver</span>
                                     <input class="detail_2_item_input" type="text" name="lgmv_eep_ver">
                                 </div>
                                 <div class="lg_search_detail_2_item">
-                                    <span class="lg_text">용량</span>
+                                    <span class="lg_text">능력</span>
                                     <input class="detail_2_item_input" type="text" name="calorimeter_cap">
                                 </div>
                                 <div class="lg_search_detail_2_item">
-                                    <span class="lg_text">전원</span>
+                                    <span class="lg_text">전력</span>
                                     <input class="detail_2_item_input" type="text" name="calorimeter_power">
                                 </div>
                                 <div class="lg_search_detail_2_item">
@@ -115,34 +115,34 @@
                                     <input class="detail_2_item_input" type="text" name="calorimeter_power_vol">
                                 </div>
                                 <div class="lg_search_detail_2_item">
-                                    <span class="lg_text">ID 습구온도</span>
+                                    <span class="lg_text">실내기 습구온도</span>
                                     <input class="detail_2_item_input" type="text" name="calorimeter_id_wb">
                                 </div>
                                 <div class="lg_search_detail_2_item">
-                                    <span class="lg_text">ID 건구온도</span>
+                                    <span class="lg_text">실내기 건구온도</span>
                                     <input class="detail_2_item_input" type="text" name="calorimeter_id_db">
                                 </div>
                                 <div class="lg_search_detail_2_item">
-                                    <span class="lg_text">OD 습구온도</span>
+                                    <span class="lg_text">실외기 습구온도</span>
                                     <input class="detail_2_item_input" type="text" name="calorimeter_od_wb">
                                 </div>
                             </div>
                             <div id="lg_search_detail_2_items">
                                 <div class="lg_search_detail_2_item">
-                                    <span class="lg_text">OD 건구온도</span>
+                                    <span class="lg_text">실외기 건구온도</span>
                                     <input class="detail_2_item_input" type="text" name="calorimeter_od_db">
                                 </div>
                                 <div class="lg_search_detail_2_item">
-                                    <span class="lg_text">파일생성날짜</span>
-                                    <input class="detail_2_item_input" type="text" name="conn_file_date">
-                                </div>
-                                <div class="lg_search_detail_2_item">
-                                    <span class="lg_text">IDU 샤시</span>
+                                    <span class="lg_text">실내기 샤시</span>
                                     <input class="detail_2_item_input" type="text" name="idu_chassis">
                                 </div>
                                 <div class="lg_search_detail_2_item">
-                                    <span class="lg_text">ODU 샤시</span>
+                                    <span class="lg_text">실외기 샤시</span>
                                     <input class="detail_2_item_input" type="text" name="odu_chassis">
+                                </div>
+                                <div class="lg_search_detail_2_item">
+                                    <span class="lg_text">설명</span>
+                                    <input class="detail_2_item_input" type="text" name="conn_memo">
                                 </div>
                             </div>
                             <div id="lg_search_detail_2_items">
@@ -155,11 +155,11 @@
                                     <input class="detail_2_item_input" type="text" name="plm_step2">
                                 </div>
                                 <div class="lg_search_detail_2_item">
-                                    <span class="lg_text">구분</span>
+                                    <span class="lg_text">시험항목(상)</span>
                                     <input class="detail_2_item_input" type="text" name="test_step1">
                                 </div>
                                 <div class="lg_search_detail_2_item">
-                                    <span class="lg_text">시험항목</span>
+                                    <span class="lg_text">시험항목(하)</span>
                                     <input class="detail_2_item_input" type="text" name="test_step2">
                                 </div>
                             </div>
@@ -182,10 +182,7 @@
                                 </div>
                             </div>
                             <div id="lg_search_detail_2_items">
-                                <div class="lg_search_detail_2_item">
-                                    <span class="lg_text">설명</span>
-                                    <input class="detail_2_item_input" type="text" name="conn_memo">
-                                </div>
+
                             </div>
                         </div>
             </form>
