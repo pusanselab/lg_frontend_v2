@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6f56ef9c-aacb-41e9-a0e7-ab5b76ec8da6" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data_search.html" beforeDir="false" afterPath="$PROJECT_DIR$/data_search.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,7 +31,7 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
+            <state relative-caret-position="2470">
               <caret line="130" column="32" selection-start-line="130" selection-start-column="32" selection-end-line="130" selection-end-column="32" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -82,13 +83,7 @@
         <entry file="file://$PROJECT_DIR$/data_search.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="148">
-              <caret line="128" column="34" lean-forward="true" selection-start-line="128" selection-start-column="34" selection-end-line="128" selection-end-column="34" />
-              <folding>
-                <element signature="n#style#0;n#span#0;n#div#1;n#div#3;n#div#2;n#h6#0;n#h6#0;n#form#0;n#div#0;n#div#1;n#div#1;n#body#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#2;n#div#3;n#div#2;n#h6#0;n#h6#0;n#form#0;n#div#0;n#div#1;n#div#1;n#body#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#3;n#div#3;n#div#2;n#h6#0;n#h6#0;n#form#0;n#div#0;n#div#1;n#div#1;n#body#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#0;n#div#4;n#div#2;n#h6#0;n#h6#0;n#form#0;n#div#0;n#div#1;n#div#1;n#body#0;n#!!top" expanded="true" />
-              </folding>
+              <caret line="1072" column="26" lean-forward="true" selection-start-line="1072" selection-start-column="26" selection-end-line="1072" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -230,15 +225,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>i ===</find>
-      <find>col-md</find>
-      <find>chart_div1</find>
-      <find>min-he</find>
-      <find>lg_chember_table</find>
-      <find>챔버 상</find>
-      <find>selectgraph1</find>
-      <find>lineChartArea</find>
-      <find>lg_circle</find>
       <find>그래프</find>
       <find>index</find>
       <find>window</find>
@@ -260,6 +246,15 @@
       <find>alert</find>
       <find>console.log</find>
       <find>lg_search_result_tbody</find>
+      <find>개발프로세스</find>
+      <find>lg_model_</find>
+      <find>change</find>
+      <find>하</find>
+      <find>lg_search_detail_2_items</find>
+      <find>plm_st</find>
+      <find>lgmv_r</find>
+      <find>test_step1_filter</find>
+      <find>실내기 습구온도</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -307,8 +302,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -320,6 +313,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -331,13 +326,13 @@
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\lg_frontend_v2" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\lg_frontend_v2" />
       <recent name="C:\xampp\htdocs" />
       <recent name="C:\xampp\htdocs\js" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\lg_frontend_v2" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -423,12 +418,13 @@
       <workItem from="1573815609877" duration="4875000" />
       <workItem from="1573901994787" duration="9755000" />
       <workItem from="1573916944074" duration="8408000" />
-      <workItem from="1574046019515" duration="733000" />
+      <workItem from="1574046019515" duration="2499000" />
+      <workItem from="1574176772064" duration="966000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="114846000" />
+    <option name="totallyTimeSpent" value="117578000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="848" extended-state="6" />
@@ -442,19 +438,19 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="6" sideWeight="0.49892932" weight="0.3295302" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3202329" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3202329" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18926175" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19194631" />
       <window_info anchor="right" id="Database" order="8" sideWeight="0.5010707" side_tool="true" weight="0.24966443" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" sideWeight="0.49892932" weight="0.24966443" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="7" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -1121,7 +1117,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
+        <state relative-caret-position="2470">
           <caret line="130" column="32" selection-start-line="130" selection-start-column="32" selection-end-line="130" selection-end-column="32" />
           <folding>
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1135,13 +1131,7 @@
     <entry file="file://$PROJECT_DIR$/data_search.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="148">
-          <caret line="128" column="34" lean-forward="true" selection-start-line="128" selection-start-column="34" selection-end-line="128" selection-end-column="34" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#div#1;n#div#3;n#div#2;n#h6#0;n#h6#0;n#form#0;n#div#0;n#div#1;n#div#1;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#2;n#div#3;n#div#2;n#h6#0;n#h6#0;n#form#0;n#div#0;n#div#1;n#div#1;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#3;n#div#3;n#div#2;n#h6#0;n#h6#0;n#form#0;n#div#0;n#div#1;n#div#1;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#4;n#div#2;n#h6#0;n#h6#0;n#form#0;n#div#0;n#div#1;n#div#1;n#body#0;n#!!top" expanded="true" />
-          </folding>
+          <caret line="1072" column="26" lean-forward="true" selection-start-line="1072" selection-start-column="26" selection-end-line="1072" selection-end-column="26" />
         </state>
       </provider>
     </entry>

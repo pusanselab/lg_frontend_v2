@@ -73,7 +73,7 @@
                                     <input type="text" id="testDatepicker2" class="lg_search_date_box">
                                 </div>
                             </div>
-                            <div id="lg_search_detail_2_items">
+                            <div class="lg_search_detail_2_items">
                                 <div class="lg_search_detail_2_item">
                                     <span class="lg_text">모델명</span>
                                     <input class="detail_2_item_input" type="text" name="lgmv_model_name">
@@ -84,14 +84,20 @@
                                 </div>
                                 <div class="lg_search_detail_2_item">
                                     <span class="lg_text">냉매</span>
-                                    <input class="detail_2_item_input" type="text" name="lgmv_r">
+                                    <select id="lgmv_r" class="detail_2_item_input" type="text" name="lgmv_r">
+                                        <option value="">- 선택 -</option>
+                                        <option value="R410A">R410A</option>
+                                        <option value="R22">R22</option>
+                                        <option value="R407C">R407C</option>
+                                        <option value="R134A">R134A</option>
+                                    </select>
                                 </div>
                                 <div class="lg_search_detail_2_item">
                                     <span class="lg_text">Main S/W 버전</span>
                                     <input class="detail_2_item_input" type="text" name="lgmv_main_ver">
                                 </div>
                             </div>
-                            <div id="lg_search_detail_2_items">
+                            <div class="lg_search_detail_2_items">
                                 <div class="lg_search_detail_2_item">
                                     <span class="lg_text">EEP ver</span>
                                     <input class="detail_2_item_input" type="text" name="lgmv_eep_ver">
@@ -109,27 +115,27 @@
                                     <input class="detail_2_item_input" type="text" name="calorimeter_eer">
                                 </div>
                             </div>
-                            <div id="lg_search_detail_2_items">
+                            <div class="lg_search_detail_2_items">
                                 <div class="lg_search_detail_2_item">
                                     <span class="lg_text">전압</span>
                                     <input class="detail_2_item_input" type="text" name="calorimeter_power_vol">
                                 </div>
                                 <div class="lg_search_detail_2_item">
-                                    <span class="lg_text" style="font-size: 10px">실내기 습구온도</span>
+                                    <span class="lg_text" >실내기 습구온도</span>
                                     <input class="detail_2_item_input" type="text" name="calorimeter_id_wb">
                                 </div>
                                 <div class="lg_search_detail_2_item">
-                                    <span class="lg_text" style="font-size: 10px">실내기 건구온도</span>
+                                    <span class="lg_text" >실내기 건구온도</span>
                                     <input class="detail_2_item_input" type="text" name="calorimeter_id_db">
                                 </div>
                                 <div class="lg_search_detail_2_item">
-                                    <span class="lg_text" style="font-size: 10px">실외기 습구온도</span>
+                                    <span class="lg_text" >실외기 습구온도</span>
                                     <input class="detail_2_item_input" type="text" name="calorimeter_od_wb">
                                 </div>
                             </div>
-                            <div id="lg_search_detail_2_items">
+                            <div class="lg_search_detail_2_items">
                                 <div class="lg_search_detail_2_item">
-                                    <span class="lg_text" style="font-size: 10px">실외기 건구온도</span>
+                                    <span class="lg_text">실외기 건구온도</span>
                                     <input class="detail_2_item_input" type="text" name="calorimeter_od_db">
                                 </div>
                                 <div class="lg_search_detail_2_item">
@@ -145,25 +151,46 @@
                                     <input class="detail_2_item_input" type="text" name="conn_memo">
                                 </div>
                             </div>
-                            <div id="lg_search_detail_2_items">
+                            <div class="lg_search_detail_2_items">
                                 <div class="lg_search_detail_2_item">
-                                    <span class="lg_text">개발프로세스(상)</span>
-                                    <input class="detail_2_item_input" type="text" name="plm_step1">
+                                    <span class="lg_text" id="plm_step1">개발프로세스(상)</span>
+                                    <select class="detail_2_item_input" id="plm_step1_filter"
+                                            onchange="lg_plm_step1_Change()" type="text" name="plm_step1">
+                                        <option value="">- 선택 -</option>
+                                        <option value="NMI">NMI</option>
+                                        <option value="NPI">NPI</option>
+                                        <option value="검토">검토</option>
+                                    </select>
                                 </div>
                                 <div class="lg_search_detail_2_item">
                                     <span class="lg_text">개발프로세스(하)</span>
-                                    <input class="detail_2_item_input" type="text" name="plm_step2">
+                                    <select class="detail_2_item_input" id="plm_step2_filter" type="text"
+                                            name="plm_step2">
+                                        <option value="">- 선택 -</option>
+                                    </select>
                                 </div>
                                 <div class="lg_search_detail_2_item">
                                     <span class="lg_text">시험항목(상)</span>
-                                    <input class="detail_2_item_input" type="text" name="test_step1">
+                                    <select class="detail_2_item_input" id="test_step1_filter" type="text"
+                                            name="test_step1" onchange="lg_test_step1_Change()">
+                                        <option value="">- 선택 -</option>
+                                        <option value="성능">성능</option>
+                                        <option value="냉방성능">냉방 성능</option>
+                                        <option value="난방성능 ">난방 성능</option>
+                                        <option value="안전성">안전성</option>
+                                        <option value="신뢰성">신뢰성</option>
+                                        <option value="기타">기타</option>
+                                    </select>
                                 </div>
                                 <div class="lg_search_detail_2_item">
                                     <span class="lg_text">시험항목(하)</span>
-                                    <input class="detail_2_item_input" type="text" name="test_step2">
+                                    <select class="detail_2_item_input" id="test_step2_filter" type="text"
+                                            name="test_step2">
+                                        <option value="">- 선택 -</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div id="lg_search_detail_2_items">
+                            <div class="lg_search_detail_2_items">
                                 <div class="lg_search_detail_2_item">
                                     <span class="lg_text">실험자</span>
                                     <input class="detail_2_item_input" type="text" name="conn_tester">
@@ -181,7 +208,7 @@
                                     <input class="detail_2_item_input" type="text" name="conn_test_result">
                                 </div>
                             </div>
-                            <div id="lg_search_detail_2_items">
+                            <div class="lg_search_detail_2_items">
 
                             </div>
                         </div>
@@ -406,6 +433,71 @@
 
     }
 
+    function lg_plm_step1_Change() {
+
+        var NMI = ["- 선택 -", "DV", "PV", "기타"];
+        var NPI = ["- 선택 -", "DV", "PV"];
+        var rjaxh = ["- 선택 -", "성능", "효율", "기타"];
+
+        var selectItem = $("#plm_step1_filter").val();
+        var changeItem;
+
+        if (selectItem === "NMI") {
+            changeItem = NMI;
+        }
+        else if (selectItem === "NPI") {
+            changeItem = NPI;
+        }
+        else if (selectItem === "검토") {
+            changeItem = rjaxh;
+        }
+
+        $('#plm_step2_filter').empty();
+
+        for (var count = 0; count < changeItem.length; count++) {
+            var option = $("<option value='" + changeItem[count] + "'>" + changeItem[count] + "</option>");
+            $('#plm_step2_filter').append(option);
+        }
+
+    }
+
+    function lg_test_step1_Change() {
+        var ability = ["- 선택 -", "RPM", "Micom 확인", "사용자 관점 기능 Test", "소음"];
+        var cool_ability = ["- 선택 -", "냉방능력", "냉방과부하", "냉방전압변동", "결빙(저온)성능", "이슬맺힘", "고온고습", "상온고습", "냉방4Point 시험", "냉방 Eva시험", "냉방 Cond 차폐", "냉방주체 운전"];
+        var hot_ability = ["- 선택 -", "난방능력", "난방과부하", "난방전압변동", "자동제상", "난방4Point 시험", "저온방치 시험", "H/Start 운정율", "난방주체 운전", "난방 Eva 차폐", "난방 Cond 차폐", "자동제상"];
+        var safety = ["- 선택 -", "P/L안전성", "Fan Lock", "주수절연", "절연성능", "전선안전율", "권선온도", "오전압", "오결선", "EMI/EMS,(EMC)"];
+        var responsibility = ["- 선택 -", "포장강도", "PIPE진동", "응력측정", "장배관 / 고저차 시험", "냉매변화량 시험", "온도상승", "PCB발열확인시험", "실내외기 제품진동", "삼파장 리모컨 수신거리 확인", "시동특성", "Controller 신뢰성 시험", "실외기 응축수 처리시험"];
+        var etc = ["- 선택 -", "냉열Cycle", "인쇄물 심의회 결과 확인", "구조외관", "기술시작 설치성 검증결과", "기술시작 양산성 검토", "제원관리", "Activity 우려사항 검증", "제품 무게측정(제품/포장)", "기타"];
+
+        var selectItem = $("#test_step1_filter").val();
+        var changeItem;
+
+        if (selectItem === "성능") {
+            changeItem = ability;
+        }
+        else if (selectItem === "냉방성능") {
+            changeItem = cool_ability;
+        }
+        else if (selectItem === "난방성능 ") {
+            changeItem = hot_ability;
+        }
+        else if (selectItem === "안전성") {
+            changeItem = safety;
+        }
+        else if (selectItem === "신뢰성") {
+            changeItem = responsibility;
+        }
+        else if (selectItem === "기타") {
+            changeItem = etc;
+        }
+
+        $('#test_step2_filter').empty();
+
+        for (var count = 0; count < changeItem.length; count++) {
+            var option = $("<option value='" + changeItem[count] + "'>" + changeItem[count] + "</option>");
+            $('#test_step2_filter').append(option);
+        }
+    }
 
     $('section h4').click(function (event) {
         event.preventDefault();
@@ -864,7 +956,7 @@
     }
 
     function setHeaderUid(index) {
-        window.open("http://localhost/graph.html?index=" + index,'_blank');
+        window.open("http://localhost/graph.html?index=" + index, '_blank');
     }
 </script>
 </body>
@@ -979,7 +1071,7 @@
 
     .lg_text {
         font-weight: bold;
-        font-size: 12px;
+        font-size: 13px;
         min-width: 80px;
         justify-self: center;
         align-self: center;
@@ -1049,14 +1141,14 @@
         margin: 5px;
     }
 
-    #lg_search_detail_2_items {
+    .lg_search_detail_2_items {
         display: flex;
         flex-direction: row;
         flex: 1;
         width: 100%;
     }
 
-    #lg_search_detail_2_items .lg_search_detail_2_item {
+    .lg_search_detail_2_items .lg_search_detail_2_item {
         width: 100%;
         display: flex;
     }
