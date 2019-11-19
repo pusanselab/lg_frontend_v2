@@ -447,63 +447,92 @@
                 $('#ajax_load_indicator').show().fadeIn('fast');
             }
             , success: function (data) {
+                // var all_lenght = 0;
+                // for (var i = 0; i < data.month.length; i++) {
+                //     for (var j = 0; j < data.month[i].length; j++) {
+                //         all_lenght = all_lenght + 1;
+                //     }
+                // }
+
+                // array = new Array(180);
+                // for (var i = 0; i < 180; i++) {
+                //     array[i] = new Array();
+                // }
+                // indexName = ['Date', 'ida_wb', 'ida_db', 'idb_db', 'idb_db', 'od_wb', 'od_db'];
+
+
+                // function getDateStr(myDate) {
+                //     var year = myDate.getFullYear();
+                //     var month = ("0" + (myDate.getMonth() + 1)).slice(-2);
+                //     var day = ("0" + myDate.getDate()).slice(-2);
+                //     return (year + '.' + month + '.' + day);
+                // }
+
+
+                // for (var i = 0; i < 180; i++) {
+                //     var today = new Date();
+                //     var getday = today.getDate();
+                //     var date_modify;
+                //     var flag = 0;
+                //     today.setDate(getday - (180 - i));
+                //     array[i].push(new Date(today));
+                //     for (var j = 0; j < data.month.length; j++) {
+                //         for (var k = 0; k < data.month[j].length; k++) {
+                //             date_modify = (data.month[j][k].conn_file_date);
+                //             if (date_modify == getDateStr(today)) {
+                //                 array[i].push(data.month[j][k].conn_ida_wb_gap);
+                //                 array[i].push(data.month[j][k].conn_ida_db_gap);
+                //                 array[i].push(data.month[j][k].conn_idb_wb_gap);
+                //                 array[i].push(data.month[j][k].conn_idb_db_gap);
+                //                 array[i].push(data.month[j][k].conn_od_wb_gap);
+                //                 array[i].push(data.month[j][k].conn_od_db_gap);
+                //                 flag = 1;
+                //             }
+                //         }
+                //     }
+                //     if (flag == 0) {
+                //         array[i].push(0);
+                //         array[i].push(0);
+                //         array[i].push(0);
+                //         array[i].push(0);
+                //         array[i].push(0);
+                //         array[i].push(0);
+
+                //     }
+                // }
+
                 var all_lenght = 0;
                 for (var i = 0; i < data.month.length; i++) {
                     for (var j = 0; j < data.month[i].length; j++) {
                         all_lenght = all_lenght + 1;
                     }
                 }
-
-                array = new Array(180);
-                for (var i = 0; i < 180; i++) {
+                console.log(all_lenght);
+                array = new Array(all_lenght);
+                for (var i = 0; i < all_lenght; i++) {
                     array[i] = new Array();
                 }
                 indexName = ['Date', 'ida_wb', 'ida_db', 'idb_db', 'idb_db', 'od_wb', 'od_db'];
-
-
-                function getDateStr(myDate) {
-                    var year = myDate.getFullYear();
-                    var month = ("0" + (myDate.getMonth() + 1)).slice(-2);
-                    var day = ("0" + myDate.getDate()).slice(-2);
-                    return (year + '.' + month + '.' + day);
-                }
-
-
-                for (var i = 0; i < 180; i++) {
-                    var today = new Date();
-                    var getday = today.getDate();
-                    var date_modify;
-                    var flag = 0;
-                    today.setDate(getday - (180 - i));
-                    array[i].push(new Date(today));
-                    for (var j = 0; j < data.month.length; j++) {
-                        for (var k = 0; k < data.month[j].length; k++) {
-                            date_modify = (data.month[j][k].conn_file_date);
-                            if (date_modify == getDateStr(today)) {
-                                array[i].push(data.month[j][k].conn_ida_wb_gap);
-                                array[i].push(data.month[j][k].conn_ida_db_gap);
-                                array[i].push(data.month[j][k].conn_idb_wb_gap);
-                                array[i].push(data.month[j][k].conn_idb_db_gap);
-                                array[i].push(data.month[j][k].conn_od_wb_gap);
-                                array[i].push(data.month[j][k].conn_od_db_gap);
-                                flag = 1;
-                            }
-                        }
-                    }
-                    if (flag == 0) {
-                        array[i].push(0);
-                        array[i].push(0);
-                        array[i].push(0);
-                        array[i].push(0);
-                        array[i].push(0);
-                        array[i].push(0);
-
+                var countzz = 0;
+                var indexzz = 0
+                for (var i = 0; i < data.month.length; i++) {
+                    for (var j = 0; j < data.month[i].length; j++) {
+                        var date_modify = (data.month[i][j].conn_file_date);
+                        console.log(date_modify);
+                        array[indexzz].push(new Date(date_modify));
+                        array[indexzz].push(data.month[i][j].conn_ida_wb_gap);
+                        array[indexzz].push(data.month[i][j].conn_ida_db_gap);
+                        array[indexzz].push(data.month[i][j].conn_idb_wb_gap);
+                        array[indexzz].push(data.month[i][j].conn_idb_db_gap);
+                        array[indexzz].push(data.month[i][j].conn_od_wb_gap);
+                        array[indexzz].push(data.month[i][j].conn_od_db_gap);
+                        indexzz = indexzz + 1;
                     }
                 }
 
                 ///////////
 
-                drawingZZ(array, indexName, array.length);
+                drawingZZ(array, indexName, all_lenght);
             }
             , error: function (data, status, err) {
                 console.log("error forward : " + data);
