@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html>
-    <header>
-        <title>LG Air Data Virtualization</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-       
-        <link rel="stylesheet" href="css/bootstrap.css">
-    </header>
-    <body>
-        <div id="sub">
-            <h1 class="lg_circle" style="margin-top: 10px">그래프</h1>
+<header>
+    <title>LG Air Data Virtualization</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 
-
-        </div>
-        <div style="margin:10px; padding:10px;" id="graph_table" class="table-responsive">
-                <table id="detail_table" style="margin:10px; padding:10px;" class="table table-striped table-bordered table-hover table-condensed">
+    <link rel="stylesheet" href="css/bootstrap.css">
+</header>
+<body>
+<div style="width: 100%; position: fixed; background:#ffffff;z-index:100; border-bottom :3px solid #d80546">
+    <div style="margin-left: 0px;font-size: 24px;">
+        <img id="img_logo" src="./r&d_data.png"></img>
+        R&D Data
+    </div>
+</div>
+<div class="full-page">
+    <div id="lg_contents">
+        <h6 class="lg_circle" style="font-size: 16px">그래프</h6>
+        <div id="graph_table" style="font-size: 13px; font-weight:0; padding: 10px" class="table-responsive">
+            <table id="detail_table" style="margin:10px; width: 100%"
+                   class="table table-striped table-bordered table-hover table-condensed">
                 <tbody id="detail_body">
-                    <thead>
-                    <tr>
+                <thead>
+                <tr>
                     <td>name</td>
                     <!-- <td>unit</td> -->
                     <td>section</td>
@@ -25,721 +30,799 @@
                     <td width="100px">그래프 선택</td>
                 </thead>
                 </tr>
-            </tbody>
+                </tbody>
             </table>
 
             <button class='button' id="lg_see_graph_btn" style="margin-left: 1em" onclick='showGraph()'>그래프 보기</button>
 
         </div>
-        <div id="graph">
+        <div id="graph" style="width: 100%">
             <div id="Line_Controls_Chart">
                 <!-- 라인 차트 생성할 영역 -->
-                    <div id="lineChartArea" style="padding:0px 20px 0px 0px;"></div>
+                <div id="lineChartArea" style="padding:0px 20px 0px 0px;"></div>
                 <!-- 컨트롤바를 생성할 영역 -->
-                    <div id="controlsArea" style="padding:0px 20px 0px 0px;"></div>
-              </div>
+                <div id="controlsArea" style="padding:0px 20px 0px 0px;"></div>
+            </div>
             <div id="selectgraph1">
                 <form id="selectgraph">
 
                 </form>
             </div>
             <div id="graph_button">
-                
+
             </div>
         </div>
-        <span></span>
-    </body>
+    </div>
+
+</div>
+</body>
 
 
+<!--Script-->
 
-    <!--Script-->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/jquery.dropotron.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script src="https://d3js.org/d3-array.v2.min.js"></script>
+<script src="https://d3js.org/d3-color.v1.min.js"></script>
+<script src="https://d3js.org/d3-format.v1.min.js"></script>
+<script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+<script src="https://d3js.org/d3-time.v1.min.js"></script>
+<script src="https://d3js.org/d3-time-format.v2.min.js"></script>
+<script src="https://d3js.org/d3-scale.v3.min.js"></script>
+<script data-require="d3@4.0.0" data-semver="4.0.0" src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.10.3/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2014-11-29/FileSaver.min.js"></script>
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
+<script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    var array;
+    var index = 0;
+    var indexName = ['Date'];
+    var colName = [];
+    var unitName = ['',];
+    var rowcount;
+    var val;
+    var complete;
 
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/jquery.dropotron.min.js"></script>
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
-    <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="https://d3js.org/d3-array.v2.min.js"></script>
-    <script src="https://d3js.org/d3-color.v1.min.js"></script>
-    <script src="https://d3js.org/d3-format.v1.min.js"></script>
-    <script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
-    <script src="https://d3js.org/d3-time.v1.min.js"></script>
-    <script src="https://d3js.org/d3-time-format.v2.min.js"></script>
-    <script src="https://d3js.org/d3-scale.v3.min.js"></script>
-    <script data-require="d3@4.0.0" data-semver="4.0.0" src="https://d3js.org/d3.v4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.10.3/xlsx.full.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2014-11-29/FileSaver.min.js"></script> 
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">   
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
-    <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-    
-    <script>
+    var header_temp;
+    var header_press;
+    var header_cap;
+    var header_eer;
 
+    var temp_flag = 0;
+    var press_flag = 0;
+    var cap_flag = 0;
+    var eer_flag = 0;
 
-            var array;
-            var index=0;
-            var indexName=['Date'];
-            var colName=[];
-            var unitName=['',];
-            var rowcount;
-            var val;
-            var complete;
+    var _flag = 0;
 
-            var header_temp;
-            var header_press;
-            var header_cap;
-            var header_eer;
+    $(document).ready(function () {
+        val = location.href.substr(
+            location.href.lastIndexOf('=') + 1);
+        console.log("enter login");
+        var params = "header_uid=" + val;
+        $.ajax({
+            type: 'post'
+            , url: 'http://localhost:3000/api/graph/items'
+            , data: params
+            , beforeSend: function () {
+                $('#ajax_load_indicator').show().fadeIn('fast');
+            }
+            , success: function (data) {
 
-            var temp_flag=0;
-            var press_flag=0;
-            var cap_flag=0;
-            var eer_flag=0;
+                dataSearchID();
 
-            var _flag=0;
+                for (var i = 0; i < data.length; i++) {
+                    var header_uid = data[i].header_uid;
+                    var name = data[i].name;
+                    var unit = data[i].unit;
+                    var section = data[i].section;
+                    var section_count = data[i].section_count;
+                    var check = "<p id=\'checking_" + data[i].item + "\' style='display:none'>" + i + "</p>" + "<input type='checkbox' name=\'check'\ id=\"" + data[i].item + "\" onclick=\"select_box(\'" + data[i].item + "\',\'" + name + "\',\'" + unit + "\')\" value=''/>";
 
+                    var row = "<tr>";
+                    //  row+="<td>"+header_uid+"</td>";
+                    row += "<td>" + name + "</td>";
+                    // row+="<td>"+unit+"</td>";
+                    row += "<td>" + section + "</td>";
+                    row += "<td>" + section_count + "</td>";
+                    row += "<td>" + check + "</td>";
+                    row += "</tr>"
 
+                    $('#detail_body').append(row);
+                }
+                $('#detail_table').dataTable();
 
+            }
+            , error: function (data, status, err) {
+                console.log("error forward : " + data);
+                alert('서버와의 통신이 실패했습니다.');
+            }
+            , complete: function () {
+                $('#ajax_load_indicator').fadeOut();
+            }
+        });
+    });
 
-            $(document).ready(function(){
-                val = location.href.substr(
-                location.href.lastIndexOf('=') + 1);
-				console.log("enter login");
-                var params="header_uid="+val;
-				$.ajax({
-					type: 'post'
-					, url: 'http://localhost:3000/api/graph/items'
-					, data: params
-					, beforeSend: function() {
-						$('#ajax_load_indicator').show().fadeIn('fast'); 
-					}
-					, success: function(data) {
+    function change_Value(value, unit) {
+        if (unit == 'UNIT_TEMP') {
+            if (temp_flag) {
+                if (localStorage['lgmv_temp'] == 'C') { // F => C 로 변환
+                    return (value - 32) * 5.0 / 9.0;
+                }
+                else if (localStorage['lgmv_temp'] == 'F') { // C => F 로 변환
+                    return value * 9.0 / 5.0 + 32;
+                }
+            }
+            else {
+                return value;
+            }
 
-                        dataSearchID();
-                        
-                        for(var i=0;i<data.length;i++){
-                            var header_uid = data[i].header_uid;
-                            var name = data[i].name;
-                            var unit = data[i].unit;
-                            var section = data[i].section;
-                            var section_count = data[i].section_count;
-                            var check = "<p id=\'checking_"+data[i].item+"\' style='display:none'>"+i+"</p>"+"<input type='checkbox' name=\'check'\ id=\""+data[i].item+"\" onclick=\"select_box(\'"+data[i].item+"\',\'"+name+"\',\'"+unit+"\')\" value=''/>";
+        }
+        else if (unit == 'UNIT_DIFF_TEMP') {
+            if (temp_flag) {
+                if (localStorage['lgmv_temp'] == 'C') { // F => C 로 변환
+                    return value * 5.0 / 9.0;
+                }
+                else if (localStorage['lgmv_temp'] == 'F') { // C => F 로 변환
+                    return value * 9.0 / 5.0;
+                }
+            }
+            else {
+                return value;
+            }
 
-                            var row = "<tr>";
-                                  //  row+="<td>"+header_uid+"</td>";
-                                    row+="<td>"+name+"</td>";
-                                    // row+="<td>"+unit+"</td>";
-                                    row+="<td>"+section+"</td>";
-                                    row+="<td>"+section_count+"</td>";
-                                    row+="<td>"+check+"</td>";
-                                    row+="</tr>"
-
-                                $('#detail_body').append(row);
-                        }
-                        $('#detail_table').dataTable();
-							
-						}
-						, error: function(data, status, err) {
-							console.log("error forward : "+data);
-							alert('서버와의 통신이 실패했습니다.');
-						}
-						, complete: function() { 
-							$('#ajax_load_indicator').fadeOut();
-						}
-					});
-				});
-
-                function change_Value(value,unit){
-                    if(unit=='UNIT_TEMP'){
-                        if(temp_flag){
-                            if(localStorage['lgmv_temp']=='C'){ // F => C 로 변환
-                                return (value-32)*5.0/9.0;
-                            }
-                            else if(localStorage['lgmv_temp']=='F'){ // C => F 로 변환
-                                return value*9.0/5.0+32;
-                            } 
-                        }
-                        else{
-                            return value;
-                        }
-                        
+        }
+        else if (unit == 'UNIT_PRESS') {
+            if (press_flag) {
+                if (header_press == 'kPa') {
+                    if (localStorage['lgmv_press'] == 'Psi') { // kPa => Psi 로 변환
+                        return value / 6.89473;
                     }
-                    else if(unit=='UNIT_DIFF_TEMP'){
-                        if(temp_flag){
-                            if(localStorage['lgmv_temp']=='C'){ // F => C 로 변환
-                                return value*5.0/9.0;
-                            }
-                            else if(localStorage['lgmv_temp']=='F'){ // C => F 로 변환
-                                return value * 9.0/5.0;
-                            } 
-                        }
-                        else{
-                            return value;
-                        }
-                        
+                    else if (localStorage['lgmv_press'] == 'kgcm') { // kPa => kgcm 로 변환
+                        return value / 98.0665;
                     }
-                    else if(unit=='UNIT_PRESS'){
-                        if(press_flag){
-                            if(header_press=='kPa'){
-                                if(localStorage['lgmv_press']=='Psi'){ // kPa => Psi 로 변환
-                                    return value / 6.89473;
-                                }
-                                else if(localStorage['lgmv_press']=='kgcm'){ // kPa => kgcm 로 변환
-                                    return value / 98.0665;
-                                }
-                            }
-                        else if(header_press=='Psi'){
-                            if(localStorage['lgmv_press']=='kPa'){ // Psi => kPa 로 변환
-                                return value*6.89473;
-                                }
-                            else if(localStorage['lgmv_press']=='kgcm'){ // Psi => kgcm 로 변환 
-                                return value/14.223;
-                                }
-                            }
-                        else if(header_press=='kgcm'){
-                            if(localStorage['lgmv_press']=='kPa'){ // kgcm => kPa 로 변환
-                                return value*14.223;
-                                }
-                            else if(localStorage['lgmv_press']=='Psi'){ // kgcm => Psi 로 변환
-                                return value*98.0665;
-                                }
-                            }
-                        }
-                        else{
-                            return value;
-                        }
+                }
+                else if (header_press == 'Psi') {
+                    if (localStorage['lgmv_press'] == 'kPa') { // Psi => kPa 로 변환
+                        return value * 6.89473;
                     }
-                    else if(unit=='UNIT_CALORY'){
-                        if(cap_flag){
-                            if(header_cap=='Watt'){
-                                if(localStorage['lgmv_cap']=='kal/h'){ // Watt => kal/h 로 변환
-                                    return value*0.859;
-                                }
-                                else if(localStorage['lgmv_cap']=='Btu/h'){ // Watt => Btu/h 로 변환
-                                    return value*3.412;
-                                }
-                            }
-                        else if(header_cap=='kal/h'){
-                            if(localStorage['lgmv_cap']=='Btu/h'){ // kal/h => Btu/h 로 변환
-                                return value*3.968;
-                                }
-                            else if(localStorage['lgmv_cap']=='Watt'){ // kal/h => Watt 로 변환 
-                                return value*1.163;
-                                }
-                            }
-                        else if(header_press=='Btu/h'){
-                            if(localStorage['lgmv_cap']=='kal/h'){ // Btu/h => kal/h 로 변환
-                                return value*0.251;
-                                }
-                            else if(localStorage['lgmv_cap']=='Watt'){ // kgcm => Psi 로 변환
-                                return value*0.293;
-                                }
-                            }
-                        }
-                        else{
-                            return value;
-                        }
+                    else if (localStorage['lgmv_press'] == 'kgcm') { // Psi => kgcm 로 변환
+                        return value / 14.223;
                     }
-                    else if(unit=='UNIT_EER'){
-                        return value;
+                }
+                else if (header_press == 'kgcm') {
+                    if (localStorage['lgmv_press'] == 'kPa') { // kgcm => kPa 로 변환
+                        return value * 14.223;
+                    }
+                    else if (localStorage['lgmv_press'] == 'Psi') { // kgcm => Psi 로 변환
+                        return value * 98.0665;
+                    }
+                }
+            }
+            else {
+                return value;
+            }
+        }
+        else if (unit == 'UNIT_CALORY') {
+            if (cap_flag) {
+                if (header_cap == 'Watt') {
+                    if (localStorage['lgmv_cap'] == 'kal/h') { // Watt => kal/h 로 변환
+                        return value * 0.859;
+                    }
+                    else if (localStorage['lgmv_cap'] == 'Btu/h') { // Watt => Btu/h 로 변환
+                        return value * 3.412;
+                    }
+                }
+                else if (header_cap == 'kal/h') {
+                    if (localStorage['lgmv_cap'] == 'Btu/h') { // kal/h => Btu/h 로 변환
+                        return value * 3.968;
+                    }
+                    else if (localStorage['lgmv_cap'] == 'Watt') { // kal/h => Watt 로 변환
+                        return value * 1.163;
+                    }
+                }
+                else if (header_press == 'Btu/h') {
+                    if (localStorage['lgmv_cap'] == 'kal/h') { // Btu/h => kal/h 로 변환
+                        return value * 0.251;
+                    }
+                    else if (localStorage['lgmv_cap'] == 'Watt') { // kgcm => Psi 로 변환
+                        return value * 0.293;
+                    }
+                }
+            }
+            else {
+                return value;
+            }
+        }
+        else if (unit == 'UNIT_EER') {
+            return value;
+        }
+    }
+
+
+    function showGraph() {
+        var rowData = new Array();
+        var jsonparams = JSON.stringify({'header_uid': val, 'item_list': colName});
+
+
+        console.log("enter login");
+        $.ajax({
+            type: 'post'
+            , url: 'http://localhost:3000/api/graph/raws'
+            , data: jsonparams
+            , dataType: 'json'
+            , contentType: 'application/json'
+            , beforeSend: function () {
+                $('#ajax_load_indicator').show().fadeIn('fast');
+            }
+            , success: function (data) {
+                rowcount = data.time.length;
+
+                array = new Array(rowcount + 1);
+                for (var i = 0; i < rowcount + 1; i++) {
+                    array[i] = new Array();
+                }
+
+                if ($("input:checkbox:checked").length > 0) {
+                    console.log("이안");
+
+                    var datazz = data.time;
+                    var dataxx = data.raws;
+                    var min_max_check;
+                    min_max_check = new Array();
+                    for (var i = 0; i < indexName.length; i++) {
+                        min_max_check[i] = new Array();
+                    }
+                    var real_value = $.extend(true, [], dataxx[1]);
+
+                    for (var i = 0; i < datazz.length; i++) {
+                        var index = 1;
+                        var timedate = datazz[i].Date + " " + datazz[i].time;
+                        array[i][0] = ((new Date(timedate)));
+                        $.each(dataxx[i], function (key, value) {
+
+                            array[i][index] = change_Value(value * 1, unitName[index]);
+                            min_max_check[index - 1][i] = change_Value(value * 1, unitName[index]);
+
+                            index = index + 1;
+                        });
                     }
                 }
 
-           
-       
-                function showGraph(){
-                   var rowData = new Array();
-                    var jsonparams = JSON.stringify({'header_uid':val,'item_list':colName});
-            
+                // for(var i=0;i<indexName.length;i++){
+                //     console.log(min_max_check[i]);
+                // }
+                drawingZZ(array, indexName, datazz.length, min_max_check);
 
-                console.log("enter login");
-                $.ajax({
-                    type: 'post'
-                    , url: 'http://localhost:3000/api/graph/raws'
-                    , data: jsonparams
-                    , dataType:'json'
-                    , contentType:'application/json'
-                    , beforeSend: function() {
-                        $('#ajax_load_indicator').show().fadeIn('fast'); 
+            }
+            , error: function (data, status, err) {
+                console.log("error forward : " + data);
+                alert('서버와의 통신이 실패했습니다.');
+            }
+            , complete: function () {
+                $('#ajax_load_indicator').fadeOut();
+            }
+        });
+
+
+    }
+
+
+    function select_box(col, name, unit) {
+
+        if ($("input:checkbox:checked").length > 8) {
+            $('input[id=' + col + ']').prop('checked', false);
+            $("#checking_" + col).html('not_checked');
+
+            alert("최대 8개까지 가능합니다.");
+        }
+        else {
+            $("#checking_" + col).html('checked');
+            if (!($('input[id=' + col + ']').is(':checked'))) {
+                var remove;
+
+                if (unit == 'UNIT_TEMP' || unit == 'UNIT_DIFF_TEMP') {
+                    remove = indexName.indexOf(name + "(" + localStorage['lgmv_temp'] + ")");
+
+                }
+                else if (unit == 'UNIT_PRESS') {
+                    remove = indexName.indexOf(name + "(" + localStorage['lgmv_press'] + ")");
+                }
+                else if (unit == 'UNIT_CALORY') {
+                    remove = indexName.indexOf(name + "(" + localStorage['lgmv_cap'] + ")");
+                }
+                else if (unit == 'UNIT_EER') {
+                    remove = indexName.indexOf(name + "(" + localStorage['lgmv_eer'] + ")");
+                }
+
+                var remove2 = colName.indexOf(col);
+                $("#checking_" + col).html('not_checked');
+
+
+                indexName.splice(remove, 1);
+                colName.splice(remove2, 1);
+                unitName.splice(remove, 1);
+                index -= 1;
+
+            }
+            else {
+
+                index += 1;
+
+                if (unit == 'UNIT_TEMP' || unit == 'UNIT_DIFF_TEMP') {
+                    indexName.push(name + "(" + localStorage['lgmv_temp'] + ")");
+                    if (header_temp != localStorage['lgmv_temp']) {
+                        temp_flag = 1;
                     }
-                    , success: function(data) {
-                        rowcount = data.time.length;
+                }
+                else if (unit == 'UNIT_PRESS') {
+                    indexName.push(name + "(" + localStorage['lgmv_press'] + ")");
+                    if (header_press != localStorage['lgmv_temp']) {
+                        press_flag = 1;
+                    }
+                }
+                else if (unit == 'UNIT_CALORY') {
+                    indexName.push(name + "(" + localStorage['lgmv_cap'] + ")");
+                    if (cap_temp != localStorage['lgmv_temp']) {
+                        cap_flag = 1;
+                    }
+                }
+                else if (unit == 'UNIT_EER') {
+                    indexName.push(name + "(" + localStorage['lgmv_eer'] + ")");
+                    if (eer_temp != localStorage['lgmv_temp']) {
+                        eer_flag = 1;
+                    }
+                }
 
-                        array=new Array(rowcount+1);
-                        for(var i =0 ;i<rowcount+1;i++){
-                            array[i]=new Array();
-                        }
+                // indexName.push(name+"("+unit+")");
+                unitName.push(unit);
+                colName.push(col);
 
-                        if($("input:checkbox:checked").length >0){
-                            console.log("이안");
-        
-                            var datazz = data.time;
-                            var dataxx = data.raws;
-                            var min_max_check;
-                            min_max_check=new Array();
-                            for(var i =0 ;i<indexName.length;i++){
-                                min_max_check[i]=new Array();
-                            }
-                            var real_value = $.extend(true,[],dataxx[1]);
+            }
+        }
+    }
 
-                                for(var i =0; i<datazz.length;i++){
-                                            var index = 1;
-                                            var timedate = datazz[i].Date+" "+datazz[i].time;
-                                            array[i][0]=((new Date(timedate)));
-                                            $.each(dataxx[i],function(key,value){
-                                                    
-                                                    array[i][index]=change_Value(value*1,unitName[index]);
-                                                    min_max_check[index-1][i]=change_Value(value*1,unitName[index]);
-            
-                                                    index=index+1;
-                                                });
-                                            }
+
+    function drawingZZ(array, indexName, arraylength, min_max_check) {
+        var chartDrowFun = {
+
+            chartDrow: function () {
+                var chartData = '';
+
+                //날짜형식 변경하고 싶으시면 이 부분 수정하세요.
+                var chartDateformat = 'HH:mm:ss';
+                //라인차트의 라인 수
+                var chartLineCount = 10;
+                //컨트롤러 바 차트의 라인 수
+                var controlLineCount = 10;
+
+
+                function drawDashboard() {
+
+                    var data = new google.visualization.DataTable();
+                    var distinct = [];
+                    //그래프에 표시할 컬럼 추가
+
+                    data.addColumn('datetime', indexName[0]);
+                    for (var i = 1; i < indexName.length; i++) {
+                        data.addColumn('number', indexName[i]);
+                        var split = indexName[i].split('_');
+                        distinct.push(split[split.length - 1]);
+
+                    }
+
+                    // data.addColumn('date' , '날짜');
+                    // data.addColumn('number'   , '전체');
+
+                    //그래프에 표시할 데이터
+                    var dataRow = [];
+                    var mindata = [];
+                    var maxdata = [];
+                    console.log(min_max_check[0]);
+
+
+                    for (var i = 0; i < arraylength; i++) { //데이터 삽입
+                        // var total   = datazz[i].value;
+                        // var datezz = datazz[i].TXT_TIME;
+                        // console.log(datezz);
+                        // dataRow = [new Date(datezz),total];
+
+                        data.addRow(array[i]);
+
+                    }
+                    for (var i = 0; i < indexName.length - 1; i++) {
+                        var minzz_ = Math.min.apply(null, min_max_check[i]);
+                        var maxzz_ = Math.max.apply(null, min_max_check[i]);
+
+
+                        mindata.push(minzz_);
+                        maxdata.push(maxzz_);
+                    }
+
+
+                    var chart = new google.visualization.ChartWrapper({
+                        chartType: 'LineChart',
+                        containerId: 'lineChartArea', //라인 차트 생성할 영역
+                        options: {
+                            // chartArea : {right:136},
+                            isStacked: 'percent',
+                            focusTarget: 'category',
+                            height: 800,
+                            width: '100%',
+                            legend: {position: "top", textStyle: {fontSize: 13}},
+                            pointSize: 5,
+                            tooltip: {textStyle: {fontSize: 12}, showColorCode: true, trigger: 'both'},
+                            hAxis: {
+                                format: chartDateformat, gridlines: {
+                                    count: chartLineCount, units: {
+                                        hours: {format: ['HH시']},
+                                        minutes: {format: ['mm분']},
+                                        seconds: {format: ['ss초']},
                                     }
-                                    
-                                    // for(var i=0;i<indexName.length;i++){
-                                    //     console.log(min_max_check[i]);
-                                    // }
-                                    drawingZZ(array,indexName,datazz.length,min_max_check);
-                            
-                    }
-                    , error: function(data, status, err) {
-                        console.log("error forward : "+data);
-                        alert('서버와의 통신이 실패했습니다.');
-                    }
-                    , complete: function() { 
-                        $('#ajax_load_indicator').fadeOut();
-                    }
-                 });
+                                }, textStyle: {fontSize: 12}
+                            },
+
+                            series: {
+                                0: {targetAxisIndex: 0},
+                                1: {targetAxisIndex: 1},
+                                2: {targetAxisIndex: 2},
+                                3: {targetAxisIndex: 3},
+                                4: {targetAxisIndex: 4},
+                                5: {targetAxisIndex: 5},
+                                6: {targetAxisIndex: 6},
+                                7: {targetAxisIndex: 7}
+                            },
+                            vAxes: {
+
+                                0: {
+                                    textPosition: 'none',
+                                    minValue: mindata[0],
+                                    maxValue: maxdata[0],
+                                    viewport: {min: mindata[0]},
+                                    gridlines: {count: -1},
+                                    textStyle: {fontSize: 12}
+                                },
+                                1: {
+                                    textPosition: 'none',
+                                    minValue: mindata[1],
+                                    maxValue: maxdata[1],
+                                    viewWindow: {min: mindata[1]},
+                                    gridlines: {count: -1},
+                                    textStyle: {fontSize: 12}
+                                },
+                                2: {
+                                    textPosition: 'none',
+                                    minValue: mindata[2],
+                                    maxValue: maxdata[2],
+                                    viewWindow: {min: mindata[2]},
+                                    gridlines: {count: -1},
+                                    textStyle: {fontSize: 12}
+                                },
+                                3: {
+                                    textPosition: 'none',
+                                    minValue: mindata[3],
+                                    maxValue: maxdata[3],
+                                    viewWindow: {min: mindata[3]},
+                                    gridlines: {count: -1},
+                                    textStyle: {fontSize: 12}
+                                },
+                                4: {
+                                    textPosition: 'none',
+                                    minValue: mindata[4],
+                                    maxValue: maxdata[4],
+                                    viewWindow: {min: mindata[4]},
+                                    gridlines: {count: -1},
+                                    textStyle: {fontSize: 12}
+                                },
+                                5: {
+                                    textPosition: 'none',
+                                    minValue: mindata[5],
+                                    maxValue: maxdata[5],
+                                    viewWindow: {min: mindata[5]},
+                                    gridlines: {count: -1},
+                                    textStyle: {fontSize: 12}
+                                },
+                                6: {
+                                    textPosition: 'none',
+                                    minValue: mindata[6],
+                                    maxValue: maxdata[6],
+                                    viewWindow: {min: mindata[6]},
+                                    gridlines: {count: -1},
+                                    textStyle: {fontSize: 12}
+                                },
+                                7: {
+                                    textPosition: 'none',
+                                    minValue: mindata[7],
+                                    maxValue: maxdata[7],
+                                    viewWindow: {min: mindata[7]},
+                                    gridlines: {count: -1},
+                                    textStyle: {fontSize: 12}
+                                },
 
 
-                }
-
-
-                function select_box(col,name,unit){
-                          
-                    if($("input:checkbox:checked").length >8){
-                        $('input[id='+col+']').prop('checked', false);
-                        $("#checking_"+col).html('not_checked');
-                        
-                        alert("최대 8개까지 가능합니다.");
-                    }
-                    else{
-                        $("#checking_"+col).html('checked');
-                        if(!($('input[id='+col+']').is(':checked'))){
-                            var remove;
-
-                            if(unit=='UNIT_TEMP' || unit=='UNIT_DIFF_TEMP'){
-                                remove=indexName.indexOf(name+"("+localStorage['lgmv_temp']+")");
-                                
-                            }
-                            else if(unit=='UNIT_PRESS'){
-                                remove=indexName.indexOf(name+"("+localStorage['lgmv_press']+")");
-                            }
-                            else if(unit=='UNIT_CALORY'){
-                                remove=indexName.indexOf(name+"("+localStorage['lgmv_cap']+")");
-                            }
-                            else if(unit=='UNIT_EER'){
-                                remove=indexName.indexOf(name+"("+localStorage['lgmv_eer']+")");
-                            }
-                            
-                            var remove2=colName.indexOf(col);
-                            $("#checking_"+col).html('not_checked');
-                            
-                    
-                            indexName.splice(remove,1);
-                            colName.splice(remove2,1);
-                            unitName.splice(remove,1);
-                            index-=1;
-                            
-                        }
-                        else{
-
-                        index+=1;     
-
-                        if(unit=='UNIT_TEMP' || unit=='UNIT_DIFF_TEMP'){
-                            indexName.push(name+"("+localStorage['lgmv_temp']+")");
-                            if(header_temp!=localStorage['lgmv_temp']){
-                                    temp_flag=1;
-                            }
-                        }
-                        else if(unit=='UNIT_PRESS'){
-                            indexName.push(name+"("+localStorage['lgmv_press']+")");
-                            if(header_press!=localStorage['lgmv_temp']){
-                                    press_flag=1;
-                            }
-                        }
-                        else if(unit=='UNIT_CALORY'){
-                            indexName.push(name+"("+localStorage['lgmv_cap']+")");
-                            if(cap_temp!=localStorage['lgmv_temp']){
-                                    cap_flag=1;
-                            }
-                        }
-                        else if(unit=='UNIT_EER'){
-                            indexName.push(name+"("+localStorage['lgmv_eer']+")");
-                            if(eer_temp!=localStorage['lgmv_temp']){
-                                    eer_flag=1;
-                            }
-                        }
-                                                    
-                        // indexName.push(name+"("+unit+")");
-                        unitName.push(unit);
-                        colName.push(col);
-
-                        }
-                    }
-                }
-
-                
-
-        
-              
-
-                function drawingZZ(array,indexName,arraylength,min_max_check){
-                    var chartDrowFun = {
-
-                        chartDrow : function(){
-                            var chartData = '';
-
-                            //날짜형식 변경하고 싶으시면 이 부분 수정하세요.
-                            var chartDateformat     = 'HH:mm:ss';
-                            //라인차트의 라인 수
-                            var chartLineCount    = 10;
-                            //컨트롤러 바 차트의 라인 수
-                            var controlLineCount    = 10;
-
-
-                            function drawDashboard() {
-
-                            var data = new google.visualization.DataTable();
-                            var distinct=[];
-                            //그래프에 표시할 컬럼 추가
-
-                            data.addColumn('datetime',indexName[0]);
-                            for(var i=1;i<indexName.length;i++){
-                                data.addColumn('number',indexName[i]);
-                                var split = indexName[i].split('_');
-                                distinct.push(split[split.length-1]);
-                           
-                            }
-                           
-                            // data.addColumn('date' , '날짜');
-                            // data.addColumn('number'   , '전체');
-
-                            //그래프에 표시할 데이터
-                            var dataRow = [];
-                            var mindata=[];
-                            var maxdata=[];
-                            console.log(min_max_check[0]);
-                            
-                            
-
-                            for(var i = 0; i < arraylength; i++){ //데이터 삽입
-                                // var total   = datazz[i].value;
-                                // var datezz = datazz[i].TXT_TIME;
-                                // console.log(datezz);
-                                // dataRow = [new Date(datezz),total];
-                                
-                                data.addRow(array[i]);
-                                
-                            }
-                            for(var i=0;i<indexName.length-1;i++){
-                                var minzz_ = Math.min.apply(null,min_max_check[i]);
-                                var maxzz_ = Math.max.apply(null,min_max_check[i]);
-
-                               
-                                mindata.push(minzz_);
-                                maxdata.push(maxzz_);
-                            }
-
-
-
-                                var chart = new google.visualization.ChartWrapper({
-                                chartType   : 'LineChart',
-                                containerId : 'lineChartArea', //라인 차트 생성할 영역
-                                options     : {
-                                               // chartArea : {right:136},
-                                                isStacked   : 'percent',
-                                                focusTarget : 'category',
-                                                height          : 800,
-                                                width              : '100%',
-                                                legend          : { position: "top", textStyle: {fontSize: 13}},
-                                                pointSize        : 5,
-                                                tooltip          : {textStyle : {fontSize:12}, showColorCode : true,trigger: 'both'},
-                                                hAxis              : {format: chartDateformat, gridlines:{count:chartLineCount,units: {
-                                                                                    hours : {format: ['HH시']},
-                                                                                    minutes: {format: ['mm분']},
-                                                                                    seconds  : {format: ['ss초']},
-                                                                                        }
-                                                                                    },textStyle: {fontSize:12}},
-                                    
-                                    series:{
-                                        0:{targetAxisIndex:0}, 
-                                        1:{targetAxisIndex:1},
-                                        2:{targetAxisIndex:2},
-                                        3:{targetAxisIndex:3}, 
-                                        4:{targetAxisIndex:4},
-                                        5:{targetAxisIndex:5},
-                                        6:{targetAxisIndex:6}, 
-                                        7:{targetAxisIndex:7}
-                                            },
-                                    vAxes              : {
-
-                                                          0:{textPosition:'none',minValue: mindata[0],maxValue:maxdata[0],viewport:{min:mindata[0]},gridlines:{count:-1},textStyle:{fontSize:12}},
-                                                          1:{textPosition:'none',minValue: mindata[1],maxValue:maxdata[1],viewWindow:{min:mindata[1]},gridlines:{count:-1},textStyle:{fontSize:12}},
-                                                          2:{textPosition:'none',minValue: mindata[2],maxValue:maxdata[2],viewWindow:{min:mindata[2]},gridlines:{count:-1},textStyle:{fontSize:12}},
-                                                          3:{textPosition:'none',minValue: mindata[3],maxValue:maxdata[3],viewWindow:{min:mindata[3]},gridlines:{count:-1},textStyle:{fontSize:12}},
-                                                          4:{textPosition:'none',minValue: mindata[4],maxValue:maxdata[4],viewWindow:{min:mindata[4]},gridlines:{count:-1},textStyle:{fontSize:12}},
-                                                          5:{textPosition:'none',minValue: mindata[5],maxValue:maxdata[5],viewWindow:{min:mindata[5]},gridlines:{count:-1},textStyle:{fontSize:12}},
-                                                          6:{textPosition:'none',minValue: mindata[6],maxValue:maxdata[6],viewWindow:{min:mindata[6]},gridlines:{count:-1},textStyle:{fontSize:12}},
-                                                          7:{textPosition:'none',minValue: mindata[7],maxValue:maxdata[7],viewWindow:{min:mindata[7]},gridlines:{count:-1},textStyle:{fontSize:12}},
-                                                          
-                                                          
-                                                          },
-                                    // animation        : {startup: true,duration: 1000,easing: 'in' },
-                                    annotations    : {pattern: chartDateformat,
-                                                    textStyle: {
-                                                    fontSize: 15,
-                                                    bold: true,
-                                                    italic: true,
-                                                    color: '#871b47',
-                                                    auraColor: '#d799ae',
-                                                    opacity: 0.8,
-                                                    pattern: chartDateformat
-                                                }
-                                                },
-
+                            },
+                            // animation        : {startup: true,duration: 1000,easing: 'in' },
+                            annotations: {
+                                pattern: chartDateformat,
+                                textStyle: {
+                                    fontSize: 15,
+                                    bold: true,
+                                    italic: true,
+                                    color: '#871b47',
+                                    auraColor: '#d799ae',
+                                    opacity: 0.8,
+                                    pattern: chartDateformat
                                 }
-                                });
+                            },
 
-                                var control = new google.visualization.ControlWrapper({
-                                controlType: 'ChartRangeFilter',
-                                containerId: 'controlsArea',  //control bar를 생성할 영역
-                                options: {
-                                    ui:{
-                                            chartType: 'LineChart',
-                                            chartOptions: {
-                                            chartArea: {'width': '60%','height' : 80},
-                                            hAxis: {'baselineColor': 'none', format: chartDateformat, textStyle: {fontSize:12},
-                                                gridlines:{count:controlLineCount,units: {
-                                                    hours: {format: ['HH시']},
-                                                    minutes: {format: ['mm분']},
-                                                    seconds  : {format: ['ss초']},
-                                                    }
-                                                }}
-                                            }
-                                    },
-                                        filterColumnIndex: 0
-                                    }
-                                });
-
-                                var date_formatter = new google.visualization.DateFormat({ pattern: chartDateformat});
-                                date_formatter.format(data, 0);
-
-                                var dashboard = new google.visualization.Dashboard(document.getElementById('Line_Controls_Chart'));
-                                window.addEventListener('resize', function() { 
-                                    console.log("??!!"); 
-                                    dashboard.draw(data); 
-                                    }, false); //화면 크기에 따라 그래프 크기 변경
-                                dashboard.bind([control], [chart]);
-                                dashboard.draw(data);
-
-                               }
-                            google.charts.setOnLoadCallback(drawDashboard);
-
-                            }
-                        }
-
-                        // $(document).ready(function(){
-                        google.charts.load('current', {'packages':['line','controls']});
-                        chartDrowFun.chartDrow(); //chartDrow() 실행
-                        //  });
-
-                       
-
-                        
-
-           
-
-                        // $('#graph_button').html('<button onClick="downloadCSV(array,indexName);">CSV 다운로드</button>');
-                         $('#graph_button').html('<button id="lg_see_graph_btn" style="margin-left: 1em"  onClick="doExcel1(array,indexName);">EXCEL 다운로드</button>');
-
-
-
-                }
-
-                function dataSearchID() {
-                    val = location.href.substr(
-                    location.href.lastIndexOf('=') + 1);
-                    var params="header_uid="+val;
-                    var str = "",
-                        header = "",
-                        graphImg;
-                    $.ajax({
-                        type: 'post'
-                        , url: 'http://localhost:3000/api/data_search_id'
-                        , data: params
-                        , beforeSend: function () {
-                            $('#ajax_load_indicator').show().fadeIn('fast');
-                        }
-                        , success: function (data) {
-
-                            header_temp=data.content.lgmv_unit_temp;
-                            header_press=data.content.lgmv_unit_press;
-                            header_cap=data.content.calorimeter_unit_cap;
-                            header_eer=data.content.calorimeter_unit_EER;
-                            
-                            header = '<html>';
-                            str = '<table border="1">';
-                            $.each(data.content,function(key,value){
-                                str+='<tr>';
-                                str+='<td><div>'+unescape(encodeURIComponent(key))+"</div></td>";
-                                str+='<td><div>'+unescape(encodeURIComponent(value))+"</div></td>";
-                                str+='</tr>'
-                            });
-                            str+='</table>'
-                                +'</html>';
-                        complete=header+str;
-                            
-                        
-                        }
-                        , error: function (data, status, err) {
-                            alert('서버와의 통신이 실패했습니다.');
-                        }
-                        , complete: function () {
-                            $('#ajax_load_indicator').fadeOut();
                         }
                     });
-                    
-                }
 
-                // function downloadCSV(array,indexName){
-                    
-                //     var csv_string='';
-                //     for(var i=0;i<indexName.length;i++){
-                //         if(i<indexName.length-1){
-                //                 csv_string+=indexName[i]+",";
-                //             }
-                //             else{
-                //                 csv_string+=indexName[i]+"\r\n";
-                //             }
-                //     }
-                //     for(var i =0; i<array.length;i++){
-                //         for (var j=0;j<array[i].length;j++){
-                //             if(j<array[i].length-1){
-                //                 csv_string+=array[i][j]+",";
-                //             }
-                //             else{
-                //                 csv_string+=array[i][j]+"\r\n";
-                //             }
-                //         }
-                //     }
-                
-                //     var downloadLink = document.createElement("a");
-                //     var blob = new Blob(["\ufeff"+csv_string], { type: "text/csv;charset=utf-8" });
-                //     var url = URL.createObjectURL(blob);
-                //     downloadLink.href = url;
-                //     downloadLink.download = "data.csv";
-
-                //     document.body.appendChild(downloadLink);
-                //     downloadLink.click();
-                //     document.body.removeChild(downloadLink);
-                // }
-//////////////////////////////////////////////////////////////////////////////////////////////
-                function prepareTable(array,indexName) {
-                    var str = "",
-                        header = "",
-                        graphImg;
-                    
-                    
-                    header = '<html>';
-                    
-                    str = '<table border="1">'
-                        +'<thead>'
-                        +'<tr>';
-                    for(var i=0;i<indexName.length;i++){
-                        str+='<td><div>'+unescape(encodeURIComponent(indexName[i]))+"</div></td>";
-                    }
-                    str+='</tr>'
-                        +'</thead>'
-                        +'<tbody>';
-                    for(var i =0; i<array.length;i++){
-                        str+='<tr>';
-                        for (var j=0;j<array[i].length;j++){
-                                str+='<td><div>'+unescape(encodeURIComponent(array[i][j]))+"</div></td>";
+                    var control = new google.visualization.ControlWrapper({
+                        controlType: 'ChartRangeFilter',
+                        containerId: 'controlsArea',  //control bar를 생성할 영역
+                        options: {
+                            ui: {
+                                chartType: 'LineChart',
+                                chartOptions: {
+                                    chartArea: {'width': '60%', 'height': 80},
+                                    hAxis: {
+                                        'baselineColor': 'none', format: chartDateformat, textStyle: {fontSize: 12},
+                                        gridlines: {
+                                            count: controlLineCount, units: {
+                                                hours: {format: ['HH시']},
+                                                minutes: {format: ['mm분']},
+                                                seconds: {format: ['ss초']},
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            filterColumnIndex: 0
                         }
-                        str+='</tr>';
-                    }
-                    str+='</tbody>'
-                        +'</table>'
-                        +'</html>';
-                    //  console.log(str);
-                    return header + str;
+                    });
+
+                    var date_formatter = new google.visualization.DateFormat({pattern: chartDateformat});
+                    date_formatter.format(data, 0);
+
+                    var dashboard = new google.visualization.Dashboard(document.getElementById('Line_Controls_Chart'));
+                    window.addEventListener('resize', function () {
+                        console.log("??!!");
+                        dashboard.draw(data);
+                    }, false); //화면 크기에 따라 그래프 크기 변경
+                    dashboard.bind([control], [chart]);
+                    dashboard.draw(data);
+
                 }
 
+                google.charts.setOnLoadCallback(drawDashboard);
 
-                function s2ab(s) {
-                var buf = new ArrayBuffer(s.length);
-                var view = new Uint8Array(buf);
-                for (var i=0; i!=s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
-                return buf;
-                }
+            }
+        }
 
-                function doExcel1 (array,indexName) {
-                    
-                   
-                    var blob,
-                    wb = {SheetNames:[], Sheets:{}};
-                    var ws1 = XLSX.read(complete, {type:"binary"}).Sheets.Sheet1;
-                    wb.SheetNames.push("header"); wb.Sheets["header"] = ws1;
-                    
-                    var ws2 = XLSX.read(prepareTable(array,indexName), {type:"binary"}).Sheets.Sheet1;
-                    wb.SheetNames.push("graph_data"); wb.Sheets["graph_data"] = ws2;
-                    console.log(ws1); console.log(ws2); console.log(wb);
-                        blob = new Blob([s2ab(XLSX.write(wb, {bookType:'xlsx', type:'binary'}))], {
-                            type: "application/octet-stream;charset=utf-8,%EF%BB%BF"
-                        });
-                    
-                    saveAs(blob, "test.xlsx");
-                }
-                
-                
+        // $(document).ready(function(){
+        google.charts.load('current', {'packages': ['line', 'controls']});
+        chartDrowFun.chartDrow(); //chartDrow() 실행
+        //  });
 
-    </script>
+
+        // $('#graph_button').html('<button onClick="downloadCSV(array,indexName);">CSV 다운로드</button>');
+        $('#graph_button').html('<button id="lg_see_graph_btn" style="margin-left: 1em"  onClick="doExcel1(array,indexName);">EXCEL 다운로드</button>');
+
+
+    }
+
+    function dataSearchID() {
+        val = location.href.substr(
+            location.href.lastIndexOf('=') + 1);
+        var params = "header_uid=" + val;
+        var str = "",
+            header = "",
+            graphImg;
+        $.ajax({
+            type: 'post'
+            , url: 'http://localhost:3000/api/data_search_id'
+            , data: params
+            , beforeSend: function () {
+                $('#ajax_load_indicator').show().fadeIn('fast');
+            }
+            , success: function (data) {
+
+                header_temp = data.content.lgmv_unit_temp;
+                header_press = data.content.lgmv_unit_press;
+                header_cap = data.content.calorimeter_unit_cap;
+                header_eer = data.content.calorimeter_unit_EER;
+
+                header = '<html>';
+                str = '<table border="1">';
+                $.each(data.content, function (key, value) {
+                    str += '<tr>';
+                    str += '<td><div>' + unescape(encodeURIComponent(key)) + "</div></td>";
+                    str += '<td><div>' + unescape(encodeURIComponent(value)) + "</div></td>";
+                    str += '</tr>'
+                });
+                str += '</table>'
+                    + '</html>';
+                complete = header + str;
+
+
+            }
+            , error: function (data, status, err) {
+                alert('서버와의 통신이 실패했습니다.');
+            }
+            , complete: function () {
+                $('#ajax_load_indicator').fadeOut();
+            }
+        });
+
+    }
+
+    // function downloadCSV(array,indexName){
+
+    //     var csv_string='';
+    //     for(var i=0;i<indexName.length;i++){
+    //         if(i<indexName.length-1){
+    //                 csv_string+=indexName[i]+",";
+    //             }
+    //             else{
+    //                 csv_string+=indexName[i]+"\r\n";
+    //             }
+    //     }
+    //     for(var i =0; i<array.length;i++){
+    //         for (var j=0;j<array[i].length;j++){
+    //             if(j<array[i].length-1){
+    //                 csv_string+=array[i][j]+",";
+    //             }
+    //             else{
+    //                 csv_string+=array[i][j]+"\r\n";
+    //             }
+    //         }
+    //     }
+
+    //     var downloadLink = document.createElement("a");
+    //     var blob = new Blob(["\ufeff"+csv_string], { type: "text/csv;charset=utf-8" });
+    //     var url = URL.createObjectURL(blob);
+    //     downloadLink.href = url;
+    //     downloadLink.download = "data.csv";
+
+    //     document.body.appendChild(downloadLink);
+    //     downloadLink.click();
+    //     document.body.removeChild(downloadLink);
+    // }
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    function prepareTable(array, indexName) {
+        var str = "",
+            header = "",
+            graphImg;
+
+
+        header = '<html>';
+
+        str = '<table border="1">'
+            + '<thead>'
+            + '<tr>';
+        for (var i = 0; i < indexName.length; i++) {
+            str += '<td><div>' + unescape(encodeURIComponent(indexName[i])) + "</div></td>";
+        }
+        str += '</tr>'
+            + '</thead>'
+            + '<tbody>';
+        for (var i = 0; i < array.length; i++) {
+            str += '<tr>';
+            for (var j = 0; j < array[i].length; j++) {
+                str += '<td><div>' + unescape(encodeURIComponent(array[i][j])) + "</div></td>";
+            }
+            str += '</tr>';
+        }
+        str += '</tbody>'
+            + '</table>'
+            + '</html>';
+        //  console.log(str);
+        return header + str;
+    }
+
+
+    function s2ab(s) {
+        var buf = new ArrayBuffer(s.length);
+        var view = new Uint8Array(buf);
+        for (var i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
+        return buf;
+    }
+
+    function doExcel1(array, indexName) {
+
+
+        var blob,
+            wb = {SheetNames: [], Sheets: {}};
+        var ws1 = XLSX.read(complete, {type: "binary"}).Sheets.Sheet1;
+        wb.SheetNames.push("header");
+        wb.Sheets["header"] = ws1;
+
+        var ws2 = XLSX.read(prepareTable(array, indexName), {type: "binary"}).Sheets.Sheet1;
+        wb.SheetNames.push("graph_data");
+        wb.Sheets["graph_data"] = ws2;
+        console.log(ws1);
+        console.log(ws2);
+        console.log(wb);
+        blob = new Blob([s2ab(XLSX.write(wb, {bookType: 'xlsx', type: 'binary'}))], {
+            type: "application/octet-stream;charset=utf-8,%EF%BB%BF"
+        });
+
+        saveAs(blob, "test.xlsx");
+    }
+
+
+</script>
 
 <style>
+    .full-page {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+    #img_logo {
+        width: 60px;
+        height: 40px;
+        margin-right: 0px;
+    }
+
+    #lg_contents {
+        margin-left: 100px;
+        margin-top: 100px;
+        margin-right: 100px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
     .lg_circle:before {
         content: "";
         display: inline-block;
-        width: 25px;
-        height: 25px;
-        margin-right: 8px;
-        margin-left:10px;
-        /* margin-top:10px;
-        margin-bottom: 10px; */
+        width: 10px;
+        height: 10px;
+        margin-right: 5px;
         border: 2px solid #d80546;
         border-radius: 50%;
     }
+
     #lg_see_graph_btn {
         display: inline-block;
         margin-bottom: 0;
         font-weight: 400;
         vertical-align: top;
         touch-action: manipulation;
-        background-color: rgb(105,109,114);
+        background-color: rgb(105, 109, 114);
         border-width: 1px;
         padding: 6px 12px;
         font-size: 13px;
-        color: rgb(223,223,225);
+        color: rgb(223, 223, 225);
         line-height: 1.42857143;
         border-radius: 4px;
         user-select: none;
+    }
+
+    .dataTables_length label {
+        font-weight: normal !important;
+        font-size: 13px;
+    }
+    #detail_table_filter label {
+        font-weight: normal !important;
+        font-size: 13px;
+    }
+    #detail_table {
+        width: 100% !important;
     }
 </style>
 </html>

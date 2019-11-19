@@ -5,8 +5,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-<div style="width: 100%; position: fixed; background:#ffffff;z-index:100; border-bottom: 5px solid black">
-    <div style="margin-left: 30px;  font-size: 30px;">
+<div style="width: 100%; position: fixed; background:#ffffff;z-index:100; border-bottom :3px solid #d80546">
+    <div style="margin-left: 0px;font-size: 24px;">
         <img id="img_logo" src="./r&d_data.png"></img>
         R&D Data
     </div>
@@ -47,7 +47,7 @@
         </div>
 
         <div id="lg_chamber_content">
-            <h6 class="lg_circle" style="margin-top: 10px">챔버 상태<h6>
+            <h6 class="lg_circle" style="margin-top: 10px">최근시험이력<h6>
             <table id="lg_chember_table" class="table table-bordered table-hover table-condensed">
                 <tr id="lg_chember_table_thead">
                     <td>ID</td>
@@ -65,7 +65,7 @@
         </div>
         <div id="lg_chamber_graph" style="width: 100%" class="row">
             <div class="col-md-12">
-                <h6 class="lg_circle" style="margin-top: 10px">그래프</h6>
+                <h6 class="lg_circle" style="margin-top: 10px">챔버 상태</h6>
                     <p>챔버번호 : <select id="index">
                     </select>
                         <button id="lg_see_graph_btn" style="margin-left: 1em" onClick='SelectUnit()'>그래프 보기</button>
@@ -788,9 +788,9 @@
     }
 
     #img_logo {
-        width: 110px;
-        height: 80px;
-        margin-right: 20px;
+        width: 60px;
+        height: 40px;
+        margin-right: 0px;
     }
 
     /*lg_content Css*/
@@ -810,9 +810,10 @@
         flex: none;
         position: fixed;
         width: 150px;
-        margin-top: 80px;
+        Margin-top: 40px;
         height: 100%;
         font-family: sans-serif;
+        background-color: #333;
     }
 
     #lg_sidebar {
@@ -820,10 +821,10 @@
     }
 
     #lg_sidebar #lg_sidebar_content {
-        margin: 1.5em 0.4em 0.2em;
-        background-color: #38222b;
+        margin: 0em 0em 0em;
+        background-color: #333;
         padding: 2em 1em;
-        box-shadow: 3px 5px 3px;
+        box-shadow: 0px 0px 0px;
     }
 
     /* sidebar 안에 있는 링크들 */
@@ -854,7 +855,7 @@
 
     #lg_dataset_by_model_header {
         display: flex;
-        background-color: black;
+        background-color: #333;
         padding: 0.8em;
         color: white;
         font-family: "Adobe 명조 Std M";
@@ -862,7 +863,7 @@
 
     #lg_dataset_by_test_header {
         display: flex;
-        background-color: black;
+        background-color: #333;
         padding: 0.8em;
         font-family: "Adobe 명조 Std M";
         color: white;
@@ -884,9 +885,8 @@
         border-bottom: 2px solid #1d2124;
         padding: 10px;
         vertical-align: top;
-        background-color: #42373a;
+        background-color: #333;
         color: white;
-        font-weight: bold;
     }
 
     #detail_body td {

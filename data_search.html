@@ -8,8 +8,8 @@
 </head>
 <body>
 
-<div style="width: 100%; position: fixed; background:#ffffff;z-index:100; border-bottom: 5px solid black">
-    <div style="margin-left: 30px;  font-size: 30px;">
+<div style="width: 100%; position: fixed; background:#ffffff;z-index:100; border-bottom :3px solid #d80546">
+    <div style="margin-left: 0px;font-size: 24px;">
         <img id="img_logo" src="./r&d_data.png"></img>
         R&D Data
     </div>
@@ -239,7 +239,7 @@
 
             <div id="lg_detail">
                 <h6 class="lg_circle lg_product_info_text">제품정보</h6>
-                <h6 class="lg_product_info_text" style="margin-top: 20px">제품정보</h6>
+                <h6 class="lg_circle lg_product_info_text" style="margin-top: 20px">제품정보</h6>
                 <table class="table lg_search_detail_table">
                     <tbody>
                     <tr style="border-top: 2px solid rgb(163,163,163)">
@@ -268,7 +268,7 @@
                     </tr>
                     </tbody>
                 </table>
-                <h6 class="lg_product_info_text">시험정보</h6>
+                <h6 class="lg_circle lg_product_info_text">시험정보</h6>
                 <table class="table lg_search_detail_table">
                     <tbody>
                     <tr style="border-top: 2px solid rgb(163,163,163)">
@@ -334,7 +334,7 @@
                     </tr>
                     </tbody>
                 </table>
-                <h6 class="lg_product_info_text">단위정보</h6>
+                <h6 class="lg_circle lg_product_info_text">단위정보</h6>
                 <table class="table lg_search_detail_table">
                     <tbody>
                     <tr style="border-top: 2px solid rgb(163,163,163)">
@@ -570,7 +570,7 @@
                         var capavity = element.calorimeter_cap;
                         var sasy = element.odu_chassis;
                         var nang = element.lgmv_r;
-                        var test_date = element.lgmv_date;
+                        var test_date = element.lgmv_date.slice(0,10);
                         var test_performer = element.conn_tester;
                         var test_step1 = element.test_step1;
                         var test_step2 = element.test_step2;
@@ -969,9 +969,9 @@
     }
 
     #img_logo {
-        width: 110px;
-        height: 80px;
-        margin-right: 20px;
+        width: 60px;
+        height: 40px;
+        margin-right: 0px;
     }
 
     /*lg_content Css*/
@@ -991,17 +991,10 @@
         flex: none;
         position: fixed;
         width: 150px;
+        Margin-top: 40px;
         height: 100%;
         font-family: sans-serif;
-    }
-
-    .full-page #lg_sidebar {
-        flex: none;
-        position: fixed;
-        width: 150px;
-        margin-top: 80px;
-        height: 100%;
-        font-family: sans-serif;
+        background-color: #333;
     }
 
     #lg_sidebar {
@@ -1009,10 +1002,10 @@
     }
 
     #lg_sidebar #lg_sidebar_content {
-        margin: 1.5em 0.4em 0.2em;
-        background-color: #38222b;
+        margin: 0em 0em 0em;
+        background-color: #333;
         padding: 2em 1em;
-        box-shadow: 3px 5px 3px;
+        box-shadow: 0px 0px 0px;
     }
 
     /* sidebar 안에 있는 링크들 */
@@ -1258,7 +1251,9 @@
         flex-direction: column;
         display: none;
     }
-
+    #lg_detail th, td{
+        font-size: 13px;
+    }
     .lg_search_detail_table {
         display: none;
         flex-direction: column;
