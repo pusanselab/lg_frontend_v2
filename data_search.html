@@ -549,6 +549,11 @@
     });
 
     function dataSearch() {
+
+        if($("#testDatepicker1").val()=='' || $("#testDatepicker2").val()==''){
+            alert("첫날짜와 마지막 날짜를 모두 넣어주세요.");
+        }
+        else{
         $.ajax({
             type: 'post'
             , url: 'http://localhost:3000/api/data_search'
@@ -643,6 +648,7 @@
                 $('#ajax_load_indicator').fadeOut();
             }
         });
+        }
     }
 
     $(function () {
