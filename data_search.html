@@ -19,8 +19,36 @@
         <div id="lg_sidebar_content">
             <a href="home.html">홈</a>
             <a href="data_search.html">데이터 검색</a>
-            <a href="option.html">단위 옵션</a>
+            <a href="#" style="color: white" id="unit_option" onclick="unit_click()">단위 옵션</a>
             <a href="admin.html">관리자 모드</a>
+            <div id="unit_options"
+                 style="position:absolute; margin-bottom:50px; bottom:0; font-size:13px;  display: none; color:white; flex-direction: column">
+                <div style="margin: auto;text-align: center;">
+                    LGMV 온도 단위
+                    <select id="lgmv_temp" class="input_option" style="margin-bottom: 10px; width: 100px;">
+                        <option value="F">F</option>
+                        <option value="C">C</option>
+                    </select>
+                </div>
+                <div style="margin: auto;text-align: center;">
+                    LGMV 압력 단위
+                    <select id="lgmv_pressure" class="input_option" style="margin-bottom: 10px; width: 100px;">
+                        <option value="kPa">kPa</option>
+                        <option value="Psi">Psi</option>
+                        <option value="kgcm">kgcm</option>
+                    </select>
+                </div>
+                <div style="margin: auto;text-align: center;">
+                    LGMV 유량 단위
+                    <select id="lgmv_flux" class="input_option" style="width: 100px;">
+                        <option value="m3/h">m3/h</option>
+                        <option value="gal/m">gal/m</option>
+                    </select>
+                </div>
+                <button id="save_btn" type="button" class="option_save_btn" data-toggle="modal"
+                        data-target="#optionModal" style="width: 100px; margin: 10px">save
+                </button>
+            </div>
         </div>
     </div>
     <div id="lg_contents">
@@ -68,9 +96,11 @@
                             <div id="lg_search_detail_1_items">
                                 <div class="lg_search_detail_1_item">
                                     <span class="lg_text">날짜</span>
-                                    <input type="text" id="testDatepicker1" name="lg_search_date_box_from" class="lg_search_date_box">
+                                    <input type="text" id="testDatepicker1" name="lg_search_date_box_from"
+                                           class="lg_search_date_box">
                                     <span style="align-self: center;">~</span>
-                                    <input type="text" id="testDatepicker2" name="lg_search_date_box_to" class="lg_search_date_box">
+                                    <input type="text" id="testDatepicker2" name="lg_search_date_box_to"
+                                           class="lg_search_date_box">
                                 </div>
                             </div>
                             <div class="lg_search_detail_2_items">
@@ -121,15 +151,15 @@
                                     <input class="detail_2_item_input" type="text" name="calorimeter_power_vol">
                                 </div>
                                 <div class="lg_search_detail_2_item">
-                                    <span class="lg_text" >실내기 습구온도</span>
+                                    <span class="lg_text">실내기 습구온도</span>
                                     <input class="detail_2_item_input" type="text" name="calorimeter_id_wb">
                                 </div>
                                 <div class="lg_search_detail_2_item">
-                                    <span class="lg_text" >실내기 건구온도</span>
+                                    <span class="lg_text">실내기 건구온도</span>
                                     <input class="detail_2_item_input" type="text" name="calorimeter_id_db">
                                 </div>
                                 <div class="lg_search_detail_2_item">
-                                    <span class="lg_text" >실외기 습구온도</span>
+                                    <span class="lg_text">실외기 습구온도</span>
                                     <input class="detail_2_item_input" type="text" name="calorimeter_od_wb">
                                 </div>
                             </div>
@@ -355,6 +385,26 @@
         </div>
 
     </div>
+    <div class="modal fade" id="optionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="font-size: 13px">Message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    옵션이 저장되었습니다.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 
@@ -550,104 +600,104 @@
 
     function dataSearch() {
 
-        if($("#testDatepicker1").val()=='' ^ $("#testDatepicker2").val()==''){
+        if ($("#testDatepicker1").val() == '' ^ $("#testDatepicker2").val() == '') {
             alert("첫날짜와 마지막 날짜를 모두 넣어주세요.");
         }
-        else{
-        $.ajax({
-            type: 'post'
-            , url: 'http://localhost:3000/api/data_search'
-            , data: $("#data_search").serialize()
-            , beforeSend: function () {
-                $('#ajax_load_indicator').show().fadeIn('fast');
-            }
-            , success: function (data) {
-                $('#search_result').css('display', 'inline');
-                $('#search_result_table').css('display', 'table');
-
-                $('#lg_search_result_tbody tr').remove();
-                if (data.message == 'success' && data.content.length > 0) {
-                    var array = data.content;
-                    array.forEach(element => {
-                        var id = element.header_uid;
-                        var Model = element.lgmv_model_filter2;
-                        var Model_name = element.lgmv_model_name;
-                        var capavity = element.calorimeter_cap;
-                        var sasy = element.odu_chassis;
-                        var nang = element.lgmv_r;
-                        var test_date = element.lgmv_date.slice(0,10);
-                        var test_performer = element.conn_tester;
-                        var test_step1 = element.test_step1;
-                        var test_step2 = element.test_step2;
-                        var testroom = element.conn_testroom_number;
-
-                        var serial = element.lgmv_serial_number;
-                        var Model1 = element.lgmv_model_filter1;
-                        var mainver = element.lgmv_main_ver;
-                        var eep = element.lgmv_eep_ver;
-                        var cal_power = element.calorimeter_power;
-                        var cal_eer = element.calorimeter_eer;
-                        var cal_vol = element.calorimeter_power_vol;
-                        var cal_id_wb = element.calorimeter_id_wb;
-                        var cal_id_db = element.calorimeter_id_db;
-                        var cal_od_wb = element.calorimeter_od_wb;
-                        var cal_od_db = element.calorimeter_od_db;
-                        var idu_sassy = element.idu_chassis;
-                        var plm_step1 = element.plm_step1;
-                        var plm_step2 = element.plm_step2;
-                        var test_kind = element.conn_pipe_type;
-                        var test_result = element.conn_test_result;
-                        var test_detail = element.conn_memo;
-                        var idu_count = element.idu_count;
-                        var odu_count = element.odu_count;
-                        var hru_count = element.hru_count;
-                        var cal_count = element.calorimeter_count;
-                        var dxc_count = element.lgmv_sidu_dxc_count;
-                        var awhp_count = element.lgmv_sidu_awhp_count;
-                        var showcase_count = element.lgmv_sidu_showcase_count;
-                        var fau_count = element.lgmv_sidu_fau_count;
-                        var whu_count = element.lgmv_sidu_whu_count;
-                        var cascade_count = element.lgmv_sidu_cascade_count;
-                        var unit_temp = element.lgmv_unit_temp;
-                        var unit_press = element.lgmv_unit_press;
-                        var unit_flux = element.lgmv_unit_flux;
-
-
-                        var rowItem = "<tr>";
-                        rowItem += "<td id='detailzz" + id + "' value=" + id + " onclick=\"DetailSearch(\'" + id + "\');\">" + id + "</td>";
-                        ;
-                        rowItem += "<td>" + Model + "</td>";
-                        rowItem += "<td>" + Model_name + "</td>";
-                        rowItem += "<td>" + capavity + "</td>";
-                        rowItem += "<td>" + sasy + "</td>";
-                        rowItem += "<td>" + nang + "</td>";
-                        rowItem += "<td>" + test_step1 + "</td>";
-                        rowItem += "<td>" + test_step2 + "</td>";
-                        rowItem += "<td>" + test_date + "</td>";
-                        rowItem += "<td>" + test_performer + "</td>";
-                        rowItem += "<td>" + testroom + "</td>";
-                        rowItem += "<td><button class='data_search_btn_table' onclick=\"DetailSearch(\'" + id + "\');\">상세 보기</button></td>";
-                        rowItem += "<td><button class='data_search_btn_table' onclick=\"setHeaderUid(\'" + id + "\');\">그래프 보기</button></td>";
-                        rowItem += "</tr>";
-
-                        $('#lg_search_result_tbody').append(rowItem);
-                    });
-                    $('#search_fail').css('display', 'none');
-
-
-                } else {
-                    $('#search_result').css('display', 'none');
-                    $('#search_fail').css('display', 'inline');
-                    $('#search_fail').html('<h1> 검색결과가 없습니다. </h1>');
+        else {
+            $.ajax({
+                type: 'post'
+                , url: 'http://localhost:3000/api/data_search'
+                , data: $("#data_search").serialize()
+                , beforeSend: function () {
+                    $('#ajax_load_indicator').show().fadeIn('fast');
                 }
-            }
-            , error: function (data, status, err) {
-                alert('서버와의 통신이 실패했습니다.');
-            }
-            , complete: function () {
-                $('#ajax_load_indicator').fadeOut();
-            }
-        });
+                , success: function (data) {
+                    $('#search_result').css('display', 'inline');
+                    $('#search_result_table').css('display', 'table');
+
+                    $('#lg_search_result_tbody tr').remove();
+                    if (data.message == 'success' && data.content.length > 0) {
+                        var array = data.content;
+                        array.forEach(element => {
+                            var id = element.header_uid;
+                            var Model = element.lgmv_model_filter2;
+                            var Model_name = element.lgmv_model_name;
+                            var capavity = element.calorimeter_cap;
+                            var sasy = element.odu_chassis;
+                            var nang = element.lgmv_r;
+                            var test_date = element.lgmv_date.slice(0, 10);
+                            var test_performer = element.conn_tester;
+                            var test_step1 = element.test_step1;
+                            var test_step2 = element.test_step2;
+                            var testroom = element.conn_testroom_number;
+
+                            var serial = element.lgmv_serial_number;
+                            var Model1 = element.lgmv_model_filter1;
+                            var mainver = element.lgmv_main_ver;
+                            var eep = element.lgmv_eep_ver;
+                            var cal_power = element.calorimeter_power;
+                            var cal_eer = element.calorimeter_eer;
+                            var cal_vol = element.calorimeter_power_vol;
+                            var cal_id_wb = element.calorimeter_id_wb;
+                            var cal_id_db = element.calorimeter_id_db;
+                            var cal_od_wb = element.calorimeter_od_wb;
+                            var cal_od_db = element.calorimeter_od_db;
+                            var idu_sassy = element.idu_chassis;
+                            var plm_step1 = element.plm_step1;
+                            var plm_step2 = element.plm_step2;
+                            var test_kind = element.conn_pipe_type;
+                            var test_result = element.conn_test_result;
+                            var test_detail = element.conn_memo;
+                            var idu_count = element.idu_count;
+                            var odu_count = element.odu_count;
+                            var hru_count = element.hru_count;
+                            var cal_count = element.calorimeter_count;
+                            var dxc_count = element.lgmv_sidu_dxc_count;
+                            var awhp_count = element.lgmv_sidu_awhp_count;
+                            var showcase_count = element.lgmv_sidu_showcase_count;
+                            var fau_count = element.lgmv_sidu_fau_count;
+                            var whu_count = element.lgmv_sidu_whu_count;
+                            var cascade_count = element.lgmv_sidu_cascade_count;
+                            var unit_temp = element.lgmv_unit_temp;
+                            var unit_press = element.lgmv_unit_press;
+                            var unit_flux = element.lgmv_unit_flux;
+
+
+                            var rowItem = "<tr>";
+                            rowItem += "<td id='detailzz" + id + "' value=" + id + " onclick=\"DetailSearch(\'" + id + "\');\">" + id + "</td>";
+                            ;
+                            rowItem += "<td>" + Model + "</td>";
+                            rowItem += "<td>" + Model_name + "</td>";
+                            rowItem += "<td>" + capavity + "</td>";
+                            rowItem += "<td>" + sasy + "</td>";
+                            rowItem += "<td>" + nang + "</td>";
+                            rowItem += "<td>" + test_step1 + "</td>";
+                            rowItem += "<td>" + test_step2 + "</td>";
+                            rowItem += "<td>" + test_date + "</td>";
+                            rowItem += "<td>" + test_performer + "</td>";
+                            rowItem += "<td>" + testroom + "</td>";
+                            rowItem += "<td><button class='data_search_btn_table' onclick=\"DetailSearch(\'" + id + "\');\">상세 보기</button></td>";
+                            rowItem += "<td><button class='data_search_btn_table' onclick=\"setHeaderUid(\'" + id + "\');\">그래프 보기</button></td>";
+                            rowItem += "</tr>";
+
+                            $('#lg_search_result_tbody').append(rowItem);
+                        });
+                        $('#search_fail').css('display', 'none');
+
+
+                    } else {
+                        $('#search_result').css('display', 'none');
+                        $('#search_fail').css('display', 'inline');
+                        $('#search_fail').html('<h1> 검색결과가 없습니다. </h1>');
+                    }
+                }
+                , error: function (data, status, err) {
+                    alert('서버와의 통신이 실패했습니다.');
+                }
+                , complete: function () {
+                    $('#ajax_load_indicator').fadeOut();
+                }
+            });
         }
     }
 
@@ -965,6 +1015,37 @@
         window.open("http://localhost/graph.html?index=" + index, '_blank');
     }
 </script>
+<script>
+    $(document).ready(function () {
+        if (localStorage['lgmv_temp']) {
+            $('#lgmv_temp').val(localStorage['lgmv_temp'])
+        }
+        if (localStorage['lgmv_press']) {
+            $('#lgmv_pressure').val(localStorage['lgmv_press'])
+        }
+        if (localStorage['lgmv_flux']) {
+            $('#lgmv_flux').val(localStorage['lgmv_flux'])
+        }
+    });
+
+    function unit_click() {
+        if ($("#unit_options").css("display") == "none") {
+            $('#unit_options').css("display", "flex");
+        } else {
+            $('#unit_options').hide();
+        }
+    };
+    $("#save_btn").click(function () {
+        lgmv_temp = $('#lgmv_temp option:selected').val()
+        lgmv_pressure = $('#lgmv_pressure option:selected').val()
+        lgmv_flux = $('#lgmv_flux option:selected').val()
+        localStorage['lgmv_temp'] = lgmv_temp
+        localStorage['lgmv_press'] = lgmv_pressure
+        localStorage['lgmv_flux'] = lgmv_flux
+        $('#unit_options').css("display", "none");
+
+    });
+</script>
 </body>
 <!--page 전체 && SideBar Css-->
 <style>
@@ -1257,9 +1338,11 @@
         flex-direction: column;
         display: none;
     }
-    #lg_detail th, td{
+
+    #lg_detail th, td {
         font-size: 13px;
     }
+
     .lg_search_detail_table {
         display: none;
         flex-direction: column;
@@ -1284,4 +1367,37 @@
         max-width: 200px;
     }
 </style>
+<style>
+    .input_option {
+        display: block;
+        width: 100%;
+        height: 32px;
+        font-size: 13px;
+        line-height: 1.12857143;
+        color: #555;
+        background: #fff none;
+        border: 1px solid #cecece;
+        margin: 5px;
+        padding: 5px 12px;
+    }
+
+    .option_save_btn {
+        display: inline-block;
+        margin-bottom: 0;
+        font-weight: 400;
+        text-align: center;
+        vertical-align: top;
+        touch-action: manipulation;
+        background-color: rgb(105, 109, 114);
+        border-width: 1px;
+        padding: 6px 12px;
+        font-size: 13px;
+        color: rgb(223, 223, 225);
+        line-height: 1.42857143;
+        border-radius: 4px;
+        user-select: none;
+    }
+
+</style>
+
 </html>
