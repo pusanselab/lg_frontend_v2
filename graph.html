@@ -270,6 +270,7 @@
             }
             , success: function (data) {
                 rowcount = data.time.length;
+                console.log(data);
 
                 array = new Array(rowcount + 1);
                 for (var i = 0; i < rowcount + 1; i++) {
@@ -370,19 +371,19 @@
                 }
                 else if (unit == 'UNIT_PRESS') {
                     indexName.push(name + "(" + localStorage['lgmv_press'] + ")");
-                    if (header_press != localStorage['lgmv_temp']) {
+                    if (header_press != localStorage['lgmv_press']) {
                         press_flag = 1;
                     }
                 }
                 else if (unit == 'UNIT_CALORY') {
                     indexName.push(name + "(" + localStorage['lgmv_cap'] + ")");
-                    if (cap_temp != localStorage['lgmv_temp']) {
+                    if (cap_temp != localStorage['lgmv_cap']) {
                         cap_flag = 1;
                     }
                 }
                 else if (unit == 'UNIT_EER') {
                     indexName.push(name + "(" + localStorage['lgmv_eer'] + ")");
-                    if (eer_temp != localStorage['lgmv_temp']) {
+                    if (eer_temp != localStorage['lgmv_eer']) {
                         eer_flag = 1;
                     }
                 }

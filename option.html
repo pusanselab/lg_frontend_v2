@@ -41,8 +41,8 @@
                 <select id="lgmv_pressure" style="margin-left: 100px; width: 100px;">
                     <option selected>선택</option>
                     <option value="kPa">kPa</option>
-                    <option value="psi">psi</option>
-                    <option value="kgf/cm2">kgf/cm2</option>
+                    <option value="Psi">Psi</option>
+                    <option value="kgcm">kgcm</option>
                 </select>
             </div>
             <div class="row" style="margin: 20px;">
@@ -64,7 +64,7 @@
             $('#lgmv_temp').val(localStorage['lgmv_temp'])
         }
         if (localStorage['lgmv_press']) {
-            $('#lgmv_pressure').val(localStorage['lgmv_press'])
+            $('#lgmv_pressure').val(localStorage['lgmv_pressure'])
         }
         if (localStorage['lgmv_flux']) {
             $('#lgmv_flux').val(localStorage['lgmv_flux'])
@@ -76,7 +76,7 @@
         lgmv_pressure = $('#lgmv_pressure option:selected').val()
         lgmv_flux = $('#lgmv_flux option:selected').val()
         localStorage['lgmv_temp'] = lgmv_temp
-        localStorage['lgmv_pressure'] = lgmv_pressure
+        localStorage['lgmv_press'] = lgmv_pressure
         localStorage['lgmv_flux'] = lgmv_flux
         console.log(lgmv_temp)
         console.log(lgmv_pressure)
