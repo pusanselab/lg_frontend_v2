@@ -742,8 +742,8 @@
 <script>
     google.charts.load("current", {packages: ["corechart"]});
     google.charts.setOnLoadCallback(drawChart1);
-    chart1_data = [['model', '갯수']]
-    chart2_data = [['시험', '갯수']]
+    chart1_data = [['model', '갯수', { role: 'style' }]]
+    chart2_data = [['시험', '갯수',{ role: 'style' }]]
 
     async function drawChart1() {
         if (chart1_data.length === 1) {
@@ -759,12 +759,14 @@
                         var temp1 = []
                         temp1.push(data1.content.model[i].name)
                         temp1.push(data1.content.model[i].count)
+                        temp1.push('gray')
                         chart1_data.push(temp1)
                     }
                     for (let i = 0; i < data1.content.test.length; i++) {
                         var temp2 = []
                         temp2.push(data1.content.test[i].name)
                         temp2.push(data1.content.test[i].count)
+                        temp2.push('gray')
                         chart2_data.push(temp2)
                     }
 
@@ -790,7 +792,7 @@
                 titleTextStyle: {color: 'red'},
                 fontSize: 10
             },
-            bar: {groupWidth: "30%"},
+            bar: {groupWidth: "30%", color: '#333333'},
             legend: {position: "none"},
             orientation: 'vertical',
             rectArea: {
