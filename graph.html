@@ -165,6 +165,9 @@
                 else if (localStorage['lgmv_temp'] == 'F') { // C => F 로 변환
                     return value * 9.0 / 5.0 + 32;
                 }
+                else{
+                    return value;
+                }
             }
             else {
                 return value;
@@ -178,6 +181,9 @@
                 }
                 else if (localStorage['lgmv_temp'] == 'F') { // C => F 로 변환
                     return value * 9.0 / 5.0;
+                }
+                else{
+                    return value;
                 }
             }
             else {
@@ -194,6 +200,9 @@
                     else if (localStorage['lgmv_press'] == 'kgcm') { // kPa => kgcm 로 변환
                         return value / 98.0665;
                     }
+                    else{
+                        return value;
+                    }
                 }
                 else if (header_press == 'Psi') {
                     if (localStorage['lgmv_press'] == 'kPa') { // Psi => kPa 로 변환
@@ -202,6 +211,9 @@
                     else if (localStorage['lgmv_press'] == 'kgcm') { // Psi => kgcm 로 변환
                         return value / 14.223;
                     }
+                    else{
+                        return value;
+                    }
                 }
                 else if (header_press == 'kgcm') {
                     if (localStorage['lgmv_press'] == 'kPa') { // kgcm => kPa 로 변환
@@ -209,6 +221,9 @@
                     }
                     else if (localStorage['lgmv_press'] == 'Psi') { // kgcm => Psi 로 변환
                         return value * 98.0665;
+                    }
+                    else{
+                        return value;
                     }
                 }
             }
@@ -225,6 +240,9 @@
                     else if (localStorage['lgmv_cap'] == 'Btu/h') { // Watt => Btu/h 로 변환
                         return value * 3.412;
                     }
+                    else{
+                        return value;
+                    }
                 }
                 else if (header_cap == 'kal/h') {
                     if (localStorage['lgmv_cap'] == 'Btu/h') { // kal/h => Btu/h 로 변환
@@ -232,6 +250,9 @@
                     }
                     else if (localStorage['lgmv_cap'] == 'Watt') { // kal/h => Watt 로 변환
                         return value * 1.163;
+                    }
+                    else{
+                        return value;
                     }
                 }
                 else if (header_press == 'Btu/h') {
@@ -241,6 +262,9 @@
                     else if (localStorage['lgmv_cap'] == 'Watt') { // kgcm => Psi 로 변환
                         return value * 0.293;
                     }
+                    else{
+                        return value;
+                    }   
                 }
             }
             else {
