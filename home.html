@@ -19,7 +19,11 @@
             <a href="home.html">홈</a>
             <a href="data_search.html">데이터 검색</a>
             <a href="#" style="color: white" id="unit_option" onclick="unit_click()">단위 옵션</a>
-            <a href="admin.html">관리자 모드</a>
+            <a href="#" onclick="admin_mode()">관리자 모드</a>
+            <div id="admin_tabs" style="display: none; color: white; flex-direction: column; float:right">
+                <a href="admin_id_generation.html">▷ 아이디 발급</a>
+                <a href="admin_db_deletion.html">▷ 데이터 삭제</a>
+            </div>
             <div id="unit_options"
                  style="position:absolute; margin-bottom:50px; bottom:0; font-size:13px;  display: none; color:white; flex-direction: column">
                 <div style="margin: auto;text-align: center;">
@@ -845,6 +849,13 @@
             $('#unit_options').css("display", "flex");
         } else {
             $('#unit_options').hide();
+        }
+    };
+    function admin_mode() {
+        if ($("#admin_tabs").css("display") == "none") {
+            $('#admin_tabs').css("display", "flex");
+        } else {
+            $('#admin_tabs').hide();
         }
     };
     $("#save_btn").click(function () {

@@ -53,63 +53,24 @@
         </div>
     </div>
     <div id="lg_contents">
-        <div class="tab">
-            <button class="tablinks" onclick="openCity(event, 'ID 발급')" id="defaultOpen">ID 발급</button>
-            <button class="tablinks" onclick="openCity(event, '데이터 삭제')">데이터 삭제</button>
-        </div>
-
-        <div id="ID 발급" class="tabcontent">
+        <div id="ID 발급">
             <div class="card" style=" margin: 20px">
-                <div class="card-header" style="background-color: #abdde5">
-                    ID 발급
+                <div class="card-header" style="font-size:13px; color:white; background-color: #333333">
+                    아이디 발급
                 </div>
                 <div class="form-group" style="margin: 20px; max-height: 30px">
                     <label for="userId">ID</label>
-                    <input class="form-control" id="userId" aria-describedby="emailHelp">
+                    <input class="form-control lg_input_form" id="userId" aria-describedby="emailHelp">
                 </div>
                 <div class="form-group" style="margin: 20px">
                     <label for="userpwd">Password</label>
-                    <input type="password" class="form-control" id="userpwd">
+                    <input type="password" class="form-control lg_input_form" id="userpwd">
                 </div>
-                <button style="margin: 20px;" class="btn btn-primary" onclick="create_user()">ID 발급</button>
+                <button style="margin: 20px 50px;" class="btn btn-dark" onclick="create_user()">발급하기</button>
             </div>
 
 
         </div>
-
-        <div id="데이터 삭제" class="tabcontent">
-            <div class="card" style="margin: 50px">
-                <div class="card-header" style="background-color: #9fcdff">
-                    날짜별 데이터 삭제
-                </div>
-                <div style="margin: 20px">
-                    시작날짜
-                    <input type="text" id="testDatepicker1">
-                    ~
-                    종료날짜
-                    <input type="text" id="testDatepicker2">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" style="float: right"
-                            data-target="#dateModal">
-                        삭제 하기
-                    </button>
-                </div>
-            </div>
-
-            <div class="card" style="margin: 50px">
-                <div class="card-header" style="background-color: #28a745">
-                    아이디별 데이터 삭제
-                </div>
-                <div style="margin: 20px">
-                    <input type="text" id="header_id" placeholder=" ID 입력">
-                    <button type="button" class="btn btn-success" data-toggle="modal" style="float: right"
-                            data-target="#idModal">
-                        삭제 하기
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Button trigger modal -->
-
 
         <!-- Modal -->
         <div class="modal fade" id="dateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -154,10 +115,37 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="optionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel" style="font-size: 13px">Message</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        옵션이 저장되었습니다.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">확인</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 <script type="text/javascript" src="js/bootstrap.js"></script>
+<script src="https://d3js.org/d3-array.v2.min.js"></script>
+<script src="https://d3js.org/d3-color.v1.min.js"></script>
+<script src="https://d3js.org/d3-format.v1.min.js"></script>
+<script src="https://d3js.org/d3-interpolate.v1.min.js"></script>
+<script src="https://d3js.org/d3-time.v1.min.js"></script>
+<script src="https://d3js.org/d3-time-format.v2.min.js"></script>
+<script src="https://d3js.org/d3-scale.v3.min.js"></script>
+<script src="https://d3js.org/d3.v4.min.js"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css"/>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
@@ -261,24 +249,6 @@
         });
     }
 
-    function openCity(evt, cityName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(cityName).style.display = "block";
-        evt.currentTarget.className += " active";
-    }
-
-
-    // Get the element with id="defaultOpen" and click on it
-</script>
-<script>
     $(document).ready(function () {
         if (localStorage['lgmv_temp']) {
             $('#lgmv_temp').val(localStorage['lgmv_temp'])
@@ -298,6 +268,14 @@
             $('#unit_options').hide();
         }
     };
+
+    function admin_mode() {
+        if ($("#admin_tabs").css("display") == "none") {
+            $('#admin_tabs').css("display", "flex");
+        } else {
+            $('#admin_tabs').hide();
+        }
+    };
     $("#save_btn").click(function () {
         lgmv_temp = $('#lgmv_temp option:selected').val()
         lgmv_pressure = $('#lgmv_pressure option:selected').val()
@@ -308,6 +286,7 @@
         $('#unit_options').css("display", "none");
 
     });
+
 </script>
 <style>
     .input_option {
@@ -462,5 +441,18 @@
     }
 
 </style>
-
+<style>
+    .lg_input_form {
+        display: block;
+        width: 100%;
+        height: 32px;
+        font-size: 13px;
+        line-height: 1.12857143;
+        color: #555;
+        background: #fff none;
+        border: 1px solid #cecece;
+        margin: 5px;
+        padding: 5px 12px;
+    }
+</style>
 </body>

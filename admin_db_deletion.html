@@ -53,33 +53,10 @@
         </div>
     </div>
     <div id="lg_contents">
-        <div class="tab">
-            <button class="tablinks" onclick="openCity(event, 'ID 발급')" id="defaultOpen">ID 발급</button>
-            <button class="tablinks" onclick="openCity(event, '데이터 삭제')">데이터 삭제</button>
-        </div>
-
-        <div id="ID 발급" class="tabcontent">
-            <div class="card" style=" margin: 20px">
-                <div class="card-header" style="background-color: #abdde5">
-                    ID 발급
-                </div>
-                <div class="form-group" style="margin: 20px; max-height: 30px">
-                    <label for="userId">ID</label>
-                    <input class="form-control" id="userId" aria-describedby="emailHelp">
-                </div>
-                <div class="form-group" style="margin: 20px">
-                    <label for="userpwd">Password</label>
-                    <input type="password" class="form-control" id="userpwd">
-                </div>
-                <button style="margin: 20px;" class="btn btn-primary" onclick="create_user()">ID 발급</button>
-            </div>
 
 
-        </div>
-
-        <div id="데이터 삭제" class="tabcontent">
             <div class="card" style="margin: 50px">
-                <div class="card-header" style="background-color: #9fcdff">
+                <div class="card-header" style="font-size:13px; color:white; background-color: #333333">
                     날짜별 데이터 삭제
                 </div>
                 <div style="margin: 20px">
@@ -88,7 +65,7 @@
                     ~
                     종료날짜
                     <input type="text" id="testDatepicker2">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" style="float: right"
+                    <button type="button" class="btn btn-dark" data-toggle="modal" style="float: right"
                             data-target="#dateModal">
                         삭제 하기
                     </button>
@@ -96,12 +73,12 @@
             </div>
 
             <div class="card" style="margin: 50px">
-                <div class="card-header" style="background-color: #28a745">
+                <div class="card-header" style="font-size:13px; color:white; background-color: #333333">
                     아이디별 데이터 삭제
                 </div>
                 <div style="margin: 20px">
                     <input type="text" id="header_id" placeholder=" ID 입력">
-                    <button type="button" class="btn btn-success" data-toggle="modal" style="float: right"
+                    <button type="button" class="btn btn-dark" data-toggle="modal" style="float: right"
                             data-target="#idModal">
                         삭제 하기
                     </button>
@@ -167,32 +144,40 @@
         data.type = 'date'
         data.first_date = document.getElementById('testDatepicker1').value
         data.end_date = document.getElementById('testDatepicker2').value
-        $.ajax({
-            type: 'post'
-            , url: 'http://localhost:3000/api/data/delete'
-            , data: data
-            , beforeSend: function () {
-                $('#ajax_load_indicator').show().fadeIn('fast');
-            }
-            , success: function (data) {
-                if (data === 1) {
-                    alert('삭제 되었습니다.')
+        if ($("#testDatepicker1").val() == '' ^ $("#testDatepicker2").val() == '') {
+            alert("첫날짜와 마지막 날짜를 모두 넣어주세요.");
+        }
+        else {
+            $.ajax({
+                type: 'post'
+                , url: 'http://localhost:3000/api/data/delete'
+                , data: data
+                , beforeSend: function () {
+                    $('#ajax_load_indicator').show().fadeIn('fast');
                 }
-            }
-            , error: function (data, status, err) {
-                console.log("error forward : " + data);
-                alert('서버와의 통신이 실패했습니다.');
-            }
-            , complete: function () {
-                $('#ajax_load_indicator').fadeOut();
-            }
-        })
+                , success: function (data) {
+                    if (data === 1) {
+                        alert('삭제 되었습니다.')
+                    }
+                }
+                , error: function (data, status, err) {
+                    console.log("error forward : " + data);
+                    alert('서버와의 통신이 실패했습니다.');
+                }
+                , complete: function () {
+                    $('#ajax_load_indicator').fadeOut();
+                }
+            })
+
+        }
     }
 
     function id_delete() {
         var data = {}
         data.type = 'id'
         data.id = document.getElementById('header_id').value
+
+
         $.ajax({
             type: 'post'
             , url: 'http://localhost:3000/api/data/delete'
@@ -232,53 +217,6 @@
         });
     });
 
-    function create_user() {
-        var data = {}
-        data.id = $('#userId').val()
-        data.pwd = $('#userpwd').val()
-        $.ajax({
-            type: 'post'
-            , url: 'http://localhost:3000/api/user/create'
-            , data: data
-            , beforeSend: function () {
-                $('#ajax_load_indicator').show().fadeIn('fast');
-            }
-            , success: function (data) {
-                if (data.status === 400) {
-                    alert("id 가 중복되었습니다. 다른 id를 입력해주세요!")
-                }
-                else {
-                    alert("id가 정상적으로 발급되었습니다.")
-                }
-            }
-            , error: function (data, status, err) {
-                console.log("error forward : " + data);
-                alert('서버와의 통신이 실패했습니다.');
-            }
-            , complete: function () {
-                $('#ajax_load_indicator').fadeOut();
-            }
-        });
-    }
-
-    function openCity(evt, cityName) {
-        var i, tabcontent, tablinks;
-        tabcontent = document.getElementsByClassName("tabcontent");
-        for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-        }
-        tablinks = document.getElementsByClassName("tablinks");
-        for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
-        }
-        document.getElementById(cityName).style.display = "block";
-        evt.currentTarget.className += " active";
-    }
-
-
-    // Get the element with id="defaultOpen" and click on it
-</script>
-<script>
     $(document).ready(function () {
         if (localStorage['lgmv_temp']) {
             $('#lgmv_temp').val(localStorage['lgmv_temp'])
@@ -298,6 +236,14 @@
             $('#unit_options').hide();
         }
     };
+
+    function admin_mode() {
+        if ($("#admin_tabs").css("display") == "none") {
+            $('#admin_tabs').css("display", "flex");
+        } else {
+            $('#admin_tabs').hide();
+        }
+    };
     $("#save_btn").click(function () {
         lgmv_temp = $('#lgmv_temp option:selected').val()
         lgmv_pressure = $('#lgmv_pressure option:selected').val()
@@ -308,7 +254,10 @@
         $('#unit_options').css("display", "none");
 
     });
+
+
 </script>
+
 <style>
     .input_option {
         display: block;
