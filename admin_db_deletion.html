@@ -52,9 +52,7 @@
             </div>
         </div>
     </div>
-    <div id="lg_contents">
-
-
+    <div id="lg_contents" style="display: none">
             <div class="card" style="margin: 50px">
                 <div class="card-header" style="font-size:13px; color:white; background-color: #333333">
                     날짜별 데이터 삭제
@@ -131,27 +129,7 @@
                 </div>
             </div>
         </div>
-    <div class="modal fade" id="optionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-         aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel" style="font-size: 13px">Message</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    옵션이 저장되었습니다.
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">확인</button>
-                </div>
-            </div>
-        </div>
     </div>
-
-</div>
 </div>
 
 <script type="text/javascript" src="js/bootstrap.js"></script>
@@ -238,6 +216,34 @@
     });
 
     $(document).ready(function () {
+        $.ajax({
+            type: 'post'
+            , url: 'http://localhost:3000/api/check_admin'
+            , beforeSend: function () {
+                $('#ajax_load_indicator').show().fadeIn('fast');
+            }
+            , success: function (data) {
+                var inputString = prompt('비밀번호를 입력하세요', '');
+                if (data.pwd === inputString) {
+                    alert('승인 되었습니다.')
+                    $('#lg_contents').css('display','flex');
+                }
+                else {
+                    alert('승인이 되지 않았습니다. 홈 화면으로 돌아갑니다.')
+                    window.location.href = "home.html";
+                }
+            }
+            , error: function (data, status, err) {
+                console.log("error forward : " + data);
+                alert('서버와의 통신이 실패했습니다.');
+            }
+            , complete: function () {
+                $('#ajax_load_indicator').fadeOut();
+            }
+        });
+
+
+
         if (localStorage['lgmv_temp']) {
             $('#lgmv_temp').val(localStorage['lgmv_temp'])
         }
