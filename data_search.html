@@ -384,6 +384,27 @@
                     </tr>
                     </tbody>
                 </table>
+
+                <h6 class="lg_circle lg_product_info_text">중복시험</h6>
+                <table id="redanduncy_result_table" class="table table-bordered">
+                    <tr>
+                        <th>ID</th>
+                        <th>Model</th>
+                        <th>모델명</th>
+                        <th>용량</th>
+                        <th>샤시</th>
+                        <th>냉매 종류</th>
+                        <th>구분</th>
+                        <th>시험항목</th>
+                        <th>시험 날짜</th>
+                        <th>실험자</th>
+                        <th>챔버 번호</th>
+                        <th>상세 보기</th>
+                        <th>그래프</th>
+                    </tr>
+                    <tbody id="redanduncy_result_table_tbody">
+                    </tbody>
+                </table>
             </div>
         </div>
 
@@ -739,6 +760,8 @@
         });
     });
 
+    
+
     function DetailSearch(header_uid) {
         var params = "header_uid=" + header_uid;
         var same;
@@ -869,7 +892,7 @@
 
                     $('#search_fail').css('display', 'none');
 
-                    sameSearch(same, id);
+                    sameSearch(test_step1, test_step2);
 
                 } else {
                     $('#search_result').css('display', 'none');
@@ -888,24 +911,25 @@
     }
 
 
-    function sameSearch(same, uid) {
+    function sameSearch(test1, test2) {
         $('#_same').css('display', 'flex');
         $('#_same_title').css('display', 'inline');
+        var params = 'test_step1='+test1+'&test_step2='+test2;
         $.ajax({
             type: 'post'
-            , url: 'http://localhost:3000/api/data_search_detail'
-            , data: same
+            , url: 'http://localhost:3000/api/similar_test'
+            , data: params
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
             }
             , success: function (data) {
                 $('#search_result').css('display', 'inline');
 
-                $('#lg_same_test_tbody tr:gt(0)').remove();
+                $('#redanduncy_result_table tr:gt(0)').remove();
                 $('#cold_tbody tr:gt(0)').remove();
                 // 분기 처리
-                if (data.content.header.length > 0) {
-                    var array = data.content.header;
+                if (data.content.length > 0) {
+                    var array = data.content;
                     array.forEach(element => {
                         var id = element.header_uid;
                         var Model = element.lgmv_model_filter2;
@@ -953,30 +977,30 @@
                         var unit_flux = element.lgmv_unit_flux;
 
 
-                        if (uid == id && test_step1 == '냉방성능') {
-                            $('#_cold').css('display', 'inline');
+                        // if (uid == id && test_step1 == '냉방성능') {
+                        //     $('#_cold').css('display', 'inline');
 
-                            var calzz = data.content.cooling_performance;
+                        //     var calzz = data.content.cooling_performance;
 
-                            var rowItem = "<tr>";
-                            rowItem += "<td id='detailzz" + id + "' value=" + id + " onclick=\"DetailSearch(\'" + id + "\');\">" + id + "</td>";
-                            ;
-                            rowItem += "<td>" + calzz.compressor_1 + "</td>";
-                            rowItem += "<td>" + calzz.compressor_2 + "</td>";
-                            rowItem += "<td>" + calzz.odu_fan_rpm1 + "</td>";
-                            rowItem += "<td>" + calzz.odu_fan_rpm2 + "</td>";
-                            rowItem += "<td>" + calzz.idu1_fan_rpm + "</td>";
-                            rowItem += "<td>" + calzz.main_eev + "</td>";
-                            rowItem += "<td>" + calzz.sub_eev + "</td>";
-                            rowItem += "<td>" + "</td>";
-                            rowItem += "<td>" + calzz.EER + "</td>";
-                            rowItem += "</tr>";
-                            $('#cold_tbody').append(rowItem);
+                        //     var rowItem = "<tr>";
+                        //     rowItem += "<td id='detailzz" + id + "' value=" + id + " onclick=\"DetailSearch(\'" + id + "\');\">" + id + "</td>";
+                        //     ;
+                        //     rowItem += "<td>" + calzz.compressor_1 + "</td>";
+                        //     rowItem += "<td>" + calzz.compressor_2 + "</td>";
+                        //     rowItem += "<td>" + calzz.odu_fan_rpm1 + "</td>";
+                        //     rowItem += "<td>" + calzz.odu_fan_rpm2 + "</td>";
+                        //     rowItem += "<td>" + calzz.idu1_fan_rpm + "</td>";
+                        //     rowItem += "<td>" + calzz.main_eev + "</td>";
+                        //     rowItem += "<td>" + calzz.sub_eev + "</td>";
+                        //     rowItem += "<td>" + "</td>";
+                        //     rowItem += "<td>" + calzz.EER + "</td>";
+                        //     rowItem += "</tr>";
+                        //     $('#cold_tbody').append(rowItem);
 
-                        }
-                        else {
+                        // }
+                        // else {
 
-                        }
+                        // }
 
 
                         var rowItem = "<tr>";
@@ -989,12 +1013,14 @@
                         rowItem += "<td>" + nang + "</td>";
                         rowItem += "<td>" + test_step1 + "</td>";
                         rowItem += "<td>" + test_step2 + "</td>";
-                        rowItem += "<td>" + test_date + "</td>";
+                        rowItem += "<td>" + test_date.slice(0, 10) + "</td>";
                         rowItem += "<td>" + test_performer + "</td>";
                         rowItem += "<td>" + testroom + "</td>";
+                        rowItem += "<td><button class='data_search_btn_table' onclick=\"DetailSearch(\'" + id + "\');\">상세 보기</button></td>";
+                        rowItem += "<td><button class='data_search_btn_table' onclick=\"setHeaderUid(\'" + id + "\');\">그래프 보기</button></td>";
                         rowItem += "</tr>";
 
-                        $('#lg_same_test_tbody').append(rowItem);
+                        $('#redanduncy_result_table_tbody').append(rowItem);
                     });
                     $('#search_fail').css('display', 'none');
 
@@ -1324,6 +1350,40 @@
     }
 
     #search_result_table tbody > tr {
+        border-bottom: 1px solid rgb(163, 163, 163);
+    }
+
+
+    #redanduncy_result_table {
+        
+        flex-direction: column;
+        width: 100%;
+        margin: 0 0 50px;
+    }
+
+    #redanduncy_result_table tbody tr:nth-child(1) th {
+        background: #f1f0f0;
+        border-top: 2px solid rgb(163, 163, 163);
+        text-align: center;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    #redanduncy_result_table .table tbody > tr > th {
+        height: 45px;
+        padding-right: 20px;
+        background: #f1f0f0;
+        font-weight: 700;
+        text-align: right;
+    }
+
+    #redanduncy_result_table .table tbody > tr > td {
+        background: #fff;
+        word-break: break-all;
+        white-space: pre-wrap;
+    }
+
+    #redanduncy_result_table tbody > tr {
         border-bottom: 1px solid rgb(163, 163, 163);
     }
 
