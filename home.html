@@ -100,10 +100,8 @@
         <div id="lg_chamber_graph" style="width: 100%" class="row">
             <div class="col-md-12">
                 <h6 class="lg_circle" style="margin-top: 10px">챔버 상태</h6>
-                <p>챔버번호 : <select id="index">
+                <p>챔버번호 <span style="margin: 10">:</span><select id="index">
                 </select>
-                    <button id="lg_see_graph_btn" style="margin-left: 1em" onClick='SelectUnit()'>그래프 보기</button>
-
                 </p>
 
                 <div id="Line_Controls_Chart">
@@ -876,6 +874,10 @@
     function lg_logout() {
         window.location.href = "./index.html";
     }
+
+    $('#index').change(function() {
+        SelectUnit()
+    })
 </script>
 <style>
     .input_option {
