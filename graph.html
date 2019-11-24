@@ -12,6 +12,7 @@
     <div style="margin-left: 0px;font-size: 24px;">
         <img id="img_logo" src="./r&d_data.png"></img>
         <span style="font-weight: normal; font-family: -apple-system, BlinkMacSystemFont !important;">R&D Data</span>
+        <button id="lg_logout_btn" style="margin-left: 1em" onClick='lg_logout()'>Logout</button>
     </div>
 </div>
 <div class="full-page">
@@ -165,7 +166,7 @@
                 else if (localStorage['lgmv_temp'] == 'F') { // C => F 로 변환
                     return value * 9.0 / 5.0 + 32;
                 }
-                else{
+                else {
                     return value;
                 }
             }
@@ -182,7 +183,7 @@
                 else if (localStorage['lgmv_temp'] == 'F') { // C => F 로 변환
                     return value * 9.0 / 5.0;
                 }
-                else{
+                else {
                     return value;
                 }
             }
@@ -200,7 +201,7 @@
                     else if (localStorage['lgmv_press'] == 'kgcm') { // kPa => kgcm 로 변환
                         return value / 98.0665;
                     }
-                    else{
+                    else {
                         return value;
                     }
                 }
@@ -211,7 +212,7 @@
                     else if (localStorage['lgmv_press'] == 'kgcm') { // Psi => kgcm 로 변환
                         return value / 14.223;
                     }
-                    else{
+                    else {
                         return value;
                     }
                 }
@@ -222,7 +223,7 @@
                     else if (localStorage['lgmv_press'] == 'Psi') { // kgcm => Psi 로 변환
                         return value * 98.0665;
                     }
-                    else{
+                    else {
                         return value;
                     }
                 }
@@ -240,7 +241,7 @@
                     else if (localStorage['lgmv_cap'] == 'Btu/h') { // Watt => Btu/h 로 변환
                         return value * 3.412;
                     }
-                    else{
+                    else {
                         return value;
                     }
                 }
@@ -251,7 +252,7 @@
                     else if (localStorage['lgmv_cap'] == 'Watt') { // kal/h => Watt 로 변환
                         return value * 1.163;
                     }
-                    else{
+                    else {
                         return value;
                     }
                 }
@@ -262,9 +263,9 @@
                     else if (localStorage['lgmv_cap'] == 'Watt') { // kgcm => Psi 로 변환
                         return value * 0.293;
                     }
-                    else{
+                    else {
                         return value;
-                    }   
+                    }
                 }
             }
             else {
@@ -798,6 +799,7 @@
         flex-direction: column;
         height: 100%;
     }
+
     #img_logo {
         width: 60px;
         height: 40px;
@@ -812,6 +814,7 @@
         flex-direction: column;
         flex-wrap: wrap;
     }
+
     .lg_circle:before {
         content: "";
         display: inline-block;
@@ -842,12 +845,35 @@
         font-weight: normal !important;
         font-size: 13px;
     }
+
     #detail_table_filter label {
         font-weight: normal !important;
         font-size: 13px;
     }
+
     #detail_table {
         width: 100% !important;
+    }
+
+    #lg_logout_btn {
+        display: inline-block;
+        position: absolute;
+        margin-bottom: 0;
+        right: 0;
+        top: 5;
+        margin-right: 5px;
+        font-weight: 400;
+        vertical-align: center;
+        touch-action: manipulation;
+        background-color: rgb(105, 109, 114);
+        border-width: 1px;
+        padding: 6px 12px;
+        font-size: 13px;
+        color: rgb(223, 223, 225);
+        line-height: 1.42857143;
+        border-radius: 4px;
+        user-select: none;
+        float: right;
     }
 
 </style>

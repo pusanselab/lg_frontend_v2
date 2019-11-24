@@ -10,6 +10,7 @@
         <img id="img_logo" src="./r&d_data.png"></img>
         R&D Data
     </div>
+    <button id="lg_logout_btn" style="margin-left: 1em" onClick='lg_logout()'>Logout</button>
 </div>
 <div class="full-page">
     <div id="lg_sidebar">
@@ -25,14 +26,14 @@
             <div id="unit_options"
                  style="position:absolute; margin-bottom:50px; bottom:0; font-size:13px;  display: none; color:white; flex-direction: column">
                 <div style="margin: auto;text-align: center;">
-                     온도 단위
+                    온도 단위
                     <select id="lgmv_temp" class="input_option" style="margin-bottom: 10px; width: 100px;">
                         <option value="F">F</option>
                         <option value="C">C</option>
                     </select>
                 </div>
                 <div style="margin: auto;text-align: center;">
-                     압력 단위
+                    압력 단위
                     <select id="lgmv_pressure" class="input_option" style="margin-bottom: 10px; width: 100px;">
                         <option value="kPa">kPa</option>
                         <option value="Psi">Psi</option>
@@ -40,7 +41,7 @@
                     </select>
                 </div>
                 <div style="margin: auto;text-align: center;">
-                     유량 단위
+                    유량 단위
                     <select id="lgmv_flux" class="input_option" style="width: 100px;">
                         <option value="m3/h">m3/h</option>
                         <option value="gal/m">gal/m</option>
@@ -261,7 +262,7 @@
                 var inputString = prompt('비밀번호를 입력하세요', '');
                 if (data.pwd === inputString) {
                     alert('승인 되었습니다.')
-                    $('#lg_contents').css('display','flex');
+                    $('#lg_contents').css('display', 'flex');
                 }
                 else {
                     alert('승인이 되지 않았습니다. 홈 화면으로 돌아갑니다.')
@@ -482,5 +483,27 @@
         margin: 5px;
         padding: 5px 12px;
     }
+
+    #lg_logout_btn {
+        display: inline-block;
+        position: absolute;
+        margin-bottom: 0;
+        right: 0;
+        top: 5;
+        margin-right: 5px;
+        font-weight: 400;
+        vertical-align: center;
+        touch-action: manipulation;
+        background-color: rgb(105, 109, 114);
+        border-width: 1px;
+        padding: 6px 12px;
+        font-size: 13px;
+        color: rgb(223, 223, 225);
+        line-height: 1.42857143;
+        border-radius: 4px;
+        user-select: none;
+        float: right;
+    }
+
 </style>
 </body>

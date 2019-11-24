@@ -12,6 +12,7 @@
     <div style="margin-left: 0px;font-size: 24px;">
         <img id="img_logo" src="./r&d_data.png"></img>
         <span style="font-weight: normal; font-family: -apple-system, BlinkMacSystemFont !important;">R&D Data</span>
+        <button id="lg_logout_btn" style="margin-left: 1em" onClick='lg_logout()'>Logout</button>
     </div>
 </div>
 <div class="full-page">
@@ -28,14 +29,14 @@
             <div id="unit_options"
                  style="position:absolute; margin-bottom:50px; bottom:0; font-size:13px;  display: none; color:white; flex-direction: column">
                 <div style="margin: auto;text-align: center;">
-                     온도 단위
+                    온도 단위
                     <select id="lgmv_temp" class="input_option" style="margin-bottom: 10px; width: 100px;">
                         <option value="F">F</option>
                         <option value="C">C</option>
                     </select>
                 </div>
                 <div style="margin: auto;text-align: center;">
-                     압력 단위
+                    압력 단위
                     <select id="lgmv_pressure" class="input_option" style="margin-bottom: 10px; width: 100px;">
                         <option value="kPa">kPa</option>
                         <option value="Psi">Psi</option>
@@ -43,7 +44,7 @@
                     </select>
                 </div>
                 <div style="margin: auto;text-align: center;">
-                     유량 단위
+                    유량 단위
                     <select id="lgmv_flux" class="input_option" style="width: 100px;">
                         <option value="m3/h">m3/h</option>
                         <option value="gal/m">gal/m</option>
@@ -760,7 +761,6 @@
         });
     });
 
-    
 
     function DetailSearch(header_uid) {
         var params = "header_uid=" + header_uid;
@@ -914,7 +914,7 @@
     function sameSearch(test1, test2) {
         $('#_same').css('display', 'flex');
         $('#_same_title').css('display', 'inline');
-        var params = 'test_step1='+test1+'&test_step2='+test2;
+        var params = 'test_step1=' + test1 + '&test_step2=' + test2;
         $.ajax({
             type: 'post'
             , url: 'http://localhost:3000/api/similar_test'
@@ -1353,9 +1353,9 @@
         border-bottom: 1px solid rgb(163, 163, 163);
     }
 
-
     #redanduncy_result_table {
-        
+        text-align: center;
+        vertical-align: center;
         flex-direction: column;
         width: 100%;
         margin: 0 0 50px;
@@ -1467,6 +1467,27 @@
         line-height: 1.42857143;
         border-radius: 4px;
         user-select: none;
+    }
+
+    #lg_logout_btn {
+        display: inline-block;
+        position: absolute;
+        margin-bottom: 0;
+        right: 0;
+        top: 5;
+        margin-right: 5px;
+        font-weight: 400;
+        vertical-align: center;
+        touch-action: manipulation;
+        background-color: rgb(105, 109, 114);
+        border-width: 1px;
+        padding: 6px 12px;
+        font-size: 13px;
+        color: rgb(223, 223, 225);
+        line-height: 1.42857143;
+        border-radius: 4px;
+        user-select: none;
+        float: right;
     }
 
 </style>

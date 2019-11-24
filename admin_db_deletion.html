@@ -10,6 +10,7 @@
         <img id="img_logo" src="./r&d_data.png"></img>
         R&D Data
     </div>
+    <button id="lg_logout_btn" style="margin-left: 1em" onClick='lg_logout()'>Logout</button>
 </div>
 <div class="full-page">
     <div id="lg_sidebar">
@@ -25,14 +26,14 @@
             <div id="unit_options"
                  style="position:absolute; margin-bottom:50px; bottom:0; font-size:13px;  display: none; color:white; flex-direction: column">
                 <div style="margin: auto;text-align: center;">
-                     온도 단위
+                    온도 단위
                     <select id="lgmv_temp" class="input_option" style="margin-bottom: 10px; width: 100px;">
                         <option value="F">F</option>
                         <option value="C">C</option>
                     </select>
                 </div>
                 <div style="margin: auto;text-align: center;">
-                     압력 단위
+                    압력 단위
                     <select id="lgmv_pressure" class="input_option" style="margin-bottom: 10px; width: 100px;">
                         <option value="kPa">kPa</option>
                         <option value="Psi">Psi</option>
@@ -40,7 +41,7 @@
                     </select>
                 </div>
                 <div style="margin: auto;text-align: center;">
-                     유량 단위
+                    유량 단위
                     <select id="lgmv_flux" class="input_option" style="width: 100px;">
                         <option value="m3/h">m3/h</option>
                         <option value="gal/m">gal/m</option>
@@ -53,83 +54,83 @@
         </div>
     </div>
     <div id="lg_contents" style="display: none">
-            <div class="card" style="margin: 50px">
-                <div class="card-header" style="font-size:13px; color:white; background-color: #333333">
-                    날짜별 데이터 삭제
-                </div>
-                <div style="margin: 20px">
-                    시작날짜
-                    <input type="text" id="testDatepicker1">
-                    ~
-                    종료날짜
-                    <input type="text" id="testDatepicker2">
-                    <button type="button" class="btn btn-dark" data-toggle="modal" style="float: right"
-                            data-target="#dateModal">
-                        삭제 하기
-                    </button>
-                </div>
+        <div class="card" style="margin: 50px">
+            <div class="card-header" style="font-size:13px; color:white; background-color: #333333">
+                날짜별 데이터 삭제
             </div>
-
-            <div class="card" style="margin: 50px">
-                <div class="card-header" style="font-size:13px; color:white; background-color: #333333">
-                    아이디별 데이터 삭제
-                </div>
-                <div style="margin: 20px">
-                    <input type="text" id="header_id" placeholder=" ID 입력">
-                    <button type="button" class="btn btn-dark" data-toggle="modal" style="float: right"
-                            data-target="#idModal">
-                        삭제 하기
-                    </button>
-                </div>
+            <div style="margin: 20px">
+                시작날짜
+                <input type="text" id="testDatepicker1">
+                ~
+                종료날짜
+                <input type="text" id="testDatepicker2">
+                <button type="button" class="btn btn-dark" data-toggle="modal" style="float: right"
+                        data-target="#dateModal">
+                    삭제 하기
+                </button>
             </div>
         </div>
-        <!-- Button trigger modal -->
 
-
-        <!-- Modal -->
-        <div class="modal fade" id="dateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">주의</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        해당 범위 내의 데이터가 모두 삭제됩니다.
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="date_delete()">삭제 하기
-                        </button>
-                    </div>
-                </div>
+        <div class="card" style="margin: 50px">
+            <div class="card-header" style="font-size:13px; color:white; background-color: #333333">
+                아이디별 데이터 삭제
+            </div>
+            <div style="margin: 20px">
+                <input type="text" id="header_id" placeholder=" ID 입력">
+                <button type="button" class="btn btn-dark" data-toggle="modal" style="float: right"
+                        data-target="#idModal">
+                    삭제 하기
+                </button>
             </div>
         </div>
-        <div class="modal fade" id="idModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-             aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">주의</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        해당 아이디의 데이터가 모두 삭제됩니다.
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="id_delete()">삭제 하기
-                        </button>
-                    </div>
+    </div>
+    <!-- Button trigger modal -->
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="dateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">주의</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    해당 범위 내의 데이터가 모두 삭제됩니다.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="date_delete()">삭제 하기
+                    </button>
                 </div>
             </div>
         </div>
     </div>
+    <div class="modal fade" id="idModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">주의</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    해당 아이디의 데이터가 모두 삭제됩니다.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="id_delete()">삭제 하기
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 
 <script type="text/javascript" src="js/bootstrap.js"></script>
@@ -226,7 +227,7 @@
                 var inputString = prompt('비밀번호를 입력하세요', '');
                 if (data.pwd === inputString) {
                     alert('승인 되었습니다.')
-                    $('#lg_contents').css('display','flex');
+                    $('#lg_contents').css('display', 'flex');
                 }
                 else {
                     alert('승인이 되지 않았습니다. 홈 화면으로 돌아갑니다.')
@@ -241,7 +242,6 @@
                 $('#ajax_load_indicator').fadeOut();
             }
         });
-
 
 
         if (localStorage['lgmv_temp']) {
@@ -434,6 +434,27 @@
     #lg_sidebar a:hover {
         font-weight: bold;
         text-decoration: #1c7430 solid;
+    }
+
+    #lg_logout_btn {
+        display: inline-block;
+        position: absolute;
+        margin-bottom: 0;
+        right: 0;
+        top: 5;
+        margin-right: 5px;
+        font-weight: 400;
+        vertical-align: center;
+        touch-action: manipulation;
+        background-color: rgb(105, 109, 114);
+        border-width: 1px;
+        padding: 6px 12px;
+        font-size: 13px;
+        color: rgb(223, 223, 225);
+        line-height: 1.42857143;
+        border-radius: 4px;
+        user-select: none;
+        float: right;
     }
 
 </style>
