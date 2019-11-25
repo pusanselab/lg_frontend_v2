@@ -81,6 +81,7 @@
                 }
                 // 분기 처리
                 if (response == "success") {
+					sessionStorage.setItem("user_id", data.user_info.user_id);
                     window.location.href = "./home.html";
 
                 } else {

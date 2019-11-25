@@ -679,24 +679,18 @@
             }
         })
 
-
         $.ajax({
             type: 'post'
             , url: 'http://localhost:3000/api/session'
-
-            , beforeSend: function () {
+            , cookie : document.cookie
+            , beforeSend: function (xmlHttpRequest) {
                 $('#ajax_load_indicator').show().fadeIn('fast');
+                xmlHttpRequest.setRequestHeader("user_id", sessionStorage.getItem('user_id'));
             }
             , success: function (data) {
+                console.log(data)
             }
-            , error: function (data, status, err) {
-                console.log("error forward : " + data);
-                alert('서버와의 통신이 실패했습니다.');
-            }
-            , complete: function () {
-                $('#ajax_load_indicator').fadeOut();
-            }
-        });
+        })
     });
 
     var cham_number = [];
@@ -1160,7 +1154,27 @@
     });
 
     function lg_logout() {
-        window.location.href = "./index.html";
+
+        $.ajax({
+            type: 'post'
+            , url: 'http://localhost:3000/api/logout'
+            
+            , beforeSend: function () {
+                $('#ajax_load_indicator').show().fadeIn('fast');
+            }
+            , success: function (data) {
+                window.location.href = "./index.html";
+            }
+            , error: function (data, status, err) {
+                console.log("error forward : " + data);
+                alert('서버와의 통신이 실패했습니다.');
+                window.location.href = "./index.html";
+            }
+            , complete: function () {
+                $('#ajax_load_indicator').fadeOut();
+            }
+        });
+        
     }
 
     $('#index').change(function() {
