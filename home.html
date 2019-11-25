@@ -1,3 +1,291 @@
+<style>
+    .input_option {
+        display: block;
+        width: 100%;
+        height: 32px;
+        font-size: 13px;
+        line-height: 1.12857143;
+        color: #555;
+        background: #fff none;
+        border: 1px solid #cecece;
+        margin: 5px;
+        padding: 5px 12px;
+    }
+
+    .option_save_btn {
+        display: inline-block;
+        margin-bottom: 0;
+        font-weight: 400;
+        text-align: center;
+        vertical-align: top;
+        touch-action: manipulation;
+        background-color: rgb(105, 109, 114);
+        border-width: 1px;
+        padding: 6px 12px;
+        font-size: 13px;
+        color: rgb(223, 223, 225);
+        line-height: 1.42857143;
+        border-radius: 4px;
+        user-select: none;
+    }
+
+</style>
+
+<!--full box & sidebar Css-->
+<style>
+    .full-page {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    #img_logo {
+        width: 60px;
+        height: 40px;
+        margin-right: 0px;
+    }
+
+    /*lg_content Css*/
+    #lg_contents {
+        margin-left: 200px;
+        margin-top: 100px;
+        margin-right: 250px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    /*sidebar css start*/
+
+    /*sidebar는 고정되어 있어야 하므로 flex none 설정*/
+    .full-page #lg_sidebar {
+        flex: none;
+        position: fixed;
+        width: 150px;
+        Margin-top: 40px;
+        height: 100%;
+        font-family: sans-serif;
+        background-color: #333;
+    }
+
+    #lg_sidebar {
+        background-color: white;
+    }
+
+    #lg_sidebar #lg_sidebar_content {
+        margin: 0em 0em 0em;
+        background-color: #333;
+        padding: 2em 1em;
+        box-shadow: 0px 0px 0px;
+    }
+
+    /* sidebar 안에 있는 링크들 */
+    #lg_sidebar a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1em;
+        font-size: 0.9em;
+        font-family: "Adobe 명조 Std M";
+        color: white;
+    }
+
+    #lg_sidebar a:hover {
+        font-weight: bold;
+        text-decoration: #1c7430 solid;
+    }
+
+    #lg_db_count {
+        text-align: left;
+        font-weight: bold;
+        margin: 2.5em 1em 1em 4em;
+
+    }
+</style>
+<!--contents Css-->
+<style>
+
+    #lg_dataset_by_model_header {
+        display: flex;
+        background-color: #333;
+        padding: 0.8em;
+        color: white;
+        font-family: "Adobe 명조 Std M";
+    }
+
+    #lg_dataset_by_test_header {
+        display: flex;
+        background-color: #333;
+        padding: 0.8em;
+        font-family: "Adobe 명조 Std M";
+        color: white;
+    }
+</style>
+<!--lg chamber content css-->
+<style>
+    #lg_chamber_content {
+        font-weight: bold;
+        font-family: "Adobe 명조 Std M";
+        margin-top: 2em;
+        margin-right: 0;
+        margin: 3em;
+        color: black;
+        font-size: 0.9em;
+    }
+
+    #lg_chember_table_thead {
+        border-right: 1px solid #1d2124;
+        border-bottom: 2px solid #1d2124;
+        padding: 10px;
+        vertical-align: top;
+        background-color: #333;
+        color: white;
+    }
+
+    #detail_body td {
+        margin: 0.1em;
+        padding: 0.5em;
+        font-family: "Fira Code";
+        height: 80%;
+    }
+
+</style>
+<!--lg_chamber_graph css-->
+
+<!--lg_circle-->
+<style>
+    .lg_circle:before {
+        content: "";
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        margin-right: 5px;
+        border: 2px solid #d80546;
+        border-radius: 50%;
+    }
+</style>
+<style>
+
+    #lg_chamber_graph {
+        margin: 2em;
+        color: black;
+        font-weight: bold;
+    }
+
+</style>
+
+<!--lg_model_graph css-->
+<style>
+    #lg_model_graph {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #model_chart_div {
+        min-height: 450px;
+        display: flex;
+        background-color: black;
+        padding: 0.8em;
+        margin: 0.5em;
+        color: white;
+        font-family: "Adobe 명조 Std M";
+    }
+
+    #model_chart_div div > div > div > svg {
+        width: 100%;
+    }
+
+    #lg_graph {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+    }
+
+    #lg_graph1 {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    #lg_graph2 {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .chart {
+        width: 100%;
+        min-height: 300px;
+    }
+
+    #chart_div1 {
+        border: 1px solid #CCC !important;
+    }
+
+    #chart_div2 {
+        border: 1px solid #CCC !important;
+    }
+
+    #chart_div1 div > div > svg > rect {
+        border: 1px solid black;
+    }
+
+    #chart_div2 rect {
+        border-right-color: #CCC !important;
+        border-bottom-color: #CCC !important;
+        border-left-color: #CCC !important
+    }
+
+    .no-padding {
+    }
+
+    #index {
+        height: 32px;
+        padding: 5px 12px;
+        font-size: 13px;
+        line-height: 1.42857143;
+        color: #555;
+        background: #fff none;
+    }
+
+    #lg_see_graph_btn {
+        display: inline-block;
+        margin-bottom: 0;
+        font-weight: 400;
+        vertical-align: top;
+        touch-action: manipulation;
+        background-color: rgb(105, 109, 114);
+        border-width: 1px;
+        padding: 6px 12px;
+        font-size: 13px;
+        color: rgb(223, 223, 225);
+        line-height: 1.42857143;
+        border-radius: 4px;
+        user-select: none;
+    }
+
+    #lg_logout_btn {
+        display: inline-block;
+        position: absolute;
+        margin-bottom: 0;
+        right: 0;
+        top: 5;
+        margin-right: 5px;
+        font-weight: 400;
+        vertical-align: center;
+        touch-action: manipulation;
+        background-color: rgb(105, 109, 114);
+        border-width: 1px;
+        padding: 6px 12px;
+        font-size: 13px;
+        color: rgb(223, 223, 225);
+        line-height: 1.42857143;
+        border-radius: 4px;
+        user-select: none;
+        float: right;
+    }
+</style>
 <head>
     <title>LG R&D Data</title>
     <meta charset="utf-8"/>
@@ -879,292 +1167,5 @@
         SelectUnit()
     })
 </script>
-<style>
-    .input_option {
-        display: block;
-        width: 100%;
-        height: 32px;
-        font-size: 13px;
-        line-height: 1.12857143;
-        color: #555;
-        background: #fff none;
-        border: 1px solid #cecece;
-        margin: 5px;
-        padding: 5px 12px;
-    }
 
-    .option_save_btn {
-        display: inline-block;
-        margin-bottom: 0;
-        font-weight: 400;
-        text-align: center;
-        vertical-align: top;
-        touch-action: manipulation;
-        background-color: rgb(105, 109, 114);
-        border-width: 1px;
-        padding: 6px 12px;
-        font-size: 13px;
-        color: rgb(223, 223, 225);
-        line-height: 1.42857143;
-        border-radius: 4px;
-        user-select: none;
-    }
-
-</style>
-
-<!--full box & sidebar Css-->
-<style>
-    .full-page {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-    }
-
-    #img_logo {
-        width: 60px;
-        height: 40px;
-        margin-right: 0px;
-    }
-
-    /*lg_content Css*/
-    #lg_contents {
-        margin-left: 200px;
-        margin-top: 100px;
-        margin-right: 250px;
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-    }
-
-    /*sidebar css start*/
-
-    /*sidebar는 고정되어 있어야 하므로 flex none 설정*/
-    .full-page #lg_sidebar {
-        flex: none;
-        position: fixed;
-        width: 150px;
-        Margin-top: 40px;
-        height: 100%;
-        font-family: sans-serif;
-        background-color: #333;
-    }
-
-    #lg_sidebar {
-        background-color: white;
-    }
-
-    #lg_sidebar #lg_sidebar_content {
-        margin: 0em 0em 0em;
-        background-color: #333;
-        padding: 2em 1em;
-        box-shadow: 0px 0px 0px;
-    }
-
-    /* sidebar 안에 있는 링크들 */
-    #lg_sidebar a {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 1em;
-        font-size: 0.9em;
-        font-family: "Adobe 명조 Std M";
-        color: white;
-    }
-
-    #lg_sidebar a:hover {
-        font-weight: bold;
-        text-decoration: #1c7430 solid;
-    }
-
-    #lg_db_count {
-        text-align: left;
-        font-weight: bold;
-        margin: 2.5em 1em 1em 4em;
-
-    }
-</style>
-<!--contents Css-->
-<style>
-
-    #lg_dataset_by_model_header {
-        display: flex;
-        background-color: #333;
-        padding: 0.8em;
-        color: white;
-        font-family: "Adobe 명조 Std M";
-    }
-
-    #lg_dataset_by_test_header {
-        display: flex;
-        background-color: #333;
-        padding: 0.8em;
-        font-family: "Adobe 명조 Std M";
-        color: white;
-    }
-</style>
-<!--lg chamber content css-->
-<style>
-    #lg_chamber_content {
-        font-weight: bold;
-        font-family: "Adobe 명조 Std M";
-        margin-top: 2em;
-        margin-right: 0;
-        margin: 3em;
-        color: black;
-        font-size: 0.9em;
-    }
-
-    #lg_chember_table_thead {
-        border-right: 1px solid #1d2124;
-        border-bottom: 2px solid #1d2124;
-        padding: 10px;
-        vertical-align: top;
-        background-color: #333;
-        color: white;
-    }
-
-    #detail_body td {
-        margin: 0.1em;
-        padding: 0.5em;
-        font-family: "Fira Code";
-        height: 80%;
-    }
-
-</style>
-<!--lg_chamber_graph css-->
-
-<!--lg_circle-->
-<style>
-    .lg_circle:before {
-        content: "";
-        display: inline-block;
-        width: 10px;
-        height: 10px;
-        margin-right: 5px;
-        border: 2px solid #d80546;
-        border-radius: 50%;
-    }
-</style>
-<style>
-
-    #lg_chamber_graph {
-        margin: 2em;
-        color: black;
-        font-weight: bold;
-    }
-
-</style>
-
-<!--lg_model_graph css-->
-<style>
-    #lg_model_graph {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-    }
-
-    #model_chart_div {
-        min-height: 450px;
-        display: flex;
-        background-color: black;
-        padding: 0.8em;
-        margin: 0.5em;
-        color: white;
-        font-family: "Adobe 명조 Std M";
-    }
-
-    #model_chart_div div > div > div > svg {
-        width: 100%;
-    }
-
-    #lg_graph {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-    }
-
-    #lg_graph1 {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-    }
-
-    #lg_graph2 {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .chart {
-        width: 100%;
-        min-height: 300px;
-    }
-
-    #chart_div1 {
-        border: 1px solid #CCC !important;
-    }
-
-    #chart_div2 {
-        border: 1px solid #CCC !important;
-    }
-
-    #chart_div1 div > div > svg > rect {
-        border: 1px solid black;
-    }
-
-    #chart_div2 rect {
-        border-right-color: #CCC !important;
-        border-bottom-color: #CCC !important;
-        border-left-color: #CCC !important
-    }
-
-    .no-padding {
-    }
-
-    #index {
-        height: 32px;
-        padding: 5px 12px;
-        font-size: 13px;
-        line-height: 1.42857143;
-        color: #555;
-        background: #fff none;
-    }
-
-    #lg_see_graph_btn {
-        display: inline-block;
-        margin-bottom: 0;
-        font-weight: 400;
-        vertical-align: top;
-        touch-action: manipulation;
-        background-color: rgb(105, 109, 114);
-        border-width: 1px;
-        padding: 6px 12px;
-        font-size: 13px;
-        color: rgb(223, 223, 225);
-        line-height: 1.42857143;
-        border-radius: 4px;
-        user-select: none;
-    }
-
-    #lg_logout_btn {
-        display: inline-block;
-        position: absolute;
-        margin-bottom: 0;
-        right: 0;
-        top: 5;
-        margin-right: 5px;
-        font-weight: 400;
-        vertical-align: center;
-        touch-action: manipulation;
-        background-color: rgb(105, 109, 114);
-        border-width: 1px;
-        padding: 6px 12px;
-        font-size: 13px;
-        color: rgb(223, 223, 225);
-        line-height: 1.42857143;
-        border-radius: 4px;
-        user-select: none;
-        float: right;
-    }
-</style>
 </body>

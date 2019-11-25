@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <header>
     <title>LG R&D Data[Graph]</title>
     <meta charset="utf-8"/>
@@ -7,6 +8,91 @@
 
     <link rel="stylesheet" href="css/bootstrap.css">
 </header>
+
+<style>
+        .full-page {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+    
+        #img_logo {
+            width: 60px;
+            height: 40px;
+            margin-right: 0px;
+        }
+    
+        #lg_contents {
+            margin-left: 100px;
+            margin-top: 100px;
+            margin-right: 100px;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+        }
+    
+        .lg_circle:before {
+            content: "";
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin-right: 5px;
+            border: 2px solid #d80546;
+            border-radius: 50%;
+        }
+    
+        #lg_see_graph_btn {
+            display: inline-block;
+            margin-bottom: 0;
+            font-weight: 400;
+            vertical-align: top;
+            touch-action: manipulation;
+            background-color: rgb(105, 109, 114);
+            border-width: 1px;
+            padding: 6px 12px;
+            font-size: 13px;
+            color: rgb(223, 223, 225);
+            line-height: 1.42857143;
+            border-radius: 4px;
+            user-select: none;
+        }
+    
+        .dataTables_length label {
+            font-weight: normal !important;
+            font-size: 13px;
+        }
+    
+        #detail_table_filter label {
+            font-weight: normal !important;
+            font-size: 13px;
+        }
+    
+        #detail_table {
+            width: 100% !important;
+        }
+    
+        #lg_logout_btn {
+            display: inline-block;
+            position: absolute;
+            margin-bottom: 0;
+            right: 0;
+            top: 5;
+            margin-right: 5px;
+            font-weight: 400;
+            vertical-align: center;
+            touch-action: manipulation;
+            background-color: rgb(105, 109, 114);
+            border-width: 1px;
+            padding: 6px 12px;
+            font-size: 13px;
+            color: rgb(223, 223, 225);
+            line-height: 1.42857143;
+            border-radius: 4px;
+            user-select: none;
+            float: right;
+        }
+    
+    </style>
 <body>
 <div style="width: 100%; position: fixed; background:#ffffff;z-index:100; padding: 1px; border-bottom :3px solid #d80546">
     <div style="margin-left: 0px;font-size: 24px;">
@@ -101,6 +187,8 @@
     var header_press;
     var header_cap;
     var header_eer;
+    var header_model;
+    var header_filedate;
 
     var temp_flag = 0;
     var press_flag = 0;
@@ -331,7 +419,8 @@
                 // for(var i=0;i<indexName.length;i++){
                 //     console.log(min_max_check[i]);
                 // }
-                drawingZZ(array, indexName, datazz.length, min_max_check);
+                drawingZZ(array, indexName, datazz.length, min_max_check,unitName);
+                $('#graph_button').html('<button id="lg_see_graph_btn" style="margin-left: 1em"  onClick="doExcel1(array,indexName);">EXCEL 다운로드</button>');
 
             }
             , error: function (data, status, err) {
@@ -422,7 +511,7 @@
     }
 
 
-    function drawingZZ(array, indexName, arraylength, min_max_check) {
+    function drawingZZ(array, indexName, arraylength, min_max_check,unitName) {
         var chartDrowFun = {
 
             chartDrow: function () {
@@ -469,15 +558,179 @@
                         data.addRow(array[i]);
 
                     }
-                    for (var i = 0; i < indexName.length - 1; i++) {
-                        var minzz_ = Math.min.apply(null, min_max_check[i]);
-                        var maxzz_ = Math.max.apply(null, min_max_check[i]);
-
-
-                        mindata.push(minzz_);
-                        maxdata.push(maxzz_);
+                    for (var i = 1; i < unitName.length; i++) {
+                        console.log(unitName[i]);
+                        var maxzz_=0;
+                        var minzz_=0;
+                        if(unitName[i]=='UNIT_INT' ||unitName[i]=='UNIT_REAL'||unitName[i]=='UNIT_POWER'||
+                        unitName[i]=='UNIT_EEV'||unitName[i]=='UNIT_RPM'){
+                            maxzz_ = Math.max.apply(null, min_max_check[i-1]);
+                            minzz_ = Math.min.apply(null, min_max_check[i-1]);
+                            if(maxzz_>3000){
+                                maxdata.push(maxzz_)
+                            }
+                            else{
+                                maxdata.push(3000);
+                            }
+                            if(minzz_<0){
+                                mindata.push(minzz_);
+                            }
+                            else{
+                                mindata.push(0);
+                            }
+                            
+                        }
+                        else if(unitName[i]=='UNIT_HZ'||unitName[i]=='UNIT_CALORY'||unitName[i]=='UNIT_EER'){
+                            maxzz_ = Math.max.apply(null, min_max_check[i-1]);
+                            minzz_ = Math.min.apply(null, min_max_check[i-1]);
+                            if(maxzz_>300){
+                                maxdata.push(maxzz_)
+                            }
+                            else{
+                                maxdata.push(300);
+                            }
+                            if(minzz_<0){
+                                mindata.push(minzz_);
+                            }
+                            else{
+                                mindata.push(0);
+                            }
+                        }
+                        else if(unitName[i]=='UNIT_MODE'||unitName[i]=='UNIT_WIND'||unitName[i]=='UNIT_RATIO'){
+                            maxzz_ = Math.max.apply(null, min_max_check[i-1]);
+                            minzz_ = Math.min.apply(null, min_max_check[i-1]);
+                            if(maxzz_>10){
+                                maxdata.push(maxzz_)
+                            }
+                            else{
+                                maxdata.push(10);
+                            }
+                            if(minzz_<0){
+                                mindata.push(minzz_);
+                            }
+                            else{
+                                mindata.push(0);
+                            }
+                        }
+                        else if(unitName[i]=='UNIT_TEMP'||unitName[i]=='UNIT_DIFF_TEMP'){
+                            maxzz_ = Math.max.apply(null, min_max_check[i-1]);
+                            minzz_ = Math.min.apply(null, min_max_check[i-1]);
+                            console.log(maxzz_);
+                            if(maxzz_>140){
+                                maxdata.push(maxzz_)
+                            }
+                            else{
+                                maxdata.push(140);
+                            }
+                            if(minzz_<-40){
+                                mindata.push(minzz_);
+                            }
+                            else{
+                                mindata.push(-40);
+                            }
+                        
+                        }
+                        else if(unitName[i]=='UNIT_PRESS'){
+                            maxzz_ = Math.max.apply(null, min_max_check[i-1]);
+                            minzz_ = Math.min.apply(null, min_max_check[i-1]);
+                            if(maxzz_>4000){
+                                maxdata.push(maxzz_)
+                            }
+                            else{
+                                maxdata.push(4000);
+                            }
+                            if(minzz_<0){
+                                mindata.push(minzz_);
+                            }
+                            else{
+                                mindata.push(0);
+                            }
+                        }
+                        else if(unitName[i]=='UNIT_SWITCH'){
+                            maxzz_ = Math.max.apply(null, min_max_check[i-1]);
+                            minzz_ = Math.min.apply(null, min_max_check[i-1]);
+                            if(maxzz_>100){
+                                maxdata.push(maxzz_)
+                            }
+                            else{
+                                maxdata.push(100);
+                            }
+                            if(minzz_<0){
+                                mindata.push(minzz_);
+                            }
+                            else{
+                                mindata.push(0);
+                            }
+                        }
+                        else if(unitName[i]=='UNIT_CURRENT'){
+                            maxzz_ = Math.max.apply(null, min_max_check[i-1]);
+                            minzz_ = Math.min.apply(null, min_max_check[i-1]);
+                            if(maxzz_>200){
+                                maxdata.push(maxzz_)
+                            }
+                            else{
+                                maxdata.push(200);
+                            }
+                            if(minzz_<0){
+                                mindata.push(minzz_);
+                            }
+                            else{
+                                mindata.push(0);
+                            }
+                        }
+                        else if(unitName[i]=='UNIT_VOLTAGE'){
+                            maxzz_ = Math.max.apply(null, min_max_check[i-1]);
+                            minzz_ = Math.min.apply(null, min_max_check[i-1]);
+                            if(maxzz_>1500){
+                                maxdata.push(maxzz_)
+                            }
+                            else{
+                                maxdata.push(1500);
+                            }
+                            if(minzz_<0){
+                                mindata.push(minzz_);
+                            }
+                            else{
+                                mindata.push(0);
+                            }
+                        }
+                        else if(unitName[i]=='UNIT_ERROR_INFO'){
+                            maxzz_ = Math.max.apply(null, min_max_check[i-1]);
+                            minzz_ = Math.min.apply(null, min_max_check[i-1]);
+                            if(maxzz_>1500){
+                                maxdata.push(maxzz_)
+                            }
+                            else{
+                                maxdata.push(1500);
+                            }
+                            if(minzz_<0){
+                                mindata.push(minzz_);
+                            }
+                            else{
+                                mindata.push(0);
+                            }
+                        }
+                        else{
+                            maxzz_ = Math.max.apply(null, min_max_check[i-1]);
+                            minzz_ = Math.min.apply(null, min_max_check[i-1]);
+                            if(maxzz_>1500){
+                                maxdata.push(maxzz_)
+                            }
+                            else{
+                                maxdata.push(1500);
+                            }
+                            if(minzz_<0){
+                                mindata.push(minzz_);
+                            }
+                            else{
+                                mindata.push(0);
+                            }
+                        }
+                        
                     }
-
+                    console.log(maxdata);
+                    console.log(mindata);
+                    
 
                     var chart = new google.visualization.ChartWrapper({
                         chartType: 'LineChart',
@@ -643,10 +896,11 @@
         google.charts.load('current', {'packages': ['line', 'controls']});
         chartDrowFun.chartDrow(); //chartDrow() 실행
         //  });
+        
 
 
         // $('#graph_button').html('<button onClick="downloadCSV(array,indexName);">CSV 다운로드</button>');
-        $('#graph_button').html('<button id="lg_see_graph_btn" style="margin-left: 1em"  onClick="doExcel1(array,indexName);">EXCEL 다운로드</button>');
+    //    $('#graph_button').html('<button id="lg_see_graph_btn" style="margin-left: 1em"  onClick="doExcel1(array,indexName);">EXCEL 다운로드</button>');
 
 
     }
@@ -671,6 +925,8 @@
                 header_press = data.content.lgmv_unit_press;
                 header_cap = data.content.calorimeter_unit_cap;
                 header_eer = data.content.calorimeter_unit_EER;
+                header_model = data.content.lgmv_model_name;
+                header_filedate = data.content.conn_file_date;
 
                 header = '<html>';
                 str = '<table border="1">';
@@ -787,94 +1043,10 @@
             type: "application/octet-stream;charset=utf-8,%EF%BB%BF"
         });
 
-        saveAs(blob, "test.xlsx");
+        saveAs(blob, header_model+"_"+header_filedate+".xlsx");
     }
 
 
 </script>
 
-<style>
-    .full-page {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-    }
-
-    #img_logo {
-        width: 60px;
-        height: 40px;
-        margin-right: 0px;
-    }
-
-    #lg_contents {
-        margin-left: 100px;
-        margin-top: 100px;
-        margin-right: 100px;
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-    }
-
-    .lg_circle:before {
-        content: "";
-        display: inline-block;
-        width: 10px;
-        height: 10px;
-        margin-right: 5px;
-        border: 2px solid #d80546;
-        border-radius: 50%;
-    }
-
-    #lg_see_graph_btn {
-        display: inline-block;
-        margin-bottom: 0;
-        font-weight: 400;
-        vertical-align: top;
-        touch-action: manipulation;
-        background-color: rgb(105, 109, 114);
-        border-width: 1px;
-        padding: 6px 12px;
-        font-size: 13px;
-        color: rgb(223, 223, 225);
-        line-height: 1.42857143;
-        border-radius: 4px;
-        user-select: none;
-    }
-
-    .dataTables_length label {
-        font-weight: normal !important;
-        font-size: 13px;
-    }
-
-    #detail_table_filter label {
-        font-weight: normal !important;
-        font-size: 13px;
-    }
-
-    #detail_table {
-        width: 100% !important;
-    }
-
-    #lg_logout_btn {
-        display: inline-block;
-        position: absolute;
-        margin-bottom: 0;
-        right: 0;
-        top: 5;
-        margin-right: 5px;
-        font-weight: 400;
-        vertical-align: center;
-        touch-action: manipulation;
-        background-color: rgb(105, 109, 114);
-        border-width: 1px;
-        padding: 6px 12px;
-        font-size: 13px;
-        color: rgb(223, 223, 225);
-        line-height: 1.42857143;
-        border-radius: 4px;
-        user-select: none;
-        float: right;
-    }
-
-</style>
 </html>

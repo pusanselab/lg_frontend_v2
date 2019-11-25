@@ -6,6 +6,413 @@
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
+
+<style>
+    .full-page {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    #img_logo {
+        width: 60px;
+        height: 40px;
+        margin-right: 0px;
+    }
+
+    /*lg_content Css*/
+    #lg_contents {
+        margin-left: 200px;
+        margin-top: 100px;
+        margin-right: 80px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    /*sidebar css start*/
+
+    /*sidebar는 고정되어 있어야 하므로 flex none 설정*/
+    .full-page #lg_sidebar {
+        flex: none;
+        position: fixed;
+        width: 150px;
+        Margin-top: 40px;
+        height: 100%;
+        font-family: sans-serif;
+        background-color: #333;
+    }
+
+    #lg_sidebar {
+        background-color: white;
+    }
+
+    #lg_sidebar #lg_sidebar_content {
+        margin: 0em 0em 0em;
+        background-color: #333;
+        padding: 2em 1em;
+        box-shadow: 0px 0px 0px;
+    }
+
+    /* sidebar 안에 있는 링크들 */
+    #lg_sidebar a {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1em;
+        font-size: 0.9em;
+        font-family: "Adobe 명조 Std M";
+        color: white;
+    }
+
+    #lg_sidebar a:hover {
+        font-weight: bold;
+        text-decoration: #1c7430 solid;
+    }
+
+</style>
+<!--유사 시험 테이블Css-->
+<style>
+    .lg_circle:before {
+        content: "";
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        margin-right: 5px;
+        border: 2px solid #d80546;
+        border-radius: 50%;
+    }
+</style>
+
+<!--id 입력 검색창-->
+<style>
+    #lg_search_box {
+        width: 100%;
+        padding: 10px;
+        background-color: rgb(250, 250, 250);
+    }
+
+    #lg_search_id {
+        display: flex;
+    }
+
+    #id_search {
+        display: block;
+        width: 100%;
+        height: 32px;
+        font-size: 13px;
+        line-height: 1.42857143;
+        color: #555;
+        background: #fff none;
+        border: 1px solid  #cecece;
+        padding: 5px 12px;
+    }
+
+    .lg_text {
+        font-weight: bold;
+        font-size: 13px;
+        min-width: 80px;
+        justify-self: center;
+        align-self: center;
+        text-align: right;
+        line-height: 1.42857143;
+        margin-right: 5px;
+    }
+
+    .lg_select_model_filter {
+        width: 100%;
+        height: 32px;
+        padding: 5px 12px;
+        font-size: 13px;
+        line-height: 1.42857143;
+        color: #555;
+        background: #fff none;
+        border: 1px solid  #cecece;
+    }
+
+    #lg_search_necessary {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        width: 100%;
+    }
+
+    #lg_search_necessary_items {
+        width: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    #lg_search_necessary_items .lg_search_necessary_item {
+        width: 100%;
+        margin-bottom: 20px;
+        display: flex;
+    }
+
+    #lg_search_detail {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        width: 100%;
+    }
+
+    #lg_search_detail_1_items {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #lg_search_detail_1_items .lg_search_detail_1_item {
+        width: 100%;
+        display: flex;
+    }
+
+    .lg_search_date_box {
+        display: block;
+        width: 100%;
+        height: 32px;
+        font-size: 13px;
+        line-height: 1.12857143;
+        color: #555;
+        background: #fff none;
+        border: 1px solid #cecece;
+        margin: 5px;
+    }
+
+    .lg_search_detail_2_items {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        width: 100%;
+    }
+
+    .lg_search_detail_2_items .lg_search_detail_2_item {
+        width: 100%;
+        display: flex;
+    }
+
+    .detail_2_item_input {
+        display: block;
+        width: 100%;
+        height: 32px;
+        font-size: 13px;
+        line-height: 1.12857143;
+        color: #555;
+        background: #fff none;
+        border: 1px solid #cecece;
+        margin: 5px;
+        padding: 5px 12px;
+    }
+
+    .data_search_btn {
+        display: inline-block;
+        margin-bottom: 0;
+        font-weight: 400;
+        text-align: center;
+        vertical-align: top;
+        touch-action: manipulation;
+        background-color: rgb(105, 109, 114);
+        border-width: 1px;
+        padding: 6px 12px;
+        font-size: 13px;
+        color: rgb(223, 223, 225);
+        line-height: 1.42857143;
+        border-radius: 4px;
+        user-select: none;
+        float: right;
+    }
+
+    .data_search_btn_table {
+        display: inline-block;
+        margin-bottom: 0;
+        font-weight: 400;
+        text-align: center;
+        vertical-align: top;
+        touch-action: manipulation;
+        background-color: rgb(105, 109, 114);
+        border-width: 1px;
+        padding: 6px 12px;
+        font-size: 11px;
+        color: rgb(223, 223, 225);
+        line-height: 1.42857143;
+        border-radius: 4px;
+        user-select: none;
+    }
+</style>
+<!--검색 결과 테이블-->
+<style>
+    #search_result_table {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin: 0 0 50px;
+    }
+
+    #search_result_table tbody tr:nth-child(1) th {
+        background: #f1f0f0;
+        border-top: 2px solid rgb(163, 163, 163);
+        text-align: center;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    #search_result_table .table tbody > tr > th {
+        height: 45px;
+        padding-right: 20px;
+        background: #f1f0f0;
+        font-weight: 700;
+        text-align: right;
+    }
+
+    #search_result_table .table tbody > tr > td {
+        background: #fff;
+        word-break: break-all;
+        white-space: pre-wrap;
+    }
+
+    #search_result_table tbody > tr {
+        border-bottom: 1px solid rgb(163, 163, 163);
+    }
+
+    #redanduncy_result_table {
+        text-align: center;
+        vertical-align: center;
+        flex-direction: column;
+        width: 100%;
+        margin: 0 0 50px;
+    }
+
+    #redanduncy_result_table tbody tr:nth-child(1) th {
+        background: #f1f0f0;
+        border-top: 2px solid rgb(163, 163, 163);
+        text-align: center;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    #redanduncy_result_table .table tbody > tr > th {
+        height: 45px;
+        padding-right: 20px;
+        background: #f1f0f0;
+        font-weight: 700;
+        text-align: right;
+    }
+
+    #redanduncy_result_table .table tbody > tr > td {
+        background: #fff;
+        word-break: break-all;
+        white-space: pre-wrap;
+    }
+
+    #redanduncy_result_table tbody > tr {
+        border-bottom: 1px solid rgb(163, 163, 163);
+    }
+
+    #lg_search_result_tbody tr > td {
+        padding: 8px 10px;
+        background: #fff;
+        word-break: break-all;
+        white-space: pre-wrap;
+        font-size: 13px;
+        text-align: center;
+        vertical-align: middle;
+    }
+</style>
+<!--상세 결과 테이블-->
+<style>
+    #search_result {
+        margin-top: 25px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #lg_detail {
+        flex-direction: column;
+        display: none;
+    }
+
+    #lg_detail th, td {
+        font-size: 13px;
+    }
+
+    .lg_search_detail_table {
+        display: none;
+        flex-direction: column;
+        width: 80%;
+        align-self: start;
+        margin-bottom: 50px;
+    }
+
+    .lg_search_detail_table tr:nth-child(1) {
+        border-top: 2px solid rgb(163, 163, 163);
+    }
+
+    .lg_search_detail_table tbody > tr > th {
+        height: 45px;
+        padding-right: 20px;
+        background: #f1f0f0;
+        font-weight: 700;
+        text-align: right;
+    }
+
+    #_conn_memo {
+        max-width: 200px;
+    }
+</style>
+<style>
+    .input_option {
+        display: block;
+        width: 100%;
+        height: 32px;
+        font-size: 13px;
+        line-height: 1.12857143;
+        color: #555;
+        background: #fff none;
+        border: 1px solid #cecece;
+        margin: 5px;
+        padding: 5px 12px;
+    }
+
+    .option_save_btn {
+        display: inline-block;
+        margin-bottom: 0;
+        font-weight: 400;
+        text-align: center;
+        vertical-align: top;
+        touch-action: manipulation;
+        background-color: rgb(105, 109, 114);
+        border-width: 1px;
+        padding: 6px 12px;
+        font-size: 13px;
+        color: rgb(223, 223, 225);
+        line-height: 1.42857143;
+        border-radius: 4px;
+        user-select: none;
+    }
+
+    #lg_logout_btn {
+        display: inline-block;
+        position: absolute;
+        margin-bottom: 0;
+        right: 0;
+        top: 5;
+        margin-right: 5px;
+        font-weight: 400;
+        vertical-align: center;
+        touch-action: manipulation;
+        background-color: rgb(105, 109, 114);
+        border-width: 1px;
+        padding: 6px 12px;
+        font-size: 13px;
+        color: rgb(223, 223, 225);
+        line-height: 1.42857143;
+        border-radius: 4px;
+        user-select: none;
+        float: right;
+    }
+
+</style>
 <body>
 
 <div style="width: 100%; position: fixed; background:#ffffff;z-index:100; padding: 1px; border-bottom :3px solid #d80546">
@@ -1095,411 +1502,6 @@
 </script>
 </body>
 <!--page 전체 && SideBar Css-->
-<style>
-    .full-page {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-    }
 
-    #img_logo {
-        width: 60px;
-        height: 40px;
-        margin-right: 0px;
-    }
-
-    /*lg_content Css*/
-    #lg_contents {
-        margin-left: 200px;
-        margin-top: 100px;
-        margin-right: 80px;
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-    }
-
-    /*sidebar css start*/
-
-    /*sidebar는 고정되어 있어야 하므로 flex none 설정*/
-    .full-page #lg_sidebar {
-        flex: none;
-        position: fixed;
-        width: 150px;
-        Margin-top: 40px;
-        height: 100%;
-        font-family: sans-serif;
-        background-color: #333;
-    }
-
-    #lg_sidebar {
-        background-color: white;
-    }
-
-    #lg_sidebar #lg_sidebar_content {
-        margin: 0em 0em 0em;
-        background-color: #333;
-        padding: 2em 1em;
-        box-shadow: 0px 0px 0px;
-    }
-
-    /* sidebar 안에 있는 링크들 */
-    #lg_sidebar a {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-bottom: 1em;
-        font-size: 0.9em;
-        font-family: "Adobe 명조 Std M";
-        color: white;
-    }
-
-    #lg_sidebar a:hover {
-        font-weight: bold;
-        text-decoration: #1c7430 solid;
-    }
-
-</style>
-<!--유사 시험 테이블Css-->
-<style>
-    .lg_circle:before {
-        content: "";
-        display: inline-block;
-        width: 10px;
-        height: 10px;
-        margin-right: 5px;
-        border: 2px solid #d80546;
-        border-radius: 50%;
-    }
-</style>
-
-<!--id 입력 검색창-->
-<style>
-    #lg_search_box {
-        width: 100%;
-        padding: 10px;
-        background-color: rgb(250, 250, 250);
-    }
-
-    #lg_search_id {
-        display: flex;
-    }
-
-    #id_search {
-        display: block;
-        width: 100%;
-        height: 32px;
-        font-size: 13px;
-        line-height: 1.42857143;
-        color: #555;
-        background: #fff none;
-        border: 1px solid  #cecece;
-        padding: 5px 12px;
-    }
-
-    .lg_text {
-        font-weight: bold;
-        font-size: 13px;
-        min-width: 80px;
-        justify-self: center;
-        align-self: center;
-        text-align: right;
-        line-height: 1.42857143;
-        margin-right: 5px;
-    }
-
-    .lg_select_model_filter {
-        width: 100%;
-        height: 32px;
-        padding: 5px 12px;
-        font-size: 13px;
-        line-height: 1.42857143;
-        color: #555;
-        background: #fff none;
-        border: 1px solid  #cecece;
-    }
-
-    #lg_search_necessary {
-        display: flex;
-        flex-direction: row;
-        flex: 1;
-        width: 100%;
-    }
-
-    #lg_search_necessary_items {
-        width: 100%;
-        display: flex;
-        align-items: center;
-    }
-
-    #lg_search_necessary_items .lg_search_necessary_item {
-        width: 100%;
-        margin-bottom: 20px;
-        display: flex;
-    }
-
-    #lg_search_detail {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-        width: 100%;
-    }
-
-    #lg_search_detail_1_items {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    #lg_search_detail_1_items .lg_search_detail_1_item {
-        width: 100%;
-        display: flex;
-    }
-
-    .lg_search_date_box {
-        display: block;
-        width: 100%;
-        height: 32px;
-        font-size: 13px;
-        line-height: 1.12857143;
-        color: #555;
-        background: #fff none;
-        border: 1px solid #cecece;
-        margin: 5px;
-    }
-
-    .lg_search_detail_2_items {
-        display: flex;
-        flex-direction: row;
-        flex: 1;
-        width: 100%;
-    }
-
-    .lg_search_detail_2_items .lg_search_detail_2_item {
-        width: 100%;
-        display: flex;
-    }
-
-    .detail_2_item_input {
-        display: block;
-        width: 100%;
-        height: 32px;
-        font-size: 13px;
-        line-height: 1.12857143;
-        color: #555;
-        background: #fff none;
-        border: 1px solid #cecece;
-        margin: 5px;
-        padding: 5px 12px;
-    }
-
-    .data_search_btn {
-        display: inline-block;
-        margin-bottom: 0;
-        font-weight: 400;
-        text-align: center;
-        vertical-align: top;
-        touch-action: manipulation;
-        background-color: rgb(105, 109, 114);
-        border-width: 1px;
-        padding: 6px 12px;
-        font-size: 13px;
-        color: rgb(223, 223, 225);
-        line-height: 1.42857143;
-        border-radius: 4px;
-        user-select: none;
-        float: right;
-    }
-
-    .data_search_btn_table {
-        display: inline-block;
-        margin-bottom: 0;
-        font-weight: 400;
-        text-align: center;
-        vertical-align: top;
-        touch-action: manipulation;
-        background-color: rgb(105, 109, 114);
-        border-width: 1px;
-        padding: 6px 12px;
-        font-size: 11px;
-        color: rgb(223, 223, 225);
-        line-height: 1.42857143;
-        border-radius: 4px;
-        user-select: none;
-    }
-</style>
-<!--검색 결과 테이블-->
-<style>
-    #search_result_table {
-        display: none;
-        flex-direction: column;
-        width: 100%;
-        margin: 0 0 50px;
-    }
-
-    #search_result_table tbody tr:nth-child(1) th {
-        background: #f1f0f0;
-        border-top: 2px solid rgb(163, 163, 163);
-        text-align: center;
-        font-size: 13px;
-        font-weight: 700;
-    }
-
-    #search_result_table .table tbody > tr > th {
-        height: 45px;
-        padding-right: 20px;
-        background: #f1f0f0;
-        font-weight: 700;
-        text-align: right;
-    }
-
-    #search_result_table .table tbody > tr > td {
-        background: #fff;
-        word-break: break-all;
-        white-space: pre-wrap;
-    }
-
-    #search_result_table tbody > tr {
-        border-bottom: 1px solid rgb(163, 163, 163);
-    }
-
-    #redanduncy_result_table {
-        text-align: center;
-        vertical-align: center;
-        flex-direction: column;
-        width: 100%;
-        margin: 0 0 50px;
-    }
-
-    #redanduncy_result_table tbody tr:nth-child(1) th {
-        background: #f1f0f0;
-        border-top: 2px solid rgb(163, 163, 163);
-        text-align: center;
-        font-size: 13px;
-        font-weight: 700;
-    }
-
-    #redanduncy_result_table .table tbody > tr > th {
-        height: 45px;
-        padding-right: 20px;
-        background: #f1f0f0;
-        font-weight: 700;
-        text-align: right;
-    }
-
-    #redanduncy_result_table .table tbody > tr > td {
-        background: #fff;
-        word-break: break-all;
-        white-space: pre-wrap;
-    }
-
-    #redanduncy_result_table tbody > tr {
-        border-bottom: 1px solid rgb(163, 163, 163);
-    }
-
-    #lg_search_result_tbody tr > td {
-        padding: 8px 10px;
-        background: #fff;
-        word-break: break-all;
-        white-space: pre-wrap;
-        font-size: 13px;
-        text-align: center;
-        vertical-align: middle;
-    }
-</style>
-<!--상세 결과 테이블-->
-<style>
-    #search_result {
-        margin-top: 25px;
-        display: flex;
-        flex-direction: column;
-    }
-
-    #lg_detail {
-        flex-direction: column;
-        display: none;
-    }
-
-    #lg_detail th, td {
-        font-size: 13px;
-    }
-
-    .lg_search_detail_table {
-        display: none;
-        flex-direction: column;
-        width: 80%;
-        align-self: start;
-        margin-bottom: 50px;
-    }
-
-    .lg_search_detail_table tr:nth-child(1) {
-        border-top: 2px solid rgb(163, 163, 163);
-    }
-
-    .lg_search_detail_table tbody > tr > th {
-        height: 45px;
-        padding-right: 20px;
-        background: #f1f0f0;
-        font-weight: 700;
-        text-align: right;
-    }
-
-    #_conn_memo {
-        max-width: 200px;
-    }
-</style>
-<style>
-    .input_option {
-        display: block;
-        width: 100%;
-        height: 32px;
-        font-size: 13px;
-        line-height: 1.12857143;
-        color: #555;
-        background: #fff none;
-        border: 1px solid #cecece;
-        margin: 5px;
-        padding: 5px 12px;
-    }
-
-    .option_save_btn {
-        display: inline-block;
-        margin-bottom: 0;
-        font-weight: 400;
-        text-align: center;
-        vertical-align: top;
-        touch-action: manipulation;
-        background-color: rgb(105, 109, 114);
-        border-width: 1px;
-        padding: 6px 12px;
-        font-size: 13px;
-        color: rgb(223, 223, 225);
-        line-height: 1.42857143;
-        border-radius: 4px;
-        user-select: none;
-    }
-
-    #lg_logout_btn {
-        display: inline-block;
-        position: absolute;
-        margin-bottom: 0;
-        right: 0;
-        top: 5;
-        margin-right: 5px;
-        font-weight: 400;
-        vertical-align: center;
-        touch-action: manipulation;
-        background-color: rgb(105, 109, 114);
-        border-width: 1px;
-        padding: 6px 12px;
-        font-size: 13px;
-        color: rgb(223, 223, 225);
-        line-height: 1.42857143;
-        border-radius: 4px;
-        user-select: none;
-        float: right;
-    }
-
-</style>
 
 </html>
