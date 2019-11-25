@@ -688,7 +688,13 @@
                 xmlHttpRequest.setRequestHeader("user_id", sessionStorage.getItem('user_id'));
             }
             , success: function (data) {
-                console.log(data)
+                if(data.session){
+                    console.log("완료");
+                }
+                else{
+                    alert("잘못된 접근입니다.");
+                    window.location.href = "./index.html";
+                }
             }
         })
     });
