@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css"/>
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 
@@ -242,6 +243,15 @@
 </style>
 <!--검색 결과 테이블-->
 <style>
+    table.dataTable thead th, table.dataTable thead td {
+        padding: 10px;
+        border-bottom: 1px solid #111;
+        font-size: 13px;
+    }
+    #search_result_table thead th {
+        vertical-align: center !important;
+        border-bottom: 2px solid #dee2e6;
+    }
     #search_result_table {
         display: none;
         flex-direction: column;
@@ -249,7 +259,15 @@
         margin: 0 0 50px;
     }
 
-    #search_result_table tbody tr:nth-child(1) th {
+    #search_result_table thead tr{
+        background: #f1f0f0;
+        border-top: 2px solid rgb(163, 163, 163);
+        text-align: center;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    #search_result_table thead tr th {
         background: #f1f0f0;
         border-top: 2px solid rgb(163, 163, 163);
         text-align: center;
@@ -655,7 +673,8 @@
         </div>
         <div id="search_result">
             <!--검색 결과 부분-->
-            <table id="search_result_table" class="table table-bordered">
+            <table id="search_result_table" class="table table-condensed table-bordered">
+                <thead>
                 <tr>
                     <th>ID</th>
                     <th>Model</th>
@@ -671,7 +690,9 @@
                     <th>상세 보기</th>
                     <th>그래프</th>
                 </tr>
+                </thead>
                 <tbody id="lg_search_result_tbody">
+
                 </tbody>
 
             </table>
@@ -844,6 +865,7 @@
 <script type="text/javascript" src="js/bootstrap.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+<script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
     function lg_model_Change() {
 
@@ -1043,9 +1065,9 @@
                 }
                 , success: function (data) {
                     $('#search_result').css('display', 'inline');
-                    $('#search_result_table').css('display', 'table');
-
+                    $('#search_result_table').css('display', 'none');
                     $('#lg_search_result_tbody tr').remove();
+
                     if (data.message == 'success' && data.content.length > 0) {
                         var array = data.content;
                         array.forEach(element => {
@@ -1113,6 +1135,9 @@
                             $('#lg_search_result_tbody').append(rowItem);
                         });
                         $('.search_fail').css('display', 'none');
+                        $('#search_result_table').dataTable({"ordering": false,
+                            "retrieve": true, "searching":false});
+                        $('#search_result_table').css('display', 'table');
 
 
                     } else {
@@ -1462,6 +1487,7 @@
     }
 </script>
 <script>
+
     $(document).ready(function () {
         if (localStorage['lgmv_temp']) {
             $('#lgmv_temp').val(localStorage['lgmv_temp'])
@@ -1499,6 +1525,7 @@
         $('#unit_options').css("display", "none");
 
     });
+
 </script>
 </body>
 <!--page 전체 && SideBar Css-->
