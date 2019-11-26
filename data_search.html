@@ -867,6 +867,30 @@
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
+
+    function lg_logout() {
+
+        $.ajax({
+            type: 'post'
+            , url: 'http://localhost:3000/api/logout'
+            
+            , beforeSend: function () {
+                $('#ajax_load_indicator').show().fadeIn('fast');
+            }
+            , success: function (data) {
+                window.location.href = "./index.html";
+            }
+            , error: function (data, status, err) {
+                console.log("error forward : " + data);
+                alert('서버와의 통신이 실패했습니다.');
+                window.location.href = "./index.html";
+            }
+            , complete: function () {
+                $('#ajax_load_indicator').fadeOut();
+            }
+        });
+
+    }
     function lg_model_Change() {
 
         var Multi_V_H_P = ["- 선택 -", "Multi V 5", "Multi V 5 A", "Multi V 5 H", "Multi V IV", "Multi V IV Plus", "Multi V lll", "Multi V II m+m", "Multi V II m+s"];
@@ -1178,21 +1202,23 @@
             dateFormat: "yy-mm-dd"
         });
     });
-    $(document).ready(function () {
+    $(window).ready(function () {
         $.ajax({
             type: 'post'
             , url: 'http://localhost:3000/api/session'
-
-            , beforeSend: function () {
+            , cookie : document.cookie
+            , beforeSend: function (xmlHttpRequest) {
                 $('#ajax_load_indicator').show().fadeIn('fast');
+                xmlHttpRequest.setRequestHeader("user_id", sessionStorage.getItem('user_id'));
             }
             , success: function (data) {
-            }
-            , error: function (data, status, err) {
-                alert('서버와의 통신이 실패했습니다.');
-            }
-            , complete: function () {
-                $('#ajax_load_indicator').fadeOut();
+                if(data.session){
+                    console.log("완료");
+                }
+                else{
+                    alert("잘못된 접근입니다.");
+                    window.location.href = "./index.html";
+                }
             }
         });
     });

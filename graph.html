@@ -179,6 +179,30 @@
 
     var _flag = 0;
 
+    function lg_logout() {
+
+        $.ajax({
+            type: 'post'
+            , url: 'http://localhost:3000/api/logout'
+            
+            , beforeSend: function () {
+                $('#ajax_load_indicator').show().fadeIn('fast');
+            }
+            , success: function (data) {
+                window.location.href = "./index.html";
+            }
+            , error: function (data, status, err) {
+                console.log("error forward : " + data);
+                alert('서버와의 통신이 실패했습니다.');
+                window.location.href = "./index.html";
+            }
+            , complete: function () {
+                $('#ajax_load_indicator').fadeOut();
+            }
+        });
+
+        }
+
     $(document).ready(function () {
         val = location.href.substr(
             location.href.lastIndexOf('=') + 1);
@@ -223,6 +247,25 @@
             }
             , complete: function () {
                 $('#ajax_load_indicator').fadeOut();
+            }
+        });
+
+        $.ajax({
+            type: 'post'
+            , url: 'http://localhost:3000/api/session'
+            , cookie : document.cookie
+            , beforeSend: function (xmlHttpRequest) {
+                $('#ajax_load_indicator').show().fadeIn('fast');
+                xmlHttpRequest.setRequestHeader("user_id", sessionStorage.getItem('user_id'));
+            }
+            , success: function (data) {
+                if(data.session){
+                    console.log("완료");
+                }
+                else{
+                    alert("잘못된 접근입니다.");
+                    window.location.href = "./index.html";
+                }
             }
         });
     });
