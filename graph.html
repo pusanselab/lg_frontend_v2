@@ -156,6 +156,7 @@
 <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script type="text/javascript">
+
     var array;
     var index = 0;
     var indexName = ['Date'];
@@ -179,9 +180,11 @@
 
     var _flag = 0;
 
+    ///////변수 선언 /////////////
+
     function lg_logout() {
 
-        $.ajax({
+        $.ajax({ //로그아웃 버튼
             type: 'post'
             , url: 'http://localhost:3000/api/logout'
             
@@ -203,12 +206,12 @@
 
         }
 
-    $(document).ready(function () {
+    $(document).ready(function () { 
         val = location.href.substr(
             location.href.lastIndexOf('=') + 1);
         console.log("enter login");
         var params = "header_uid=" + val;
-        $.ajax({
+        $.ajax({ // 이전페이지로부터 헤더아이디를 받아와 아이템리스트를 만들어줌
             type: 'post'
             , url: 'http://localhost:3000/api/graph/items'
             , data: params
@@ -228,9 +231,7 @@
                     var check = "<p id=\'checking_" + data[i].item + "\' style='display:none'>" + i + "</p>" + "<input type='checkbox' name=\'check'\ id=\"" + data[i].item + "\" onclick=\"select_box(\'" + data[i].item + "\',\'" + name + "\',\'" + unit + "\')\" value=''/>";
 
                     var row = "<tr>";
-                    //  row+="<td>"+header_uid+"</td>";
                     row += "<td>" + name + "</td>";
-                    // row+="<td>"+unit+"</td>";
                     row += "<td>" + section + "</td>";
                     row += "<td>" + section_count + "</td>";
                     row += "<td>" + check + "</td>";
@@ -250,7 +251,7 @@
             }
         });
 
-        $.ajax({
+        $.ajax({ // 세션관리
             type: 'post'
             , url: 'http://localhost:3000/api/session'
             , cookie : document.cookie
@@ -270,7 +271,7 @@
         });
     });
 
-    function change_Value(value, unit) {
+    function change_Value(value, unit) { // 단위변환에 따른 값 변화 함수
         if (unit == 'UNIT_TEMP') {
             if (temp_flag) {
                 if (localStorage['lgmv_temp'] == 'C') { // F => C 로 변환
@@ -391,7 +392,7 @@
     }
 
 
-    function showGraph() {
+    function showGraph() { // 선택한 아이템리스트들의 그래프를 그려주기 위해 데이터를 받는 함수
         var rowData = new Array();
         var jsonparams = JSON.stringify({'header_uid': val, 'item_list': colName});
 
@@ -461,7 +462,7 @@
     }
 
 
-    function select_box(col, name, unit) {
+    function select_box(col, name, unit) { // 아이템리스트를 선택하여 테이블의 열, 그래프의 컴포넌트들을 만들어줌
 
         if ($("input:checkbox:checked").length > 8) {
             $('input[id=' + col + ']').prop('checked', false);
@@ -537,7 +538,7 @@
 
 
     function drawingZZ(array, indexName, arraylength, min_max_check,unitName) {
-        var chartDrowFun = {
+        var chartDrowFun = {  // 구글 API를 사용하여 그래프를 그려주는 실제 함수
 
             chartDrow: function () {
                 var chartData = '';
@@ -930,7 +931,7 @@
 
     }
 
-    function dataSearchID() {
+    function dataSearchID() { // 헤더 아이디를 통해 헤더 값을 받아오는 함수 data export를 위해 사용
         val = location.href.substr(
             location.href.lastIndexOf('=') + 1);
         var params = "header_uid=" + val;
@@ -977,40 +978,7 @@
 
     }
 
-    // function downloadCSV(array,indexName){
-
-    //     var csv_string='';
-    //     for(var i=0;i<indexName.length;i++){
-    //         if(i<indexName.length-1){
-    //                 csv_string+=indexName[i]+",";
-    //             }
-    //             else{
-    //                 csv_string+=indexName[i]+"\r\n";
-    //             }
-    //     }
-    //     for(var i =0; i<array.length;i++){
-    //         for (var j=0;j<array[i].length;j++){
-    //             if(j<array[i].length-1){
-    //                 csv_string+=array[i][j]+",";
-    //             }
-    //             else{
-    //                 csv_string+=array[i][j]+"\r\n";
-    //             }
-    //         }
-    //     }
-
-    //     var downloadLink = document.createElement("a");
-    //     var blob = new Blob(["\ufeff"+csv_string], { type: "text/csv;charset=utf-8" });
-    //     var url = URL.createObjectURL(blob);
-    //     downloadLink.href = url;
-    //     downloadLink.download = "data.csv";
-
-    //     document.body.appendChild(downloadLink);
-    //     downloadLink.click();
-    //     document.body.removeChild(downloadLink);
-    // }
-    //////////////////////////////////////////////////////////////////////////////////////////////
-    function prepareTable(array, indexName) {
+    function prepareTable(array, indexName) { // 테이블 형태를 만들어 엑셀파일로 export 하기 위한 함수
         var str = "",
             header = "",
             graphImg;
@@ -1037,7 +1005,6 @@
         str += '</tbody>'
             + '</table>'
             + '</html>';
-        //  console.log(str);
         return header + str;
     }
 
@@ -1049,7 +1016,7 @@
         return buf;
     }
 
-    function doExcel1(array, indexName) {
+    function doExcel1(array, indexName) { // 엑셀파일을 export 해주는 실제 함수
 
 
         var blob,

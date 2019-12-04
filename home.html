@@ -481,176 +481,13 @@
         "신뢰성",
         "기타"
     ];
-    $(document).ready(function () {
-
-        $.ajax({
-            type: 'post'
-            , url: 'http://localhost:3000/api/overview'
-
-            , beforeSend: function () {
-                $('#ajax_load_indicator').show().fadeIn('fast');
-            }
-            , success: function (data1) {
-
-                var margin = {top: 30, right: 30, bottom: 70, left: 60},
-                    width = 460 - margin.left - margin.right,
-                    height = 400 - margin.top - margin.bottom;
-
-                // append the svg object to the body of the page
-                var svg = d3.select("#my_dataviz")
-                    .append("svg")
-                    .attr("width", width + margin.left + margin.right)
-                    .attr("height", height + margin.top + margin.bottom)
-                    .append("g")
-                    .attr("transform",
-                        "translate(" + margin.left + "," + margin.top + ")");
-
-                var svg2 = d3.select("#my_testviz")
-                    .append("svg")
-                    .attr("width", width + margin.left + margin.right)
-                    .attr("height", height + margin.top + margin.bottom)
-                    .append("g")
-                    .attr("transform",
-                        "translate(" + margin.left + "," + margin.top + ")");
-
-                // Parse the Data
-
-                var data = data1.content.model;
-                var data2 = data1.content.test;
-
-                data.forEach(element => {
-                    num_db += element.count;
-                });
-
-                $("#num_db").html(num_db)
-                //
-
-                // X axis
-                var x = d3.scaleBand()
-                    .range([0, width])
-                    .domain(data.map(function (d) {
-                        return d.name;
-                    }))
-                    .paddingInner(0.2);
-                svg.append("g")
-                    .attr("transform", "translate(0," + height + ")")
-                    .call(d3.axisBottom(x))
-                    .selectAll("text")
-                    .attr("transform", "translate(-10,0)rotate(-45)")
-                    .style("text-anchor", "end")
-                    .style("color", "#69b3a2");
-
-                var x2 = d3.scaleBand()
-                    .range([0, width])
-                    .domain(data2.map(function (d) {
-                        return d.name;
-                    }))
-                    .paddingInner(0.2);
-                svg2.append("g")
-                    .attr("transform", "translate(0," + height + ")")
-                    .call(d3.axisBottom(x2))
-                    .selectAll("text")
-                    .attr("transform", "translate(-10,0)rotate(-45)")
-                    .style("text-anchor", "end")
-                    .style("color", "#69b3a2");
-
-                // Add Y axis
-
-                var y = d3.scaleLinear()
-                    .domain([0, d3.max(data, function (d) {
-                        return d.count;
-                    }) + 3])
-                    .range([height, 0]);
-                svg.append("g")
-                    .call(d3.axisLeft(y));
-
-                var y2 = d3.scaleLinear()
-                    .domain([0, d3.max(data2, function (d) {
-                        return d.count;
-                    }) + 3])
-                    .range([height, 0]);
-                svg2.append("g")
-                    .call(d3.axisLeft(y2));
-
-                // Bars
-                svg.selectAll("mybar")
-                    .data(data)
-                    .enter()
-                    .append("rect")
-                    .attr("x", function (d) {
-                        return x(d.name);
-                    })
-                    .attr("y", function (d) {
-                        return y(d.count);
-                    })
-                    .attr("width", x.bandwidth())
-                    .attr("height", function (d) {
-                        return height - y(d.count);
-                    })
-                    .attr("fill", "#69b3a2")
-                    .on("mouseover", function () {
-                        tooltip.style("display", null);
-                        tooltip.style("color", "white")
-                    })
-                    .on("mouseout", function () {
-                        tooltip.style("display", "none");
-                    })
-                    .on("mousemove", function (d) {
-                        tooltip.style("left", (d3.event.pageX + 10) + "px");
-                        tooltip.style("top", (d3.event.pageY - 10) + "px");
-                        tooltip.text(d.count);
-                    });
-
-                svg2.selectAll("mybar")
-                    .data(data2)
-                    .enter()
-                    .append("rect")
-                    .attr("x", function (d) {
-                        return x2(d.name);
-                    })
-                    .attr("y", function (d) {
-                        return y2(d.count);
-                    })
-                    .attr("width", x2.bandwidth())
-                    .attr("height", function (d) {
-                        return height - y2(d.count);
-                    })
-                    .attr("fill", "#69b3a2")
-                    .on("mouseover", function () {
-                        tooltip.style("display", null);
-                        tooltip.style("color", "white")
-                    })
-                    .on("mouseout", function () {
-                        tooltip.style("display", "none");
-                    })
-                    .on("mousemove", function (d) {
-                        tooltip.style("left", (d3.event.pageX + 10) + "px");
-                        tooltip.style("top", (d3.event.pageY - 10) + "px");
-                        tooltip.text(d.count);
-                    });
-
-
-                var tooltip = d3.select("body").append("div")
-                    .attr("class", "toolTip")
-                    .style("display", "none");
-
-
-            }
-            , error: function (data, status, err) {
-                console.log("error forward : " + data);
-                alert('서버와의 통신이 실패했습니다.');
-            }
-            , complete: function () {
-                $('#ajax_load_indicator').fadeOut();
-            }
-        });
-    });
-
+    // DB개수 그래프 x축
+    
 
     var array;
     var indexName;
 
-    $(document).ready(function () {
+    $(document).ready(function () { // DB개수 그래프 데이터 받아오고 그래프를 그려주는 함수
         model_array = [['모델', '갯수']];
         $.ajax({
             type: 'post'
@@ -679,7 +516,7 @@
             }
         })
 
-        $.ajax({
+        $.ajax({ // 세션관리
             type: 'post'
             , url: 'http://localhost:3000/api/session'
             , cookie : document.cookie
@@ -702,7 +539,7 @@
     var cham_number = [];
 
     $(document).ready(function () {
-        $.ajax({
+        $.ajax({ // 챔버별로 있는 것들만 드롭다운 메뉴에 나타내고 아이템을 선택하면 그에 대한 그래프가 표시되는 함수
             type: 'post'
             , url: 'http://localhost:3000/api/chamber/chamber_testroom_number'
 
@@ -727,7 +564,7 @@
         });
     });
 
-    $(document).ready(function () {
+    $(document).ready(function () { // 최근 시험이력 5개를 표시해주는 함수
         $.ajax({
             type: 'post'
             , url: 'http://localhost:3000/api/chamber/recent_test'
@@ -775,7 +612,7 @@
     });
 
 
-    function SelectUnit() {
+    function SelectUnit() { // 그래프를 생성하기 위해 데이터를 구성해주는 함수
         var good = $('#index').val();
         var params = "testroom_number=" + good;
         $.ajax({
@@ -786,59 +623,7 @@
                 $('#ajax_load_indicator').show().fadeIn('fast');
             }
             , success: function (data) {
-                // var all_lenght = 0;
-                // for (var i = 0; i < data.month.length; i++) {
-                //     for (var j = 0; j < data.month[i].length; j++) {
-                //         all_lenght = all_lenght + 1;
-                //     }
-                // }
-
-                // array = new Array(180);
-                // for (var i = 0; i < 180; i++) {
-                //     array[i] = new Array();
-                // }
-                // indexName = ['Date', 'ida_wb', 'ida_db', 'idb_db', 'idb_db', 'od_wb', 'od_db'];
-
-
-                // function getDateStr(myDate) {
-                //     var year = myDate.getFullYear();
-                //     var month = ("0" + (myDate.getMonth() + 1)).slice(-2);
-                //     var day = ("0" + myDate.getDate()).slice(-2);
-                //     return (year + '.' + month + '.' + day);
-                // }
-
-
-                // for (var i = 0; i < 180; i++) {
-                //     var today = new Date();
-                //     var getday = today.getDate();
-                //     var date_modify;
-                //     var flag = 0;
-                //     today.setDate(getday - (180 - i));
-                //     array[i].push(new Date(today));
-                //     for (var j = 0; j < data.month.length; j++) {
-                //         for (var k = 0; k < data.month[j].length; k++) {
-                //             date_modify = (data.month[j][k].conn_file_date);
-                //             if (date_modify == getDateStr(today)) {
-                //                 array[i].push(data.month[j][k].conn_ida_wb_gap);
-                //                 array[i].push(data.month[j][k].conn_ida_db_gap);
-                //                 array[i].push(data.month[j][k].conn_idb_wb_gap);
-                //                 array[i].push(data.month[j][k].conn_idb_db_gap);
-                //                 array[i].push(data.month[j][k].conn_od_wb_gap);
-                //                 array[i].push(data.month[j][k].conn_od_db_gap);
-                //                 flag = 1;
-                //             }
-                //         }
-                //     }
-                //     if (flag == 0) {
-                //         array[i].push(0);
-                //         array[i].push(0);
-                //         array[i].push(0);
-                //         array[i].push(0);
-                //         array[i].push(0);
-                //         array[i].push(0);
-
-                //     }
-                // }
+                
 
                 var all_lenght = 0;
                 for (var i = 0; i < data.month.length; i++) {
@@ -869,7 +654,6 @@
                     }
                 }
 
-                ///////////
 
                 drawingZZ(array, indexName, all_lenght);
             }
@@ -884,7 +668,7 @@
     }
 
 
-    function drawingZZ(array, indexName, arraylength) {
+    function drawingZZ(array, indexName, arraylength) { // 실제 그래프를 생성하는 함수
         var chartDrowFun = {
 
             chartDrow: function () {
@@ -1027,6 +811,7 @@
 
 </script>
 <script>
+    // db개수 그래프를 실제로 그려주는 함수들
     google.charts.load("current", {packages: ["corechart"]});
     google.charts.setOnLoadCallback(drawChart1);
     chart1_data = [['model', '갯수', {role: 'style'}]]
@@ -1121,7 +906,7 @@
     });
 </script>
 <script>
-    $(document).ready(function () {
+    $(document).ready(function () { // 단위변환 default 함수
         if (localStorage['lgmv_temp']) {
             $('#lgmv_temp').val(localStorage['lgmv_temp'])
         }
@@ -1141,14 +926,14 @@
         }
     };
 
-    function admin_mode() {
+    function admin_mode() { // 관리자 모드 탭
         if ($("#admin_tabs").css("display") == "none") {
             $('#admin_tabs').css("display", "flex");
         } else {
             $('#admin_tabs').hide();
         }
     };
-    $("#save_btn").click(function () {
+    $("#save_btn").click(function () { // 단위변환 저장해주는 함수
         lgmv_temp = $('#lgmv_temp option:selected').val()
         lgmv_pressure = $('#lgmv_pressure option:selected').val()
         lgmv_flux = $('#lgmv_flux option:selected').val()
@@ -1159,7 +944,7 @@
 
     });
 
-    function lg_logout() {
+    function lg_logout() { // 로그아웃
 
         $.ajax({
             type: 'post'

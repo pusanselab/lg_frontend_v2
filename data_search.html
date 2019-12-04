@@ -868,7 +868,7 @@
 <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript">
 
-    function lg_logout() {
+    function lg_logout() { // 로그아웃
 
         $.ajax({
             type: 'post'
@@ -891,7 +891,7 @@
         });
 
     }
-    function lg_model_Change() {
+    function lg_model_Change() { // 모델명 드롭다운 메뉴 구성 함수
 
         var Multi_V_H_P = ["- 선택 -", "Multi V 5", "Multi V 5 A", "Multi V 5 H", "Multi V IV", "Multi V IV Plus", "Multi V lll", "Multi V II m+m", "Multi V II m+s"];
         var Multi_V_H_R = ["- 선택 -", "Multi V 5 HR", "Multi V IV HR", "Multi V III HR"];
@@ -959,7 +959,7 @@
 
     }
 
-    function lg_plm_step1_Change() {
+    function lg_plm_step1_Change() { //plm_step1 드롭다운 메뉴 구성함수
 
         var NMI = ["- 선택 -", "DV", "PV", "기타"];
         var NPI = ["- 선택 -", "DV", "PV"];
@@ -987,7 +987,7 @@
 
     }
 
-    function lg_test_step1_Change() {
+    function lg_test_step1_Change() { //test_step1 드롭다운 구성 함수
         var ability = ["- 선택 -", "RPM", "Micom 확인", "사용자 관점 기능 Test", "소음"];
         var cool_ability = ["- 선택 -", "냉방능력", "냉방과부하", "냉방전압변동", "결빙(저온)성능", "이슬맺힘", "고온고습", "상온고습", "냉방4Point 시험", "냉방 Eva시험", "냉방 Cond 차폐", "냉방주체 운전"];
         var hot_ability = ["- 선택 -", "난방능력", "난방과부하", "난방전압변동", "자동제상", "난방4Point 시험", "저온방치 시험", "H/Start 운정율", "난방주체 운전", "난방 Eva 차폐", "난방 Cond 차폐", "자동제상"];
@@ -1068,13 +1068,13 @@
     tabParentHeight();
 
 
-    $(function () {
+    $(function () { // 데이트피커 함수
         $('#datepicker').datepicker({
             dateFormat: "yy/mm/dd"
         });
     });
     selected_id = 0;
-    function dataSearch() {
+    function dataSearch() { // 입력된 파라미터를 전송하여 알맞는 결과를 찾아주는 함수
 
         if ($("#testDatepicker1").val() == '' ^ $("#testDatepicker2").val() == '') {
             alert("첫날짜와 마지막 날짜를 모두 넣어주세요.");
@@ -1165,7 +1165,6 @@
 
 
                     } else {
-                        // $('#search_result').css('display', 'none');
                         $('.search_fail').css('display', 'block');
 
 
@@ -1203,7 +1202,7 @@
         });
     });
     $(window).ready(function () {
-        $.ajax({
+        $.ajax({ // 세션관리
             type: 'post'
             , url: 'http://localhost:3000/api/session'
             , cookie : document.cookie
@@ -1224,7 +1223,7 @@
     });
 
 
-    function DetailSearch(header_uid) {
+    function DetailSearch(header_uid) { // header_id에 맞는 상세검색 결과를 찾아주는 함수
         var params = "header_uid=" + header_uid;
         var same;
         $('#detail').css('display', 'inline');
@@ -1242,8 +1241,6 @@
                 $('#search_result').css('display', 'inline');
                 $('#search_result_table').css('display', 'table');
 
-                // $('#lg_search_result_tbody tr:gt(0)').remove();
-                // 분기 처리
                 if (data.message == 'success') {
                     var element = data.content;
                     var id = element.header_uid;
@@ -1373,7 +1370,7 @@
     }
 
 
-    function sameSearch(test1, test2) {
+    function sameSearch(test1, test2) { // 중복검사 함수
         $('#_same').css('display', 'flex');
         $('#_same_title').css('display', 'inline');
         var params = 'test_step1=' + test1 + '&test_step2=' + test2 + '&header_uid=' + selected_id;
@@ -1406,8 +1403,6 @@
                                 var test_step1 = element.test_step1;
                                 var test_step2 = element.test_step2;
                                 var testroom = element.conn_testroom_number;
-                                //var file_date = data.content.conn_file_date;
-                                //var file_time = data.content.conn_file_time;
 
                                 var serial = element.lgmv_serial_number;
                                 var Model1 = element.lgmv_model_filter1;
@@ -1439,34 +1434,6 @@
                                 var unit_temp = element.lgmv_unit_temp;
                                 var unit_press = element.lgmv_unit_press;
                                 var unit_flux = element.lgmv_unit_flux;
-
-
-                                // if (uid == id && test_step1 == '냉방성능') {
-                                //     $('#_cold').css('display', 'inline');
-
-                                //     var calzz = data.content.cooling_performance;
-
-                                //     var rowItem = "<tr>";
-                                //     rowItem += "<td id='detailzz" + id + "' value=" + id + " onclick=\"DetailSearch(\'" + id + "\');\">" + id + "</td>";
-                                //     ;
-                                //     rowItem += "<td>" + calzz.compressor_1 + "</td>";
-                                //     rowItem += "<td>" + calzz.compressor_2 + "</td>";
-                                //     rowItem += "<td>" + calzz.odu_fan_rpm1 + "</td>";
-                                //     rowItem += "<td>" + calzz.odu_fan_rpm2 + "</td>";
-                                //     rowItem += "<td>" + calzz.idu1_fan_rpm + "</td>";
-                                //     rowItem += "<td>" + calzz.main_eev + "</td>";
-                                //     rowItem += "<td>" + calzz.sub_eev + "</td>";
-                                //     rowItem += "<td>" + "</td>";
-                                //     rowItem += "<td>" + calzz.EER + "</td>";
-                                //     rowItem += "</tr>";
-                                //     $('#cold_tbody').append(rowItem);
-
-                                // }
-                                // else {
-
-                                // }
-
-
                                 var rowItem = "<tr>";
                                 rowItem += "<td id='detailzz" + id + "' value=" + id + " onclick=\"DetailSearch(\'" + id + "\');\">" + id + "</td>";
                                 ;
@@ -1513,8 +1480,8 @@
     }
 </script>
 <script>
-
-    $(document).ready(function () {
+//관리자 모드 및 단위변환 사이드바 함수
+    $(document).ready(function () { 
         if (localStorage['lgmv_temp']) {
             $('#lgmv_temp').val(localStorage['lgmv_temp'])
         }

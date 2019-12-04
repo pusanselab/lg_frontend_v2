@@ -97,7 +97,7 @@
 <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript" language="javascript">
-    function checkLogin() {
+    function checkLogin() { // 로그인함수
         console.log("enter login");
         $.ajax({
             type: 'post'
@@ -140,7 +140,7 @@
         });
     }
 
-	$(document).ready(function() {
+	$(document).ready(function() { // 단위변환 초기화
         localStorage['lgmv_temp'] = 'C';
         localStorage['lgmv_press'] = 'kPa';
         localStorage['lgmv_cap'] = 'Watt';
