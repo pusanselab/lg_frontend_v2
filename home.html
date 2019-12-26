@@ -101,6 +101,13 @@
         margin: 2.5em 1em 1em 4em;
 
     }
+
+    #lg_db_usage {
+        text-align: right;
+        font-weight: bold;
+        margin: 2.5em 1em 1em 4em;
+
+    }
 </style>
 <!--contents Css-->
 <style>
@@ -331,10 +338,11 @@
                     </select>
                 </div>
                 <div style="margin: auto;text-align: center;">
-                    유량 단위
+                    능력 단위
                     <select id="lgmv_flux" class="input_option" style="width: 100px;">
-                        <option value="m3/h">m3/h</option>
-                        <option value="gal/m">gal/m</option>
+                        <option value="Watt">Watt</option>
+                        <option value="kal/h">kal/h</option>
+                        <option value="Btu/h">Btu/h</option>
                     </select>
                 </div>
                 <button id="save_btn" type="button" class="option_save_btn" data-toggle="modal"
@@ -349,6 +357,11 @@
                 <span>전체 DB 수 </span>
                 <br>
                 <span id="num_db" style="margin-left: 1em; font-size: 50px"></span><span>개</span>
+            </div>
+            <div id="lg_db_usage">
+                <span> DB 사용량 </span>
+                <br>
+                <span id="percent_db" style="margin-left: 1em; font-size: 50px"></span><span>%</span>
             </div>
 
             <div class="row" style="margin: 2em;">
@@ -491,21 +504,26 @@
         model_array = [['모델', '갯수']];
         $.ajax({
             type: 'post'
-            , url: 'http://localhost:3000/api/overview'
+            , url: 'http://164.125.70.12:3000/api/overview'
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
             }
             , success: function (data) {
+                
                 for (let i = 0; i < data.content.model.length; i++) {
                     var temp = []
                     temp.push(data.content.model[i].name)
                     temp.push(data.content.model[i].count)
+                    num_db+=data.content.model[i].count;
                     model_array.push(temp)
 
                     if (i === data.content.model.length - 1) {
                         // drawChart(model_array)
                     }
                 }
+                var percent =data.content.db_usage;
+                $('#percent_db').html(percent);
+                $('#num_db').html(num_db);
             }
             , error: function (data, status, err) {
                 console.log("error forward : " + data);
@@ -518,7 +536,7 @@
 
         $.ajax({ // 세션관리
             type: 'post'
-            , url: 'http://localhost:3000/api/session'
+            , url: 'http://164.125.70.12:3000/api/session'
             , cookie : document.cookie
             , beforeSend: function (xmlHttpRequest) {
                 $('#ajax_load_indicator').show().fadeIn('fast');
@@ -541,7 +559,7 @@
     $(document).ready(function () {
         $.ajax({ // 챔버별로 있는 것들만 드롭다운 메뉴에 나타내고 아이템을 선택하면 그에 대한 그래프가 표시되는 함수
             type: 'post'
-            , url: 'http://localhost:3000/api/chamber/chamber_testroom_number'
+            , url: 'http://164.125.70.12:3000/api/chamber/chamber_testroom_number'
 
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
@@ -567,7 +585,7 @@
     $(document).ready(function () { // 최근 시험이력 5개를 표시해주는 함수
         $.ajax({
             type: 'post'
-            , url: 'http://localhost:3000/api/chamber/recent_test'
+            , url: 'http://164.125.70.12:3000/api/chamber/recent_test'
 
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
@@ -617,7 +635,7 @@
         var params = "testroom_number=" + good;
         $.ajax({
             type: 'post'
-            , url: 'http://localhost:3000/api/chamber/chamber_status'
+            , url: 'http://164.125.70.12:3000/api/chamber/chamber_status'
             , data: params
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
@@ -821,7 +839,7 @@
         if (chart1_data.length === 1) {
             await $.ajax({
                 type: 'post'
-                , url: 'http://localhost:3000/api/overview'
+                , url: 'http://164.125.70.12:3000/api/overview'
 
                 , beforeSend: function () {
                     $('#ajax_load_indicator').show().fadeIn('fast');
@@ -948,7 +966,7 @@
 
         $.ajax({
             type: 'post'
-            , url: 'http://localhost:3000/api/logout'
+            , url: 'http://164.125.70.12:3000/api/logout'
             
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');

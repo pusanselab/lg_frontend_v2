@@ -78,11 +78,14 @@
 						   style="margin-top: 20px;">
 				</div>
 			</form>
+			<br/>
+			<p>원활한 이용을 위해 구글의 크롬 브라우저 사용을 권장합니다.</p>
 		</div>
+		
 	</div>
 	</section>
 	<div>
-		<p>원활한 기능 이용을 위해, 구글의 크롬 브라우저 사용을 권장합니다.</p>
+		
 	</div>
 
 
@@ -104,7 +107,7 @@
         console.log("enter login");
         $.ajax({
             type: 'post'
-            , url: 'http://localhost:3000/api/login'
+            , url: 'http://164.125.70.12:3000/api/login'
             , data: $("#frm").serialize()
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
