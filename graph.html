@@ -127,7 +127,7 @@
             </table>
 
             <button class='button' id="lg_see_graph_btn" style="margin-left: 1em" >그래프 보기</button>
-
+            <span id="load_message" style="margin:10px; display: none">그래프를 불러오는 중입니다.</span>
         </div>
         <div id="graph" style="width: 100%">
             <div id="Line_Controls_Chart">
@@ -192,7 +192,7 @@
 
         $.ajax({ //로그아웃 버튼
             type: 'post'
-            , url: 'http://164.125.70.12:3000/api/logout'
+            , url: 'http://localhost:3000/api/logout'
             
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
@@ -219,7 +219,7 @@
         var params = "header_uid=" + val;
         $.ajax({ // 이전페이지로부터 헤더아이디를 받아와 아이템리스트를 만들어줌
             type: 'post'
-            , url: 'http://164.125.70.12:3000/api/graph/items'
+            , url: 'http://localhost:3000/api/graph/items'
             , data: params
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
@@ -259,7 +259,7 @@
 
         $.ajax({ // 세션관리
             type: 'post'
-            , url: 'http://164.125.70.12:3000/api/session'
+            , url: 'http://localhost:3000/api/session'
             , cookie : document.cookie
             , beforeSend: function (xmlHttpRequest) {
                 $('#ajax_load_indicator').show().fadeIn('fast');
@@ -400,6 +400,9 @@
     $(function() {
         $('#lg_see_graph_btn').click(function() {
             $('#lg_see_graph_btn').prop('disabled', true);
+            $('#lg_see_graph_btn').css('background-color', 'black');
+            $('#load_message').css('display', 'inline');
+
             setTimeout(showGraph, 0);
         });
   });
@@ -409,11 +412,27 @@
         var rowData = new Array();
         var jsonparams = JSON.stringify({'header_uid': val, 'item_list': colName});
 
+        var logger_param = "logger_type=" + "graph";
+        // 로거 설정
+        $.ajax({
+            type: 'post'
+            , url: 'http://localhost:3000/api/save_logger'
+            , data: logger_param
+            , success: function (data) {
+            }
+            , error: function (data, status, err) {
+                console.log("error forward : " + data);
+                alert('서버와의 통신이 실패했습니다.');
+            }
+            , complete: function () {
+                $('#ajax_load_indicator').fadeOut();
+            }
+        });
 
         console.log("enter login");
         $.ajax({
             type: 'post'
-            , url: 'http://164.125.70.12:3000/api/graph/raws'
+            , url: 'http://localhost:3000/api/graph/raws'
             , data: jsonparams
             , dataType: 'json'
             , contentType: 'application/json'
@@ -455,7 +474,9 @@
                     }
                 }
                 drawingZZ(array, indexName, datazz.length, min_max_check,unitName);
+                $('#lg_see_graph_btn').css('display', 'inline');
                 $('#graph_button').html('<button id="lg_see_graph_btn" style="margin-left: 1em"  onClick="doExcel1(array,indexName);">EXCEL 다운로드</button>');
+                $('#load_message').css('display', 'none');
 
             }
             , error: function (data, status, err) {
@@ -471,6 +492,7 @@
     do {var ts2 = new Date().getTime(); } while (ts2 < ts1);
     // 버튼 활성화
     $('#lg_see_graph_btn').prop('disabled', false);
+    $('#lg_see_graph_btn').css('background-color', 'rgb(22, 106, 209)');
 
 
     }
@@ -953,7 +975,7 @@
             graphImg;
         $.ajax({
             type: 'post'
-            , url: 'http://164.125.70.12:3000/api/data_search_id'
+            , url: 'http://localhost:3000/api/data_search_id'
             , data: params
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');

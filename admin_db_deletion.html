@@ -83,6 +83,19 @@
                 </button>
             </div>
         </div>
+
+        <div class="card" style="margin: 50px">
+            <div class="card-header" style="font-size:13px; color:white; background-color: #333333">
+                디비 사용량 확인
+            </div>
+            <div style="margin: 20px">
+                <div id="lg_db_usage">
+                    <span> DB 사용량 </span>
+                    <br>
+                    <span id="percent_db" style="margin-left: 1em; font-size: 50px"></span><span>%</span>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- Button trigger modal -->
 
@@ -217,6 +230,8 @@
     });
 
     $(document).ready(function () {
+
+
         $.ajax({
             type: 'post'
             , url: 'http://localhost:3000/api/check_admin'
@@ -243,6 +258,24 @@
             }
         });
 
+        $.ajax({
+            type: 'post'
+            , url: 'http://localhost:3000/api/overview'
+            , beforeSend: function () {
+                $('#ajax_load_indicator').show().fadeIn('fast');
+            }
+            , success: function (data) {
+                var percent =data.content.db_usage;
+                $('#percent_db').html(percent);
+            }
+            , error: function (data, status, err) {
+                console.log("error forward : " + data);
+                alert('서버와의 통신이 실패했습니다.');
+            }
+            , complete: function () {
+                $('#ajax_load_indicator').fadeOut();
+            }
+        })
 
         if (localStorage['lgmv_temp']) {
             $('#lgmv_temp').val(localStorage['lgmv_temp'])
@@ -278,7 +311,21 @@
         localStorage['lgmv_press'] = lgmv_pressure
         localStorage['lgmv_flux'] = lgmv_flux
         $('#unit_options').css("display", "none");
-
+        var logger_param = "logger_type=" + "option";
+        $.ajax({
+            type: 'post'
+            , url: 'http://localhost:3000/api/save_logger'
+            , data: logger_param
+            , success: function (data) {
+            }
+            , error: function (data, status, err) {
+                console.log("error forward : " + data);
+                alert('서버와의 통신이 실패했습니다.');
+            }
+            , complete: function () {
+                $('#ajax_load_indicator').fadeOut();
+            }
+        });
     });
 
 

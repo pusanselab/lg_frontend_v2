@@ -307,7 +307,21 @@
         localStorage['lgmv_press'] = lgmv_pressure
         localStorage['lgmv_flux'] = lgmv_flux
         $('#unit_options').css("display", "none");
-
+        var logger_param = "logger_type=" + "option";
+        $.ajax({
+            type: 'post'
+            , url: 'http://localhost:3000/api/save_logger'
+            , data: logger_param
+            , success: function (data) {
+            }
+            , error: function (data, status, err) {
+                console.log("error forward : " + data);
+                alert('서버와의 통신이 실패했습니다.');
+            }
+            , complete: function () {
+                $('#ajax_load_indicator').fadeOut();
+            }
+        });
     });
 </script>
 <style>

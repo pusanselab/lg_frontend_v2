@@ -248,10 +248,12 @@
         border-bottom: 1px solid #111;
         font-size: 13px;
     }
+
     #search_result_table thead th {
         vertical-align: center !important;
         border-bottom: 2px solid #dee2e6;
     }
+
     #search_result_table {
         display: none;
         flex-direction: column;
@@ -259,7 +261,7 @@
         margin: 0 0 50px;
     }
 
-    #search_result_table thead tr{
+    #search_result_table thead tr {
         background: #f1f0f0;
         border-top: 2px solid rgb(163, 163, 163);
         text-align: center;
@@ -696,7 +698,8 @@
                 </tbody>
 
             </table>
-            <div align="center" class="search_fail" style="margin-bottom: 40px; text-align:center; font-size: 13px; "></div>
+            <div align="center" class="search_fail"
+                 style="margin-bottom: 40px; text-align:center; font-size: 13px; "></div>
             <div id="lg_detail">
                 <h6 class="lg_circle lg_product_info_text" style="margin-top: 20px">제품정보</h6>
                 <table class="table lg_search_detail_table">
@@ -803,7 +806,7 @@
                         <td id="_lgmv_unit_press"></td>
                     </tr>
                     <tr>
-                        <th>유량 딘위</th>
+                        <th>유량 단위</th>
                         <td id="_lgmv_unit_flux"></td>
                         <th>능력 단위</th>
                         <td id="_calorimeter_unit_cap"></td>
@@ -831,7 +834,8 @@
                     <tbody id="redanduncy_result_table_tbody">
                     </tbody>
                 </table>
-                <div align="center" id="search_fail2" style="margin-bottom: 40px; text-align:center; font-size: 13px; "></div>
+                <div align="center" id="search_fail2"
+                     style="margin-bottom: 40px; text-align:center; font-size: 13px; "></div>
             </div>
         </div>
 
@@ -872,8 +876,8 @@
 
         $.ajax({
             type: 'post'
-            , url: 'http://164.125.70.12:3000/api/logout'
-            
+            , url: 'http://localhost:3000/api/logout'
+
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
             }
@@ -891,6 +895,7 @@
         });
 
     }
+
     function lg_model_Change() { // 모델명 드롭다운 메뉴 구성 함수
 
         var Multi_V_H_P = ["- 선택 -", "Multi V 5", "Multi V 5 A", "Multi V 5 H", "Multi V IV", "Multi V IV Plus", "Multi V lll", "Multi V II m+m", "Multi V II m+s"];
@@ -1074,15 +1079,31 @@
         });
     });
     selected_id = 0;
+
     function dataSearch() { // 입력된 파라미터를 전송하여 알맞는 결과를 찾아주는 함수
 
+        var logger_param = "logger_type=" + "data_search";
+        $.ajax({
+            type: 'post'
+            , url: 'http://localhost:3000/api/save_logger'
+            , data: logger_param
+            , success: function (data) {
+            }
+            , error: function (data, status, err) {
+                console.log("error forward : " + data);
+                alert('서버와의 통신이 실패했습니다.');
+            }
+            , complete: function () {
+                $('#ajax_load_indicator').fadeOut();
+            }
+        });
         if ($("#testDatepicker1").val() == '' ^ $("#testDatepicker2").val() == '') {
             alert("첫날짜와 마지막 날짜를 모두 넣어주세요.");
         }
         else {
             $.ajax({
                 type: 'post'
-                , url: 'http://164.125.70.12:3000/api/data_search'
+                , url: 'http://localhost:3000/api/data_search'
                 , data: $("#data_search").serialize()
                 , beforeSend: function () {
                     $('#ajax_load_indicator').show().fadeIn('fast');
@@ -1155,12 +1176,14 @@
                             rowItem += "<td><button class='data_search_btn_table' onclick=\"DetailSearch(\'" + id + "\');\">상세 보기</button></td>";
                             rowItem += "<td><button class='data_search_btn_table' onclick=\"setHeaderUid(\'" + id + "\');\">그래프 보기</button></td>";
                             rowItem += "</tr>";
-                             selected_id = id;
+                            selected_id = id;
                             $('#lg_search_result_tbody').append(rowItem);
                         });
                         $('.search_fail').css('display', 'none');
-                        $('#search_result_table').dataTable({"ordering": false,
-                            "retrieve": true, "searching":false, "info":false});
+                        $('#search_result_table').dataTable({
+                            "ordering": false,
+                            "retrieve": true, "searching": false, "info": false
+                        });
                         $('#search_result_table').css('display', 'table');
 
 
@@ -1204,17 +1227,17 @@
     $(window).ready(function () {
         $.ajax({ // 세션관리
             type: 'post'
-            , url: 'http://164.125.70.12:3000/api/session'
-            , cookie : document.cookie
+            , url: 'http://localhost:3000/api/session'
+            , cookie: document.cookie
             , beforeSend: function (xmlHttpRequest) {
                 $('#ajax_load_indicator').show().fadeIn('fast');
                 xmlHttpRequest.setRequestHeader("user_id", sessionStorage.getItem('user_id'));
             }
             , success: function (data) {
-                if(data.session){
+                if (data.session) {
                     console.log("완료");
                 }
-                else{
+                else {
                     alert("잘못된 접근입니다.");
                     window.location.href = "./index.html";
                 }
@@ -1224,6 +1247,24 @@
 
 
     function DetailSearch(header_uid) { // header_id에 맞는 상세검색 결과를 찾아주는 함수
+
+        var logger_param = "logger_type=" + "data_detail";
+        // 로거 설정
+        $.ajax({
+            type: 'post'
+            , url: 'http://localhost:3000/api/save_logger'
+            , data: logger_param
+            , success: function (data) {
+            }
+            , error: function (data, status, err) {
+                console.log("error forward : " + data);
+                alert('서버와의 통신이 실패했습니다.');
+            }
+            , complete: function () {
+                $('#ajax_load_indicator').fadeOut();
+            }
+        });
+
         var params = "header_uid=" + header_uid;
         var same;
         $('#detail').css('display', 'inline');
@@ -1232,7 +1273,7 @@
 
         $.ajax({
             type: 'post'
-            , url: 'http://164.125.70.12:3000/api/data_search_id'
+            , url: 'http://localhost:3000/api/data_search_id'
             , data: params
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
@@ -1376,7 +1417,7 @@
         var params = 'test_step1=' + test1 + '&test_step2=' + test2 + '&header_uid=' + selected_id;
         $.ajax({
             type: 'post'
-            , url: 'http://164.125.70.12:3000/api/similar_test'
+            , url: 'http://localhost:3000/api/similar_test'
             , data: params
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
@@ -1387,11 +1428,11 @@
                 $('#redanduncy_result_table tr:gt(0)').remove();
                 $('#cold_tbody tr:gt(0)').remove();
                 // 분기 처리
-                if(data.message !== 'failure') {
+                if (data.message !== 'failure') {
                     if ((data.content.length > 0)) {
                         var array = data.content;
                         array.forEach(element => {
-                            if(element.header_uid !== selected_id) {
+                            if (element.header_uid !== selected_id) {
                                 var id = element.header_uid;
                                 var Model = element.lgmv_model_filter2;
                                 var Model_name = element.lgmv_model_name;
@@ -1476,12 +1517,12 @@
     }
 
     function setHeaderUid(index) {
-        window.open("http://164.125.70.12/graph.html?index=" + index, '_blank');
+        window.open("http://localhost/graph.html?index=" + index, '_blank');
     }
 </script>
 <script>
-//관리자 모드 및 단위변환 사이드바 함수
-    $(document).ready(function () { 
+    //관리자 모드 및 단위변환 사이드바 함수
+    $(document).ready(function () {
         if (localStorage['lgmv_temp']) {
             $('#lgmv_temp').val(localStorage['lgmv_temp'])
         }
@@ -1516,6 +1557,21 @@
         localStorage['lgmv_press'] = lgmv_pressure
         localStorage['lgmv_flux'] = lgmv_flux
         $('#unit_options').css("display", "none");
+        var logger_param = "logger_type=" + "option";
+        $.ajax({
+            type: 'post'
+            , url: 'http://localhost:3000/api/save_logger'
+            , data: logger_param
+            , success: function (data) {
+            }
+            , error: function (data, status, err) {
+                console.log("error forward : " + data);
+                alert('서버와의 통신이 실패했습니다.');
+            }
+            , complete: function () {
+                $('#ajax_load_indicator').fadeOut();
+            }
+        });
 
     });
 

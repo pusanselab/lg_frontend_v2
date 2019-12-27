@@ -102,12 +102,6 @@
 
     }
 
-    #lg_db_usage {
-        text-align: right;
-        font-weight: bold;
-        margin: 2.5em 1em 1em 4em;
-
-    }
 </style>
 <!--contents Css-->
 <style>
@@ -358,12 +352,6 @@
                 <br>
                 <span id="num_db" style="margin-left: 1em; font-size: 50px"></span><span>개</span>
             </div>
-            <div id="lg_db_usage">
-                <span> DB 사용량 </span>
-                <br>
-                <span id="percent_db" style="margin-left: 1em; font-size: 50px"></span><span>%</span>
-            </div>
-
             <div class="row" style="margin: 2em;">
                 <div class="col-md-6">
                     <div id="lg_dataset_by_model_header">
@@ -504,7 +492,7 @@
         model_array = [['모델', '갯수']];
         $.ajax({
             type: 'post'
-            , url: 'http://164.125.70.12:3000/api/overview'
+            , url: 'http://localhost:3000/api/overview'
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
             }
@@ -536,7 +524,7 @@
 
         $.ajax({ // 세션관리
             type: 'post'
-            , url: 'http://164.125.70.12:3000/api/session'
+            , url: 'http://localhost:3000/api/session'
             , cookie : document.cookie
             , beforeSend: function (xmlHttpRequest) {
                 $('#ajax_load_indicator').show().fadeIn('fast');
@@ -559,7 +547,7 @@
     $(document).ready(function () {
         $.ajax({ // 챔버별로 있는 것들만 드롭다운 메뉴에 나타내고 아이템을 선택하면 그에 대한 그래프가 표시되는 함수
             type: 'post'
-            , url: 'http://164.125.70.12:3000/api/chamber/chamber_testroom_number'
+            , url: 'http://localhost:3000/api/chamber/chamber_testroom_number'
 
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
@@ -585,7 +573,7 @@
     $(document).ready(function () { // 최근 시험이력 5개를 표시해주는 함수
         $.ajax({
             type: 'post'
-            , url: 'http://164.125.70.12:3000/api/chamber/recent_test'
+            , url: 'http://localhost:3000/api/chamber/recent_test'
 
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
@@ -632,16 +620,35 @@
 
     function SelectUnit() { // 그래프를 생성하기 위해 데이터를 구성해주는 함수
         var good = $('#index').val();
+        var logger_param = "logger_type=" + "chamber_status";
         var params = "testroom_number=" + good;
+
+        // 로거 설정
         $.ajax({
             type: 'post'
-            , url: 'http://164.125.70.12:3000/api/chamber/chamber_status'
+            , url: 'http://localhost:3000/api/save_logger'
+            , data: logger_param
+            , success: function (data) {
+            }
+            , error: function (data, status, err) {
+                console.log("error forward : " + data);
+                alert('서버와의 통신이 실패했습니다.');
+            }
+            , complete: function () {
+                $('#ajax_load_indicator').fadeOut();
+            }
+        });
+
+
+        $.ajax({
+            type: 'post'
+            , url: 'http://localhost:3000/api/chamber/chamber_status'
             , data: params
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');
             }
             , success: function (data) {
-                
+
 
                 var all_lenght = 0;
                 for (var i = 0; i < data.month.length; i++) {
@@ -839,7 +846,7 @@
         if (chart1_data.length === 1) {
             await $.ajax({
                 type: 'post'
-                , url: 'http://164.125.70.12:3000/api/overview'
+                , url: 'http://localhost:3000/api/overview'
 
                 , beforeSend: function () {
                     $('#ajax_load_indicator').show().fadeIn('fast');
@@ -959,14 +966,28 @@
         localStorage['lgmv_press'] = lgmv_pressure
         localStorage['lgmv_flux'] = lgmv_flux
         $('#unit_options').css("display", "none");
-
+        var logger_param = "logger_type=" + "option";
+        $.ajax({
+            type: 'post'
+            , url: 'http://localhost:3000/api/save_logger'
+            , data: logger_param
+            , success: function (data) {
+            }
+            , error: function (data, status, err) {
+                console.log("error forward : " + data);
+                alert('서버와의 통신이 실패했습니다.');
+            }
+            , complete: function () {
+                $('#ajax_load_indicator').fadeOut();
+            }
+        });
     });
 
     function lg_logout() { // 로그아웃
 
         $.ajax({
             type: 'post'
-            , url: 'http://164.125.70.12:3000/api/logout'
+            , url: 'http://localhost:3000/api/logout'
             
             , beforeSend: function () {
                 $('#ajax_load_indicator').show().fadeIn('fast');

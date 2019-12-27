@@ -71,6 +71,36 @@
             </div>
 
 
+            <div class="card" style=" margin-top: 50px; margin-right: 20px; margin-left: 20px">
+                <div class="card-header" style="font-size:13px; color:white; background-color: #333333">
+                    기능별 접근 횟수
+                </div>
+                <table class="table lg_search_detail_table">
+                    <tbody>
+                    <tr style="border-top: 2px solid rgb(163,163,163)">
+                        <th>챔버 상태</th>
+                        <td id="chamber_status"></td>
+                    </tr>
+                    <tr>
+                        <th>데이터 검색</th>
+                        <td id="data_search"></td>
+                    </tr>
+                    <tr>
+                        <th>상세 검색</th>
+                        <td id="data_detail"></td>
+                    </tr>
+                    <tr>
+                        <th>그래프 보기</th>
+                        <td id="graph"></td>
+                    </tr>
+                    <tr>
+
+                        <th>단위 설정</th>
+                        <td id="option"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <!-- Modal -->
@@ -226,29 +256,36 @@
         var data = {}
         data.id = $('#userId').val()
         data.pwd = $('#userpwd').val()
-        $.ajax({
-            type: 'post'
-            , url: 'http://localhost:3000/api/user/create'
-            , data: data
-            , beforeSend: function () {
-                $('#ajax_load_indicator').show().fadeIn('fast');
-            }
-            , success: function (data) {
-                if (data.status === 400) {
-                    alert("id 가 중복되었습니다. 다른 id를 입력해주세요!")
+        console.log(data.id)
+        if($('#userId').val() === '' || $('#userId').val() === '' || $('#userId').val() === undefined || $('#userId').val() === undefined) {
+            alert("id와 pw를 입력해주세요.")
+        }
+        else {
+            $.ajax({
+                type: 'post'
+                , url: 'http://localhost:3000/api/user/create'
+                , data: data
+                , beforeSend: function () {
+                    $('#ajax_load_indicator').show().fadeIn('fast');
                 }
-                else {
-                    alert("id가 정상적으로 발급되었습니다.")
+                , success: function (data) {
+                    if (data.status === 400) {
+                        alert("id 가 중복되었습니다. 다른 id를 입력해주세요!")
+                    }
+                    else {
+                        alert("id가 정상적으로 발급되었습니다.")
+                    }
                 }
-            }
-            , error: function (data, status, err) {
-                console.log("error forward : " + data);
-                alert('서버와의 통신이 실패했습니다.');
-            }
-            , complete: function () {
-                $('#ajax_load_indicator').fadeOut();
-            }
-        });
+                , error: function (data, status, err) {
+                    console.log("error forward : " + data);
+                    alert('서버와의 통신이 실패했습니다.');
+                }
+                , complete: function () {
+                    $('#ajax_load_indicator').fadeOut();
+                }
+            });
+
+        }
     }
 
     $(document).ready(function () {
@@ -263,6 +300,19 @@
                 if (data.pwd === inputString) {
                     alert('승인 되었습니다.')
                     $('#lg_contents').css('display', 'flex');
+
+                    $.ajax({
+                        type: 'get'
+                        , url: 'http://localhost:3000/api/get_logger'
+                        , success: function (data) {
+                            $('#chamber_status').html(data.chamber_status);
+                            $('#data_search').html(data.data_search);
+                            $('#data_detail').html(data.data_detail);
+                            $('#graph').html(data.graph);
+                            $('#option').html(data.option);
+                        }
+
+                    })
                 }
                 else {
                     alert('승인이 되지 않았습니다. 홈 화면으로 돌아갑니다.')
@@ -313,7 +363,21 @@
         localStorage['lgmv_press'] = lgmv_pressure
         localStorage['lgmv_flux'] = lgmv_flux
         $('#unit_options').css("display", "none");
-
+        var logger_param = "logger_type=" + "option";
+        $.ajax({
+            type: 'post'
+            , url: 'http://localhost:3000/api/save_logger'
+            , data: logger_param
+            , success: function (data) {
+            }
+            , error: function (data, status, err) {
+                console.log("error forward : " + data);
+                alert('서버와의 통신이 실패했습니다.');
+            }
+            , complete: function () {
+                $('#ajax_load_indicator').fadeOut();
+            }
+        });
     });
 
 </script>
